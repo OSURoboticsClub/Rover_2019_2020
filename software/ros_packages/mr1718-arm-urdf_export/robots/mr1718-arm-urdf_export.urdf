@@ -1,0 +1,361 @@
+<robot
+  name="mr1718-arm-urdf_export">
+  <link
+    name="base_link">
+    <inertial>
+      <origin
+        xyz="5.4755E-05 0.015543 0.0086991"
+        rpy="0 0 0" />
+      <mass
+        value="1.5519" />
+      <inertia
+        ixx="0.0045029"
+        ixy="-1.9571E-05"
+        ixz="1.1071E-05"
+        iyy="0.001083"
+        iyz="0.0012614"
+        izz="0.0038307" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://mr1718-arm-urdf_export/meshes/base_link.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.75294 0.75294 0.75294 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://mr1718-arm-urdf_export/meshes/base_link.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <link
+    name="shoulder_link">
+    <inertial>
+      <origin
+        xyz="-0.0076779 0.072439 -0.00025927"
+        rpy="0 0 0" />
+      <mass
+        value="1.2323" />
+      <inertia
+        ixx="0.00071817"
+        ixy="8.2844E-05"
+        ixz="4.663E-06"
+        iyy="0.0012756"
+        iyz="3.6626E-06"
+        izz="0.0019919" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://mr1718-arm-urdf_export/meshes/shoulder_link.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.75294 0.75294 0.75294 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://mr1718-arm-urdf_export/meshes/shoulder_link.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="shoulder"
+    type="continuous">
+    <origin
+      xyz="0 0.0025248 0.091246"
+      rpy="1.5708 0 0" />
+    <parent
+      link="base_link" />
+    <child
+      link="shoulder_link" />
+    <axis
+      xyz="0 1 0" />
+  </joint>
+  <link
+    name="elbow_link">
+    <inertial>
+      <origin
+        xyz="0.052746 3.5254E-06 0.25018"
+        rpy="0 0 0" />
+      <mass
+        value="1.5164" />
+      <inertia
+        ixx="0.082218"
+        ixy="3.201E-09"
+        ixz="0.00060003"
+        iyy="0.082526"
+        iyz="-8.6916E-07"
+        izz="0.00030787" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://mr1718-arm-urdf_export/meshes/elbow_link.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.75294 0.75294 0.75294 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://mr1718-arm-urdf_export/meshes/elbow_link.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="elbow"
+    type="continuous">
+    <origin
+      xyz="0.0335058907562339 0.0827436823988177 0"
+      rpy="0 0 0" />
+    <parent
+      link="shoulder_link" />
+    <child
+      link="elbow_link" />
+    <axis
+      xyz="1 0 0" />
+  </joint>
+  <link
+    name="roll_link">
+    <inertial>
+      <origin
+        xyz="-0.030978 -3.4831E-06 -0.0054534"
+        rpy="0 0 0" />
+      <mass
+        value="1.0721" />
+      <inertia
+        ixx="0.00049287"
+        ixy="3.3206E-08"
+        ixz="-3.6397E-06"
+        iyy="0.00051016"
+        iyz="-4.5289E-08"
+        izz="2.4367E-05" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://mr1718-arm-urdf_export/meshes/roll_link.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.75294 0.75294 0.75294 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://mr1718-arm-urdf_export/meshes/roll_link.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="roll"
+    type="continuous">
+    <origin
+      xyz="0 0 0.523621"
+      rpy="0 0 0" />
+    <parent
+      link="elbow_link" />
+    <child
+      link="roll_link" />
+    <axis
+      xyz="1 0 0" />
+  </joint>
+  <link
+    name="wrist_link">
+    <inertial>
+      <origin
+        xyz="-0.00095192 -4.7142E-05 0.25454"
+        rpy="0 0 0" />
+      <mass
+        value="0.60759" />
+      <inertia
+        ixx="0.0039577"
+        ixy="4.5025E-07"
+        ixz="5.7684E-05"
+        iyy="0.0042265"
+        iyz="1.2153E-06"
+        izz="0.00026882" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://mr1718-arm-urdf_export/meshes/wrist_link.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.75294 0.75294 0.75294 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://mr1718-arm-urdf_export/meshes/wrist_link.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="wrist_base"
+    type="continuous">
+    <origin
+      xyz="-0.0345081407562338 0 0.048642197732"
+      rpy="0 0 0" />
+    <parent
+      link="roll_link" />
+    <child
+      link="wrist_link" />
+    <axis
+      xyz="0 0 1" />
+  </joint>
+  <link
+    name="wrist_pitch_link">
+    <inertial>
+      <origin
+        xyz="0.00095959 0.00027042 0.014957"
+        rpy="0 0 0" />
+      <mass
+        value="0.32143" />
+      <inertia
+        ixx="0.00011388"
+        ixy="-2.4963E-06"
+        ixz="2.1367E-06"
+        iyy="0.00018114"
+        iyz="1.3277E-06"
+        izz="6.9395E-05" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://mr1718-arm-urdf_export/meshes/wrist_pitch_link.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.75294 0.75294 0.75294 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://mr1718-arm-urdf_export/meshes/wrist_pitch_link.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="wrist_pitch"
+    type="continuous">
+    <origin
+      xyz="0 0 0.343027"
+      rpy="0 0 0" />
+    <parent
+      link="wrist_link" />
+    <child
+      link="wrist_pitch_link" />
+    <axis
+      xyz="1 0 0" />
+  </joint>
+  <link
+    name="wrist_roll_link">
+    <inertial>
+      <origin
+        xyz="-3.3391E-05 7.6495E-05 0.034573"
+        rpy="0 0 0" />
+      <mass
+        value="0.090203" />
+      <inertia
+        ixx="4.2212E-06"
+        ixy="9.452E-08"
+        ixz="1.6547E-08"
+        iyy="3.9599E-06"
+        iyz="-5.2152E-08"
+        izz="3.8149E-07" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://mr1718-arm-urdf_export/meshes/wrist_roll_link.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.75294 0.75294 0.75294 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://mr1718-arm-urdf_export/meshes/wrist_roll_link.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="wrist_roll"
+    type="continuous">
+    <origin
+      xyz="0 0 0.0227193855733502"
+      rpy="0 0 0" />
+    <parent
+      link="wrist_pitch_link" />
+    <child
+      link="wrist_roll_link" />
+    <axis
+      xyz="0 0 1" />
+  </joint>
+</robot>

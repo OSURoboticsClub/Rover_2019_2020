@@ -1,0 +1,6 @@
+<launch>
+    <group ns="rover_control">
+        <node name="effectors" pkg="rover_control" type="effectors_control.py" respawn="true" output="screen">
+        </node>
+    </group>
+</launch>

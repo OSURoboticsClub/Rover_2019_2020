@@ -1,0 +1,87 @@
+<launch>
+    <group ns="cameras">
+        <node name="chassis_1280x720" pkg="nimbro_topic_transport" type="udp_receiver" output="screen">
+            <param name="port" value="17001" />
+        </node>
+
+        <node name="undercarriage_1280x720" pkg="nimbro_topic_transport" type="udp_receiver" output="screen">
+            <param name="port" value="17002" />
+        </node>
+
+        <node name="main_navigation_1280x720" pkg="nimbro_topic_transport" type="udp_receiver" output="screen">
+            <param name="port" value="17003" />
+        </node>
+
+        <node name="end_effector_1280x720" pkg="nimbro_topic_transport" type="udp_receiver" output="screen">
+            <param name="port" value="17004" />
+        </node>
+
+        <node name="chassis_640x360" pkg="nimbro_topic_transport" type="udp_receiver" output="screen">
+            <param name="port" value="17005" />
+        </node>
+
+        <node name="undercarriage_640x360" pkg="nimbro_topic_transport" type="udp_receiver" output="screen">
+            <param name="port" value="17006" />
+        </node>
+
+        <node name="main_navigation_640x360" pkg="nimbro_topic_transport" type="udp_receiver" output="screen">
+            <param name="port" value="17007" />
+        </node>
+
+        <node name="end_effector_640x360" pkg="nimbro_topic_transport" type="udp_receiver" output="screen">
+            <param name="port" value="17008" />
+        </node>
+
+        <node name="chassis_256x144" pkg="nimbro_topic_transport" type="udp_receiver" output="screen">
+            <param name="port" value="17009" />
+        </node>
+
+        <node name="undercarriage_256x144" pkg="nimbro_topic_transport" type="udp_receiver" output="screen">
+            <param name="port" value="17010" />
+        </node>
+
+        <node name="main_navigation_256x144" pkg="nimbro_topic_transport" type="udp_receiver" output="screen">
+            <param name="port" value="17011" />
+        </node>
+
+        <node name="end_effector_256x144" pkg="nimbro_topic_transport" type="udp_receiver" output="screen">
+            <param name="port" value="17012" />
+        </node>
+    </group>
+
+    <group>
+
+        <node name="bogie_status_tcp" pkg="nimbro_topic_transport" type="tcp_receiver" output="screen">
+            <param name="port" value="17013" />
+        </node>
+
+        <node name="camera_status_tcp" pkg="nimbro_topic_transport" type="tcp_receiver" output="screen">
+            <param name="port" value="17014" />
+        </node>
+
+        <node name="frsky_status_tcp" pkg="nimbro_topic_transport" type="tcp_receiver" output="screen">
+            <param name="port" value="17015" />
+        </node>
+
+        <node name="gps_status_tcp" pkg="nimbro_topic_transport" type="tcp_receiver" output="screen">
+            <param name="port" value="17016" />
+        </node>
+
+        <node name="jetson_status_tcp" pkg="nimbro_topic_transport" type="tcp_receiver" output="screen">
+            <param name="port" value="17017" />
+        </node>
+
+        <node name="misc_status_tcp" pkg="nimbro_topic_transport" type="tcp_receiver" output="screen">
+            <param name="port" value="17018" />
+        </node>
+
+        <node name="udp_statuses" pkg="nimbro_topic_transport" type="udp_receiver" output="screen">
+            <param name="port" value="17019" />
+        </node>
+
+        <node name="udp_arm_statuses" pkg="nimbro_topic_transport" type="udp_receiver" output="screen">
+            <param name="port" value="17020" />
+        </node>
+
+    </group>
+</launch>

@@ -1,0 +1,5 @@
+bool arm_connection_status
+bool arm_end_effector_connection_statuses
+bool sample_containment_connection_status
+bool tower_connection_status
+bool chassis_pan_tilt_connection_status

@@ -1,0 +1,11 @@
+moveit_setup_assistant_config:
+  URDF:
+    package: mr1718-arm-urdf_export
+    relative_path: robots/mr1718-arm-urdf_export.urdf
+    xacro_args: "--inorder "
+  SRDF:
+    relative_path: config/mr1718-arm-urdf_export.srdf
+  CONFIG:
+    author_name: Corwin Perren
+    author_email: caperren@gmail.com
+    generated_timestamp: 1533095742

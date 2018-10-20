@@ -1,0 +1,37 @@
+<launch>
+    <!--<node name="udp_receiver" pkg="nimbro_topic_transport" type="udp_receiver" output="screen">-->
+        <!--<param name="port" value="17001" />-->
+    <!--</node>-->
+
+    <!--<node name="udp_receiver2" pkg="nimbro_topic_transport" type="udp_receiver" output="screen">-->
+        <!--<param name="port" value="17002" />-->
+    <!--</node>-->
+
+    <!--<node name="udp_receiver3" pkg="nimbro_topic_transport" type="udp_receiver" output="screen">-->
+        <!--<param name="port" value="17003" />-->
+    <!--</node>-->
+
+    <node name="udp_receiver4" pkg="nimbro_topic_transport" type="udp_receiver" output="screen">
+        <param name="port" value="17004" />
+    </node>
+
+    <node name="udp_receiver5" pkg="nimbro_topic_transport" type="udp_receiver" output="screen">
+        <param name="port" value="17005" />
+    </node>
+
+    <node name="udp_receiver6" pkg="nimbro_topic_transport" type="udp_receiver" output="screen">
+        <param name="port" value="17006" />
+    </node>
+
+    <node name="udp_receiver7" pkg="nimbro_topic_transport" type="udp_receiver" output="screen">
+        <param name="port" value="17007" />
+    </node>
+
+    <node name="udp_receiver8" pkg="nimbro_topic_transport" type="udp_receiver" output="screen">
+        <param name="port" value="17008" />
+    </node>
+
+    <node name="udp_receiver9" pkg="nimbro_topic_transport" type="udp_receiver" output="screen">
+        <param name="port" value="17009" />
+    </node>
+</launch>

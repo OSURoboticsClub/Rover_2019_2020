@@ -1,0 +1,15 @@
+# udevadm info -a -p $(udevadm info -q path -n /dev/video2)
+# ATTRS{serial}=="B9A8A5FF", MODE="0660",GROUP="nvidia",
+# SUBSYSTEM=="video4linux",ATTRS{idVendor}=="0x046d",ATTRS{idProduct}=="0x082d",NAME="videoext"
+
+# The zed camera
+KERNEL=="video[0-9]*", SUBSYSTEM=="video4linux", ATTRS{idVendor}=="2b03", ATTRS{idProduct}=="f580", SYMLINK+="rover/camera_zed"
+
+# The first C920 Webcam
+KERNEL=="video[0-9]*", SUBSYSTEM=="video4linux", ATTRS{idVendor}=="046d", ATTRS{idProduct}=="082d", ATTRS{serial}=="B9A8A5FF", SYMLINK+="rover/camera_undercarriage"
+
+# The second C920 Webcam
+KERNEL=="video[0-9]*", SUBSYSTEM=="video4linux", ATTRS{idVendor}=="046d", ATTRS{idProduct}=="082d", ATTRS{serial}=="A98AA5FF", SYMLINK+="rover/camera_chassis"
+
+# The special main nav cam
+KERNEL=="video[0-9]*", SUBSYSTEM=="video4linux", ATTRS{idVendor}=="05a3", ATTRS{idProduct}=="9422", ATTRS{serial}=="SN0001", ATTR{index}=="0", SYMLINK+="rover/camera_main_navigation"

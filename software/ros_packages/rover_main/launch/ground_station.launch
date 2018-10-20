@@ -1,0 +1,8 @@
+<launch>
+    <!-- ########## Start Nimbro Topic Transport Nodes ########## -->
+    <include file="$(find rover_main)/launch/ground_station/topic_transport_senders.launch"/>
+    <include file="$(find rover_main)/launch/ground_station/topic_transport_receivers.launch"/>
+
+    <!-- ########## Start Ground Station Interface ########## -->
+    <node name="ground_station" pkg="ground_station" type="ground_station_launch.sh" required="true" output="screen"/>
+</launch>

@@ -1,0 +1,7 @@
+float32 temp_c
+float32 moisture
+float32 loss_tangent
+float32 soil_electrical_conductivity
+float32 real_dielectric_permittivity
+float32 imaginary_dielectric_permittivity
+

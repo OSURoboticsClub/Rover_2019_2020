@@ -1,0 +1,18 @@
+<launch>
+  <group ns="cameras">
+    <node name="undercarriage" pkg="rover_camera" type="rover_camera" launch-prefix="taskset -c 1" output="screen">
+      <param name="device_path" value="/dev/rover/camera_undercarriage"/>
+    </node>
+
+    <node name="navigation" pkg="rover_camera" type="rover_camera" launch-prefix="taskset -c 2" output="screen" >
+      <param name="device_path" value="/dev/rover/camera_main_navigation" />
+    </node>
+
+
+    <node name="chassis" pkg="rover_camera" type="rover_camera" launch-prefix="taskset -c 3" output="screen" >
+      <param name="device_path" value="/dev/rover/camera_chassis" />
+    </node>
+
+
+  </group>
+</launch>

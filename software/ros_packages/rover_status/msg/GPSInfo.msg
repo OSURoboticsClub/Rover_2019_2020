@@ -1,0 +1,6 @@
+bool gps_connected
+bool gps_fix
+int8 num_satellites
+float32 horizontal_dilution
+float32 kmph
+float32 gps_heading

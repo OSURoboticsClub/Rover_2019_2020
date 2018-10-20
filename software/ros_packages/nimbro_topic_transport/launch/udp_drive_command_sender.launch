@@ -1,0 +1,17 @@
+<launch>
+	<arg name="target" default="192.168.1.10" />
+
+   	<!-- The UDP sender node -->
+	<node name="udp_sender4" pkg="nimbro_topic_transport" type="udp_sender" output="screen">
+
+		<!-- The destination host name or IP address -->
+		<param name="destination_addr" value="$(arg target)" />
+		<param name="destination_port" value="17020" />
+		<!-- Load the list of topics from a YAML file -->
+		<rosparam param="topics">
+            [{name: "/command_control/groundstation_drive", compress: true, rate: 15.0}]
+        </rosparam>
+
+	</node>
+
+</launch>

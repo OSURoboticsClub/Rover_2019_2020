@@ -1,0 +1,27 @@
+float64 base
+float64 shoulder
+float64 elbow
+float64 roll
+float64 wrist_pitch
+float64 wrist_roll
+
+int32 base_comm_status
+int32 shoulder_comm_status
+int32 elbow_comm_status
+int32 roll_comm_status
+int32 wrist_pitch_comm_status
+int32 wrist_roll_comm_status
+
+int32 base_status
+int32 shoulder_status
+int32 elbow_status
+int32 roll_status
+int32 wrist_pitch_status
+int32 wrist_roll_status
+
+int32 base_faults
+int32 shoulder_faults
+int32 elbow_faults
+int32 roll_faults
+int32 wrist_pitch_faults
+int32 wrist_roll_faults

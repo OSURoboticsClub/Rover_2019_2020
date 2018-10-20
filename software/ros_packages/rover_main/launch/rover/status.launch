@@ -1,0 +1,5 @@
+<launch>
+    <group ns="rover_status">
+        <node name="rover_status" pkg="rover_status" type="system_statuses_node.py" output="screen"/>
+    </group>
+</launch>

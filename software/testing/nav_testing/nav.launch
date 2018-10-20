@@ -1,0 +1,66 @@
+
+<launch>
+    <!-- https://github.com/vikiboy/AGV_Localization/blob/master/robot_localization/launch/ekf.launch -->
+<!-- https://answers.ros.org/question/241222/fusing-imu-gps-with-robot_location-package/ -->
+    <node name="rosbag" pkg="rosbag" type="play" args="-l /home/nvidia/gps_imu_data_2018-02-01-05-31-34.bag">
+        <remap from="/imu_data" to="/imu/data" />
+    </node>
+
+    <node name="navsat" pkg="nmea_navsat_driver" type="nmea_topic_driver" output="screen">
+        <remap from="/fix" to="/gps/fix"/>
+    </node>
+
+    <node pkg="tf" type="static_transform_publisher" name="imu_tf" args="0 0 0 0 0 0 1 base_link imu 20"/>
+    <node pkg="tf" type="static_transform_publisher" name="gps_tf" args="0 0 0 0 0 0 1 base_link gps 20"/>
+
+    <node pkg="robot_localization" type="ekf_localization_node" name="ekf_localization" clear_params="true">
+        <param name="output_frame" value="odom"/>
+        <param name="frequency" value="20"/>
+        <param name="odom_used" value="true"/>
+        <param name="imu_used" value="true"/>
+        <param name="vo_used" value="false"/>
+        <param name="sensor_timeout" value="0.1"/>
+        <param name="two_d_mode" value="false"/>
+
+        <param name="map_frame"       value="map"/>
+        <param name="odom_frame"      value="odom"/>
+        <param name="base_link_frame" value="base_link"/>
+        <param name="world_frame"     value="odom"/>
+
+        <param name="odom0" value="/odometry/gps"/>
+        <param name="imu0"  value="/imu/data"/>
+
+        <rosparam param="odom0_config">[true, true, true,
+                                      false, false, false,
+                                      false , false, false,
+                                      false, false, false,
+                                      false, false, false]</rosparam>
+
+        <rosparam param="imu0_config">[false, false, false,
+                                     true , true , true,
+                                     false, false, false,
+                                     true , true , true ,
+                                     true , true , true ]</rosparam>
+
+        <param name="odom0_differential" value="false"/>
+        <param name="imu0_differential"  value="false"/>
+
+        <param name="imu0_remove_gravitational_acceleration" value="true"/>
+
+        <param name="odom0_relative" value="false"/>
+        <param name="imu0_relative"  value="false"/>
+
+        <param name="print_diagnostics" value="true"/>
+
+        <!-- ======== ADVANCED PARAMETERS ======== -->
+
+        <param name="odom0_queue_size" value="2"/>
+        <param name="imu0_queue_size" value="10"/>
+
+    </node>
+
+    <node name="navsat_transform" pkg="robot_localization" type="navsat_transform_node" output="screen">
+            <param name="broadcast_utm_transform" value="true"/>
+    </node>
+
+</launch>

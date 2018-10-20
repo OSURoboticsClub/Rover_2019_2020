@@ -1,0 +1,23 @@
+<package>
+  <name>rover_camera</name>
+  <version>0.0.0</version>
+  <description>This package opens a camera on linux using OpenCV and publishes multiple streams at different resolutions</description>
+  <author>Corwin Perren</author>
+  <maintainer email="caperren@gmail.com">Corwin Perren</maintainer>
+  <license>Apache 2.0</license>
+
+  <build_depend>cv_bridge</build_depend>
+  <build_depend>image_transport</build_depend>
+  <build_depend>message_generation</build_depend>
+  <build_depend>opencv2</build_depend>
+  <build_depend>sensor_msgs</build_depend>
+
+  <run_depend>cv_bridge</run_depend>
+  <run_depend>image_transport</run_depend>
+  <run_depend>message_runtime</run_depend>
+  <run_depend>opencv2</run_depend>
+  <run_depend>sensor_msgs</run_depend>
+
+  <buildtool_depend>catkin</buildtool_depend>
+
+</package>

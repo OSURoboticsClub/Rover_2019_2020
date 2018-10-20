@@ -1,0 +1,11 @@
+bool first_motor_connected
+bool second_motor_connected
+
+float32 first_motor_current
+float32 second_motor_current
+
+bool first_motor_fault
+bool second_motor_fault
+
+float32 first_motor_temp
+float32 second_motor_temp

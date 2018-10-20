@@ -1,0 +1,5 @@
+<launch>
+    <group ns="rover_science">
+        <node name="rover_science" pkg="rover_science" type="rover_science_node.py" respawn="true" output="screen"/>
+    </group>
+</launch>

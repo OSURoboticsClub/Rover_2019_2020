@@ -1,0 +1,34 @@
+# Examples
+#########################
+# SUBSYSTEM=="tty", ATTRS{idVendor}=="0403", ATTRS{idProduct}=="6011", ATTRS{serial}=="FTU9EU0I", ENV{ID_USB_INTERFACE_NUM}=="00", SYMLINK+="rover/ttyDEV0"
+# SUBSYSTEM=="tty", ATTRS{idVendor}=="0403", ATTRS{idProduct}=="6011", ATTRS{serial}=="FTU9EU0I", ENV{ID_USB_INTERFACE_NUM}=="01", SYMLINK+="rover/ttyDEV1"
+# SUBSYSTEM=="tty", ATTRS{idVendor}=="0403", ATTRS{idProduct}=="6011", ATTRS{serial}=="FTU9EU0I", ENV{ID_USB_INTERFACE_NUM}=="02", SYMLINK+="rover/ttyCompass"
+# SUBSYSTEM=="tty", ATTRS{idVendor}=="0403", ATTRS{idProduct}=="6011", ATTRS{serial}=="FTU9EU0I", ENV{ID_USB_INTERFACE_NUM}=="03", SYMLINK+="rover/ttyGPS"
+#########################
+
+
+##### NOTE!!!! The IONIs cannot be on IRIS. The throughput is too high for it to handle with only a 12Mbit usb hub onboard #####
+
+# IRIS Board Mappings
+SUBSYSTEM=="tty", ATTRS{idVendor}=="0403", ATTRS{idProduct}=="6011", ATTRS{serial}=="NM2CZLZF", ENV{ID_USB_INTERFACE_NUM}=="00", SYMLINK+="rover/ttyREAR"
+SUBSYSTEM=="tty", ATTRS{idVendor}=="0403", ATTRS{idProduct}=="6011", ATTRS{serial}=="NM2CZLZF", ENV{ID_USB_INTERFACE_NUM}=="01", SYMLINK+="rover/ttyLEFT"
+SUBSYSTEM=="tty", ATTRS{idVendor}=="0403", ATTRS{idProduct}=="6011", ATTRS{serial}=="NM2CZLZF", ENV{ID_USB_INTERFACE_NUM}=="02", SYMLINK+="rover/ttyRIGHT"
+SUBSYSTEM=="tty", ATTRS{idVendor}=="0403", ATTRS{idProduct}=="6011", ATTRS{serial}=="NM2CZLZF", ENV{ID_USB_INTERFACE_NUM}=="03", SYMLINK+="rover/ttyEffectors"
+
+SUBSYSTEM=="tty", ATTRS{idVendor}=="0403", ATTRS{idProduct}=="6011", ATTRS{serial}=="NM2HPA6V", ENV{ID_USB_INTERFACE_NUM}=="00", SYMLINK+="rover/ttyIRIS_1_0"
+SUBSYSTEM=="tty", ATTRS{idVendor}=="0403", ATTRS{idProduct}=="6011", ATTRS{serial}=="NM2HPA6V", ENV{ID_USB_INTERFACE_NUM}=="01", SYMLINK+="rover/ttyTowerAndPanTilt"
+SUBSYSTEM=="tty", ATTRS{idVendor}=="0403", ATTRS{idProduct}=="6011", ATTRS{serial}=="NM2HPA6V", ENV{ID_USB_INTERFACE_NUM}=="02", SYMLINK+="rover/ttyOdometry"
+SUBSYSTEM=="tty", ATTRS{idVendor}=="0403", ATTRS{idProduct}=="6011", ATTRS{serial}=="NM2HPA6V", ENV{ID_USB_INTERFACE_NUM}=="03", SYMLINK+="rover/ttyChassisPanTilt"
+
+SUBSYSTEM=="tty", ATTRS{idVendor}=="0403", ATTRS{idProduct}=="6011", ATTRS{serial}=="NM34WE0R", ENV{ID_USB_INTERFACE_NUM}=="00", SYMLINK+="rover/ttyRDF_SoilProbe"
+SUBSYSTEM=="tty", ATTRS{idVendor}=="0403", ATTRS{idProduct}=="6011", ATTRS{serial}=="NM34WE0R", ENV{ID_USB_INTERFACE_NUM}=="01", SYMLINK+="rover/ttyIRIS_2_1"
+SUBSYSTEM=="tty", ATTRS{idVendor}=="0403", ATTRS{idProduct}=="6011", ATTRS{serial}=="NM34WE0R", ENV{ID_USB_INTERFACE_NUM}=="02", SYMLINK+="rover/ttyIRIS"
+SUBSYSTEM=="tty", ATTRS{idVendor}=="0403", ATTRS{idProduct}=="6011", ATTRS{serial}=="NM34WE0R", ENV{ID_USB_INTERFACE_NUM}=="03", SYMLINK+="rover/ttyExtraUART"
+
+# External 485 adapter for the ARM
+SUBSYSTEM=="tty", ATTRS{idVendor}=="0403", ATTRS{idProduct}=="6001", ATTRS{serial}=="AH05K2Y8", SYMLINK+="rover/ttyARM"
+
+##### Mappings from OMSI / EXPO driving with individual adapters
+SUBSYSTEM=="tty", ATTRS{idVendor}=="0403", ATTRS{idProduct}=="6015", ATTRS{serial}=="DA01OM1N", SYMLINK+="rover/ttyScale"
+# SUBSYSTEM=="tty", ATTRS{idVendor}=="0403", ATTRS{idProduct}=="6001", ATTRS{serial}=="A906H89E", SYMLINK+="rover/ttyRIGHT"
+# SUBSYSTEM=="tty", ATTRS{idVendor}=="0403", ATTRS{idProduct}=="6001", ATTRS{serial}=="A906H7P0", SYMLINK+="rover/ttyREAR"

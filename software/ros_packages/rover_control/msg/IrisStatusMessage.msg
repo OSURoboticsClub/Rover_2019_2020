@@ -1,0 +1,2 @@
+bool iris_connected
+uint16 voltage_24v

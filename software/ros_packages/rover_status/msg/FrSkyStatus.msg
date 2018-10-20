@@ -1,0 +1,1 @@
+bool FrSky_controller_connection_status

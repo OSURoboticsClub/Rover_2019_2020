@@ -1,0 +1,20 @@
+<launch>
+    <!-- ########## Start Rover Control Nodes ########## -->
+    <include file="$(find rover_main)/launch/rover/control.launch"/>
+    <include file="$(find rover_main)/launch/rover/arm.launch"/>
+    <include file="$(find rover_main)/launch/rover/science.launch"/>
+
+    <!-- ########## Start All Rover Camera Nodes ########## -->
+    <include file="$(find rover_main)/launch/rover/cameras.launch"/>
+
+    <!-- ########## Start System Status Monitoring Nodes ########## -->
+    <include file="$(find rover_main)/launch/rover/status.launch"/>
+
+    <!-- ########## Start Nimbro Topic Transport Nodes ########## -->
+    <include file="$(find rover_main)/launch/rover/topic_transport_senders.launch"/>
+    <include file="$(find rover_main)/launch/rover/topic_transport_receivers.launch"/>
+
+    <!-- ########## Start Odometry Nodes ########## -->
+    <include file="$(find rover_main)/launch/rover/odometry2.launch"/>
+
+</launch>

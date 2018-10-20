@@ -1,0 +1,10 @@
+topics:
+ - name: "/cameras/camera_chassis/image_640x360/compressed"
+   compress: false # enable bz2 compression
+   rate: 30.0 # rate limit at 1Hz
+ - name: "/cameras/camera_undercarriage/image_640x360/compressed"
+   compress: false # enable bz2 compression
+   rate: 30.0 # rate limit at 1Hz
+ - name: "/cameras/main_navigation/image_640x360/compressed"
+   compress: false # enable bz2 compression
+   rate: 30.0 # rate limit at 1Hz

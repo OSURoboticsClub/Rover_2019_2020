@@ -1,0 +1,7 @@
+uint8 gripper_mode
+
+int32 gripper_position_absolute
+int16 gripper_position_relative
+
+bool should_home
+bool toggle_light

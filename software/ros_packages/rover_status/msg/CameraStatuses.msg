@@ -1,0 +1,4 @@
+bool camera_zed
+bool camera_undercarriage
+bool camera_chassis
+bool camera_main_navigation

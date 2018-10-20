@@ -1,0 +1,45 @@
+<launch>
+    <group ns="rover_control">
+        <node name="iris_controller" pkg="rover_control" type="iris_controller.py" respawn="true" output="screen">
+            <param name="port" value="/dev/rover/ttyIRIS"/>
+            <param name="hertz" value="20"/>
+        </node>
+
+        <node name="rear_bogie" pkg="rover_control" type="drive_control.py" respawn="true" output="screen">
+            <param name="port" value="/dev/rover/ttyREAR"/>
+            <param name="drive_control_topic" value="drive_control/rear"/>
+            <param name="drive_control_status_topic" value="drive_status/rear"/>
+            <param name="first_motor_id" value="2"/>
+            <param name="second_motor_id" value="1"/>
+        </node>
+
+        <node name="left_bogie" pkg="rover_control" type="drive_control.py" respawn="true" output="screen">
+            <param name="port" value="/dev/rover/ttyLEFT"/>
+            <param name="drive_control_topic" value="drive_control/left"/>
+            <param name="drive_control_status_topic" value="drive_status/left"/>
+            <param name="invert_first_motor" value="True"/>
+            <param name="invert_second_motor" value="True"/>
+        </node>
+
+        <node name="right_bogie" pkg="rover_control" type="drive_control.py" respawn="true" output="screen">
+            <param name="port" value="/dev/rover/ttyRIGHT"/>
+            <param name="drive_control_topic" value="drive_control/right"/>
+            <param name="drive_control_status_topic" value="drive_status/right"/>
+            <param name="first_motor_id" value="2"/>
+            <param name="second_motor_id" value="1"/>
+        </node>
+
+        <node name="drive_coordinator" pkg="rover_control" type="drive_coordinator.py" respawn="true" output="screen"/>
+
+        <node name="tower_and_pan_tilt" pkg="rover_control" type="tower_and_pan_tilt_control.py" respawn="true" output="screen"/>
+
+        <node name="chassis_pan_tilt" pkg="rover_control" type="chassis_pan_tilt_control.py" respawn="true" output="screen"/>
+
+        <node name="effectors" pkg="rover_control" type="effectors_control.py" respawn="true" output="screen">
+                <!--<param name="port" value="/dev/rover/ttyARM"/>-->
+        </node>
+
+        <!--<node name="scale" pkg="rover_control" type="emergency_scale.py" respawn="true" output="screen">-->
+        <!--</node>-->
+    </group>
+</launch>

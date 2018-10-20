@@ -1,0 +1,4 @@
+bool should_center
+
+int16 relative_pan_adjustment
+int16 relative_tilt_adjustment

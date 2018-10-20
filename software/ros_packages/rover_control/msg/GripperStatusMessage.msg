@@ -1,0 +1,13 @@
+uint16 pinch_position_raw
+uint16 forefinger_position_raw
+uint16 thumb_position_raw
+uint16 middlefinger_position_raw
+
+uint16 pinch_current
+uint16 forefinger_current
+uint16 thumb_current
+uint16 middlefinger_current
+
+bool light_on
+uint8 current_mode
+uint16 current_finger_position

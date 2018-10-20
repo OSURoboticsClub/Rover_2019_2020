@@ -1,0 +1,5 @@
+float64 jetson_CPU
+float64 jetson_RAM
+float64 jetson_EMMC
+float64 jetson_NVME_SSD
+float64 jetson_GPU_temp

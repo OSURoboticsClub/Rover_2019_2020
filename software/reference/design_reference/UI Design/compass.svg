@@ -1,0 +1,1639 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:xlink="http://www.w3.org/1999/xlink"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   inkscape:version="0.91 r13725"
+   version="1.1"
+   id="svg2"
+   viewBox="0 0 744.09448819 1052.3622047"
+   height="297mm"
+   width="210mm"
+   inkscape:export-filename="/home/caperren/Github/Rover_2017_2018/software/ros_packages/ground_station/src/Resources/Images/compass.png"
+   inkscape:export-xdpi="400"
+   inkscape:export-ydpi="400"
+   sodipodi:docname="compass.svg">
+  <sodipodi:namedview
+     inkscape:window-maximized="1"
+     inkscape:window-y="240"
+     inkscape:window-x="1080"
+     inkscape:window-height="1411"
+     inkscape:window-width="2560"
+     showgrid="false"
+     inkscape:current-layer="layer1"
+     inkscape:document-units="px"
+     inkscape:cy="378.98169"
+     inkscape:cx="312.85097"
+     inkscape:zoom="2"
+     inkscape:pageshadow="2"
+     inkscape:pageopacity="0.0"
+     borderopacity="1.0"
+     bordercolor="#666666"
+     pagecolor="#ffffff"
+     id="base" />
+  <defs
+     id="defs4">
+    <inkscape:path-effect
+       effect="skeletal"
+       id="path-effect4199"
+       is_visible="true"
+       pattern="M 0,0 1,0"
+       copytype="single_stretched"
+       prop_scale="1"
+       scale_y_rel="false"
+       spacing="0"
+       normal_offset="0"
+       tang_offset="0"
+       prop_units="false"
+       vertical_pattern="false"
+       fuse_tolerance="0" />
+    <inkscape:path-effect
+       effect="skeletal"
+       id="path-effect4168"
+       is_visible="true"
+       pattern="M 0,0 1,0"
+       copytype="repeated"
+       prop_scale="1"
+       scale_y_rel="false"
+       spacing="0"
+       normal_offset="0"
+       tang_offset="0"
+       prop_units="false"
+       vertical_pattern="false"
+       fuse_tolerance="0" />
+  </defs>
+  <metadata
+     id="metadata7">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title></dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1">
+    <path
+       style="fill:#000000;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       d="M 311.39188,822.73946 C 205.50299,772.6059 160.30438,646.12471 210.43796,540.23581 260.57154,434.34694 387.05273,389.14831 492.94161,439.2819 598.83049,489.41547 644.0291,615.89667 593.89552,721.78554 543.76195,827.67442 417.28076,872.87303 311.39188,822.73946 Z"
+       id="path3355"
+       inkscape:export-filename="/home/caperren/Github/Rover_2017_2018/software/ros_packages/ground_station/src/Resources/Images/compass.png"
+       inkscape:export-xdpi="400"
+       inkscape:export-ydpi="400"
+       inkscape:connector-curvature="0" />
+    <rect
+       style="fill:#ffffff;fill-opacity:1;stroke:#ffffff;stroke-width:0.13840906;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       id="rect24609"
+       width="3.1830206"
+       height="30.50445"
+       x="120.08599"
+       y="24.422058" />
+    <g
+       id="g26346"
+       transform="matrix(0.96592583,-0.25881905,0.25881905,0.96592583,-101.02308,111.85709)">
+      <use
+         id="use9736"
+         transform="matrix(-0.012653,0.999893,-0.999893,-0.012653,763.58377,201.22383)"
+         xlink:href="#rect24609-3"
+         x="0"
+         y="0"
+         width="100%"
+         height="100%" />
+      <use
+         id="use8940"
+         transform="matrix(-0.332202,0.943181,-0.943181,-0.332202,818.44065,340.67626)"
+         xlink:href="#rect24609-3"
+         x="0"
+         y="0"
+         width="100%"
+         height="100%" />
+      <use
+         id="use8314"
+         transform="matrix(-0.608426,0.79358,-0.79358,-0.608426,824.53702,487.11878)"
+         xlink:href="#rect24609-3"
+         x="0"
+         y="0"
+         width="100%"
+         height="100%" />
+      <use
+         id="use6110"
+         transform="matrix(-0.835274,0.54979,-0.54979,-0.835274,783.92651,633.18972)"
+         xlink:href="#rect24609-3"
+         x="0"
+         y="0"
+         width="100%"
+         height="100%" />
+      <use
+         id="use8768"
+         transform="matrix(-0.971468,0.23706,-0.23706,-0.971468,696.7785,760.35034)"
+         xlink:href="#rect24609-3"
+         x="0"
+         y="0"
+         width="100%"
+         height="100%" />
+      <use
+         id="use0704"
+         transform="matrix(-0.996054,-0.08845,0.08845,-0.996054,574.99292,848.30786)"
+         xlink:href="#rect24609-3"
+         x="0"
+         y="0"
+         width="100%"
+         height="100%" />
+      <use
+         id="use1339"
+         transform="matrix(-0.916145,-0.400784,0.400784,-0.916145,432.46899,891.6432)"
+         xlink:href="#rect24609-3"
+         x="0"
+         y="0"
+         width="100%"
+         height="100%" />
+      <use
+         id="use3449"
+         transform="matrix(-0.731924,-0.681352,0.681352,-0.731924,279.93073,887.64536)"
+         xlink:href="#rect24609-3"
+         x="0"
+         y="0"
+         width="100%"
+         height="100%" />
+      <use
+         id="use2816"
+         transform="matrix(-0.466638,-0.884421,0.884421,-0.466638,137.33209,833.80753)"
+         xlink:href="#rect24609-3"
+         x="0"
+         y="0"
+         width="100%"
+         height="100%" />
+      <use
+         id="use0372"
+         transform="matrix(-0.163447,-0.986525,0.986525,-0.163447,23.959154,738.09086)"
+         xlink:href="#rect24609-3"
+         x="0"
+         y="0"
+         width="100%"
+         height="100%" />
+      <use
+         id="use2259"
+         transform="matrix(0.163447,-0.986525,0.986525,0.163447,-54.217308,609.94313)"
+         xlink:href="#rect24609-3"
+         x="0"
+         y="0"
+         width="100%"
+         height="100%" />
+      <use
+         id="use6534"
+         transform="matrix(0.466638,-0.884421,0.884421,0.466638,-85.859676,465.39009)"
+         xlink:href="#rect24609-3"
+         x="0"
+         y="0"
+         width="100%"
+         height="100%" />
+      <use
+         id="use6907"
+         transform="matrix(0.731924,-0.681352,0.681352,0.731924,-70.14693,314.42465)"
+         xlink:href="#rect24609-3"
+         x="0"
+         y="0"
+         width="100%"
+         height="100%" />
+      <use
+         id="use5123"
+         transform="matrix(0.916145,-0.400784,0.400784,0.916145,-5.721404,176.23188)"
+         xlink:href="#rect24609-3"
+         x="0"
+         y="0"
+         width="100%"
+         height="100%" />
+      <use
+         id="use0659"
+         transform="matrix(0.996054,-0.08845,0.08845,0.996054,98.58244,70.178462)"
+         xlink:href="#rect24609-3"
+         x="0"
+         y="0"
+         width="100%"
+         height="100%" />
+      <use
+         id="use1745"
+         transform="matrix(0.971468,0.23706,-0.23706,0.971468,232.12727,2.445325)"
+         xlink:href="#rect24609-3"
+         x="0"
+         y="0"
+         width="100%"
+         height="100%" />
+      <use
+         id="use6711"
+         transform="matrix(0.835274,0.54979,-0.54979,0.835274,384.41671,-19.972158)"
+         xlink:href="#rect24609-3"
+         x="0"
+         y="0"
+         width="100%"
+         height="100%" />
+      <use
+         id="use2890"
+         transform="matrix(0.608426,0.79358,-0.79358,0.608426,533.52796,9.494455)"
+         xlink:href="#rect24609-3"
+         x="0"
+         y="0"
+         width="100%"
+         height="100%" />
+      <use
+         id="use4414"
+         transform="matrix(0.332202,0.943181,-0.943181,0.332202,659.54892,84.383151)"
+         xlink:href="#rect24609-3"
+         x="0"
+         y="0"
+         width="100%"
+         height="100%" />
+      <use
+         id="use5702"
+         transform="matrix(0.012653,0.999893,-0.999893,0.012653,757.53202,196.71033)"
+         xlink:href="#rect24609-3"
+         x="0"
+         y="0"
+         width="100%"
+         height="100%" />
+    </g>
+    <g
+       id="g33220"
+       inkscape:export-filename="/home/caperren/Github/Rover_2017_2018/software/ros_packages/ground_station/src/Resources/Images/compass.png"
+       inkscape:export-xdpi="400"
+       inkscape:export-ydpi="400"
+       transform="translate(-14.142127,178.77807)">
+      <path
+         style="fill:#ffffff;fill-opacity:1;stroke:#ffffff;stroke-width:0.04722656;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+         d="m 415.7659,254.55487 0,10.40821 1.08594,0 0,-10.40821 -1.08594,0 z m 0,384.94727 0,10.4082 1.08594,0 0,-10.4082 -1.08594,0 z"
+         id="rect29731"
+         inkscape:connector-curvature="0" />
+    </g>
+    <g
+       id="g33225"
+       transform="matrix(0.93969262,-0.34202014,0.34202014,0.93969262,-143.70829,348.43705)"
+       inkscape:export-filename="/home/caperren/Github/Rover_2017_2018/software/ros_packages/ground_station/src/Resources/Images/compass.png"
+       inkscape:export-xdpi="400"
+       inkscape:export-ydpi="400">
+      <path
+         inkscape:connector-curvature="0"
+         id="path33227"
+         d="m 415.7659,254.55487 0,10.40821 1.08594,0 0,-10.40821 -1.08594,0 z m 0,384.94727 0,10.4082 1.08594,0 0,-10.4082 -1.08594,0 z"
+         style="fill:#ffffff;fill-opacity:1;stroke:#ffffff;stroke-width:0.04722656;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+    </g>
+    <g
+       transform="matrix(0.5,-0.8660254,0.8660254,0.5,-197.63262,765.42843)"
+       id="g33229"
+       inkscape:export-filename="/home/caperren/Github/Rover_2017_2018/software/ros_packages/ground_station/src/Resources/Images/compass.png"
+       inkscape:export-xdpi="400"
+       inkscape:export-ydpi="400">
+      <path
+         style="fill:#ffffff;fill-opacity:1;stroke:#ffffff;stroke-width:0.04722656;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+         d="m 415.7659,254.55487 0,10.40821 1.08594,0 0,-10.40821 -1.08594,0 z m 0,384.94727 0,10.4082 1.08594,0 0,-10.4082 -1.08594,0 z"
+         id="path33231"
+         inkscape:connector-curvature="0" />
+    </g>
+    <g
+       transform="matrix(0.76604444,-0.64278761,0.64278761,0.76604444,-207.43387,552.17859)"
+       id="g33233"
+       inkscape:export-filename="/home/caperren/Github/Rover_2017_2018/software/ros_packages/ground_station/src/Resources/Images/compass.png"
+       inkscape:export-xdpi="400"
+       inkscape:export-ydpi="400">
+      <path
+         style="fill:#ffffff;fill-opacity:1;stroke:#ffffff;stroke-width:0.04722656;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+         d="m 415.7659,254.55487 0,10.40821 1.08594,0 0,-10.40821 -1.08594,0 z m 0,384.94727 0,10.4082 1.08594,0 0,-10.4082 -1.08594,0 z"
+         id="path33235"
+         inkscape:connector-curvature="0" />
+    </g>
+    <g
+       id="g33237"
+       transform="matrix(0.17364818,-0.98480775,0.98480775,0.17364818,-115.48671,962.46551)"
+       inkscape:export-filename="/home/caperren/Github/Rover_2017_2018/software/ros_packages/ground_station/src/Resources/Images/compass.png"
+       inkscape:export-xdpi="400"
+       inkscape:export-ydpi="400">
+      <path
+         inkscape:connector-curvature="0"
+         id="path33239"
+         d="m 415.7659,254.55487 0,10.40821 1.08594,0 0,-10.40821 -1.08594,0 z m 0,384.94727 0,10.4082 1.08594,0 0,-10.4082 -1.08594,0 z"
+         style="fill:#ffffff;fill-opacity:1;stroke:#ffffff;stroke-width:0.04722656;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+    </g>
+    <g
+       transform="matrix(-0.17364817,-0.98480775,0.98480775,-0.17364817,29.095843,1119.5242)"
+       id="g33241"
+       inkscape:export-filename="/home/caperren/Github/Rover_2017_2018/software/ros_packages/ground_station/src/Resources/Images/compass.png"
+       inkscape:export-xdpi="400"
+       inkscape:export-ydpi="400">
+      <path
+         style="fill:#ffffff;fill-opacity:1;stroke:#ffffff;stroke-width:0.04722656;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+         d="m 415.7659,254.55487 0,10.40821 1.08594,0 0,-10.40821 -1.08594,0 z m 0,384.94727 0,10.4082 1.08594,0 0,-10.4082 -1.08594,0 z"
+         id="path33243"
+         inkscape:connector-curvature="0" />
+    </g>
+    <g
+       id="g33245"
+       transform="matrix(-0.49999999,-0.8660254,0.8660254,-0.49999999,218.67625,1217.661)"
+       inkscape:export-filename="/home/caperren/Github/Rover_2017_2018/software/ros_packages/ground_station/src/Resources/Images/compass.png"
+       inkscape:export-xdpi="400"
+       inkscape:export-ydpi="400">
+      <path
+         inkscape:connector-curvature="0"
+         id="path33247"
+         d="m 415.7659,254.55487 0,10.40821 1.08594,0 0,-10.40821 -1.08594,0 z m 0,384.94727 0,10.4082 1.08594,0 0,-10.4082 -1.08594,0 z"
+         style="fill:#ffffff;fill-opacity:1;stroke:#ffffff;stroke-width:0.04722656;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+    </g>
+    <g
+       transform="matrix(-0.76604443,-0.64278761,0.64278761,-0.76604443,430.38832,1245.0391)"
+       id="g33249"
+       inkscape:export-filename="/home/caperren/Github/Rover_2017_2018/software/ros_packages/ground_station/src/Resources/Images/compass.png"
+       inkscape:export-xdpi="400"
+       inkscape:export-ydpi="400">
+      <path
+         style="fill:#ffffff;fill-opacity:1;stroke:#ffffff;stroke-width:0.04722656;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+         d="m 415.7659,254.55487 0,10.40821 1.08594,0 0,-10.40821 -1.08594,0 z m 0,384.94727 0,10.4082 1.08594,0 0,-10.4082 -1.08594,0 z"
+         id="path33251"
+         inkscape:connector-curvature="0" />
+    </g>
+    <g
+       id="g33253"
+       transform="matrix(-0.93969261,-0.34202015,0.34202015,-0.93969261,638.69645,1198.3563)"
+       inkscape:export-filename="/home/caperren/Github/Rover_2017_2018/software/ros_packages/ground_station/src/Resources/Images/compass.png"
+       inkscape:export-xdpi="400"
+       inkscape:export-ydpi="400">
+      <path
+         inkscape:connector-curvature="0"
+         id="path33255"
+         d="m 415.7659,254.55487 0,10.40821 1.08594,0 0,-10.40821 -1.08594,0 z m 0,384.94727 0,10.4082 1.08594,0 0,-10.4082 -1.08594,0 z"
+         style="fill:#ffffff;fill-opacity:1;stroke:#ffffff;stroke-width:0.04722656;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+    </g>
+    <path
+       style="fill:#ffffff;fill-opacity:1;stroke:#ffffff;stroke-width:0.03438281;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       d="m 394.89335,438.42551 0.19025,5.44785 1.09699,-0.0383 -0.19024,-5.44785 -1.097,0.0383 z m 13.25947,379.75882 0.19032,5.44981 1.09699,-0.0383 -0.19031,-5.44981 -1.097,0.0383 z"
+       id="rect29731-2"
+       inkscape:connector-curvature="0"
+       inkscape:export-filename="/home/caperren/Github/Rover_2017_2018/software/ros_packages/ground_station/src/Resources/Images/compass.png"
+       inkscape:export-xdpi="400"
+       inkscape:export-ydpi="400" />
+    <path
+       inkscape:connector-curvature="0"
+       id="path33339"
+       d="m 388.17608,438.79669 0.38026,5.43789 1.09498,-0.0766 -0.38025,-5.4379 -1.09499,0.0766 z m 26.50478,379.06473 0.3804,5.43985 1.09499,-0.0766 -0.38039,-5.43984 -1.095,0.0766 z"
+       style="fill:#ffffff;fill-opacity:1;stroke:#ffffff;stroke-width:0.03438281;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       inkscape:export-filename="/home/caperren/Github/Rover_2017_2018/software/ros_packages/ground_station/src/Resources/Images/compass.png"
+       inkscape:export-xdpi="400"
+       inkscape:export-ydpi="400" />
+    <path
+       style="fill:#ffffff;fill-opacity:1;stroke:#ffffff;stroke-width:0.03438281;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       d="m 381.47701,439.40203 0.56981,5.42131 1.09164,-0.11477 -0.5698,-5.42132 -1.09165,0.11477 z m 39.7178,377.90881 0.57002,5.42326 1.09165,-0.11477 -0.57001,-5.42325 -1.09166,0.11477 z"
+       id="path33341"
+       inkscape:connector-curvature="0"
+       inkscape:export-filename="/home/caperren/Github/Rover_2017_2018/software/ros_packages/ground_station/src/Resources/Images/compass.png"
+       inkscape:export-xdpi="400"
+       inkscape:export-ydpi="400" />
+    <path
+       inkscape:connector-curvature="0"
+       id="path33343"
+       d="m 374.80146,440.24081 0.75866,5.39813 1.08697,-0.1528 -0.75865,-5.39813 -1.08698,0.15279 z m 52.88243,376.29247 0.75894,5.40006 1.08698,-0.15279 -0.75893,-5.40006 -1.08699,0.1528 z"
+       style="fill:#ffffff;fill-opacity:1;stroke:#ffffff;stroke-width:0.03438281;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       inkscape:export-filename="/home/caperren/Github/Rover_2017_2018/software/ros_packages/ground_station/src/Resources/Images/compass.png"
+       inkscape:export-xdpi="400"
+       inkscape:export-ydpi="400" />
+    <path
+       style="fill:#ffffff;fill-opacity:1;stroke:#ffffff;stroke-width:0.03438281;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       d="m 361.56179,442.61434 1.13337,5.33206 1.07366,-0.22825 -1.13336,-5.33206 -1.07367,0.22824 z m 79.00245,371.68695 1.13378,5.33397 1.07367,-0.22825 -1.13377,-5.33396 -1.07368,0.22825 z"
+       id="path33345"
+       inkscape:connector-curvature="0"
+       inkscape:export-filename="/home/caperren/Github/Rover_2017_2018/software/ros_packages/ground_station/src/Resources/Images/compass.png"
+       inkscape:export-xdpi="400"
+       inkscape:export-ydpi="400" />
+    <path
+       inkscape:connector-curvature="0"
+       id="path33347"
+       d="m 355.01159,444.1462 1.31876,5.28926 1.06504,-0.26559 -1.31875,-5.28925 -1.06505,0.26557 z m 91.92601,368.70338 1.31924,5.29115 1.06505,-0.26558 -1.31923,-5.29114 -1.06506,0.26558 z"
+       style="fill:#ffffff;fill-opacity:1;stroke:#ffffff;stroke-width:0.03438281;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       inkscape:export-filename="/home/caperren/Github/Rover_2017_2018/software/ros_packages/ground_station/src/Resources/Images/compass.png"
+       inkscape:export-xdpi="400"
+       inkscape:export-ydpi="400" />
+    <path
+       style="fill:#ffffff;fill-opacity:1;stroke:#ffffff;stroke-width:0.03438281;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       d="m 348.51884,445.90572 1.50255,5.24002 1.05512,-0.3026 -1.50254,-5.24 -1.05513,0.30257 z m 104.73757,365.27061 1.5031,5.24188 1.05513,-0.30258 -1.50308,-5.24188 -1.05515,0.30259 z"
+       id="path33349"
+       inkscape:connector-curvature="0"
+       inkscape:export-filename="/home/caperren/Github/Rover_2017_2018/software/ros_packages/ground_station/src/Resources/Images/compass.png"
+       inkscape:export-xdpi="400"
+       inkscape:export-ydpi="400" />
+    <path
+       inkscape:connector-curvature="0"
+       id="path33351"
+       d="m 342.08922,447.89077 1.68451,5.18439 1.04392,-0.33924 -1.6845,-5.18437 -1.04393,0.33921 z m 117.42153,361.3928 1.68512,5.18623 1.04393,-0.33922 -1.6851,-5.18623 -1.04395,0.33923 z"
+       style="fill:#ffffff;fill-opacity:1;stroke:#ffffff;stroke-width:0.03438281;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       inkscape:export-filename="/home/caperren/Github/Rover_2017_2018/software/ros_packages/ground_station/src/Resources/Images/compass.png"
+       inkscape:export-xdpi="400"
+       inkscape:export-ydpi="400" />
+    <path
+       style="fill:#ffffff;fill-opacity:1;stroke:#ffffff;stroke-width:0.03438281;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       d="m 329.46399,452.52749 2.04205,5.05425 1.01771,-0.41123 -2.04204,-5.05424 -1.01772,0.41121 z m 142.34498,352.32155 2.04279,5.05605 1.01773,-0.41122 -2.04277,-5.05605 -1.01775,0.41123 z"
+       id="path33353"
+       inkscape:connector-curvature="0"
+       inkscape:export-filename="/home/caperren/Github/Rover_2017_2018/software/ros_packages/ground_station/src/Resources/Images/compass.png"
+       inkscape:export-xdpi="400"
+       inkscape:export-ydpi="400" />
+    <path
+       inkscape:connector-curvature="0"
+       id="path33355"
+       d="m 323.27655,455.17351 2.21719,4.9799 1.00274,-0.4465 -2.21719,-4.97989 -1.00274,0.44648 z m 154.55411,347.13915 2.218,4.98168 1.00276,-0.44649 -2.21798,-4.98167 -1.00278,0.44649 z"
+       style="fill:#ffffff;fill-opacity:1;stroke:#ffffff;stroke-width:0.03438281;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       inkscape:export-filename="/home/caperren/Github/Rover_2017_2018/software/ros_packages/ground_station/src/Resources/Images/compass.png"
+       inkscape:export-xdpi="400"
+       inkscape:export-ydpi="400" />
+    <path
+       style="fill:#ffffff;fill-opacity:1;stroke:#ffffff;stroke-width:0.03438281;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       d="m 317.19073,458.03375 2.38964,4.89949 0.98654,-0.48122 -2.38963,-4.89948 -0.98655,0.4812 z m 166.57494,341.53382 2.39051,4.90124 0.98657,-0.48121 -2.39049,-4.90123 -0.98659,0.48121 z"
+       id="path33357"
+       inkscape:connector-curvature="0"
+       inkscape:export-filename="/home/caperren/Github/Rover_2017_2018/software/ros_packages/ground_station/src/Resources/Images/compass.png"
+       inkscape:export-xdpi="400"
+       inkscape:export-ydpi="400" />
+    <path
+       inkscape:connector-curvature="0"
+       id="path33359"
+       d="m 311.20569,461.10474 2.55917,4.81311 0.96915,-0.51536 -2.55917,-4.81309 -0.96915,0.51533 z m 178.39282,335.51239 2.56011,4.81482 0.96917,-0.51534 -2.56008,-4.81482 -0.9692,0.51535 z"
+       style="fill:#ffffff;fill-opacity:1;stroke:#ffffff;stroke-width:0.03438281;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       inkscape:export-filename="/home/caperren/Github/Rover_2017_2018/software/ros_packages/ground_station/src/Resources/Images/compass.png"
+       inkscape:export-xdpi="400"
+       inkscape:export-ydpi="400" />
+    <path
+       style="fill:#ffffff;fill-opacity:1;stroke:#ffffff;stroke-width:0.03438281;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       d="m 299.57198,467.86374 2.88868,4.62287 0.93084,-0.58171 -2.88868,-4.62284 -0.93084,0.58167 z m 201.36242,322.25105 2.88974,4.62451 0.93086,-0.58169 -2.8897,-4.62451 -0.93089,0.5817 z"
+       id="path33361"
+       inkscape:connector-curvature="0"
+       inkscape:export-filename="/home/caperren/Github/Rover_2017_2018/software/ros_packages/ground_station/src/Resources/Images/compass.png"
+       inkscape:export-xdpi="400"
+       inkscape:export-ydpi="400" />
+    <path
+       inkscape:connector-curvature="0"
+       id="path33363"
+       d="m 293.94398,471.54351 3.04826,4.51924 0.90997,-0.61384 -3.04825,-4.51921 -0.90998,0.6138 z m 212.48616,315.0273 3.04937,4.52084 0.90999,-0.61382 -3.04933,-4.52085 -0.91002,0.61384 z"
+       style="fill:#ffffff;fill-opacity:1;stroke:#ffffff;stroke-width:0.03438281;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       inkscape:export-filename="/home/caperren/Github/Rover_2017_2018/software/ros_packages/ground_station/src/Resources/Images/compass.png"
+       inkscape:export-xdpi="400"
+       inkscape:export-ydpi="400" />
+    <path
+       style="fill:#ffffff;fill-opacity:1;stroke:#ffffff;stroke-width:0.03438281;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       d="m 288.44117,475.41757 3.20413,4.41011 0.88799,-0.64523 -3.20411,-4.41007 -0.88801,0.64518 z m 223.35102,307.41974 3.20528,4.41166 0.88802,-0.6452 -3.20525,-4.41168 -0.88804,0.64523 z"
+       id="path33365"
+       inkscape:connector-curvature="0"
+       inkscape:export-filename="/home/caperren/Github/Rover_2017_2018/software/ros_packages/ground_station/src/Resources/Images/compass.png"
+       inkscape:export-xdpi="400"
+       inkscape:export-ydpi="400" />
+    <path
+       inkscape:connector-curvature="0"
+       id="path33367"
+       d="m 283.08027,479.4812 3.35609,4.2956 0.86493,-0.67583 -3.35607,-4.29556 -0.86495,0.67578 z m 233.94375,299.43763 3.3573,4.29711 0.86496,-0.6758 -3.35727,-4.29713 -0.86498,0.67583 z"
+       style="fill:#ffffff;fill-opacity:1;stroke:#ffffff;stroke-width:0.03438281;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       inkscape:export-filename="/home/caperren/Github/Rover_2017_2018/software/ros_packages/ground_station/src/Resources/Images/compass.png"
+       inkscape:export-xdpi="400"
+       inkscape:export-ydpi="400" />
+    <path
+       style="fill:#ffffff;fill-opacity:1;stroke:#ffffff;stroke-width:0.03438281;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       d="m 272.80366,488.15713 3.64756,4.05103 0.81568,-0.73452 -3.64754,-4.05099 -0.8157,0.73447 z m 254.26159,282.38912 3.64887,4.05245 0.81571,-0.73449 -3.64884,-4.05247 -0.81573,0.73452 z"
+       id="path33369"
+       inkscape:connector-curvature="0"
+       inkscape:export-filename="/home/caperren/Github/Rover_2017_2018/software/ros_packages/ground_station/src/Resources/Images/compass.png"
+       inkscape:export-xdpi="400"
+       inkscape:export-ydpi="400" />
+    <path
+       inkscape:connector-curvature="0"
+       id="path33371"
+       d="m 267.89695,492.75886 3.78672,3.92126 0.78954,-0.76254 -3.78669,-3.92122 -0.78957,0.76249 z m 263.96194,273.34349 3.78807,3.92264 0.78958,-0.76251 -3.78804,-3.92266 -0.7896,0.76254 z"
+       style="fill:#ffffff;fill-opacity:1;stroke:#ffffff;stroke-width:0.03438281;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       inkscape:export-filename="/home/caperren/Github/Rover_2017_2018/software/ros_packages/ground_station/src/Resources/Images/compass.png"
+       inkscape:export-xdpi="400"
+       inkscape:export-ydpi="400" />
+    <path
+       style="fill:#ffffff;fill-opacity:1;stroke:#ffffff;stroke-width:0.03438281;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       d="m 263.15382,497.52903 3.92126,3.78671 0.76245,-0.78963 -3.92124,-3.78667 -0.76247,0.78958 z m 273.34069,263.96484 3.92266,3.78804 0.76249,-0.7896 -3.92264,-3.78807 -0.7625,0.78963 z"
+       id="path33373"
+       inkscape:connector-curvature="0"
+       inkscape:export-filename="/home/caperren/Github/Rover_2017_2018/software/ros_packages/ground_station/src/Resources/Images/compass.png"
+       inkscape:export-xdpi="400"
+       inkscape:export-ydpi="400" />
+    <path
+       inkscape:connector-curvature="0"
+       id="path33375"
+       d="m 258.57652,502.46182 4.05103,3.64756 0.73442,-0.81576 -4.051,-3.64751 -0.73445,0.8157 z m 282.38642,254.26459 4.05247,3.64884 0.73447,-0.81573 -4.05245,-3.64887 -0.73448,0.81576 z"
+       style="fill:#ffffff;fill-opacity:1;stroke:#ffffff;stroke-width:0.03438281;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       inkscape:export-filename="/home/caperren/Github/Rover_2017_2018/software/ros_packages/ground_station/src/Resources/Images/compass.png"
+       inkscape:export-xdpi="400"
+       inkscape:export-ydpi="400" />
+    <path
+       style="fill:#ffffff;fill-opacity:1;stroke:#ffffff;stroke-width:0.03438281;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       d="m 249.96272,512.79106 4.29561,3.35609 0.67572,-0.86501 -4.29557,-3.35604 -0.67576,0.86495 z m 299.43515,233.94693 4.29713,3.35727 0.67577,-0.86498 -4.29711,-3.3573 -0.67578,0.86501 z"
+       id="path33377"
+       inkscape:connector-curvature="0"
+       inkscape:export-filename="/home/caperren/Github/Rover_2017_2018/software/ros_packages/ground_station/src/Resources/Images/compass.png"
+       inkscape:export-xdpi="400"
+       inkscape:export-ydpi="400" />
+    <path
+       inkscape:connector-curvature="0"
+       id="path33379"
+       d="m 245.92963,518.17492 4.41012,3.20413 0.64512,-0.88806 -4.41007,-3.20409 -0.64517,0.88801 z m 307.41738,223.35428 4.41168,3.20526 0.64517,-0.88804 -4.41166,-3.20529 -0.64518,0.88807 z"
+       style="fill:#ffffff;fill-opacity:1;stroke:#ffffff;stroke-width:0.03438281;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       inkscape:export-filename="/home/caperren/Github/Rover_2017_2018/software/ros_packages/ground_station/src/Resources/Images/compass.png"
+       inkscape:export-xdpi="400"
+       inkscape:export-ydpi="400" />
+    <path
+       style="fill:#ffffff;fill-opacity:1;stroke:#ffffff;stroke-width:0.03438281;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       d="m 242.08689,523.69625 4.51926,3.04827 0.61374,-0.91003 -4.51921,-3.04823 -0.61379,0.90998 z m 315.02507,212.48951 4.52085,3.04934 0.61379,-0.91001 -4.52084,-3.04938 -0.61379,0.91005 z"
+       id="path33381"
+       inkscape:connector-curvature="0"
+       inkscape:export-filename="/home/caperren/Github/Rover_2017_2018/software/ros_packages/ground_station/src/Resources/Images/compass.png"
+       inkscape:export-xdpi="400"
+       inkscape:export-ydpi="400" />
+    <path
+       inkscape:connector-curvature="0"
+       id="path33383"
+       d="m 238.43919,529.34833 4.62289,2.88869 0.5816,-0.93089 -4.62283,-2.88866 -0.58166,0.93085 z m 322.24894,201.36585 4.62452,2.88971 0.58165,-0.93088 -4.6245,-2.88975 -0.58166,0.93092 z"
+       style="fill:#ffffff;fill-opacity:1;stroke:#ffffff;stroke-width:0.03438281;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       inkscape:export-filename="/home/caperren/Github/Rover_2017_2018/software/ros_packages/ground_station/src/Resources/Images/compass.png"
+       inkscape:export-xdpi="400"
+       inkscape:export-ydpi="400" />
+    <path
+       style="fill:#ffffff;fill-opacity:1;stroke:#ffffff;stroke-width:0.03438281;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       d="m 231.74338,541.01703 4.81313,2.55918 0.51525,-0.96919 -4.81307,-2.55916 -0.51531,0.96916 z m 335.51053,178.39638 4.81483,2.56008 0.5153,-0.96918 -4.81482,-2.56012 -0.5153,0.96922 z"
+       id="path33385"
+       inkscape:connector-curvature="0"
+       inkscape:export-filename="/home/caperren/Github/Rover_2017_2018/software/ros_packages/ground_station/src/Resources/Images/compass.png"
+       inkscape:export-xdpi="400"
+       inkscape:export-ydpi="400" />
+    <path
+       inkscape:connector-curvature="0"
+       id="path33387"
+       d="m 228.70842,547.01944 4.89951,2.38965 0.48111,-0.98659 -4.89945,-2.38962 -0.48118,0.98655 z m 341.53209,166.57856 4.90124,2.39048 0.48116,-0.98657 -4.90123,-2.39053 -0.48116,0.98662 z"
+       style="fill:#ffffff;fill-opacity:1;stroke:#ffffff;stroke-width:0.03438281;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       inkscape:export-filename="/home/caperren/Github/Rover_2017_2018/software/ros_packages/ground_station/src/Resources/Images/compass.png"
+       inkscape:export-xdpi="400"
+       inkscape:export-ydpi="400" />
+    <path
+       style="fill:#ffffff;fill-opacity:1;stroke:#ffffff;stroke-width:0.03438281;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       d="m 225.88282,553.12417 4.97993,2.21721 0.44638,-1.00278 -4.97986,-2.21718 -0.44646,1.00274 z m 347.13755,154.55779 4.98168,2.21797 0.44644,-1.00276 -4.98167,-2.21802 -0.44644,1.00281 z"
+       id="path33389"
+       inkscape:connector-curvature="0"
+       inkscape:export-filename="/home/caperren/Github/Rover_2017_2018/software/ros_packages/ground_station/src/Resources/Images/compass.png"
+       inkscape:export-xdpi="400"
+       inkscape:export-ydpi="400" />
+    <path
+       inkscape:connector-curvature="0"
+       id="path33391"
+       d="m 223.27201,559.3238 5.05427,2.04206 0.41112,-1.01775 -5.05421,-2.04203 -0.41119,1.01771 z m 352.32007,142.34871 5.05605,2.04276 0.41117,-1.01773 -5.05604,-2.04281 -0.41117,1.01778 z"
+       style="fill:#ffffff;fill-opacity:1;stroke:#ffffff;stroke-width:0.03438281;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       inkscape:export-filename="/home/caperren/Github/Rover_2017_2018/software/ros_packages/ground_station/src/Resources/Images/compass.png"
+       inkscape:export-xdpi="400"
+       inkscape:export-ydpi="400" />
+    <path
+       style="fill:#ffffff;fill-opacity:1;stroke:#ffffff;stroke-width:0.03438281;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       d="m 218.70825,571.97742 5.1844,1.68452 0.33913,-1.04395 -5.18435,-1.68449 -0.33919,1.04391 z m 361.39158,117.42535 5.18623,1.68509 0.33917,-1.04393 -5.18622,-1.68514 -0.33917,1.04398 z"
+       id="path33393"
+       inkscape:connector-curvature="0"
+       inkscape:export-filename="/home/caperren/Github/Rover_2017_2018/software/ros_packages/ground_station/src/Resources/Images/compass.png"
+       inkscape:export-xdpi="400"
+       inkscape:export-ydpi="400" />
+    <path
+       inkscape:connector-curvature="0"
+       id="path33395"
+       d="m 216.75881,578.41599 5.24003,1.50256 0.30249,-1.05515 -5.23998,-1.50253 -0.30255,1.05511 z m 365.26951,104.74143 5.24188,1.50307 0.30253,-1.05513 -5.24187,-1.50312 -0.30253,1.05518 z"
+       style="fill:#ffffff;fill-opacity:1;stroke:#ffffff;stroke-width:0.03438281;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       inkscape:export-filename="/home/caperren/Github/Rover_2017_2018/software/ros_packages/ground_station/src/Resources/Images/compass.png"
+       inkscape:export-xdpi="400"
+       inkscape:export-ydpi="400" />
+    <path
+       style="fill:#ffffff;fill-opacity:1;stroke:#ffffff;stroke-width:0.03438281;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       d="m 215.0363,584.91863 5.28927,1.31877 0.26549,-1.06506 -5.28923,-1.31874 -0.26554,1.06502 z m 368.70242,91.9299 5.29114,1.31922 0.26552,-1.06505 -5.29113,-1.31926 -0.26552,1.06509 z"
+       id="path33397"
+       inkscape:connector-curvature="0"
+       inkscape:export-filename="/home/caperren/Github/Rover_2017_2018/software/ros_packages/ground_station/src/Resources/Images/compass.png"
+       inkscape:export-xdpi="400"
+       inkscape:export-ydpi="400" />
+    <path
+       inkscape:connector-curvature="0"
+       id="path33399"
+       d="m 213.54179,591.47744 5.33207,1.13337 0.22816,-1.07368 -5.33203,-1.13334 -0.22821,1.07364 z m 371.68612,79.00637 5.33396,1.13375 0.22819,-1.07366 -5.33395,-1.1338 -0.22819,1.07371 z"
+       style="fill:#ffffff;fill-opacity:1;stroke:#ffffff;stroke-width:0.03438281;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       inkscape:export-filename="/home/caperren/Github/Rover_2017_2018/software/ros_packages/ground_station/src/Resources/Images/compass.png"
+       inkscape:export-xdpi="400"
+       inkscape:export-ydpi="400" />
+    <path
+       style="fill:#ffffff;fill-opacity:1;stroke:#ffffff;stroke-width:0.03438281;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       d="m 211.24439,604.7315 5.39814,0.75866 0.15271,-1.08698 -5.3981,-0.75863 -0.15276,1.08694 z m 376.29192,52.8864 5.40005,0.75891 0.15274,-1.08696 -5.40004,-0.75896 -0.15274,1.08701 z"
+       id="path33401"
+       inkscape:connector-curvature="0"
+       inkscape:export-filename="/home/caperren/Github/Rover_2017_2018/software/ros_packages/ground_station/src/Resources/Images/compass.png"
+       inkscape:export-xdpi="400"
+       inkscape:export-ydpi="400" />
+    <path
+       inkscape:connector-curvature="0"
+       id="path33403"
+       d="m 210.4431,611.4106 5.42132,0.56981 0.11469,-1.09165 -5.42129,-0.56978 -0.11473,1.09161 z m 377.9084,39.72179 5.42324,0.56999 0.11472,-1.09163 -5.42324,-0.57004 -0.11471,1.09168 z"
+       style="fill:#ffffff;fill-opacity:1;stroke:#ffffff;stroke-width:0.03438281;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       inkscape:export-filename="/home/caperren/Github/Rover_2017_2018/software/ros_packages/ground_station/src/Resources/Images/compass.png"
+       inkscape:export-xdpi="400"
+       inkscape:export-ydpi="400" />
+    <path
+       style="fill:#ffffff;fill-opacity:1;stroke:#ffffff;stroke-width:0.03438281;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       d="m 209.87635,618.11358 5.4379,0.38026 0.0765,-1.09499 -5.43788,-0.38023 -0.0766,1.09495 z m 379.06446,26.50878 5.43983,0.38037 0.0765,-1.09497 -5.43983,-0.38042 -0.0765,1.09502 z"
+       id="path33405"
+       inkscape:connector-curvature="0"
+       inkscape:export-filename="/home/caperren/Github/Rover_2017_2018/software/ros_packages/ground_station/src/Resources/Images/compass.png"
+       inkscape:export-xdpi="400"
+       inkscape:export-ydpi="400" />
+    <path
+       inkscape:connector-curvature="0"
+       id="path33407"
+       d="m 209.54345,624.83227 5.44786,0.19025 0.0382,-1.09699 -5.44783,-0.19022 -0.0383,1.09696 z m 379.75868,13.26348 5.44979,0.19029 0.0382,-1.09697 -5.44979,-0.19035 -0.0382,1.09703 z"
+       style="fill:#ffffff;fill-opacity:1;stroke:#ffffff;stroke-width:0.03438281;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       inkscape:export-filename="/home/caperren/Github/Rover_2017_2018/software/ros_packages/ground_station/src/Resources/Images/compass.png"
+       inkscape:export-xdpi="400"
+       inkscape:export-ydpi="400" />
+    <path
+       style="fill:#ffffff;fill-opacity:1;stroke:#ffffff;stroke-width:0.03438281;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       d="m 209.58161,638.28285 5.44786,-0.19024 -0.0384,-1.09698 -5.44782,0.19027 0.0383,1.09696 z m 379.75882,-13.25945 5.44979,-0.19034 -0.0384,-1.09696 -5.44979,0.19027 0.0384,1.09703 z"
+       id="path33409"
+       inkscape:connector-curvature="0"
+       inkscape:export-filename="/home/caperren/Github/Rover_2017_2018/software/ros_packages/ground_station/src/Resources/Images/compass.png"
+       inkscape:export-xdpi="400"
+       inkscape:export-ydpi="400" />
+    <path
+       inkscape:connector-curvature="0"
+       id="path33411"
+       d="m 209.95278,644.99755 5.43791,-0.38025 -0.0767,-1.09497 -5.43786,0.38028 0.0766,1.09496 z m 379.06474,-26.50476 5.43982,-0.38042 -0.0767,-1.09495 -5.43983,0.38035 0.0767,1.09502 z"
+       style="fill:#ffffff;fill-opacity:1;stroke:#ffffff;stroke-width:0.03438281;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       inkscape:export-filename="/home/caperren/Github/Rover_2017_2018/software/ros_packages/ground_station/src/Resources/Images/compass.png"
+       inkscape:export-xdpi="400"
+       inkscape:export-ydpi="400" />
+    <path
+       style="fill:#ffffff;fill-opacity:1;stroke:#ffffff;stroke-width:0.03438281;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       d="m 210.55812,651.69762 5.42132,-0.5698 -0.11486,-1.09162 -5.42128,0.56982 0.11477,1.09162 z m 377.90882,-39.71778 5.42323,-0.57004 -0.11487,-1.0916 -5.42324,0.56996 0.11487,1.09168 z"
+       id="path33413"
+       inkscape:connector-curvature="0"
+       inkscape:export-filename="/home/caperren/Github/Rover_2017_2018/software/ros_packages/ground_station/src/Resources/Images/compass.png"
+       inkscape:export-xdpi="400"
+       inkscape:export-ydpi="400" />
+    <path
+       inkscape:connector-curvature="0"
+       id="path33415"
+       d="m 211.39691,658.37247 5.39813,-0.75865 -0.15289,-1.08695 -5.39809,0.75867 0.1528,1.08695 z m 376.29248,-52.88241 5.40003,-0.75896 -0.1529,-1.08693 -5.40004,0.75888 0.1529,1.08701 z"
+       style="fill:#ffffff;fill-opacity:1;stroke:#ffffff;stroke-width:0.03438281;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       inkscape:export-filename="/home/caperren/Github/Rover_2017_2018/software/ros_packages/ground_station/src/Resources/Images/compass.png"
+       inkscape:export-xdpi="400"
+       inkscape:export-ydpi="400" />
+    <path
+       style="fill:#ffffff;fill-opacity:1;stroke:#ffffff;stroke-width:0.03438281;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       d="m 213.77044,671.61401 5.33206,-1.13336 -0.22834,-1.07363 -5.33202,1.13337 0.22825,1.07364 z m 371.68696,-79.00243 5.33393,-1.1338 -0.22834,-1.07361 -5.33395,1.13372 0.22835,1.07369 z"
+       id="path33417"
+       inkscape:connector-curvature="0"
+       inkscape:export-filename="/home/caperren/Github/Rover_2017_2018/software/ros_packages/ground_station/src/Resources/Images/compass.png"
+       inkscape:export-xdpi="400"
+       inkscape:export-ydpi="400" />
+    <path
+       inkscape:connector-curvature="0"
+       id="path33419"
+       d="m 215.3023,678.16456 5.28926,-1.31875 -0.26567,-1.06501 -5.28922,1.31876 0.26558,1.06502 z m 368.7034,-91.92599 5.29111,-1.31926 -0.26567,-1.06499 -5.29114,1.31918 0.26569,1.06507 z"
+       style="fill:#ffffff;fill-opacity:1;stroke:#ffffff;stroke-width:0.03438281;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       inkscape:export-filename="/home/caperren/Github/Rover_2017_2018/software/ros_packages/ground_station/src/Resources/Images/compass.png"
+       inkscape:export-xdpi="400"
+       inkscape:export-ydpi="400" />
+    <path
+       style="fill:#ffffff;fill-opacity:1;stroke:#ffffff;stroke-width:0.03438281;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       d="m 217.06182,684.65765 5.24001,-1.50254 -0.30267,-1.05509 -5.23998,1.50255 0.30259,1.0551 z m 365.27063,-104.73755 5.24184,-1.50312 -0.30267,-1.05507 -5.24188,1.50304 0.3027,1.05515 z"
+       id="path33421"
+       inkscape:connector-curvature="0"
+       inkscape:export-filename="/home/caperren/Github/Rover_2017_2018/software/ros_packages/ground_station/src/Resources/Images/compass.png"
+       inkscape:export-xdpi="400"
+       inkscape:export-ydpi="400" />
+    <path
+       inkscape:connector-curvature="0"
+       id="path33423"
+       d="m 219.04686,691.08536 5.18438,-1.6845 -0.3393,-1.04388 -5.18435,1.6845 0.33922,1.0439 z m 361.39283,-117.42151 5.18619,-1.68514 -0.3393,-1.04387 -5.18624,1.68507 0.33934,1.04394 z"
+       style="fill:#ffffff;fill-opacity:1;stroke:#ffffff;stroke-width:0.03438281;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       inkscape:export-filename="/home/caperren/Github/Rover_2017_2018/software/ros_packages/ground_station/src/Resources/Images/compass.png"
+       inkscape:export-xdpi="400"
+       inkscape:export-ydpi="400" />
+    <path
+       style="fill:#ffffff;fill-opacity:1;stroke:#ffffff;stroke-width:0.03438281;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       d="m 223.68357,703.71341 5.05425,-2.04204 -0.41129,-1.01767 -5.05422,2.04204 0.41121,1.01769 z m 352.32159,-142.34497 5.056,-2.0428 -0.41129,-1.01766 -5.05606,2.04274 0.41134,1.01772 z"
+       id="path33425"
+       inkscape:connector-curvature="0"
+       inkscape:export-filename="/home/caperren/Github/Rover_2017_2018/software/ros_packages/ground_station/src/Resources/Images/compass.png"
+       inkscape:export-xdpi="400"
+       inkscape:export-ydpi="400" />
+    <path
+       inkscape:connector-curvature="0"
+       id="path33427"
+       d="m 226.32959,709.89704 4.9799,-2.21718 -0.44655,-1.0027 -4.97988,2.21719 0.44648,1.00272 z m 347.13919,-154.5541 4.98163,-2.21801 -0.44655,-1.00268 -4.98169,2.21795 0.4466,1.00274 z"
+       style="fill:#ffffff;fill-opacity:1;stroke:#ffffff;stroke-width:0.03438281;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       inkscape:export-filename="/home/caperren/Github/Rover_2017_2018/software/ros_packages/ground_station/src/Resources/Images/compass.png"
+       inkscape:export-xdpi="400"
+       inkscape:export-ydpi="400" />
+    <path
+       style="fill:#ffffff;fill-opacity:1;stroke:#ffffff;stroke-width:0.03438281;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       d="m 229.18984,715.98593 4.89949,-2.38962 -0.48127,-0.98651 -4.89947,2.38964 0.4812,0.98652 z M 570.7237,549.411 l 4.90119,-2.39052 -0.48127,-0.98648 -4.90125,2.39046 0.48132,0.98654 z"
+       id="path33429"
+       inkscape:connector-curvature="0"
+       inkscape:export-filename="/home/caperren/Github/Rover_2017_2018/software/ros_packages/ground_station/src/Resources/Images/compass.png"
+       inkscape:export-xdpi="400"
+       inkscape:export-ydpi="400" />
+    <path
+       inkscape:connector-curvature="0"
+       id="path33431"
+       d="m 232.26083,721.97126 4.81311,-2.55915 -0.51541,-0.96911 -4.81309,2.55917 0.51534,0.96912 z m 335.51242,-178.39281 4.81478,-2.56012 -0.51541,-0.96908 -4.81483,2.56005 0.51545,0.96915 z"
+       style="fill:#ffffff;fill-opacity:1;stroke:#ffffff;stroke-width:0.03438281;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       inkscape:export-filename="/home/caperren/Github/Rover_2017_2018/software/ros_packages/ground_station/src/Resources/Images/compass.png"
+       inkscape:export-xdpi="400"
+       inkscape:export-ydpi="400" />
+    <path
+       style="fill:#ffffff;fill-opacity:1;stroke:#ffffff;stroke-width:0.03438281;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       d="m 239.01983,733.60148 4.62287,-2.88866 -0.58175,-0.9308 -4.62285,2.88868 0.58169,0.93081 z m 322.25108,-201.36242 4.62447,-2.88974 -0.58176,-0.93077 -4.62452,2.88968 0.5818,0.93083 z"
+       id="path33433"
+       inkscape:connector-curvature="0"
+       inkscape:export-filename="/home/caperren/Github/Rover_2017_2018/software/ros_packages/ground_station/src/Resources/Images/compass.png"
+       inkscape:export-xdpi="400"
+       inkscape:export-ydpi="400" />
+    <path
+       inkscape:connector-curvature="0"
+       id="path33435"
+       d="m 242.6996,739.23301 4.51924,-3.04824 -0.61388,-0.90993 -4.51922,3.04826 0.61382,0.90994 z m 315.02733,-212.48616 4.5208,-3.04937 -0.61389,-0.9099 -4.52085,3.04932 0.61393,0.90995 z"
+       style="fill:#ffffff;fill-opacity:1;stroke:#ffffff;stroke-width:0.03438281;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       inkscape:export-filename="/home/caperren/Github/Rover_2017_2018/software/ros_packages/ground_station/src/Resources/Images/compass.png"
+       inkscape:export-xdpi="400"
+       inkscape:export-ydpi="400" />
+    <path
+       style="fill:#ffffff;fill-opacity:1;stroke:#ffffff;stroke-width:0.03438281;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       d="m 246.57366,744.73267 4.4101,-3.20411 -0.64526,-0.88795 -4.41008,3.20412 0.6452,0.88797 z m 307.41976,-223.35102 4.41163,-3.20528 -0.64527,-0.88793 -4.41168,3.20524 0.64531,0.88797 z"
+       id="path33437"
+       inkscape:connector-curvature="0"
+       inkscape:export-filename="/home/caperren/Github/Rover_2017_2018/software/ros_packages/ground_station/src/Resources/Images/compass.png"
+       inkscape:export-xdpi="400"
+       inkscape:export-ydpi="400" />
+    <path
+       inkscape:connector-curvature="0"
+       id="path33439"
+       d="m 250.63729,750.09154 4.2956,-3.35606 -0.67586,-0.86489 -4.29557,3.35607 0.6758,0.86492 z m 299.43765,-233.94375 4.29708,-3.35729 -0.67586,-0.86487 -4.29713,3.35725 0.6759,0.86491 z"
+       style="fill:#ffffff;fill-opacity:1;stroke:#ffffff;stroke-width:0.03438281;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       inkscape:export-filename="/home/caperren/Github/Rover_2017_2018/software/ros_packages/ground_station/src/Resources/Images/compass.png"
+       inkscape:export-xdpi="400"
+       inkscape:export-ydpi="400" />
+    <path
+       style="fill:#ffffff;fill-opacity:1;stroke:#ffffff;stroke-width:0.03438281;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       d="m 259.31321,760.37231 4.05103,-3.64754 -0.73455,-0.81563 -4.05099,3.64754 0.73448,0.81567 z m 282.38914,-254.26159 4.05242,-3.64887 -0.73454,-0.81561 -4.05247,3.64882 0.73458,0.81566 z"
+       id="path33441"
+       inkscape:connector-curvature="0"
+       inkscape:export-filename="/home/caperren/Github/Rover_2017_2018/software/ros_packages/ground_station/src/Resources/Images/compass.png"
+       inkscape:export-xdpi="400"
+       inkscape:export-ydpi="400" />
+    <path
+       inkscape:connector-curvature="0"
+       id="path33443"
+       d="m 263.91494,765.27933 3.92126,-3.78669 -0.76256,-0.7895 -3.92123,3.78669 0.7625,0.78954 z m 273.34351,-263.96194 3.92261,-3.78807 -0.76256,-0.78948 -3.92265,3.78803 0.76259,0.78952 z"
+       style="fill:#ffffff;fill-opacity:1;stroke:#ffffff;stroke-width:0.03438281;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       inkscape:export-filename="/home/caperren/Github/Rover_2017_2018/software/ros_packages/ground_station/src/Resources/Images/compass.png"
+       inkscape:export-xdpi="400"
+       inkscape:export-ydpi="400" />
+    <path
+       style="fill:#ffffff;fill-opacity:1;stroke:#ffffff;stroke-width:0.03438281;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       d="m 268.68511,770.02273 3.78672,-3.92124 -0.78965,-0.7624 -3.78669,3.92123 0.78959,0.76245 z m 263.96486,-273.3407 3.78801,-3.92266 -0.78964,-0.76238 -3.78806,3.92262 0.78968,0.76242 z"
+       id="path33445"
+       inkscape:connector-curvature="0"
+       inkscape:export-filename="/home/caperren/Github/Rover_2017_2018/software/ros_packages/ground_station/src/Resources/Images/compass.png"
+       inkscape:export-xdpi="400"
+       inkscape:export-ydpi="400" />
+    <path
+       inkscape:connector-curvature="0"
+       id="path33447"
+       d="m 273.6179,774.59548 3.64757,-4.05101 -0.81578,-0.73437 -3.64753,4.05099 0.81572,0.73443 z m 254.26461,-282.38643 3.64881,-4.05247 -0.81577,-0.73436 -3.64886,4.05243 0.81581,0.7344 z"
+       style="fill:#ffffff;fill-opacity:1;stroke:#ffffff;stroke-width:0.03438281;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       inkscape:export-filename="/home/caperren/Github/Rover_2017_2018/software/ros_packages/ground_station/src/Resources/Images/compass.png"
+       inkscape:export-xdpi="400"
+       inkscape:export-ydpi="400" />
+    <path
+       style="fill:#ffffff;fill-opacity:1;stroke:#ffffff;stroke-width:0.03438281;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       d="m 283.94713,783.21345 3.3561,-4.29559 -0.86502,-0.67567 -3.35606,4.29556 0.86496,0.67574 z m 233.94696,-299.43516 3.35723,-4.29712 -0.86501,-0.67567 -3.35728,4.29709 0.86505,0.67571 z"
+       id="path33449"
+       inkscape:connector-curvature="0"
+       inkscape:export-filename="/home/caperren/Github/Rover_2017_2018/software/ros_packages/ground_station/src/Resources/Images/compass.png"
+       inkscape:export-xdpi="400"
+       inkscape:export-ydpi="400" />
+    <path
+       inkscape:connector-curvature="0"
+       id="path33451"
+       d="m 289.331,787.24681 3.20414,-4.4101 -0.88807,-0.64507 -3.20411,4.41007 0.88802,0.64514 z m 223.3543,-307.41739 3.20522,-4.41166 -0.88806,-0.64507 -3.20528,4.41164 0.88811,0.6451 z"
+       style="fill:#ffffff;fill-opacity:1;stroke:#ffffff;stroke-width:0.03438281;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       inkscape:export-filename="/home/caperren/Github/Rover_2017_2018/software/ros_packages/ground_station/src/Resources/Images/compass.png"
+       inkscape:export-xdpi="400"
+       inkscape:export-ydpi="400" />
+    <path
+       style="fill:#ffffff;fill-opacity:1;stroke:#ffffff;stroke-width:0.03438281;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       d="m 294.85233,791.08978 3.04828,-4.51924 -0.91004,-0.61368 -3.04825,4.5192 0.90999,0.61376 z m 212.48953,-315.02508 3.0493,-4.52083 -0.91003,-0.61368 -3.04937,4.52081 0.91009,0.61371 z"
+       id="path33453"
+       inkscape:connector-curvature="0"
+       inkscape:export-filename="/home/caperren/Github/Rover_2017_2018/software/ros_packages/ground_station/src/Resources/Images/compass.png"
+       inkscape:export-xdpi="400"
+       inkscape:export-ydpi="400" />
+    <path
+       inkscape:connector-curvature="0"
+       id="path33455"
+       d="m 300.5044,794.73644 2.88871,-4.62287 -0.9309,-0.58154 -2.88868,4.62283 0.93086,0.58162 z m 201.36588,-322.24895 2.88967,-4.62449 -0.93089,-0.58155 -2.88974,4.62448 0.93095,0.58157 z"
+       style="fill:#ffffff;fill-opacity:1;stroke:#ffffff;stroke-width:0.03438281;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       inkscape:export-filename="/home/caperren/Github/Rover_2017_2018/software/ros_packages/ground_station/src/Resources/Images/compass.png"
+       inkscape:export-xdpi="400"
+       inkscape:export-ydpi="400" />
+    <path
+       style="fill:#ffffff;fill-opacity:1;stroke:#ffffff;stroke-width:0.03438281;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       d="m 312.1731,801.4298 2.5592,-4.81312 -0.9692,-0.51518 -2.55917,4.81307 0.96916,0.51527 z m 178.39641,-335.51054 2.56004,-4.8148 -0.96919,-0.5152 -2.56011,4.81479 0.96925,0.51522 z"
+       id="path33457"
+       inkscape:connector-curvature="0"
+       inkscape:export-filename="/home/caperren/Github/Rover_2017_2018/software/ros_packages/ground_station/src/Resources/Images/compass.png"
+       inkscape:export-xdpi="400"
+       inkscape:export-ydpi="400" />
+    <path
+       inkscape:connector-curvature="0"
+       id="path33459"
+       d="m 318.1755,804.46558 2.38968,-4.8995 -0.98659,-0.48105 -2.38965,4.89946 0.98656,0.48113 z m 166.57859,-341.5321 2.39045,-4.90121 -0.98658,-0.48107 -2.39052,4.90121 0.98664,0.48108 z"
+       style="fill:#ffffff;fill-opacity:1;stroke:#ffffff;stroke-width:0.03438281;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       inkscape:export-filename="/home/caperren/Github/Rover_2017_2018/software/ros_packages/ground_station/src/Resources/Images/compass.png"
+       inkscape:export-xdpi="400"
+       inkscape:export-ydpi="400" />
+    <path
+       style="fill:#ffffff;fill-opacity:1;stroke:#ffffff;stroke-width:0.03438281;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       d="m 324.28023,807.28975 2.21723,-4.97992 -1.00278,-0.44632 -2.21719,4.97987 1.00275,0.44641 z m 154.55781,-347.13756 2.21795,-4.98165 -1.00277,-0.44634 -2.21802,4.98165 1.00283,0.44635 z"
+       id="path33461"
+       inkscape:connector-curvature="0"
+       inkscape:export-filename="/home/caperren/Github/Rover_2017_2018/software/ros_packages/ground_station/src/Resources/Images/compass.png"
+       inkscape:export-xdpi="400"
+       inkscape:export-ydpi="400" />
+    <path
+       inkscape:connector-curvature="0"
+       id="path33463"
+       d="m 330.47986,809.90114 2.04208,-5.05427 -1.01774,-0.41105 -2.04205,5.05421 1.01772,0.41115 z m 142.34873,-352.32009 2.04274,-5.05602 -1.01773,-0.41107 -2.04282,5.05602 1.0178,0.41108 z"
+       style="fill:#ffffff;fill-opacity:1;stroke:#ffffff;stroke-width:0.03438281;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       inkscape:export-filename="/home/caperren/Github/Rover_2017_2018/software/ros_packages/ground_station/src/Resources/Images/compass.png"
+       inkscape:export-xdpi="400"
+       inkscape:export-ydpi="400" />
+    <path
+       style="fill:#ffffff;fill-opacity:1;stroke:#ffffff;stroke-width:0.03438281;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       d="m 343.13348,814.46649 1.68453,-5.18441 -1.04393,-0.33906 -1.68451,5.18435 1.04392,0.33915 z m 117.42536,-361.39161 1.68508,-5.18619 -1.04393,-0.33908 -1.68515,5.1862 1.04399,0.33908 z"
+       id="path33465"
+       inkscape:connector-curvature="0"
+       inkscape:export-filename="/home/caperren/Github/Rover_2017_2018/software/ros_packages/ground_station/src/Resources/Images/compass.png"
+       inkscape:export-xdpi="400"
+       inkscape:export-ydpi="400" />
+    <path
+       inkscape:connector-curvature="0"
+       id="path33467"
+       d="m 349.57205,816.41544 1.50257,-5.24004 -1.05513,-0.30242 -1.50255,5.23998 1.05512,0.30251 z m 104.74144,-365.26954 1.50306,-5.24184 -1.05513,-0.30244 -1.50313,5.24185 1.05519,0.30244 z"
+       style="fill:#ffffff;fill-opacity:1;stroke:#ffffff;stroke-width:0.03438281;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       inkscape:export-filename="/home/caperren/Github/Rover_2017_2018/software/ros_packages/ground_station/src/Resources/Images/compass.png"
+       inkscape:export-xdpi="400"
+       inkscape:export-ydpi="400" />
+    <path
+       style="fill:#ffffff;fill-opacity:1;stroke:#ffffff;stroke-width:0.03438281;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       d="m 356.07469,818.13844 1.31878,-5.28928 -1.06504,-0.26541 -1.31876,5.28922 1.06503,0.2655 z m 91.92991,-368.70245 1.31921,-5.2911 -1.06504,-0.26543 -1.31928,5.29111 1.0651,0.26543 z"
+       id="path33469"
+       inkscape:connector-curvature="0"
+       inkscape:export-filename="/home/caperren/Github/Rover_2017_2018/software/ros_packages/ground_station/src/Resources/Images/compass.png"
+       inkscape:export-xdpi="400"
+       inkscape:export-ydpi="400" />
+    <path
+       inkscape:connector-curvature="0"
+       id="path33471"
+       d="m 362.63349,819.63341 1.13339,-5.33209 -1.07366,-0.22808 -1.13336,5.33203 1.07364,0.22817 z m 79.00638,-371.68616 1.13375,-5.33391 -1.07365,-0.2281 -1.13382,5.33393 1.07371,0.22809 z"
+       style="fill:#ffffff;fill-opacity:1;stroke:#ffffff;stroke-width:0.03438281;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       inkscape:export-filename="/home/caperren/Github/Rover_2017_2018/software/ros_packages/ground_station/src/Resources/Images/compass.png"
+       inkscape:export-xdpi="400"
+       inkscape:export-ydpi="400" />
+    <path
+       style="fill:#ffffff;fill-opacity:1;stroke:#ffffff;stroke-width:0.03438281;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       d="m 375.88755,821.93223 0.75868,-5.39816 -1.08695,-0.15263 -0.75866,5.3981 1.08694,0.15272 z m 52.88641,-376.29195 0.75891,-5.40001 -1.08694,-0.15265 -0.75899,5.40003 1.08701,0.15264 z"
+       id="path33473"
+       inkscape:connector-curvature="0"
+       inkscape:export-filename="/home/caperren/Github/Rover_2017_2018/software/ros_packages/ground_station/src/Resources/Images/compass.png"
+       inkscape:export-xdpi="400"
+       inkscape:export-ydpi="400" />
+    <path
+       inkscape:connector-curvature="0"
+       id="path33475"
+       d="m 375.88755,821.93223 0.75868,-5.39816 -1.08695,-0.15263 -0.75866,5.3981 1.08694,0.15272 z m 52.88641,-376.29195 0.75891,-5.40001 -1.08694,-0.15265 -0.75899,5.40003 1.08701,0.15264 z"
+       style="fill:#ffffff;fill-opacity:1;stroke:#ffffff;stroke-width:0.03438281;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       inkscape:export-filename="/home/caperren/Github/Rover_2017_2018/software/ros_packages/ground_station/src/Resources/Images/compass.png"
+       inkscape:export-xdpi="400"
+       inkscape:export-ydpi="400" />
+    <path
+       style="fill:#ffffff;fill-opacity:1;stroke:#ffffff;stroke-width:0.03438281;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       d="m 382.56665,822.7333 0.56982,-5.42135 -1.09161,-0.11461 -0.56981,5.42129 1.09161,0.1147 z m 39.72179,-377.90844 0.56999,-5.4232 -1.09161,-0.11463 -0.57007,5.42323 1.09168,0.11461 z"
+       id="path33477"
+       inkscape:connector-curvature="0"
+       inkscape:export-filename="/home/caperren/Github/Rover_2017_2018/software/ros_packages/ground_station/src/Resources/Images/compass.png"
+       inkscape:export-xdpi="400"
+       inkscape:export-ydpi="400" />
+    <path
+       inkscape:connector-curvature="0"
+       id="path33498"
+       d="m 389.26963,823.30169 0.38027,-5.43793 -1.09494,-0.0765 -0.38026,5.43788 1.09494,0.0765 z m 26.50878,-379.0645 0.38038,-5.43979 -1.09495,-0.0765 -0.38045,5.43982 1.09501,0.0764 z"
+       style="fill:#ffffff;fill-opacity:1;stroke:#ffffff;stroke-width:0.03438281;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       inkscape:export-filename="/home/caperren/Github/Rover_2017_2018/software/ros_packages/ground_station/src/Resources/Images/compass.png"
+       inkscape:export-xdpi="400"
+       inkscape:export-ydpi="400" />
+    <path
+       style="fill:#ffffff;fill-opacity:1;stroke:#ffffff;stroke-width:0.03438281;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       d="m 395.98833,823.63433 0.19025,-5.44788 -1.09694,-0.0382 -0.19025,5.44783 1.09695,0.0382 z m 13.26347,-379.75872 0.1903,-5.44975 -1.09695,-0.0382 -0.19037,5.44978 1.09701,0.0381 z"
+       id="path33500"
+       inkscape:connector-curvature="0"
+       inkscape:export-filename="/home/caperren/Github/Rover_2017_2018/software/ros_packages/ground_station/src/Resources/Images/compass.png"
+       inkscape:export-xdpi="400"
+       inkscape:export-ydpi="400" />
+    <flowRoot
+       xml:space="preserve"
+       id="flowRoot33521"
+       style="font-style:normal;font-weight:normal;font-size:25.97655296px;line-height:125%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       transform="matrix(0.56811983,0,0,0.56811983,190.83606,22.010452)"><flowRegion
+         id="flowRegion33523"><rect
+           id="rect33525"
+           width="50.053333"
+           height="32.603542"
+           x="371.9455"
+           y="380.64468"
+           style="fill:#ffffff;fill-opacity:1" /></flowRegion><flowPara
+         id="flowPara33527">3060</flowPara></flowRoot>    <g
+       id="g33884"
+       inkscape:export-filename="/home/caperren/Github/Rover_2017_2018/software/ros_packages/ground_station/src/Resources/Images/compass.png"
+       inkscape:export-xdpi="400"
+       inkscape:export-ydpi="400"
+       transform="translate(-14.066467,178.21833)">
+      <flowRoot
+         transform="translate(338.11041,-382.0809)"
+         inkscape:transform-center-y="-35.499978"
+         inkscape:transform-center-x="1"
+         style="font-style:normal;font-weight:normal;font-size:14.75779438px;line-height:125%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+         id="flowRoot33521-2"
+         xml:space="preserve"><flowRegion
+           id="flowRegion33523-3"><rect
+             transform="scale(-1,-1)"
+             style="fill:#ffffff;fill-opacity:1"
+             y="-638.91858"
+             x="-92.472069"
+             height="18.522718"
+             width="28.436291"
+             id="rect33525-7" /></flowRegion><flowPara
+           id="flowPara33796">000</flowPara></flowRoot>      <flowRoot
+         transform="matrix(-1,0,0,-1,494.75593,1287.6656)"
+         inkscape:transform-center-y="35.499953"
+         inkscape:transform-center-x="-0.99999502"
+         style="font-style:normal;font-weight:normal;font-size:14.75779438px;line-height:125%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+         id="flowRoot33521-2-8"
+         xml:space="preserve"><flowRegion
+           id="flowRegion33523-3-5"><rect
+             transform="scale(-1,-1)"
+             style="fill:#ffffff;fill-opacity:1"
+             y="-638.91858"
+             x="-92.472069"
+             height="18.522718"
+             width="28.436291"
+             id="rect33525-7-3" /></flowRegion><flowPara
+           id="flowPara33796-9">180</flowPara></flowRoot>    </g>
+    <g
+       id="g33894"
+       transform="matrix(0.93969262,-0.34202014,0.34202014,0.93969262,-143.74965,347.95358)"
+       inkscape:export-filename="/home/caperren/Github/Rover_2017_2018/software/ros_packages/ground_station/src/Resources/Images/compass.png"
+       inkscape:export-xdpi="400"
+       inkscape:export-ydpi="400">
+      <flowRoot
+         xml:space="preserve"
+         id="flowRoot33896"
+         style="font-style:normal;font-weight:normal;font-size:14.75779438px;line-height:125%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+         inkscape:transform-center-x="1"
+         inkscape:transform-center-y="-35.499978"
+         transform="translate(338.11041,-382.0809)"><flowRegion
+           id="flowRegion33898"><rect
+             id="rect33900"
+             width="28.436291"
+             height="18.522718"
+             x="-92.472069"
+             y="-638.91858"
+             style="fill:#ffffff;fill-opacity:1"
+             transform="scale(-1,-1)" /></flowRegion><flowPara
+           id="flowPara33902">340</flowPara></flowRoot>      <flowRoot
+         xml:space="preserve"
+         id="flowRoot33904"
+         style="font-style:normal;font-weight:normal;font-size:14.75779438px;line-height:125%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+         inkscape:transform-center-x="-0.99999502"
+         inkscape:transform-center-y="35.499953"
+         transform="matrix(-1,0,0,-1,494.75593,1287.6656)"><flowRegion
+           id="flowRegion33906"><rect
+             id="rect33908"
+             width="28.436291"
+             height="18.522718"
+             x="-92.472069"
+             y="-638.91858"
+             style="fill:#ffffff;fill-opacity:1"
+             transform="scale(-1,-1)" /></flowRegion><flowPara
+           id="flowPara33910">160</flowPara></flowRoot>    </g>
+    <g
+       transform="matrix(0.76604444,-0.64278761,0.64278761,0.76604444,-207.63591,551.8297)"
+       id="g33912"
+       inkscape:export-filename="/home/caperren/Github/Rover_2017_2018/software/ros_packages/ground_station/src/Resources/Images/compass.png"
+       inkscape:export-xdpi="400"
+       inkscape:export-ydpi="400">
+      <flowRoot
+         transform="translate(338.11041,-382.0809)"
+         inkscape:transform-center-y="-35.499978"
+         inkscape:transform-center-x="1"
+         style="font-style:normal;font-weight:normal;font-size:14.75779438px;line-height:125%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+         id="flowRoot33914"
+         xml:space="preserve"><flowRegion
+           id="flowRegion33916"><rect
+             transform="scale(-1,-1)"
+             style="fill:#ffffff;fill-opacity:1"
+             y="-638.91858"
+             x="-92.472069"
+             height="18.522718"
+             width="28.436291"
+             id="rect33918" /></flowRegion><flowPara
+           id="flowPara33920">320</flowPara></flowRoot>      <flowRoot
+         transform="matrix(-1,0,0,-1,494.75593,1287.6656)"
+         inkscape:transform-center-y="35.499953"
+         inkscape:transform-center-x="-0.99999502"
+         style="font-style:normal;font-weight:normal;font-size:14.75779438px;line-height:125%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+         id="flowRoot33922"
+         xml:space="preserve"><flowRegion
+           id="flowRegion33924"><rect
+             transform="scale(-1,-1)"
+             style="fill:#ffffff;fill-opacity:1"
+             y="-638.91858"
+             x="-92.472069"
+             height="18.522718"
+             width="28.436291"
+             id="rect33926" /></flowRegion><flowPara
+           id="flowPara33928">140</flowPara></flowRoot>    </g>
+    <g
+       id="g33930"
+       transform="matrix(0.5,-0.8660254,0.8660254,0.5,-197.97097,765.2562)"
+       inkscape:export-filename="/home/caperren/Github/Rover_2017_2018/software/ros_packages/ground_station/src/Resources/Images/compass.png"
+       inkscape:export-xdpi="400"
+       inkscape:export-ydpi="400">
+      <flowRoot
+         xml:space="preserve"
+         id="flowRoot33932"
+         style="font-style:normal;font-weight:normal;font-size:14.75779438px;line-height:125%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+         inkscape:transform-center-x="1"
+         inkscape:transform-center-y="-35.499978"
+         transform="translate(338.11041,-382.0809)"><flowRegion
+           id="flowRegion33934"><rect
+             id="rect33936"
+             width="28.436291"
+             height="18.522718"
+             x="-92.472069"
+             y="-638.91858"
+             style="fill:#ffffff;fill-opacity:1"
+             transform="scale(-1,-1)" /></flowRegion><flowPara
+           id="flowPara33938">300</flowPara></flowRoot>      <flowRoot
+         xml:space="preserve"
+         id="flowRoot33940"
+         style="font-style:normal;font-weight:normal;font-size:14.75779438px;line-height:125%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+         inkscape:transform-center-x="-0.99999502"
+         inkscape:transform-center-y="35.499953"
+         transform="matrix(-1,0,0,-1,494.75593,1287.6656)"><flowRegion
+           id="flowRegion33942"><rect
+             id="rect33944"
+             width="28.436291"
+             height="18.522718"
+             x="-92.472069"
+             y="-638.91858"
+             style="fill:#ffffff;fill-opacity:1"
+             transform="scale(-1,-1)" /></flowRegion><flowPara
+           id="flowPara33946">120</flowPara></flowRoot>    </g>
+    <g
+       transform="matrix(0.17364818,-0.98480775,0.98480775,0.17364818,-115.91681,962.49072)"
+       id="g33948"
+       inkscape:export-filename="/home/caperren/Github/Rover_2017_2018/software/ros_packages/ground_station/src/Resources/Images/compass.png"
+       inkscape:export-xdpi="400"
+       inkscape:export-ydpi="400">
+      <flowRoot
+         transform="translate(338.11041,-382.0809)"
+         inkscape:transform-center-y="-35.499978"
+         inkscape:transform-center-x="1"
+         style="font-style:normal;font-weight:normal;font-size:14.75779438px;line-height:125%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+         id="flowRoot33950"
+         xml:space="preserve"><flowRegion
+           id="flowRegion33952"><rect
+             transform="scale(-1,-1)"
+             style="fill:#ffffff;fill-opacity:1"
+             y="-638.91858"
+             x="-92.472069"
+             height="18.522718"
+             width="28.436291"
+             id="rect33954" /></flowRegion><flowPara
+           id="flowPara34040">280</flowPara></flowRoot>      <flowRoot
+         transform="matrix(-1,0,0,-1,494.75593,1287.6656)"
+         inkscape:transform-center-y="35.499953"
+         inkscape:transform-center-x="-0.99999502"
+         style="font-style:normal;font-weight:normal;font-size:14.75779438px;line-height:125%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+         id="flowRoot33958"
+         xml:space="preserve"><flowRegion
+           id="flowRegion33960"><rect
+             transform="scale(-1,-1)"
+             style="fill:#ffffff;fill-opacity:1"
+             y="-638.91858"
+             x="-92.472069"
+             height="18.522718"
+             width="28.436291"
+             id="rect33962" /></flowRegion><flowPara
+           id="flowPara33964">100</flowPara></flowRoot>    </g>
+    <g
+       id="g33966"
+       transform="matrix(-0.17364817,-0.98480775,0.98480775,-0.17364817,28.566183,1119.797)"
+       inkscape:export-filename="/home/caperren/Github/Rover_2017_2018/software/ros_packages/ground_station/src/Resources/Images/compass.png"
+       inkscape:export-xdpi="400"
+       inkscape:export-ydpi="400">
+      <flowRoot
+         xml:space="preserve"
+         id="flowRoot33968"
+         style="font-style:normal;font-weight:normal;font-size:14.75779438px;line-height:125%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+         inkscape:transform-center-x="1"
+         inkscape:transform-center-y="-35.499978"
+         transform="translate(338.11041,-382.0809)"><flowRegion
+           id="flowRegion33970"><rect
+             id="rect33972"
+             width="28.436291"
+             height="18.522718"
+             x="-92.472069"
+             y="-638.91858"
+             style="fill:#ffffff;fill-opacity:1"
+             transform="scale(-1,-1)" /></flowRegion><flowPara
+           id="flowPara33974">260</flowPara></flowRoot>      <flowRoot
+         xml:space="preserve"
+         id="flowRoot33976"
+         style="font-style:normal;font-weight:normal;font-size:14.75779438px;line-height:125%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+         inkscape:transform-center-x="-0.99999502"
+         inkscape:transform-center-y="35.499953"
+         transform="matrix(-1,0,0,-1,494.75593,1287.6656)"><flowRegion
+           id="flowRegion33978"><rect
+             id="rect33980"
+             width="28.436291"
+             height="18.522718"
+             x="-92.472069"
+             y="-638.91858"
+             style="fill:#ffffff;fill-opacity:1"
+             transform="scale(-1,-1)" /></flowRegion><flowPara
+           id="flowPara33982">080</flowPara></flowRoot>    </g>
+    <g
+       transform="matrix(-0.49999999,-0.8660254,0.8660254,-0.49999999,218.25364,1218.0953)"
+       id="g33984"
+       inkscape:export-filename="/home/caperren/Github/Rover_2017_2018/software/ros_packages/ground_station/src/Resources/Images/compass.png"
+       inkscape:export-xdpi="400"
+       inkscape:export-ydpi="400">
+      <flowRoot
+         transform="translate(338.11041,-382.0809)"
+         inkscape:transform-center-y="-35.499978"
+         inkscape:transform-center-x="1"
+         style="font-style:normal;font-weight:normal;font-size:14.75779438px;line-height:125%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+         id="flowRoot33986"
+         xml:space="preserve"><flowRegion
+           id="flowRegion33988"><rect
+             transform="scale(-1,-1)"
+             style="fill:#ffffff;fill-opacity:1"
+             y="-638.91858"
+             x="-92.472069"
+             height="18.522718"
+             width="28.436291"
+             id="rect33990" /></flowRegion><flowPara
+           id="flowPara33992">240</flowPara></flowRoot>      <flowRoot
+         transform="matrix(-1,0,0,-1,494.75593,1287.6656)"
+         inkscape:transform-center-y="35.499953"
+         inkscape:transform-center-x="-0.99999502"
+         style="font-style:normal;font-weight:normal;font-size:14.75779438px;line-height:125%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+         id="flowRoot33994"
+         xml:space="preserve"><flowRegion
+           id="flowRegion33996"><rect
+             transform="scale(-1,-1)"
+             style="fill:#ffffff;fill-opacity:1"
+             y="-638.91858"
+             x="-92.472069"
+             height="18.522718"
+             width="28.436291"
+             id="rect33998" /></flowRegion><flowPara
+           id="flowPara34000">060</flowPara></flowRoot>    </g>
+    <g
+       id="g34002"
+       transform="matrix(-0.76604443,-0.64278761,0.64278761,-0.76604443,430.12374,1245.5825)"
+       inkscape:export-filename="/home/caperren/Github/Rover_2017_2018/software/ros_packages/ground_station/src/Resources/Images/compass.png"
+       inkscape:export-xdpi="400"
+       inkscape:export-ydpi="400">
+      <flowRoot
+         xml:space="preserve"
+         id="flowRoot34004"
+         style="font-style:normal;font-weight:normal;font-size:14.75779438px;line-height:125%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+         inkscape:transform-center-x="1"
+         inkscape:transform-center-y="-35.499978"
+         transform="translate(338.11041,-382.0809)"><flowRegion
+           id="flowRegion34006"><rect
+             id="rect34008"
+             width="28.436291"
+             height="18.522718"
+             x="-92.472069"
+             y="-638.91858"
+             style="fill:#ffffff;fill-opacity:1"
+             transform="scale(-1,-1)" /></flowRegion><flowPara
+           id="flowPara34010">220</flowPara></flowRoot>      <flowRoot
+         xml:space="preserve"
+         id="flowRoot34012"
+         style="font-style:normal;font-weight:normal;font-size:14.75779438px;line-height:125%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+         inkscape:transform-center-x="-0.99999502"
+         inkscape:transform-center-y="35.499953"
+         transform="matrix(-1,0,0,-1,494.75593,1287.6656)"><flowRegion
+           id="flowRegion34014"><rect
+             id="rect34016"
+             width="28.436291"
+             height="18.522718"
+             x="-92.472069"
+             y="-638.91858"
+             style="fill:#ffffff;fill-opacity:1"
+             transform="scale(-1,-1)" /></flowRegion><flowPara
+           id="flowPara34018">040</flowPara></flowRoot>    </g>
+    <g
+       transform="matrix(-0.93969261,-0.34202015,0.34202015,-0.93969261,638.62181,1198.9433)"
+       id="g34020"
+       inkscape:export-filename="/home/caperren/Github/Rover_2017_2018/software/ros_packages/ground_station/src/Resources/Images/compass.png"
+       inkscape:export-xdpi="400"
+       inkscape:export-ydpi="400">
+      <flowRoot
+         transform="translate(338.11041,-382.0809)"
+         inkscape:transform-center-y="-35.499978"
+         inkscape:transform-center-x="1"
+         style="font-style:normal;font-weight:normal;font-size:14.75779438px;line-height:125%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+         id="flowRoot34022"
+         xml:space="preserve"><flowRegion
+           id="flowRegion34024"><rect
+             transform="scale(-1,-1)"
+             style="fill:#ffffff;fill-opacity:1"
+             y="-638.91858"
+             x="-92.472069"
+             height="18.522718"
+             width="28.436291"
+             id="rect34026" /></flowRegion><flowPara
+           id="flowPara34028">200</flowPara></flowRoot>      <flowRoot
+         transform="matrix(-1,0,0,-1,494.75593,1287.6656)"
+         inkscape:transform-center-y="35.499953"
+         inkscape:transform-center-x="-0.99999502"
+         style="font-style:normal;font-weight:normal;font-size:14.75779438px;line-height:125%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+         id="flowRoot34030"
+         xml:space="preserve"><flowRegion
+           id="flowRegion34032"><rect
+             transform="scale(-1,-1)"
+             style="fill:#ffffff;fill-opacity:1"
+             y="-638.91858"
+             x="-92.472069"
+             height="18.522718"
+             width="28.436291"
+             id="rect34034" /></flowRegion><flowPara
+           id="flowPara34036">020</flowPara></flowRoot>    </g>
+    <g
+       id="g34096"
+       transform="matrix(0.70710678,0.70710678,-0.70710678,0.70710678,430.85784,18.085512)"
+       inkscape:export-filename="/home/caperren/Github/Rover_2017_2018/software/ros_packages/ground_station/src/Resources/Images/compass.png"
+       inkscape:export-xdpi="400"
+       inkscape:export-ydpi="400">
+      <text
+         sodipodi:linespacing="125%"
+         id="text34044"
+         y="298.40805"
+         x="401.22842"
+         style="font-style:normal;font-weight:normal;font-size:16.73516655px;line-height:125%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+         xml:space="preserve"><tspan
+           y="298.40805"
+           x="401.22842"
+           id="tspan34046"
+           sodipodi:role="line">NE</tspan></text>
+      <text
+         inkscape:transform-center-y="-67.882229"
+         inkscape:transform-center-x="-23.334524"
+         transform="scale(-1,-1)"
+         sodipodi:linespacing="125%"
+         id="text34044-5"
+         y="-606.29413"
+         x="-426.92361"
+         style="font-style:normal;font-weight:normal;font-size:16.73516655px;line-height:125%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+         xml:space="preserve"><tspan
+           y="-606.29413"
+           x="-426.92361"
+           id="tspan34046-5"
+           sodipodi:role="line">SW</tspan></text>
+    </g>
+    <g
+       id="g34380"
+       transform="translate(-12.753957,180.24427)"
+       inkscape:export-filename="/home/caperren/Github/Rover_2017_2018/software/ros_packages/ground_station/src/Resources/Images/compass.png"
+       inkscape:export-xdpi="400"
+       inkscape:export-ydpi="400">
+      <text
+         inkscape:export-ydpi="400"
+         inkscape:export-xdpi="400"
+         inkscape:export-filename="/home/caperren/Github/Rover_2017_2018/software/ros_packages/ground_station/src/Resources/Images/compass.png"
+         transform="matrix(0.70710678,-0.70710678,0.70710678,0.70710678,0,0)"
+         xml:space="preserve"
+         style="font-style:normal;font-weight:normal;font-size:16.73516655px;line-height:125%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+         x="-40.482353"
+         y="460.09821"
+         id="text34182"
+         sodipodi:linespacing="125%"><tspan
+           sodipodi:role="line"
+           id="tspan34184"
+           x="-40.482353"
+           y="460.09821">NW</tspan></text>
+      <text
+         inkscape:export-ydpi="400"
+         inkscape:export-xdpi="400"
+         inkscape:export-filename="/home/caperren/Github/Rover_2017_2018/software/ros_packages/ground_station/src/Resources/Images/compass.png"
+         xml:space="preserve"
+         style="font-style:normal;font-weight:normal;font-size:16.73516655px;line-height:125%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+         x="14.787162"
+         y="-767.98431"
+         id="text34186"
+         sodipodi:linespacing="125%"
+         transform="matrix(-0.70710678,0.70710678,-0.70710678,-0.70710678,0,0)"
+         inkscape:transform-center-x="-23.334524"
+         inkscape:transform-center-y="-67.882229"><tspan
+           sodipodi:role="line"
+           id="tspan34188"
+           x="14.787162"
+           y="-767.98431">SE</tspan></text>
+    </g>
+    <g
+       id="g34236"
+       transform="translate(-14.142127,178.3009)"
+       inkscape:export-filename="/home/caperren/Github/Rover_2017_2018/software/ros_packages/ground_station/src/Resources/Images/compass.png"
+       inkscape:export-xdpi="400"
+       inkscape:export-ydpi="400">
+      <text
+         xml:space="preserve"
+         style="font-style:normal;font-weight:normal;font-size:34.90086365px;line-height:125%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+         x="403.25513"
+         y="298.40805"
+         id="text34182-2"
+         sodipodi:linespacing="125%"><tspan
+           sodipodi:role="line"
+           id="tspan34184-4"
+           x="403.25513"
+           y="298.40805">N</tspan></text>
+      <text
+         transform="scale(-1,-1)"
+         sodipodi:linespacing="125%"
+         id="text34182-2-5"
+         y="-606.55139"
+         x="-427.56473"
+         style="font-style:normal;font-weight:normal;font-size:34.90086365px;line-height:125%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+         xml:space="preserve"><tspan
+           y="-606.55139"
+           x="-427.56473"
+           id="tspan34184-4-1"
+           sodipodi:role="line">S</tspan></text>
+    </g>
+    <g
+       id="g34236-7"
+       transform="translate(-13.965117,179.51108)"
+       inkscape:export-filename="/home/caperren/Github/Rover_2017_2018/software/ros_packages/ground_station/src/Resources/Images/compass.png"
+       inkscape:export-xdpi="400"
+       inkscape:export-ydpi="400">
+      <g
+         id="g34279"
+         transform="matrix(0,-1,1,0,-35.367754,867.63144)">
+        <text
+           sodipodi:linespacing="125%"
+           id="text34182-2-57"
+           y="297.67508"
+           x="398.86887"
+           style="font-style:normal;font-weight:normal;font-size:34.90086365px;line-height:125%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+           xml:space="preserve"><tspan
+             y="297.67508"
+             x="398.86887"
+             id="tspan34184-4-16"
+             sodipodi:role="line">W</tspan></text>
+        <text
+           xml:space="preserve"
+           style="font-style:normal;font-weight:normal;font-size:34.90086365px;line-height:125%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+           x="-427.75412"
+           y="-605.32416"
+           id="text34182-2-5-9"
+           sodipodi:linespacing="125%"
+           transform="scale(-1,-1)"><tspan
+             sodipodi:role="line"
+             id="tspan34184-4-1-8"
+             x="-427.75412"
+             y="-605.32416">E</tspan></text>
+      </g>
+    </g>
+    <circle
+       style="fill:#ff0000;fill-opacity:1;stroke:none;stroke-width:1;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       id="path34285"
+       cx="286.48309"
+       cy="691.2597"
+       r="3.5073593"
+       inkscape:export-filename="/home/caperren/Github/Rover_2017_2018/software/ros_packages/ground_station/src/Resources/Images/compass.png"
+       inkscape:export-xdpi="400"
+       inkscape:export-ydpi="400"
+       transform="matrix(0.98480775,-0.17364818,0.17364818,0.98480775,0,0)" />
+    <g
+       id="g34401"
+       transform="matrix(0.98480775,-0.17364818,0.17364818,0.98480775,-103.46372,79.423705)"
+       inkscape:export-filename="/home/caperren/Github/Rover_2017_2018/software/ros_packages/ground_station/src/Resources/Images/compass.png"
+       inkscape:export-xdpi="400"
+       inkscape:export-ydpi="400">
+      <rect
+         y="418.80426"
+         x="400.41675"
+         height="24.960938"
+         width="3.5"
+         id="rect34291-7"
+         style="fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:1;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+      <rect
+         y="818.25256"
+         x="400.41675"
+         height="24.960938"
+         width="3.5"
+         id="rect34291-7-8"
+         style="fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:1;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+    </g>
+    <g
+       transform="matrix(0.8660254,-0.5,0.5,0.8660254,-261.6243,285.62427)"
+       id="g34405"
+       inkscape:export-filename="/home/caperren/Github/Rover_2017_2018/software/ros_packages/ground_station/src/Resources/Images/compass.png"
+       inkscape:export-xdpi="400"
+       inkscape:export-ydpi="400">
+      <rect
+         style="fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:1;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+         id="rect34407"
+         width="3.5"
+         height="24.960938"
+         x="400.41675"
+         y="418.80426" />
+      <rect
+         style="fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:1;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+         id="rect34409"
+         width="3.5"
+         height="24.960938"
+         x="400.41675"
+         y="818.25256" />
+    </g>
+    <g
+       id="g34411"
+       transform="matrix(0.64278761,-0.76604444,0.76604444,0.64278761,-339.72188,533.48353)"
+       inkscape:export-filename="/home/caperren/Github/Rover_2017_2018/software/ros_packages/ground_station/src/Resources/Images/compass.png"
+       inkscape:export-xdpi="400"
+       inkscape:export-ydpi="400">
+      <rect
+         y="418.80426"
+         x="400.41675"
+         height="24.960938"
+         width="3.5"
+         id="rect34413"
+         style="fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:1;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+      <rect
+         y="818.25256"
+         x="400.41675"
+         height="24.960938"
+         width="3.5"
+         id="rect34415"
+         style="fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:1;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+    </g>
+    <g
+       transform="matrix(0.34202014,-0.93969262,0.93969262,0.34202014,-328.33674,793.10599)"
+       id="g34417"
+       inkscape:export-filename="/home/caperren/Github/Rover_2017_2018/software/ros_packages/ground_station/src/Resources/Images/compass.png"
+       inkscape:export-xdpi="400"
+       inkscape:export-ydpi="400">
+      <rect
+         style="fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:1;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+         id="rect34419"
+         width="3.5"
+         height="24.960938"
+         x="400.41675"
+         y="418.80426" />
+      <rect
+         style="fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:1;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+         id="rect34421"
+         width="3.5"
+         height="24.960938"
+         x="400.41675"
+         y="818.25256" />
+    </g>
+    <g
+       id="g34423"
+       transform="matrix(0,-1,1,0,-228.84209,1033.1774)"
+       inkscape:export-filename="/home/caperren/Github/Rover_2017_2018/software/ros_packages/ground_station/src/Resources/Images/compass.png"
+       inkscape:export-xdpi="400"
+       inkscape:export-ydpi="400">
+      <rect
+         y="418.80426"
+         x="400.41675"
+         height="24.960938"
+         width="3.5"
+         id="rect34425"
+         style="fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:1;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+      <rect
+         y="818.25256"
+         x="400.41675"
+         height="24.960938"
+         width="3.5"
+         id="rect34427"
+         style="fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:1;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+    </g>
+    <g
+       transform="matrix(-0.34202014,-0.93969262,0.93969262,-0.34202014,-53.238462,1224.7415)"
+       id="g34429"
+       inkscape:export-filename="/home/caperren/Github/Rover_2017_2018/software/ros_packages/ground_station/src/Resources/Images/compass.png"
+       inkscape:export-xdpi="400"
+       inkscape:export-ydpi="400">
+      <rect
+         style="fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:1;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+         id="rect34431"
+         width="3.5"
+         height="24.960938"
+         x="400.41675"
+         y="418.80426" />
+      <rect
+         style="fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:1;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+         id="rect34433"
+         width="3.5"
+         height="24.960938"
+         x="400.41675"
+         y="818.25256" />
+    </g>
+    <g
+       id="g34435"
+       transform="matrix(-0.64278761,-0.76604444,0.76604444,-0.64278761,177.29376,1344.6929)"
+       inkscape:export-filename="/home/caperren/Github/Rover_2017_2018/software/ros_packages/ground_station/src/Resources/Images/compass.png"
+       inkscape:export-xdpi="400"
+       inkscape:export-ydpi="400">
+      <rect
+         y="418.80426"
+         x="400.41675"
+         height="24.960938"
+         width="3.5"
+         id="rect34437"
+         style="fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:1;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+      <rect
+         y="818.25256"
+         x="400.41675"
+         height="24.960938"
+         width="3.5"
+         id="rect34439"
+         style="fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:1;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+    </g>
+    <g
+       transform="matrix(-0.8660254,-0.5,0.5,-0.8660254,434.94899,1378.5637)"
+       id="g34441"
+       inkscape:export-filename="/home/caperren/Github/Rover_2017_2018/software/ros_packages/ground_station/src/Resources/Images/compass.png"
+       inkscape:export-xdpi="400"
+       inkscape:export-ydpi="400">
+      <rect
+         style="fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:1;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+         id="rect34443"
+         width="3.5"
+         height="24.960938"
+         x="400.41675"
+         y="418.80426" />
+      <rect
+         style="fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:1;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+         id="rect34445"
+         width="3.5"
+         height="24.960938"
+         x="400.41675"
+         y="818.25256" />
+    </g>
+    <g
+       id="g34447"
+       transform="matrix(-0.98480775,-0.17364818,0.17364818,-0.98480775,688.65021,1322.2686)"
+       inkscape:export-filename="/home/caperren/Github/Rover_2017_2018/software/ros_packages/ground_station/src/Resources/Images/compass.png"
+       inkscape:export-xdpi="400"
+       inkscape:export-ydpi="400">
+      <rect
+         y="418.80426"
+         x="400.41675"
+         height="24.960938"
+         width="3.5"
+         id="rect34449"
+         style="fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:1;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+      <rect
+         y="818.25256"
+         x="400.41675"
+         height="24.960938"
+         width="3.5"
+         id="rect34451"
+         style="fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:1;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+    </g>
+  </g>
+</svg>
