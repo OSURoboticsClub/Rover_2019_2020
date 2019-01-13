@@ -3,7 +3,7 @@
         <!-- Start Undercarriage Camera -->
         <node name="undercarriage" pkg="rover_camera" type="rover_camera" launch-prefix="taskset -c 1" respawn="true" output="screen">
             <param name="device_path" value="/dev/rover/camera_undercarriage"/>
-           <param name="upside_down" value="true"/>
+            <param name="upside_down" value="true"/>
         </node>
 
         <!--&lt;!&ndash; Start Main Navigation Camera &ndash;&gt;-->
