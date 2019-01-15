@@ -66,6 +66,8 @@ class AutoPoweroffWatchdog(object):
     def check_and_update_devices(self):
         for device in self.watched_devices:
             if exists(device):
+                # remove later
+                print >> open('file.txt', 'w'), 'watched devices %d', device
                 self.watched_devices[device] = time()
 
     def initiate_shutdown_if_needed(self):
