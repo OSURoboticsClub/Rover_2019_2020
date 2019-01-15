@@ -1,0 +1,2 @@
+# The second C920 Webcam
+SUBSYSTEM=="video4linux", KERNEL=="video[0-9]*", ATTRS{idVendor}=="046d", ATTRS{idProduct}=="082d", ATTRS{serial}=="A98AA5FF", SYMLINK+="rover/camera_chassis"
