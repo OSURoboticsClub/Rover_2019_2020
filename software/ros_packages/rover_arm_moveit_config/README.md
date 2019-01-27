@@ -144,6 +144,7 @@ To keep the code in the repository, and allow catkin the ability to access it, w
 ```
 cd ~/catkin_workspace/src
 ln -s ~/Github/Rover_2018_2019/software/ros_packages/rover_arm_moveit_config rover_arm_moveit_config
+ln -s ~/Github/Rover_2018_2019/software/ros_packages/mr1718-arm-urdf_export mr1718-arm-urdf_export
 ```
 
 #### 2.6 Build your catkin workspace
@@ -177,7 +178,7 @@ echo 'source ~/catkin_workspace/devel/setup.bash' >> ~/.bashrc
 ### 3. LaunchIt!
 
 #### 3.1 Run the demo
-To run the demo for the rover arm through RViz using MoveIt!:
+To run the demo for the rover arm through RViz using MoveIt!, re-open your terminal and enter the following command:
 ```
 roslaunch rover_arm_moveit_config demo.launch
 ```
