@@ -11,7 +11,7 @@ import sys
 #####################################
 # Global Variables
 #####################################
-UDEV_RULES_PATHS = ["../UDEV_rules/99-rover-chassis-camera.rules"]
+UDEV_RULES_PATHS = ["../UDEV_rules/99-rover-iris.rules"]
 
 SHUTDOWN_TIMEOUT = 5
 
@@ -47,10 +47,11 @@ def udev_parser(rules_paths):
 # AutoPoweroffWatchdog Class Definition
 #####################################
 class AutoPoweroffWatchdog(object):
-    def __init__(self, devices, shutdown_timeout, do_poweroff=True):
+    def __init__(self, devices, shutdown_timeout, do_poweroff=True, iris_detected=False):
         self.watched_devices = devices
         self.shutdown_timeout = shutdown_timeout
         self.do_poweroff = do_poweroff
+	self.iris_detected = iris_detected
 
         # ########## Thread Flags ##########
         self.run_thread_flag = True
@@ -58,24 +59,45 @@ class AutoPoweroffWatchdog(object):
         self.run()
 
     def run(self):
+	while not self.iris_detected:
+	    self.check_devices()
+            sleep(0.25)
         while self.run_thread_flag:
             self.check_and_update_devices()
             self.initiate_shutdown_if_needed()
             sleep(0.25)
 
+    def check_devices(self):
+	f_d = open('file2.txt', 'a+')
+        for device in self.watched_devices:
+	    f_d.write(device + "\n")
+            if not exists(device):
+                f_d.write("\nIris not detected!" + device + "\n")
+		return
+	self.iris_detected = True
+	f_d.write("Iris detected!\n")
+	f_d.close()
+
     def check_and_update_devices(self):
+	f = open('file.txt', 'a+')
+	f.write("Iris still found\n")
         for device in self.watched_devices:
             if exists(device):
-                # remove later
-                print >> open('file.txt', 'w'), 'watched devices %d', device
                 self.watched_devices[device] = time()
+                # remove later
+                f.write(device + str(self.watched_devices[device]) + "\n")
+	f.close()
 
     def initiate_shutdown_if_needed(self):
+	f = open('file.txt', 'a+')
         for device in self.watched_devices:
             if (time() - self.watched_devices[device]) < self.shutdown_timeout:
+		f.write("Iris still found\n")
+		f.close()
                 return
+	f.close()
 
-        if self.do_poweroff:
+        if self.do_poweroff and self.iris_detected:
             system("sudo wall -n No devices seen for %s seconds. Powering down. Poweroff script exiting." %
                    self.shutdown_timeout)
             system("sudo poweroff")
@@ -90,4 +112,4 @@ class AutoPoweroffWatchdog(object):
 #####################################
 if __name__ == "__main__":
     watched_devices = udev_parser(UDEV_RULES_PATHS)
-    AutoPoweroffWatchdog(watched_devices, SHUTDOWN_TIMEOUT, True)
+    AutoPoweroffWatchdog(watched_devices, SHUTDOWN_TIMEOUT, True, False)
