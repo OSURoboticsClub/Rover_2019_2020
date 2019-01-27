@@ -12,7 +12,7 @@ These instructions were designed to allow you to work on the Rover Arm using RVi
 
 
 
-## How to Launch | 
+## How to Launch
 **ALSO IMPORTANT:**  The following instructions assume you don't have ROS Kinetic or MoveIt! installed yet. If you have pre-existing catkin workspaces (e.g., "\~/catkin_ws", "\~/ws_moveit", etc.) back them up by moving them to another location. For example:
 ```
 mv ~/catkin_ws ~/_catkin_ws
