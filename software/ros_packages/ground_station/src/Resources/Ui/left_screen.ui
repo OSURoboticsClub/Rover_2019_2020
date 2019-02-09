@@ -1375,7 +1375,7 @@ N/A</string>
             </widget>
            </item>
            <item row="15" column="3">
-            <widget class="QLabel" name="motor_temperature">
+            <widget class="QLabel" name="motor_temp">
              <property name="styleSheet">
               <string notr="true">background-color:darkgreen; border: 0.5px solid black;</string>
              </property>
@@ -1410,7 +1410,7 @@ N/A</string>
          </size>
         </property>
         <property name="currentIndex">
-         <number>2</number>
+         <number>4</number>
         </property>
         <widget class="QWidget" name="tab_5">
          <attribute name="title">
