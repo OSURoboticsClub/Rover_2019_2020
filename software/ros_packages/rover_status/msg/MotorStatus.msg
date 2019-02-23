@@ -1,0 +1,2 @@
+float64 motor_temp
+float64 motor_current

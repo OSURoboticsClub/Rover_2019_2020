@@ -1,13 +1,13 @@
 #!/usr/bin/env python
 import rospy
-from rover_status.msg import CameraStatuses, BogieStatuses, FrSkyStatus, GPSInfo, MiscStatuses, JetsonInfo
+from rover_status.msg import CameraStatuses, BogieStatuses, FrSkyStatus, GPSInfo, MiscStatuses, JetsonInfo, MotorStatus
+#motor status is newly added 16 Feb 2019
 
 # THIS IS A SUPER ROUGH EXAMPLE OF HOW TO PULL THE DATA
 # You can create your own message formats in the msg folder
 # This is a simple example of pulling data from system_statuses_node.py
 # and storing them into self values.
 # The ground control code sounds like it'll be fairly different in format.
-
 
 class RoverStatuses:
     def __init__(self):
@@ -23,6 +23,9 @@ class RoverStatuses:
         rospy.Subscriber('GPS_system_status_chatter', GPSInfo, self.__gps_callback)
         rospy.Subscriber('jetson_system_status_chatter', JetsonInfo, self.__jetson_callback)
         rospy.Subscriber('misc_system_status_chatter', MiscStatuses, self.__misc_callback)
+#####################
+        rospy.Subscriber('motor_system_status_chatter', MotorStatus, self.__misc_callback)
+#####################added 16 Feb 2019
 
         self.camera_msg = CameraStatuses()
         self.bogie_msg = BogieStatuses()
@@ -30,6 +33,9 @@ class RoverStatuses:
         self.GPS_msg = GPSInfo()
         self.jetson_msg = JetsonInfo()
         self.misc_msg = MiscStatuses()
+########################
+	self.motor_msg=MotorStatus()
+########################added 16 Feb 2019
 
     def __camera_callback(self, data):
         self.camera_msg.camera_zed = data.camera_zed
@@ -64,12 +70,22 @@ class RoverStatuses:
         self.misc_msg.tower_connection_status = data.tower_connection_status
         self.misc_msg.chassis_pan_tilt_connection_status = data.chassis_pan_tilt_connection_status
 
+#########added on 12 February 2019
+    def __motor_callback(self,data):
+	self.motor_msg.motor_temperature = motor.temp
+	self.motor_msg.motor_current = motor.current
+#############Added defintions to motor callback
+###########might need additional functions
+
     def run(self):
         rospy.Subscriber('camera_system_status_chatter', CameraStatuses, self.__camera_callback)
         rospy.Subscriber('bogie_system_status_chatter', BogieStatuses, self.__bogie_callback)
         rospy.Subscriber('FrSky_system_status_chatter', FrSkyStatus, self.__frsky_callback)
         rospy.Subscriber('GPS_system_status_chatter', GPSInfo, self.__gps_callback)
         rospy.Subscriber('jetson_system_status_chatter', JetsonInfo, self.__jetson_callback)
+########################
+	rospy.Subscriber('motor_system_status_chatter', MotorStatus, self.__jetson_callback)
+########################added 16 Feb 2019
         rospy.Subscriber('misc_system_status_chatter', MiscStatuses, self.__misc_callback)
         rospy.spin()
 
