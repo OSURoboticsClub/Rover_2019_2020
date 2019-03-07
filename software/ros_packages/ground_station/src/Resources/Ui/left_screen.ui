@@ -1369,8 +1369,8 @@ N/A</string>
              <property name="styleSheet">
               <string notr="true">background-color:darkgreen; border: 0.5px solid black;</string>
              </property>
-             <property name="text">
-              <string>TextLabel</string>
+            <property name="text">
+              <string>Current</string>
              </property>
             </widget>
            </item>
@@ -1380,7 +1380,7 @@ N/A</string>
               <string notr="true">background-color:darkgreen; border: 0.5px solid black;</string>
              </property>
              <property name="text">
-              <string>TextLabel</string>
+              <string>Temperature</string>
              </property>
             </widget>
            </item>
