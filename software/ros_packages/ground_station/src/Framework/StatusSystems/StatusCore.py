@@ -36,7 +36,7 @@ GPS_BEST_CASE_ACCURACY = 3
 
 LOW_BATTERY_DIALOG_TIMEOUT = 120
 CRITICAL_BATTERY_DIALOG_TIMEOUT = 30
-``````````````````````````````````````
+
 
 class SensorCore(QtCore.QThread):
     # ########## create signals for slots ##########
@@ -111,10 +111,12 @@ class SensorCore(QtCore.QThread):
         self.cpu = self.screen_main_window.cpu  # type: QtWidgets.QLabel
         self.ram = self.screen_main_window.ram  # type: QtWidgets.QLabel
         self.gpu_temp = self.screen_main_window.gpu_temp  # type: QtWidgets.QLabel
-        ##########################
+
+        ################################################
         self.motor_temp = self.screen_main_window.motor_temp  # type: QtWidgets.QLabel
-        self.current_temp = self.screen_main_window.motor_current  # type: QtWidgets.QLabel
+        self.motor_current = self.screen_main_window.motor_current  # type: QtWidgets.QLabel
         ##########################Added values for motor and current, February 9, 2018
+
         self.emmc = self.screen_main_window.emmc  # type: QtWidgets.QLabel
         self.battery = self.screen_main_window.battery_voltage_status_label  # type: QtWidgets.QLabel
         self.co2_levels_label = self.screen_main_window.co2_levels_label  # type: QtWidgets.QLabel
@@ -246,7 +248,7 @@ class SensorCore(QtCore.QThread):
             self.jetson_emmc_stylesheet_change_ready__signal.emit(COLOR_GREEN)
 
 ##################Added definition for hypothetical motor callback
-def __motor_callback(self, data)
+    def __motor_callback(self, data):
         self.motor_temp_update_ready__signal.emit("TX2 M\n" + str(data.M_temp) + " °C")
 
         if data.M_temp > 64: #dummy values

@@ -93,8 +93,7 @@ class SystemStatuses:
         self.pub_Misc = rospy.Publisher(self.misc_topic_name, MiscStatuses, queue_size=1)
 
         # Subscribers
-        self.request_update_subscriber = rospy.Subscriber(self.request_update_topic_name, Empty,
-                                                          self.on_update_requested)
+        self.request_update_subscriber = rospy.Subscriber(self.request_update_topic_name, Empty, self.on_update_requested)
 
         # Manual update variable
         self.manual_update_requested = False
