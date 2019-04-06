@@ -145,6 +145,7 @@ To keep the code in the repository, and allow catkin the ability to access it, w
 ```
 cd ~/catkin_workspace/src
 ln -s ~/Github/Rover_2018_2019/software/ros_packages/rover_arm_moveit_config rover_arm_moveit_config
+ln -s ~/Github/Rover_2018_2019/software/ros_packages/mr1718-arm-urdf_export mr1718-arm-urdf_export
 ```
 
 #### 2.6 Build your catkin workspace
