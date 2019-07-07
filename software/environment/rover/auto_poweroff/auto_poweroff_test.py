@@ -68,34 +68,20 @@ class AutoPoweroffWatchdog(object):
             sleep(0.25)
 
     def check_devices(self):
-	f_d = open('file2.txt', 'a+')
         for device in self.watched_devices:
-	    f_d.write(device + "\n")
             if not exists(device):
-                f_d.write("\nIris not detected!" + device + "\n")
 		return
 	self.iris_detected = True
-	f_d.write("Iris detected!\n")
-	f_d.close()
 
     def check_and_update_devices(self):
-	f = open('file.txt', 'a+')
-	f.write("Iris still found\n")
         for device in self.watched_devices:
             if exists(device):
                 self.watched_devices[device] = time()
-                # remove later
-                f.write(device + str(self.watched_devices[device]) + "\n")
-	f.close()
 
     def initiate_shutdown_if_needed(self):
-	f = open('file.txt', 'a+')
         for device in self.watched_devices:
             if (time() - self.watched_devices[device]) < self.shutdown_timeout:
-		f.write("Iris still found\n")
-		f.close()
                 return
-	f.close()
 
         if self.do_poweroff and self.iris_detected:
             system("sudo wall -n No devices seen for %s seconds. Powering down. Poweroff script exiting." %
