@@ -1,0 +1,1 @@
+For use with the averagiing library, uncomment lines 1,6,7,17,18. and comment out 19,20
