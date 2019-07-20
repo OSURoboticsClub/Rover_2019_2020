@@ -24,7 +24,7 @@ DEFAULT_BAUD = 115200
 
 # DEFAULT_GPS_SENTENCE_TOPIC = "gps/sentence"
 DEFAULT_GPS_SENTENCE_TOPIC = "gps/sentence"
-DEFAULT_IMU_TOPIC = "imu/data"
+# DEFAULT_IMU_TOPIC = "imu/data"
 
 DEFAULT_HERTZ = 100
 
@@ -42,7 +42,7 @@ class Odometry(object):
         self.baud = rospy.get_param("~baud", DEFAULT_BAUD)
 
         self.gps_sentence_topic = rospy.get_param("~gps_sentence_topic", DEFAULT_GPS_SENTENCE_TOPIC)
-        self.imu_data_topic = rospy.get_param("~imu_data_topic", DEFAULT_IMU_TOPIC)
+        #self.imu_data_topic = rospy.get_param("~imu_data_topic", DEFAULT_IMU_TOPIC)
 
         self.wait_time = 1.0 / rospy.get_param("~hertz", DEFAULT_HERTZ)
 
@@ -50,7 +50,7 @@ class Odometry(object):
         self.odom_serial.setRTS(0)
 
         self.sentence_publisher = rospy.Publisher(self.gps_sentence_topic, Sentence, queue_size=1)
-        self.imu_data_publisher = rospy.Publisher(self.imu_data_topic, Imu, queue_size=1)
+        #self.imu_data_publisher = rospy.Publisher(self.imu_data_topic, Imu, queue_size=1)
 
         self.odom_last_seen_time = time()
 
@@ -82,8 +82,8 @@ class Odometry(object):
             temp = json.loads(line)
 
             gps = temp.get('gps', None)
-            imu = temp.get('imu', None)
-            imu_cal = temp.get('imu_cal', None)
+            #imu = temp.get('imu', None)
+            #imu_cal = temp.get('imu_cal', None)
 
             if gps:
                 # ###### THIS IS HERE TO DEAL WITH UBLOX GPS #####
@@ -95,9 +95,9 @@ class Odometry(object):
 
                 self.broadcast_gps(gps)
 
-            if imu:
+            #if imu:
                 # print imu
-                self.broadcast_imu(imu)
+            #    self.broadcast_imu(imu)
 
             # if imu_cal:
             #     print imu_cal
