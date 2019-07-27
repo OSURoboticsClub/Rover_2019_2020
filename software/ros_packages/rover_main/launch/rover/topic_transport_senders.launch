@@ -127,7 +127,7 @@
             <param name="destination_port" value="17016" />
             <rosparam param="topics">
                 [{name: "/rover_status/gps_status", compress: false, rate: 1.0},
-                {name: "/rover_odometry/fix", compress: false, rate: 5.0}]
+                {name: "/rover_odometry/gps/fix", compress: false, rate: 5.0}]
             </rosparam>
         </node>
 

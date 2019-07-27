@@ -15,6 +15,6 @@
     <include file="$(find rover_main)/launch/rover/topic_transport_receivers.launch"/>
 
     <!-- ########## Start Odometry Nodes ########## -->
-    <include file="$(find rover_main)/launch/rover/odometry_dual_ekf.launch"/>
+    <include file="$(find rover_main)/launch/rover/odometry3.launch"/>
 
 </launch>
