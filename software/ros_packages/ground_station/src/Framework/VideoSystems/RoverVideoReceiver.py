@@ -163,11 +163,8 @@ class RoverVideoReceiver(QtCore.QThread):
     def __show_video_enabled(self):
         if self.new_frame:
             self.__check_framerate_and_adjust_resolution()
-            print "try conversion.. raw image"
-            print self.raw_image
 
             try:
-	        print self.raw_image
                 opencv_image = self.bridge.compressed_imgmsg_to_cv2(self.raw_image, "rgb8")
 
                 self.__create_final_pixmaps(opencv_image)
@@ -207,7 +204,6 @@ class RoverVideoReceiver(QtCore.QThread):
             self.opencv_640x360_image))
 
     def __image_data_received_callback(self, raw_image):
-        print "callback entered"
         self.raw_image = raw_image
         self.frame_count += 1
         self.new_frame = True
