@@ -8,7 +8,8 @@ import os.path
 import psutil
 import pynmea2
 import subprocess
-from rover_status.msg import BatteryStatusMessage, CameraStatuses, WheelStatuses, FrSkyStatus, GPSInfo, MiscStatuses, JetsonInfo
+from rover_status.msg import BatteryStatusMessage, CameraStatuses, WheelStatuses, FrSkyStatus, GPSInfo, MiscStatuses, JetsonInfo, MotorStatus
+#dummy values for motor status added 16 Feb 2019
 from rover_control.msg import DriveCommandMessage, DriveStatusMessage, IrisStatusMessage
 from std_msgs.msg import Empty
 from nmea_msgs.msg import Sentence
@@ -26,7 +27,9 @@ DEFAULT_FRSKY_TOPIC_NAME = "frsky_status"
 DEFAULT_GPS_TOPIC_NAME = "gps_status"
 DEFAULT_JETSON_TOPIC_NAME = "jetson_status"
 DEFAULT_MISC_TOPIC_NAME = "misc_status"
-
+##############created motor_status topic
+DEFAULT_MOTOR_TOPIC_NAME = "motor_status"
+##############16 Feb 2019
 MAX_JETSON_UPDATE_HERTZ = 0.2
 MAX_IRIS_UPDATE_HERTZ = 0.2
 
@@ -90,8 +93,7 @@ class SystemStatuses:
         self.pub_Misc = rospy.Publisher(self.misc_topic_name, MiscStatuses, queue_size=1)
 
         # Subscribers
-        self.request_update_subscriber = rospy.Subscriber(self.request_update_topic_name, Empty,
-                                                          self.on_update_requested)
+        self.request_update_subscriber = rospy.Subscriber(self.request_update_topic_name, Empty, self.on_update_requested)
 
         # Manual update variable
         self.manual_update_requested = False
@@ -104,6 +106,9 @@ class SystemStatuses:
         self.GPS_msg = GPSInfo()
         self.jetson_msg = JetsonInfo()
         self.misc_msg = MiscStatuses()
+#############initiate motor_msg
+	self.motor_msg = MotorStatus()
+#############16 February 2019
 
         # init all message values
         self.__pull_new_message_values()
@@ -126,6 +131,9 @@ class SystemStatuses:
         self.__set_chassis_pan_tilt_connection_status()
         self.__set_jetson_usage_information()
         self.__set_frsky_controller_connection_status()
+#############Initiate motor message values
+	self.__set_motor_status()
+#############16 February 2019
 
     # Pulls the UTC GPS Information (WIP v2.0)
     def __set_gps_info(self, data):

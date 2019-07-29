@@ -31,7 +31,9 @@ import PIL.ImageFont
 import signing
 import RoverMapHelper as MapHelper
 import cv2
+import csv
 import numpy as np
+from datetime import datetime
 
 #####################################
 # Constants
@@ -352,8 +354,8 @@ class OverlayImage(object):
                  big_width, big_height, width, height):
         self.northwest = northwest
         self.southeast = southeast
-        self.latitude = latitude
-        self.longitude = longitude
+        self.old_latitude = latitude
+        self.old_longitude = longitude
         self.big_width = big_width
         self.big_height = big_height
         self.width = width
@@ -365,6 +367,15 @@ class OverlayImage(object):
         self.indicator = None
         self.helper = MapHelper.MapHelper()
 
+        self.paths_image = None
+        self.paths_image_copy = None
+        self.paths_width = big_width
+        self.paths_height = big_height
+        self.waypoint_filename = "~/waypoint_paths/"
+        self.show_path = True
+        self.curr_path_num = 0
+        self.paths_list = {} 	# 1: (x, y), (x2, y2), ...; 2: (x, y), ...
+
         x, y = self._get_cartesian(latitude, longitude)
         self.center_x = x
         self.center_y = y
@@ -373,6 +384,7 @@ class OverlayImage(object):
         self.upper_y = (self.center_y - (self.height / 2))
 
         self.generate_image_files()
+        self.setup_waypoint_output()
         self.write_once = True
 
         # Text Drawing Variables
@@ -398,8 +410,18 @@ class OverlayImage(object):
 
         self.display_image_copy = self.display_image.copy()
 
+        self.paths_image = self.helper.new_image(self.paths_width, self.paths_height, True)
+        self.paths_image_copy = self.paths_image.copy()
+
         self.load_rover_icon()
         self.indicator.save("location.png")
+
+    def setup_waypoint_output(self):
+        dirname = self.waypoint_filename + datetime.now().strftime('%Y-%m-%d_%H-%M-%S')
+        try:
+            os.makedirs(dirname)
+        except FileExistsError:
+            print("Directory " , dirname ,  " already exists")   
 
     def _get_cartesian(self, lat, lon):
         """
@@ -437,6 +459,7 @@ class OverlayImage(object):
 
         size = 5
         draw = PIL.ImageDraw.Draw(self.big_image)
+        draw_path = PIL.ImageDraw.Draw(self.paths_image)
 
         for element in navigation_list:
             x, y = self._get_cartesian(float(element[1]), float(element[2]))
@@ -449,7 +472,32 @@ class OverlayImage(object):
             draw.ellipse((x - size, y - size, x + size, y + size), fill=(element[3].red(), element[3].green(), element[3].blue()))
 
         self._draw_rover(latitude, longitude, compass)
+
+        if latitude == 0.0 and longitude == 0.0:
+            return self.display_image
+
+        # add a point to path if tracking path and new gps fix is reached
+        path_size = 3
+        if self.show_path and (self.old_latitude != latitude or self.old_longitude != longitude):
+            x, y = self._get_cartesian(latitude, longitude)
+            old_x, old_y = self._get_cartesian(self.old_latitude, self.old_longitude)
+            
+            # new path to add
+            if self.curr_path_num not in self.paths_list:
+                self.paths_list[self.curr_path_num] = []
+                self.paths_image = self.paths_image_copy.copy()
+
+            self.paths_list[self.curr_path_num].append([x, y])
+
+            draw_path.line([(old_x, old_y), (x, y)], width=5, fill='yellow')
+            draw_path.ellipse((x - path_size, y - path_size, x + path_size, y + path_size), fill='red')
+            self._write_waypoints_to_csv(latitude, longitude)
+            print("change in fix...", old_x, old_y, x, y, "compass = ", compass)
+
         self.update(latitude, longitude)
+
+        self.old_latitude = latitude
+        self.old_longitude = longitude
 
         return self.display_image
 
@@ -466,14 +514,31 @@ class OverlayImage(object):
         rotated = rotated.rotate(-angle, resample=PIL.Image.BICUBIC)
         # rotated.save("rotated.png")
         self.big_image.paste(rotated, (x, y), rotated)
+        print("_draw_rover() entered", lat, lon, x, y)
         if self.write_once:
             # self.display_image.save("Something.png")
             self.write_once = False
 
+    def _write_waypoints_to_csv(self, lat, lon):
+        # fields = ['Latitude', 'Longitude', 'Type', 'Timestamp', 'Heading'] 
+        # Types: 0:Wreckage, 1:Supply Crate (intact), 2:Supply Crate (damaged), 3:Rover Path, 4:Picture Location, 5:Sample Site
+  
+        row = [lat, lon, '3', datetime.now().strftime('%Y-%m-%d %H:%M:%S'), 0]
+        filename = self.waypoint_filename + str(self.curr_path_num) + ".csv"
+  
+        with open(os.path.expanduser(filename), 'a+') as csvfile: 
+            csvwriter = csv.writer(csvfile) 
+            # csvwriter.writerow(fields) 
+            csvwriter.writerow(row)
+
     def update(self, latitude, longitude):
         # self.left_x -= 50
         # self.upper_y -= 50
-        self.display_image.paste(self.big_image, (-self.left_x, -self.upper_y))
+        if self.show_path:
+            combined_overlay = PIL.Image.alpha_composite(self.big_image, self.paths_image)
+            # self.big_image.paste(self.paths_image, (-self.left_x, -self.upper_y))
+
+        self.display_image.paste(combined_overlay, (-self.left_x, -self.upper_y))
         # self._draw_coordinate_text(latitude, longitude)
 
     def connect_signals_and_slots(self):
