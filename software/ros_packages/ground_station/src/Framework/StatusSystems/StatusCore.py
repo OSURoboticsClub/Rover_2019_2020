@@ -23,6 +23,9 @@ JETSON_TOPIC_NAME = "/rover_status/jetson_status"
 MISC_TOPIC_NAME = "/rover_status/misc_status"
 BATTERY_TOPIC_NAME = "/rover_status/battery_status"
 CO2_TOPIC_NAME = "/rover_control/tower/status/co2"
+########################
+MOTOR_TOPIC_NAME = "/rover_status/motor_status"
+########################added 16 Feb 2019
 
 COLOR_GREEN = "background-color: darkgreen; border: 1px solid black;"
 COLOR_ORANGE = "background-color: orange; border: 1px solid black;"
@@ -43,6 +46,12 @@ class SensorCore(QtCore.QThread):
     jetson_emmc_stylesheet_change_ready__signal = QtCore.pyqtSignal(str)
     jetson_gpu_temp_update_ready__signal = QtCore.pyqtSignal(str)
     jetson_gpu_temp_stylesheet_change_ready__signal = QtCore.pyqtSignal(str)
+    #########################################
+    motor_temp_update_ready__signal = QtCore.pyqtSignal(str) 
+    motor_temp_stylesheet_change_ready__signal = QtCore.pyqtSignal(str)
+    motor_current_update_ready__signal = QtCore.pyqtSignal(str) 
+    motor_current_stylesheet_change_ready__signal = QtCore.pyqtSignal(str)
+    #############################added variables for current and temperature 9 Feb 2019
     jetson_ram_update_ready__signal = QtCore.pyqtSignal(str)
     jetson_ram_stylesheet_change_ready__signal = QtCore.pyqtSignal(str)
 
@@ -102,11 +111,18 @@ class SensorCore(QtCore.QThread):
         self.cpu = self.screen_main_window.cpu  # type: QtWidgets.QLabel
         self.ram = self.screen_main_window.ram  # type: QtWidgets.QLabel
         self.gpu_temp = self.screen_main_window.gpu_temp  # type: QtWidgets.QLabel
+
+        ################################################
+        self.motor_temp = self.screen_main_window.motor_temp  # type: QtWidgets.QLabel
+        self.motor_current = self.screen_main_window.motor_current  # type: QtWidgets.QLabel
+        ##########################Added values for motor and current, February 9, 2018
+
         self.emmc = self.screen_main_window.emmc  # type: QtWidgets.QLabel
         self.battery = self.screen_main_window.battery_voltage_status_label  # type: QtWidgets.QLabel
         self.co2_levels_label = self.screen_main_window.co2_levels_label  # type: QtWidgets.QLabel
 
         # ########## subscriptions pulling data from system_statuses_node.py ##########
+        # ########## system_statuses_node.py found under ros_packages/rover_status/src
         self.camera_status = rospy.Subscriber(CAMERA_TOPIC_NAME, CameraStatuses, self.__camera_callback)
         self.frsky_status = rospy.Subscriber(FRSKY_TOPIC_NAME, FrSkyStatus, self.__frsky_callback)
         self.gps_status = rospy.Subscriber(GPS_TOPIC_NAME, GPSInfo, self.__gps_callback)
@@ -231,6 +247,18 @@ class SensorCore(QtCore.QThread):
         else:
             self.jetson_emmc_stylesheet_change_ready__signal.emit(COLOR_GREEN)
 
+##################Added definition for hypothetical motor callback
+    def __motor_callback(self, data):
+        self.motor_temp_update_ready__signal.emit("TX2 M\n" + str(data.M_temp) + " °C")
+
+        if data.M_temp > 64: #dummy values
+            self.motor_temp_stylesheet_change_ready__signal.emit(COLOR_ORANGE)
+        elif data.M_temp > 79:
+            self.motor_temp_stylesheet_change_ready__signal.emit(COLOR_RED)
+        else:
+            self.motor_temp_stylesheet_change_ready__signal.emit(COLOR_GREEN)
+##################February 14 2019
+
     def __gps_callback(self, data):
 
         if data.gps_connected:
@@ -304,6 +332,12 @@ class SensorCore(QtCore.QThread):
         self.jetson_emmc_stylesheet_change_ready__signal.connect(self.emmc.setStyleSheet)
         self.jetson_gpu_temp_update_ready__signal.connect(self.gpu_temp.setText)
         self.jetson_gpu_temp_stylesheet_change_ready__signal.connect(self.gpu_temp.setStyleSheet)
+#######################Add motor settings for temperature and current
+        self.motor_temp_update_ready__signal.connect(self.motor_temp.setText)
+        self.motor_temp_stylesheet_change_ready__signal.connect(self.motor_temp.setStyleSheet)
+        self.motor_current_update_ready__signal.connect(self.motor_current.setText)
+        self.motor_current_stylesheet_change_ready__signal.connect(self.motor_current.setStyleSheet)
+######################February 19, 2018
         self.camera_zed_stylesheet_change_ready__signal.connect(self.zed.setStyleSheet)
         self.camera_under_stylesheet_change_ready__signal.connect(self.under_cam.setStyleSheet)
         self.camera_chassis_stylesheet_change_ready__signal.connect(self.chassis_cam.setStyleSheet)

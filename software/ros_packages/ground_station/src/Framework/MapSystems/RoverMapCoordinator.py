@@ -28,7 +28,7 @@ from sensor_msgs.msg import NavSatFix
 #####################################
 # put some stuff here later so you can remember
 
-GPS_POSITION_TOPIC = "/rover_odometry/fix"
+GPS_POSITION_TOPIC = "/rover_odometry/gps/fix"
 IMU_DATA_TOPIC = "/rover_odometry/imu/data"
 
 MAP_WIDGET_WIDTH = float(1280)
@@ -75,6 +75,8 @@ class RoverMapCoordinator(QtCore.QThread):
         self.map_pixmap = self.loading_image_pixmap
         self.last_map_pixmap_cache_key = None
 
+        self.path_waypoints = []
+
         self.longitude = 0
         self.latitude = 0
         self.last_heading = 0
@@ -111,6 +113,8 @@ class RoverMapCoordinator(QtCore.QThread):
 
         self.setup_mapping_locations()
 
+    def run(self):
+        self.logger.debug("Starting Map Coordinator Thread")
     def run(self):
         self.logger.debug("Starting Map Coordinator Thread")
         self.pixmap_ready_signal.emit()  # This gets us the loading map
