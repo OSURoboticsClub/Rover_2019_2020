@@ -49,36 +49,26 @@ CAMERA_CONTROL_SUBSCRIBER_TOPIC = "camera/control"
 
 # ##### Gripper Defines #####
 GRIPPER_MODBUS_REGISTERS = {
-    "MODE": 0,
-    "FINGER_POSITION": 1,
-    "HOME": 2,
-    "LIGHT_STATE": 3,
-
-    "CURRENT_PINCH": 4,
-    "CURRENT_FOREFINGER": 5,
-    "CURRENT_THUMB": 6,
-    "CURRENT_MIDDLEFINGER": 7,
-    "POSITION_PINCH": 8,
-    "POSITION_FOREFINGER": 9,
-    "POSITION_THUMB": 10,
-    "POSITION_MIDDLEFINGER": 11,
-    "LIGHT_STATE_OUPUT": 12,
-    "MODE_OUTPUT": 13,
-    "FINGER_POSITION_OUTPUT": 14
+    "POSITION": 0,
+    "HOME": 1,
+    "TARGET": 2,
+    "SPEED": 3,
+    "DIRECTION": 4,
+    "LASER": 5,
+    "LED": 6,
+    "TEMP": 7,
+    "DISTANCE": 9,
+    "CURRENT": 10
 }
 
-GRIPPER_MODES = {
-    "NO_CHANGE": 0,
-    "NORMAL": 1,
-    "TWO_FINGER_PINCH": 2,
-    "WIDE ": 3,
-    "SCISSOR": 4
-}
 
 DEFAULT_GRIPPER_REGISTERS = [
-    0,  # No change
     0,  # No positional update
     0,  # Do not home
+    0,  # No target
+    0,  # 0 speed
+    0,  # No direction
+    0,  # No laser
     0,  # Light off
 ]
 
@@ -328,8 +318,6 @@ class EffectorsControl(object):
             self.gripper_registers = self.gripper_node.read_registers(0, len(GRIPPER_MODBUS_REGISTERS))
 
         if self.new_gripper_control_message:
-            self.gripper_registers[GRIPPER_MODBUS_REGISTERS["MODE"]] = self.gripper_control_message.gripper_mode
-
             if self.gripper_control_message.should_home:
                 self.gripper_registers[GRIPPER_MODBUS_REGISTERS["HOME"]] = 1
                 self.gripper_node.write_registers(0, self.gripper_registers)
@@ -341,23 +329,24 @@ class EffectorsControl(object):
                     self.gripper_registers = self.gripper_node.read_registers(0, len(GRIPPER_MODBUS_REGISTERS))
                     self.send_gripper_status_message()
 
-                    if self.gripper_registers[GRIPPER_MODBUS_REGISTERS["FINGER_POSITION_OUTPUT"]] == 0:
+                    if self.gripper_registers[GRIPPER_MODBUS_REGISTERS["POSITION"]] == 0:
                         homing_complete = True
                         self.gripper_registers = None
 
             else:
                 if self.gripper_control_message.toggle_light:
-                    self.gripper_registers[GRIPPER_MODBUS_REGISTERS["LIGHT_STATE"]] = 0 if self.gripper_registers[GRIPPER_MODBUS_REGISTERS["LIGHT_STATE"]] else 1
+                    self.gripper_registers[GRIPPER_MODBUS_REGISTERS["LED"]] = 0 if self.gripper_registers[GRIPPER_MODBUS_REGISTERS["LED"]] else 1
                     self.gripper_control_message.toggle_light = False
 
-                gripper_absolute = self.gripper_control_message.gripper_position_absolute
-                gripper_relative = self.gripper_control_message.gripper_position_relative
+                if self.gripper_control_message.toggle_laser:
+                    self.gripper_registers[GRIPPER_MODBUS_REGISTERS["LASER"]] = 0 if self.gripper_registers[GRIPPER_MODBUS_REGISTERS["LASER"]] else 1
+                    self.gripper_control_message.toggle_laser = False
 
-                if -1 < gripper_absolute < UINT16_MAX:
-                    self.gripper_registers[GRIPPER_MODBUS_REGISTERS["FINGER_POSITION"]] = min(max(gripper_absolute, 0), UINT16_MAX)
-                else:
-                    new_position = self.gripper_registers[GRIPPER_MODBUS_REGISTERS["FINGER_POSITION"]] + gripper_relative
-                    self.gripper_registers[GRIPPER_MODBUS_REGISTERS["FINGER_POSITION"]] = min(max(new_position, 0), UINT16_MAX)
+ 
+                gripper_target = self.gripper_control_message.target
+
+                if -1 < gripper_target < UINT16_MAX:
+                    self.gripper_registers[GRIPPER_MODBUS_REGISTERS["TARGET"]] = min(max(gripper_target, 0), UINT16_MAX)
 
                 self.gripper_node.write_registers(0, self.gripper_registers)
 
@@ -370,17 +359,12 @@ class EffectorsControl(object):
         registers = self.gripper_node.read_registers(0, len(GRIPPER_MODBUS_REGISTERS))
 
         message = GripperStatusMessage()
-        message.pinch_position_raw = registers[GRIPPER_MODBUS_REGISTERS["POSITION_PINCH"]]
-        message.forefinger_position_raw = registers[GRIPPER_MODBUS_REGISTERS["POSITION_FOREFINGER"]]
-        message.thumb_position_raw = registers[GRIPPER_MODBUS_REGISTERS["POSITION_THUMB"]]
-        message.middlefinger_position_raw = registers[GRIPPER_MODBUS_REGISTERS["POSITION_MIDDLEFINGER"]]
-        message.pinch_current = registers[GRIPPER_MODBUS_REGISTERS["CURRENT_PINCH"]]
-        message.forefinger_current = registers[GRIPPER_MODBUS_REGISTERS["CURRENT_FOREFINGER"]]
-        message.thumb_current = registers[GRIPPER_MODBUS_REGISTERS["CURRENT_THUMB"]]
-        message.middlefinger_current = registers[GRIPPER_MODBUS_REGISTERS["CURRENT_MIDDLEFINGER"]]
-        message.light_on = registers[GRIPPER_MODBUS_REGISTERS["LIGHT_STATE_OUPUT"]]
-        message.current_mode = registers[GRIPPER_MODBUS_REGISTERS["MODE_OUTPUT"]]
-        message.current_finger_position = registers[GRIPPER_MODBUS_REGISTERS["FINGER_POSITION_OUTPUT"]]
+        message.position_raw = registers[GRIPPER_MODBUS_REGISTERS["POSITION"]]
+        message.current = registers[GRIPPER_MODBUS_REGISTERS["CURRENT"]]
+        message.temp = registers[GRIPPER_MODBUS_REGISTERS["TEMP"]]
+        message.distance = registers[GRIPPER_MODBUS_REGISTERS["DISTANCE"]]
+        message.light_on = registers[GRIPPER_MODBUS_REGISTERS["LED"]]
+        message.laser_on = registers[GRIPPER_MODBUS_REGISTERS["LASER"]]
 
         self.gripper_status_publisher.publish(message)
 

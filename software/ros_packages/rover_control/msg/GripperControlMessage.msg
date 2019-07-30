@@ -1,7 +1,5 @@
-uint8 gripper_mode
-
-int32 gripper_position_absolute
-int16 gripper_position_relative
+uint8 target
 
 bool should_home
 bool toggle_light
+bool toggle_laser
