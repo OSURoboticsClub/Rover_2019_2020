@@ -255,18 +255,18 @@ class ArmIndication(QtCore.QObject):
     def on_gripper_status_update_received__callback(self, data):
         data = data  # type: GripperStatusMessage
 
-        self.pinch_position_updated__signal.emit(data.pinch_position_raw)
-        self.forefinger_position_updated__signal.emit(data.forefinger_position_raw)
-        self.thumb_position_updated__signal.emit(data.thumb_position_raw)
-        self.middlefinger_position_updated__signal.emit(data.middlefinger_position_raw)
+        #self.pinch_position_updated__signal.emit(data.pinch_position_raw)
+        #self.forefinger_position_updated__signal.emit(data.forefinger_position_raw)
+        #self.thumb_position_updated__signal.emit(data.thumb_position_raw)
+        #self.middlefinger_position_updated__signal.emit(data.middlefinger_position_raw)
 
-        self.pinch_current_updated__signal.emit(data.pinch_current)
-        self.forefinger_current_updated__signal.emit(data.forefinger_current)
-        self.thumb_current_updated__signal.emit(data.thumb_current)
-        self.middlefinger_current_updated__signal.emit(data.middlefinger_current)
+        #self.pinch_current_updated__signal.emit(data.pinch_current)
+        #self.forefinger_current_updated__signal.emit(data.forefinger_current)
+        #self.thumb_current_updated__signal.emit(data.thumb_current)
+        #self.middlefinger_current_updated__signal.emit(data.middlefinger_current)
 
-        self.gripper_reported_mode_updated__signal.emit(GRIPPER_MODES[data.current_mode])
-        self.gripper_reported_setpoint_updated__signal.emit(data.current_finger_position)
+        #self.gripper_reported_mode_updated__signal.emit(GRIPPER_MODES[data.current_mode])
+        #self.gripper_reported_setpoint_updated__signal.emit(data.current_finger_position)
 
     @staticmethod
     def process_faults_to_string(faults):
