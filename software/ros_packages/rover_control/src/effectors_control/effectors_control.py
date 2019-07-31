@@ -57,8 +57,8 @@ GRIPPER_MODBUS_REGISTERS = {
     "LASER": 5,
     "LED": 6,
     "TEMP": 7,
-    "DISTANCE": 9,
-    "CURRENT": 10
+    "DISTANCE": 8,
+    "CURRENT": 9
 }
 
 
@@ -204,7 +204,8 @@ class EffectorsControl(object):
                 try:
                     self.run_arm()
                     self.failed_gripper_modbus_count = 0
-                except:
+                except Exception, e:
+                    print e
                     self.failed_gripper_modbus_count += 1
 
                 if self.failed_gripper_modbus_count == FAILED_GRIPPER_MODBUS_LIMIT:
@@ -224,8 +225,11 @@ class EffectorsControl(object):
                     return
 
     def run_arm(self):
+        print("run arm entered...")
         self.process_gripper_control_message()
+	print("processed gripper control message")
         self.send_gripper_status_message()
+        print("sent gripper status message")
 
     def run_mining(self):
         self.process_mining_control_message()
@@ -356,15 +360,27 @@ class EffectorsControl(object):
         self.new_gripper_control_message = False
 
     def send_gripper_status_message(self):
+        print("entered send_gripper_status_message.....")
         registers = self.gripper_node.read_registers(0, len(GRIPPER_MODBUS_REGISTERS))
+        print("read registers...")
 
         message = GripperStatusMessage()
+        print(message)
         message.position_raw = registers[GRIPPER_MODBUS_REGISTERS["POSITION"]]
-        message.current = registers[GRIPPER_MODBUS_REGISTERS["CURRENT"]]
+        print("Position:", message.position_raw)
         message.temp = registers[GRIPPER_MODBUS_REGISTERS["TEMP"]]
-        message.distance = registers[GRIPPER_MODBUS_REGISTERS["DISTANCE"]]
+        print("Temp:", message.temp)
         message.light_on = registers[GRIPPER_MODBUS_REGISTERS["LED"]]
+        print("Light on:", message.light_on)
         message.laser_on = registers[GRIPPER_MODBUS_REGISTERS["LASER"]]
+        print("Laser on:", message.laser_on)
+        message.current = registers[GRIPPER_MODBUS_REGISTERS["CURRENT"]]
+        print("Current:", message.current)
+        message.distance = registers[GRIPPER_MODBUS_REGISTERS["DISTANCE"]]
+        print("Distance:", message.distance)
+
+        print(message.position_raw, message.current, message.temp, message.distance, message.light_on, message.laser_on)
+
 
         self.gripper_status_publisher.publish(message)
 
