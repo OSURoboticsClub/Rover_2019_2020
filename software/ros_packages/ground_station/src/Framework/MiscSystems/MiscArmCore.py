@@ -281,17 +281,13 @@ class MiscArm(QtCore.QThread):
 
     def on_gripper_home_pressed(self):
         message = GripperControlMessage()
-        message.gripper_mode = 2
-        message.gripper_position_absolute = -1
         message.should_home = True
 
         self.gripper_control_publisher.publish(message)
 
     def on_gripper_toggle_light_pressed(self):
         message = GripperControlMessage()
-        message.gripper_mode = 2
         message.toggle_light = True
-        message.gripper_position_absolute = -1
 
         self.gripper_control_publisher.publish(message)
 

@@ -339,8 +339,6 @@ class EffectorsAndArmControlSender(QtCore.QThread):
 
             if "ABS_MOVE" in signal_map:
                 gripper_control_message = GripperControlMessage()
-                gripper_control_message.gripper_mode = self.GRIPPER_CONTROL_MODES["SCISSOR"]
-                gripper_control_message.gripper_position_absolute = signal_map["ABS_MOVE"]
                 self.gripper_control_publisher.publish(gripper_control_message)
             else:
                 self.send_new_gripper_mode = True
@@ -355,13 +353,6 @@ class EffectorsAndArmControlSender(QtCore.QThread):
 
         should_publish_arm = False
         should_publish_gripper = True if self.send_new_gripper_mode else False
-
-        if self.send_new_gripper_mode:
-            gripper_control_message.gripper_position_absolute = 0
-        else:
-            gripper_control_message.gripper_position_absolute = -1
-
-        gripper_control_message.gripper_mode = self.gripper_control_mode + 1
 
         left_trigger = self.controller.controller_states["left_trigger"]
         right_trigger = self.controller.controller_states["right_trigger"]
@@ -395,7 +386,7 @@ class EffectorsAndArmControlSender(QtCore.QThread):
             # arm_control_message.wrist_pitch = (-(left_y_axis / THUMB_STICK_MAX) * WRIST_PITCH_SCALAR) * speed_limit
             # #################
 
-            gripper_control_message.target = (-(right_y_axis / THUMB_STICK_MAX) * GRIPPER_MOVEMENT_SCALAR)
+            gripper_control_message.target = int((-(right_y_axis / THUMB_STICK_MAX) * GRIPPER_MOVEMENT_SCALAR))
 
         if should_publish_arm:
             self.relative_arm_control_publisher.publish(arm_control_message)
@@ -410,7 +401,6 @@ class EffectorsAndArmControlSender(QtCore.QThread):
 
         if self.last_back_button_state == 0 and back_state == 1:
             gripper_control_message.should_home = True
-            gripper_control_message.gripper_mode = self.gripper_control_mode + 1
             self.gripper_control_publisher.publish(gripper_control_message)
             self.last_back_button_state = 1
         elif self.last_back_button_state == 1 and back_state == 0:

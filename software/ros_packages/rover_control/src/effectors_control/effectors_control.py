@@ -342,11 +342,11 @@ class EffectorsControl(object):
                     self.gripper_registers[GRIPPER_MODBUS_REGISTERS["LASER"]] = 0 if self.gripper_registers[GRIPPER_MODBUS_REGISTERS["LASER"]] else 1
                     self.gripper_control_message.toggle_laser = False
 
- 
                 gripper_target = self.gripper_control_message.target
 
                 if -1 < gripper_target < UINT16_MAX:
-                    self.gripper_registers[GRIPPER_MODBUS_REGISTERS["TARGET"]] = min(max(gripper_target, 0), UINT16_MAX)
+                    new_position = self.gripper_registers[GRIPPER_MODBUS_REGISTERS["POSITION"]] + gripper_target
+                    self.gripper_registers[GRIPPER_MODBUS_REGISTERS["TARGET"]] = min(max(new_position, 0), UINT16_MAX)
 
                 self.gripper_node.write_registers(0, self.gripper_registers)
 

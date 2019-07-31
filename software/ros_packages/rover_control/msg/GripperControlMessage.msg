@@ -1,4 +1,4 @@
-uint8 target
+int16 target
 
 bool should_home
 bool toggle_light
