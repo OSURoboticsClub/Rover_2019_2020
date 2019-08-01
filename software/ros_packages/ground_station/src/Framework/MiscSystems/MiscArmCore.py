@@ -84,6 +84,7 @@ class MiscArm(QtCore.QThread):
 
         self.gripper_home_button = self.left_screen.gripper_home_button  # type:QtWidgets.QPushButton
         self.gripper_toggle_light_button = self.left_screen.gripper_toggle_light_button  # type:QtWidgets.QPushButton
+        self.gripper_toggle_laser_button = self.left_screen.gripper_toggle_laser_button  # type:QtWidgets.QPushButton
 
         # ########## Get the settings instance ##########
         self.settings = QtCore.QSettings()
