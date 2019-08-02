@@ -111,6 +111,7 @@ MINING_POSITIONAL_THRESHOLD = 20
 # ##### Misc Defines #####
 NODE_LAST_SEEN_TIMEOUT = 2  # seconds
 
+INT16_MAX = 32757
 UINT16_MAX = 65535
 
 
@@ -359,9 +360,11 @@ class EffectorsControl(object):
 
                 gripper_target = self.gripper_control_message.target
 
-                if -1 < gripper_target < UINT16_MAX:
-                    new_position = self.gripper_registers[GRIPPER_MODBUS_REGISTERS["POSITION"]] + gripper_target
-                    self.gripper_registers[GRIPPER_MODBUS_REGISTERS["TARGET"]] = min(max(new_position, 0), UINT16_MAX)
+                if -1 < gripper_target < INT16_MAX:
+                    curr_position = self.gripper_registers[GRIPPER_MODBUS_REGISTERS["POSITION"]]
+                    new_position = curr_position + gripper_target
+                    print(curr_position, gripper_target, new_position)
+                    self.gripper_registers[GRIPPER_MODBUS_REGISTERS["TARGET"]] = min(max(new_position, 0), INT16_MAX)
 
                 self.gripper_node.write_registers(0, self.gripper_registers)
                 print(self.gripper_registers)

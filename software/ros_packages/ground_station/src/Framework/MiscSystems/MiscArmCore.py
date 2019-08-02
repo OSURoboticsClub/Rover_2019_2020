@@ -84,6 +84,7 @@ class MiscArm(QtCore.QThread):
 
         self.gripper_home_button = self.left_screen.gripper_home_button  # type:QtWidgets.QPushButton
         self.gripper_toggle_light_button = self.left_screen.gripper_toggle_light_button  # type:QtWidgets.QPushButton
+        self.gripper_toggle_laser_button = self.left_screen.gripper_toggle_laser_button  # type:QtWidgets.QPushButton
 
         # ########## Get the settings instance ##########
         self.settings = QtCore.QSettings()
@@ -242,6 +243,7 @@ class MiscArm(QtCore.QThread):
 
         self.gripper_home_button.clicked.connect(self.on_gripper_home_pressed)
         self.gripper_toggle_light_button.clicked.connect(self.on_gripper_toggle_light_pressed)
+        self.gripper_toggle_laser_button.clicked.connect(self.on_gripper_toggle_laser_pressed)
 
     def on_upright_zeroed_button_pressed__slot(self):
         self.process_absolute_move_command([0 for _ in range(6)])
@@ -288,6 +290,12 @@ class MiscArm(QtCore.QThread):
     def on_gripper_toggle_light_pressed(self):
         message = GripperControlMessage()
         message.toggle_light = True
+
+        self.gripper_control_publisher.publish(message)
+
+    def on_gripper_toggle_laser_pressed(self):
+        message = GripperControlMessage()
+        message.toggle_laser = True
 
         self.gripper_control_publisher.publish(message)
 
