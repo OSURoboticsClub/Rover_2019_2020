@@ -58,7 +58,8 @@ GRIPPER_MODBUS_REGISTERS = {
     "LED": 6,
     "TEMP": 7,
     "DISTANCE": 8,
-    "CURRENT": 9
+    "CURRENT": 9,
+    "IS_HOMED": 10
 }
 
 
@@ -70,6 +71,10 @@ DEFAULT_GRIPPER_REGISTERS = [
     0,  # No direction
     0,  # No laser
     0,  # Light off
+    0,  # 0 temp
+    0,  # 0 distance
+    0,  # 0 current
+    0,  # Not homed
 ]
 
 GRIPPER_UNIVERSAL_POSITION_MAX = 10000
@@ -226,11 +231,8 @@ class EffectorsControl(object):
                     return
 
     def run_arm(self):
-        print("run arm entered...")
         self.process_gripper_control_message()
-	print("processed gripper control message")
         self.send_gripper_status_message()
-        print("sent gripper status message")
 
     def run_mining(self):
         self.process_mining_control_message()
@@ -324,19 +326,28 @@ class EffectorsControl(object):
 
         if self.new_gripper_control_message:
             if self.gripper_control_message.should_home:
+                print("GRIPPER SHOULD_HOME TRUE")
                 self.gripper_registers[GRIPPER_MODBUS_REGISTERS["HOME"]] = 1
                 self.gripper_node.write_registers(0, self.gripper_registers)
-                self.gripper_node.write_registers(0, DEFAULT_GRIPPER_REGISTERS)
 
                 homing_complete = False
 
+                #gripper_homing_time = time()
                 while not homing_complete:
+                    print("entered homing while")
+                    time_elapsed = time() - gripper_homing_time
                     self.gripper_registers = self.gripper_node.read_registers(0, len(GRIPPER_MODBUS_REGISTERS))
                     self.send_gripper_status_message()
+                    #print("time elapsed: ", time_elapsed, "homing start time: ", self.gripper_homing_time)
 
-                    if self.gripper_registers[GRIPPER_MODBUS_REGISTERS["POSITION"]] == 0:
+                    #if self.gripper_registers[GRIPPER_MODBUS_REGISTERS["IS_HOMED"]] or time_elapsed >= 1000:
+                    if self.gripper_registers[GRIPPER_MODBUS_REGISTERS["IS_HOMED"]]:
                         homing_complete = True
                         self.gripper_registers = None
+                        print("GRIPPER HOMING COMPLETE")
+                        if self.gripper_registers[GRIPPER_MODBUS_REGISTERS["IS_HOMED"]]: 
+                            print("is_homed true")
+                        #gripper_homing_time = 0
 
             else:
                 if self.gripper_control_message.toggle_light:
@@ -356,8 +367,7 @@ class EffectorsControl(object):
                     self.gripper_registers[GRIPPER_MODBUS_REGISTERS["TARGET"]] = min(max(new_position, 0), INT16_MAX)
 
                 self.gripper_node.write_registers(0, self.gripper_registers)
-
-                self.gripper_node.write_registers(0, DEFAULT_GRIPPER_REGISTERS)
+                print(self.gripper_registers)
 
         self.gripper_control_message = None
         self.new_gripper_control_message = False

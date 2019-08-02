@@ -86,7 +86,7 @@ class AutoPoweroffWatchdog(object):
         if self.do_poweroff and self.iris_detected:
             system("sudo wall -n No devices seen for %s seconds. Powering down. Poweroff script exiting." %
                    self.shutdown_timeout)
-            system("sudo poweroff")
+            system("sudo poweroff")         # switch to sudo reboot at tournament in case of IRIS issues
             exit()
         else:
             system("sudo wall -n No devices seen for %s seconds, but not powering down. Poweroff script exiting.")
