@@ -298,7 +298,9 @@ class EffectorsAndArmControlSender(QtCore.QThread):
             # arm_control_message.wrist_pitch = (-(left_y_axis / THUMB_STICK_MAX) * WRIST_PITCH_SCALAR) * speed_limit
             # #################
 
-            gripper_control_message.target = int((-(right_y_axis / THUMB_STICK_MAX) * GRIPPER_MOVEMENT_SCALAR))
+            # to fix::
+            #gripper_control_message.target = int((-(right_y_axis / THUMB_STICK_MAX) * GRIPPER_MOVEMENT_SCALAR))
+            gripper_control_message.target = int((right_y_axis / THUMB_STICK_MAX) * GRIPPER_MOVEMENT_SCALAR)
 
         if should_publish_arm:
             self.relative_arm_control_publisher.publish(arm_control_message)
