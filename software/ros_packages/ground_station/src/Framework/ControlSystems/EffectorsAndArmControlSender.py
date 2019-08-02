@@ -29,7 +29,7 @@ ROLL_SCALAR = 0.003
 WRIST_PITCH_SCALAR = 0.003
 WRIST_ROLL_SCALAR = 0.006
 
-GRIPPER_MOVEMENT_SCALAR = 1500
+GRIPPER_MOVEMENT_SCALAR = 300
 
 LEFT_X_AXIS_DEADZONE = 1500
 LEFT_Y_AXIS_DEADZONE = 1500
@@ -295,12 +295,12 @@ class EffectorsAndArmControlSender(QtCore.QThread):
 
             # ##### FIXME #####
             # Remove this once the arm is fixed
-            # arm_control_message.wrist_pitch = (-(left_y_axis / THUMB_STICK_MAX) * WRIST_PITCH_SCALAR) * speed_limit
+            arm_control_message.wrist_pitch = (-(left_y_axis / THUMB_STICK_MAX) * WRIST_PITCH_SCALAR) * speed_limit
             # #################
 
             # to fix::
             #gripper_control_message.target = int((-(right_y_axis / THUMB_STICK_MAX) * GRIPPER_MOVEMENT_SCALAR))
-            gripper_control_message.target = int((right_y_axis / THUMB_STICK_MAX) * GRIPPER_MOVEMENT_SCALAR)
+            gripper_control_message.target = int((-(right_y_axis / THUMB_STICK_MAX) * GRIPPER_MOVEMENT_SCALAR))
 
         if should_publish_arm:
             self.relative_arm_control_publisher.publish(arm_control_message)

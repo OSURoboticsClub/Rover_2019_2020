@@ -67,7 +67,7 @@ smint32 roll_max_rev_counts = 0;
 
 //Wrist Pitch
 const smuint8 wrist_pitch_address = 5;
-const smint32 wrist_pitch_counts_per_rev = 3799492;
+const smint32 wrist_pitch_counts_per_rev = 4096000;
 const double wrist_pitch_min_rev = -0.25;
 const double wrist_pitch_max_rev = 0.25;
 
@@ -76,7 +76,7 @@ smint32 wrist_pitch_max_rev_counts = 0;
 
 //Wrist Roll
 const smuint8 wrist_roll_address = 6;
-const smint32 wrist_roll_counts_per_rev = 3799492;
+const smint32 wrist_roll_counts_per_rev = 1638400;
 
 
 class RoverArm {
