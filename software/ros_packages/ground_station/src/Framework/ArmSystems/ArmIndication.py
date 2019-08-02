@@ -63,14 +63,6 @@ FAULT_TO_STRING = {
     15: "HOST COMM ERROR"
 }
 
-GRIPPER_MODES = {
-    0: "No Change",
-    1: "Normal",
-    2: "Pinch",
-    3: "Wide ",
-    4: "Scissor"
-}
-
 
 #####################################
 # Controller Class Definition
@@ -105,17 +97,10 @@ class ArmIndication(QtCore.QObject):
     wrist_roll_faults_update_ready__signal = QtCore.pyqtSignal(str)
 
     pinch_position_updated__signal = QtCore.pyqtSignal(int)
-    forefinger_position_updated__signal = QtCore.pyqtSignal(int)
-    thumb_position_updated__signal = QtCore.pyqtSignal(int)
-    middlefinger_position_updated__signal = QtCore.pyqtSignal(int)
-
     pinch_current_updated__signal = QtCore.pyqtSignal(int)
-    forefinger_current_updated__signal = QtCore.pyqtSignal(int)
-    thumb_current_updated__signal = QtCore.pyqtSignal(int)
-    middlefinger_current_updated__signal = QtCore.pyqtSignal(int)
 
-    gripper_reported_mode_updated__signal = QtCore.pyqtSignal(str)
-    gripper_reported_setpoint_updated__signal = QtCore.pyqtSignal(int)
+    gripper_reported_distance_updated__signal = QtCore.pyqtSignal(int)
+    gripper_reported_temp_updated__signal = QtCore.pyqtSignal(int)
 
     def __init__(self, shared_objects):
         super(ArmIndication, self).__init__()
@@ -132,14 +117,7 @@ class ArmIndication(QtCore.QObject):
         self.wrist_roll_position_lcd_number = self.right_screen.wrist_roll_position_lcd_number  # type: QtWidgets.QLCDNumber
 
         self.pinch_position_lcd_number = self.right_screen.pinch_position_lcd_number  # type: QtWidgets.QLCDNumber
-        self.forefinger_position_lcd_number = self.right_screen.forefinger_position_lcd_number  # type: QtWidgets.QLCDNumber
-        self.thumb_position_lcd_number = self.right_screen.thumb_position_lcd_number  # type: QtWidgets.QLCDNumber
-        self.middlefinger_position_lcd_number = self.right_screen.middlefinger_position_lcd_number  # type: QtWidgets.QLCDNumber
-
         self.pinch_current_lcd_number = self.right_screen.pinch_current_lcd_number  # type: QtWidgets.QLCDNumber
-        self.forefinger_current_lcd_number = self.right_screen.forefinger_current_lcd_number  # type: QtWidgets.QLCDNumber
-        self.thumb_current_lcd_number = self.right_screen.thumb_current_lcd_number  # type: QtWidgets.QLCDNumber
-        self.middlefinger_current_lcd_number = self.right_screen.middlefinger_current_lcd_number  # type: QtWidgets.QLCDNumber
 
         self.arm_controls_base_comms_label = self.right_screen.arm_controls_base_comms_label  # type:QtWidgets.QLabel
         self.arm_controls_base_status_label = self.right_screen.arm_controls_base_status_label  # type:QtWidgets.QLabel
@@ -148,6 +126,7 @@ class ArmIndication(QtCore.QObject):
         self.arm_controls_shoulder_comms_label = self.right_screen.arm_controls_shoulder_comms_label  # type:QtWidgets.QLabel
         self.arm_controls_shoulder_status_label = self.right_screen.arm_controls_shoulder_status_label  # type:QtWidgets.QLabel
         self.arm_controls_shoulder_faults_label = self.right_screen.arm_controls_shoulder_faults_label  # type:QtWidgets.QLabel
+
         self.arm_controls_elbow_comms_label = self.right_screen.arm_controls_elbow_comms_label  # type:QtWidgets.QLabel
         self.arm_controls_elbow_status_label = self.right_screen.arm_controls_elbow_status_label  # type:QtWidgets.QLabel
         self.arm_controls_elbow_faults_label = self.right_screen.arm_controls_elbow_faults_label  # type:QtWidgets.QLabel
@@ -164,8 +143,8 @@ class ArmIndication(QtCore.QObject):
         self.arm_controls_wrist_roll_status_label = self.right_screen.arm_controls_wrist_roll_status_label  # type:QtWidgets.QLabel
         self.arm_controls_wrist_roll_faults_label = self.right_screen.arm_controls_wrist_roll_faults_label  # type:QtWidgets.QLabel
 
-        self.gripper_reported_mode_label = self.right_screen.gripper_reported_mode_label  # type:QtWidgets.QLabel
-        self.gripper_reported_setpoint_lcd_number = self.right_screen.gripper_reported_setpoint_lcd_number  # type: QtWidgets.QLCDNumber
+        self.gripper_reported_distance_lcd_number = self.right_screen.gripper_reported_distance_lcd_number  # type: QtWidgets.QLCDNumber
+        self.gripper_reported_temp_lcd_number = self.right_screen.gripper_reported_temp_lcd_number  # type: QtWidgets.QLCDNumber
 
         # ########## Get the settings instance ##########
         self.settings = QtCore.QSettings()
@@ -210,17 +189,10 @@ class ArmIndication(QtCore.QObject):
         self.wrist_roll_faults_update_ready__signal.connect(self.arm_controls_wrist_roll_faults_label.setText)
 
         self.pinch_position_updated__signal.connect(self.pinch_position_lcd_number.display)
-        self.forefinger_position_updated__signal.connect(self.forefinger_position_lcd_number.display)
-        self.thumb_position_updated__signal.connect(self.thumb_position_lcd_number.display)
-        self.middlefinger_position_updated__signal.connect(self.middlefinger_position_lcd_number.display)
-
         self.pinch_current_updated__signal.connect(self.pinch_current_lcd_number.display)
-        self.forefinger_current_updated__signal.connect(self.forefinger_current_lcd_number.display)
-        self.thumb_current_updated__signal.connect(self.thumb_current_lcd_number.display)
-        self.middlefinger_current_updated__signal.connect(self.middlefinger_current_lcd_number.display)
 
-        self.gripper_reported_mode_updated__signal.connect(self.gripper_reported_mode_label.setText)
-        self.gripper_reported_setpoint_updated__signal.connect(self.gripper_reported_setpoint_lcd_number.display)
+        self.gripper_reported_distance_updated__signal.connect(self.gripper_reported_distance_lcd_number.display)
+        self.gripper_reported_temp_updated__signal.connect(self.gripper_reported_temp_lcd_number.display)
 
     def on_arm_status_update_received__callback(self, data):
         self.base_comms_state_update_ready__signal.emit(self.process_comms_to_string(data.base_comm_status))
@@ -255,18 +227,11 @@ class ArmIndication(QtCore.QObject):
     def on_gripper_status_update_received__callback(self, data):
         data = data  # type: GripperStatusMessage
 
-        #self.pinch_position_updated__signal.emit(data.pinch_position_raw)
-        #self.forefinger_position_updated__signal.emit(data.forefinger_position_raw)
-        #self.thumb_position_updated__signal.emit(data.thumb_position_raw)
-        #self.middlefinger_position_updated__signal.emit(data.middlefinger_position_raw)
+        self.pinch_position_updated__signal.emit(data.position_raw)
+        self.pinch_current_updated__signal.emit(data.current)
 
-        #self.pinch_current_updated__signal.emit(data.pinch_current)
-        #self.forefinger_current_updated__signal.emit(data.forefinger_current)
-        #self.thumb_current_updated__signal.emit(data.thumb_current)
-        #self.middlefinger_current_updated__signal.emit(data.middlefinger_current)
-
-        #self.gripper_reported_mode_updated__signal.emit(GRIPPER_MODES[data.current_mode])
-        #self.gripper_reported_setpoint_updated__signal.emit(data.current_finger_position)
+        self.gripper_reported_distance_updated__signal.emit(data.distance)
+        self.gripper_reported_temp_updated__signal.emit(data.temp)
 
     @staticmethod
     def process_faults_to_string(faults):
