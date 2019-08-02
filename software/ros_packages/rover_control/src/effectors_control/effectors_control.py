@@ -111,7 +111,8 @@ MINING_POSITIONAL_THRESHOLD = 20
 # ##### Misc Defines #####
 NODE_LAST_SEEN_TIMEOUT = 2  # seconds
 
-INT16_MAX = 32757
+INT16_MAX = 32767
+INT16_MIN = -32768
 UINT16_MAX = 65535
 
 
@@ -190,6 +191,8 @@ class EffectorsControl(object):
         self.failed_mining_modbus_count = 0
 
         self.which_effector = self.EFFECTORS.index("GRIPPER")
+
+        self.gripper_position_status = 0
 
         self.run()
 
@@ -332,7 +335,7 @@ class EffectorsControl(object):
 
                 homing_complete = False
 
-                #gripper_homing_time = time()
+                gripper_homing_time = time()
                 while not homing_complete:
                     print("entered homing while")
                     time_elapsed = time() - gripper_homing_time
@@ -360,10 +363,9 @@ class EffectorsControl(object):
 
                 gripper_target = self.gripper_control_message.target
 
-                if -1 < gripper_target < INT16_MAX:
-                    curr_position = self.gripper_registers[GRIPPER_MODBUS_REGISTERS["POSITION"]]
-                    new_position = curr_position + gripper_target
-                    print(curr_position, gripper_target, new_position)
+                if INT16_MIN < gripper_target < INT16_MAX:
+                    new_position = self.gripper_position_status + gripper_target
+                    print(self.gripper_position_status, gripper_target, new_position)
                     self.gripper_registers[GRIPPER_MODBUS_REGISTERS["TARGET"]] = min(max(new_position, 0), INT16_MAX)
 
                 self.gripper_node.write_registers(0, self.gripper_registers)
@@ -377,6 +379,7 @@ class EffectorsControl(object):
 
         message = GripperStatusMessage()
         message.position_raw = registers[GRIPPER_MODBUS_REGISTERS["POSITION"]]
+        self.gripper_position_status = message.position_raw
         message.temp = registers[GRIPPER_MODBUS_REGISTERS["TEMP"]]
         message.light_on = registers[GRIPPER_MODBUS_REGISTERS["LED"]]
         message.laser_on = registers[GRIPPER_MODBUS_REGISTERS["LASER"]]
