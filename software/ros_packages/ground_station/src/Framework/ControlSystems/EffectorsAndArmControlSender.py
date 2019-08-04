@@ -39,8 +39,8 @@ RIGHT_Y_AXIS_DEADZONE = 1500
 
 THUMB_STICK_MAX = 32768.0
 
-MINING_LIFT_SCALAR = 5
-MINING_TILT_SCALAR = 5
+MINING_MOTOR_SCALAR = 5
+MINING_LINEAR_SCALAR = 5
 
 COLOR_GREEN = "background-color:darkgreen; border: 1px solid black;"
 COLOR_NONE = "border: 1px solid black;"
@@ -298,8 +298,6 @@ class EffectorsAndArmControlSender(QtCore.QThread):
             arm_control_message.wrist_pitch = (-(left_y_axis / THUMB_STICK_MAX) * WRIST_PITCH_SCALAR) * speed_limit
             # #################
 
-            # to fix::
-            #gripper_control_message.target = int((-(right_y_axis / THUMB_STICK_MAX) * GRIPPER_MOVEMENT_SCALAR))
             gripper_control_message.target = int((-(right_y_axis / THUMB_STICK_MAX) * GRIPPER_MOVEMENT_SCALAR))
 
         if should_publish_arm:
@@ -324,18 +322,20 @@ class EffectorsAndArmControlSender(QtCore.QThread):
 
         left_y_axis = self.controller.controller_states["left_y_axis"] if abs(
             self.controller.controller_states["left_y_axis"]) > LEFT_Y_AXIS_DEADZONE else 0
-        right_y_axis = self.controller.controller_states["right_y_axis"] if abs(self.controller.controller_states[
-                                                                                    "right_y_axis"]) > RIGHT_Y_AXIS_DEADZONE else 0
+        left_x_axis = self.controller.controller_states["left_x_axis"] if abs(
+            self.controller.controller_states["left_x_axis"]) > LEFT_X_AXIS_DEADZONE else 0
 
-        if left_y_axis or right_y_axis:
+        if left_y_axis or left_x_axis:
             message = MiningControlMessage()
 
-            message.lift_set_absolute = 1024
-            message.tilt_set_absolute = 1024
-
-            message.lift_set_relative = (-(left_y_axis / THUMB_STICK_MAX) * MINING_LIFT_SCALAR)
-            message.tilt_set_relative = ((right_y_axis / THUMB_STICK_MAX) * MINING_TILT_SCALAR)
-            message.cal_factor = -1
+            if left_y_axis >= 0:
+                message.motor_set_position_positive = (-(left_y_axis / THUMB_STICK_MAX) * MINING_MOTOR_SCALAR)
+            elif left_y_axis < 0:
+                message.motor_set_position_negative = ((left_y_axis / THUMB_STICK_MAX) * MINING_MOTOR_SCALAR)
+            elif left_x_axis >= 0:
+                message.linear_set_position_positive = (-(left_x_axis / THUMB_STICK_MAX) * MINING_LINEAR_SCALAR)
+            elif left_x_axis < 0:
+                message.linear_set_position_negative = ((left_x_axis / THUMB_STICK_MAX) * MINING_LINEAR_SCALAR)
 
             self.mining_control_publisher.publish(message)
 
