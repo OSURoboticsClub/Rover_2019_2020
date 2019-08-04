@@ -2193,14 +2193,14 @@ N/A</string>
                 <item>
                  <widget class="QPushButton" name="science_probe_down_button">
                   <property name="text">
-                   <string>Probe down</string>
+                   <string>Drop Probe</string>
                   </property>
                  </widget>
                 </item>
                 <item>
-                 <widget class="QPushButton" name="science_probe_up_button">
+                 <widget class="QPushButton" name="science_scoop_down_button">
                   <property name="text">
-                   <string>Probe Up</string>
+                   <string>Drop Scoop</string>
                   </property>
                  </widget>
                 </item>
