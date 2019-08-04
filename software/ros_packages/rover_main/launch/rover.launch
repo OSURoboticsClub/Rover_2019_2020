@@ -2,7 +2,6 @@
     <!-- ########## Start Rover Control Nodes ########## -->
     <include file="$(find rover_main)/launch/rover/control.launch"/>
     <include file="$(find rover_main)/launch/rover/arm.launch"/>
-    <include file="$(find rover_main)/launch/rover/science.launch"/>
 
     <!-- ########## Start All Rover Camera Nodes ########## -->
     <include file="$(find rover_main)/launch/rover/cameras.launch"/>
