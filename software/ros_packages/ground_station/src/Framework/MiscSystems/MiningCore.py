@@ -8,7 +8,6 @@ import logging
 import rospy
 
 from rover_control.msg import MiningStatusMessage, MiningControlMessage, CameraControlMessage
-from rover_science.msg import SoilSensorStatusMessage
 from std_msgs.msg import Float64
 
 #####################################
@@ -17,40 +16,24 @@ from std_msgs.msg import Float64
 MINING_STATUS_TOPIC = "/rover_control/mining/status"
 MINING_CONTROL_TOPIC = "/rover_control/mining/control"
 
-SCALE_MEASUREMENT_TOPIC = "/rover_control/scale/measurement"
-
-SOIL_PROBE_TOPIC = "/rover_science/soil_probe/data"
-
 CAMERA_CONTROL_TOPIC = "/rover_control/camera/control"
 
-TRAVEL_POSITION_LIFT = 110
-TRAVEL_POSITION_TILT = 1023
+MINING_COLLECTION_CUP_OPEN = 0
+MINING_COLLECTION_CUP_CLOSED = 90
 
-MEASURE_POSITION_LIFT = 350
-MEASURE_POSITION_TILT = 1023
+PROBE_DROP_POSITION = 90
+SCOOP_DROP_POSITION = 0
 
-SCOOP_POSITION_LIFT = 228
-SCOOP_POSITION_TILT = 215
-
-PANORAMA_POSITION_LIFT = 535
-PANORAMA_POSITION_TILT = 995
-
-SAMPLE_POSITION_LIFT = 220
-SAMPLE_POSITION_TILT = 240
-
-PROBE_POSITION_LIFT = 950
-PROBE_POSITION_TILT = 440
+CONTAINER_OPEN = 90
+CONTAINER_CLOSED = 0
 
 
 #####################################
 # UbiquitiRadioSettings Class Definition
 #####################################
 class Mining(QtCore.QObject):
-
-    lift_position_update_ready__signal = QtCore.pyqtSignal(int)
-    tilt_position_update_ready__signal = QtCore.pyqtSignal(int)
-
-    weight_measurement_update_ready__signal = QtCore.pyqtSignal(int)
+    fourbar_position_update_ready__signal = QtCore.pyqtSignal(int)
+    linear_position_update_ready__signal = QtCore.pyqtSignal(int)
 
     temp_update_ready__signal = QtCore.pyqtSignal(float)
     moisture_update_ready__signal = QtCore.pyqtSignal(float)
@@ -66,18 +49,22 @@ class Mining(QtCore.QObject):
         self.shared_objects = shared_objects
         self.left_screen = self.shared_objects["screens"]["left_screen"]
 
-        self.mining_qlcdnumber = self.left_screen.mining_qlcdnumber  # type:QtWidgets.QLCDNumber
-        self.mining_zero_button = self.left_screen.mining_zero_button  # type:QtWidgets.QPushButton
-        self.lift_position_progress_bar = self.left_screen.lift_position_progress_bar  # type:QtWidgets.QProgressBar
-        self.tilt_position_progress_bar = self.left_screen.tilt_position_progress_bar  # type:QtWidgets.QProgressBar
+        self.mining_4bar_temp_lcd_number = self.left_screen.mining_4bar_temp_lcd_number  # type:QtWidgets.QLCDNumber
+        self.mining_4bar_current_lcd_number = self.left_screen.mining_4bar_current_lcd_number  # type:QtWidgets.QLCDNumber
+        self.mining_linear_temp_lcd_number = self.left_screen.mining_linear_temp_lcd_number  # type:QtWidgets.QLCDNumber
+        self.mining_linear_current_lcd_number = self.left_screen.mining_linear_current_lcd_number  # type:QtWidgets.QLCDNumber
+        self.mining_open_button = self.left_screen.mining_open_button  # type:QtWidgets.QPushButton
+        self.mining_close_button = self.left_screen.mining_close_button  # type:QtWidgets.QPushButton
+        self.mining_home_linear_button = self.left_screen.mining_home_linear_button  # type:QtWidgets.QPushButton
+        self.mining_toggle_overtravel_button = self.left_screen.mining_toggle_overtravel_button  # type:QtWidgets.QPushButton
+        self.science_probe_down_button = self.left_screen.science_probe_down_button  # type:QtWidgets.QPushButton
+        self.science_scoop_down_button = self.left_screen.science_scoop_down_button  # type:QtWidgets.QPushButton
+        self.science_container_open_button = self.left_screen.science_container_open_button  # type:QtWidgets.QPushButton
+        self.science_container_close_button = self.left_screen.science_container_close_button  # type:QtWidgets.QPushButton
+        self.science_probe_button = self.left_screen.science_probe_button  # type:QtWidgets.QPushButton
 
-        self.mining_measure_move_button = self.left_screen.mining_measure_move_button  # type:QtWidgets.QPushButton
-        self.mining_transport_move_button = self.left_screen.mining_transport_move_button  # type:QtWidgets.QPushButton
-        self.mining_scoop_move_button = self.left_screen.mining_scoop_move_button  # type:QtWidgets.QPushButton
-
-        self.mining_panorama_button = self.left_screen.mining_panorama_button  # type:QtWidgets.QPushButton
-        self.mining_sample_button = self.left_screen.mining_sample_button  # type:QtWidgets.QPushButton
-        self.mining_probe_button = self.left_screen.mining_probe_button  # type:QtWidgets.QPushButton
+        self.fourbar_position_progress_bar = self.left_screen.fourbar_position_progress_bar  # type:QtWidgets.QProgressBar
+        self.linear_position_progress_bar = self.left_screen.linear_position_progress_bar  # type:QtWidgets.QProgressBar
 
         self.science_temp_lcd_number = self.left_screen.science_temp_lcd_number  # type:QtWidgets.QLCDNumber
         self.science_moisture_lcd_number = self.left_screen.science_moisture_lcd_number  # type:QtWidgets.QLCDNumber
@@ -110,31 +97,30 @@ class Mining(QtCore.QObject):
                                                          self.mining_status_message_received__callback)
 
         self.soil_probe_subscriber = rospy.Subscriber(SOIL_PROBE_TOPIC, SoilSensorStatusMessage, self.on_soil_probe_message_received__callback)
-        self.scale_measurement_subscriber = rospy.Subscriber(SCALE_MEASUREMENT_TOPIC, Float64, self.on_scale_measurement_received__callback)
 
         self.mining_control_publisher = rospy.Publisher(MINING_CONTROL_TOPIC, MiningControlMessage, queue_size=1)
         self.camera_control_publisher = rospy.Publisher(CAMERA_CONTROL_TOPIC, CameraControlMessage, queue_size=1)
 
-        self.current_scale_measurement = 0
-        self.scale_zero_offset = 0
-
         self.connect_signals_and_slots()
 
     def connect_signals_and_slots(self):
-        self.mining_zero_button.clicked.connect(self.on_mining_zero_clicked__slot)
+        self.mining_4bar_temp_update_ready__signal.connect(self.mining_4bar_temp_lcd_number.display)
+        self.mining_4bar_current_update_ready__signal.connect(self.mining_4bar_current_lcd_number.display)
+        self.mining_linear_temp_update_ready__signal.connect(self.mining_linear_temp_lcd_number.display)
+        self.mining_linear_current_update_ready__signal.connect(self.mining_linear_current_lcd_number.display)
 
-        self.mining_measure_move_button.clicked.connect(self.on_mining_move_measure_clicked__slot)
-        self.mining_transport_move_button.clicked.connect(self.on_mining_move_transport_clicked__slot)
-        self.mining_scoop_move_button.clicked.connect(self.on_mining_move_scoop_clicked__slot)
+        self.mining_open_button.clicked.connect(self.on_mining_open_clicked__slot)
+        self.mining_close_button.clicked.connect(self.on_mining_close_clicked__slot)
+        self.mining_home_linear_button.clicked.connect(self.on_mining_home_linear_clicked__slot)
+        self.mining_toggle_overtravel_button.clicked.connect(self.on_mining_toggle_overtravel_clicked__slot)
+        self.science_probe_down_button.clicked.connect(self.on_science_probe_down_clicked__slot)
+        self.science_scoop_down_button.clicked.connect(self.on_science_scoop_down_clicked__slot)
+        self.science_container_open_button.clicked.connect(self.on_science_container_open_clicked__slot)
+        self.science_container_close_button.clicked.connect(self.on_science_container_close_clicked__slot)
+        self.science_probe_button.clicked.connect(self.on_science_probe_clicked__slot)
 
-        self.mining_panorama_button.clicked.connect(self.on_mining_move_panorama_clicked__slot)
-        self.mining_sample_button.clicked.connect(self.on_mining_move_sample_clicked__slot)
-        self.mining_probe_button.clicked.connect(self.on_mining_move_probe_clicked__slot)
-
-        self.tilt_position_update_ready__signal.connect(self.tilt_position_progress_bar.setValue)
-        self.lift_position_update_ready__signal.connect(self.lift_position_progress_bar.setValue)
-
-        self.weight_measurement_update_ready__signal.connect(self.mining_qlcdnumber.display)
+        self.fourbar_position_update_ready__signal.connect(self.fourbar_position_progress_bar.setValue)
+        self.linear_position_update_ready__signal.connect(self.linear_position_progress_bar.setValue)
 
         self.temp_update_ready__signal.connect(self.science_temp_lcd_number.display)
         self.moisture_update_ready__signal.connect(self.science_moisture_lcd_number.display)
@@ -152,55 +138,49 @@ class Mining(QtCore.QObject):
         self.cam_full_zoom_out_button.clicked.connect(self.on_cam_full_zoom_out_button_clicked__slot)
         self.cam_shoot_button.clicked.connect(self.on_cam_shoot_button_clicked__slot)
 
-    def on_mining_zero_clicked__slot(self):
-        self.scale_zero_offset = -self.current_scale_measurement
-
-    def on_mining_move_transport_clicked__slot(self):
+    def on_mining_open_clicked__slot(self):
         message = MiningControlMessage()
-        message.tilt_set_absolute = TRAVEL_POSITION_TILT
-        message.lift_set_absolute = TRAVEL_POSITION_LIFT
-        message.cal_factor = -1
-
+        message.servo1_target = MINING_COLLECTION_CUP_OPEN
         self.mining_control_publisher.publish(message)
 
-    def on_mining_move_measure_clicked__slot(self):
+    def on_mining_close_clicked__slot(self):
         message = MiningControlMessage()
-        message.tilt_set_absolute = MEASURE_POSITION_TILT
-        message.lift_set_absolute = MEASURE_POSITION_LIFT
-        message.cal_factor = -1
-
+        message.servo1_target = MINING_COLLECTION_CUP_CLOSED
         self.mining_control_publisher.publish(message)
 
-    def on_mining_move_scoop_clicked__slot(self):
+    def on_mining_home_linear_clicked__slot(self):
         message = MiningControlMessage()
-        message.tilt_set_absolute = SCOOP_POSITION_TILT
-        message.lift_set_absolute = SCOOP_POSITION_LIFT
-        message.cal_factor = -1
-
+        message.motor_go_home = True
         self.mining_control_publisher.publish(message)
 
-    def on_mining_move_panorama_clicked__slot(self):
+    def on_mining_toggle_overtravel_clicked__slot(self):
         message = MiningControlMessage()
-        message.tilt_set_absolute = PANORAMA_POSITION_TILT
-        message.lift_set_absolute = PANORAMA_POSITION_LIFT
-        message.cal_factor = -1
-
+        message.overtravel = True
         self.mining_control_publisher.publish(message)
 
-    def on_mining_move_sample_clicked__slot(self):
+    def on_science_probe_down_clicked__slot(self):
         message = MiningControlMessage()
-        message.tilt_set_absolute = SAMPLE_POSITION_TILT
-        message.lift_set_absolute = SAMPLE_POSITION_LIFT
-        message.cal_factor = -1
-
+        message.servo1_target = PROBE_DROP_POSITION
         self.mining_control_publisher.publish(message)
 
-    def on_mining_move_probe_clicked__slot(self):
+    def on_science_scoop_down_clicked__slot(self):
         message = MiningControlMessage()
-        message.tilt_set_absolute = PROBE_POSITION_TILT
-        message.lift_set_absolute = PROBE_POSITION_LIFT
-        message.cal_factor = -1
+        message.servo1_target = SCOOP_DROP_POSITION
+        self.mining_control_publisher.publish(message)
 
+    def on_science_container_open_clicked__slot(self):
+        message = MiningControlMessage()
+        message.servo2_target = CONTAINER_OPEN
+        self.mining_control_publisher.publish(message)
+
+    def on_science_container_close_clicked__slot(self):
+        message = MiningControlMessage()
+        message.servo2_target = CONTAINER_CLOSED
+        self.mining_control_publisher.publish(message)
+
+    def on_science_probe_clicked__slot(self):
+        message = MiningControlMessage()
+        message.probe_take_reading = True
         self.mining_control_publisher.publish(message)
 
     def on_cam_lcd_button_clicked__slot(self):
@@ -240,18 +220,21 @@ class Mining(QtCore.QObject):
 
     def mining_status_message_received__callback(self, status):
         status = status  # type:MiningStatusMessage
-        self.tilt_position_update_ready__signal.emit(status.tilt_position)
-        self.lift_position_update_ready__signal.emit(status.lift_position)
+        
+        #firmware has weird motor names, change later
+        self.fourbar_position_update_ready__signal.emit(status.linear_current_position)
+        self.linear_position_update_ready__signal.emit(status.motor_current_position)
 
-    def on_soil_probe_message_received__callback(self, data):
-        self.temp_update_ready__signal.emit(data.temp_c)
-        self.moisture_update_ready__signal.emit(data.moisture)
-        self.loss_tangent_update_ready__signal.emit(data.loss_tangent)
-        self.electrical_conductivity_update_ready__signal.emit(data.soil_electrical_conductivity)
-        self.real_dielectric_update_ready__signal.emit(data.real_dielectric_permittivity)
-        self.imaginary_dielectric_update_ready__signal.emit(data.imaginary_dielectric_permittivity)
+        self.mining_4bar_temp_update_ready__signal.emit(status.temp2)
+        self.mining_linear_temp_update_ready__signal.emit(status.temp1)
 
-    def on_scale_measurement_received__callback(self, data):
-        grams = data.data * 1000
-        self.current_scale_measurement = grams
-        self.weight_measurement_update_ready__signal.emit(grams + self.scale_zero_offset)
+        self.mining_4bar_current_update_ready__signal.emit(status.linear_current)
+        self.mining_linear_current_lcd_number.emit(status.motor_current)
+
+        self.temp_update_ready__signal.emit(status.probe_temp_c)
+        self.moisture_update_ready__signal.emit(status.probe_moisture)
+        self.loss_tangent_update_ready__signal.emit(status.probe_loss_tangent)
+        self.electrical_conductivity_update_ready__signal.emit(status.probe_soil_elec_cond)
+        self.real_dielectric_update_ready__signal.emit(status.probe_real_dielec_perm)
+        self.imaginary_dielectric_update_ready__signal.emit(status.probe_imag_dielec_perm)
+

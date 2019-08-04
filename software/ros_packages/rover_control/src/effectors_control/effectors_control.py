@@ -294,9 +294,9 @@ class EffectorsControl(object):
                 self.mining_registers[MINING_MODBUS_REGISTERS["MOTOR_SET_POSITION_ABSOLUTE"]] = motor_set_position_absolute
             if linear_set_position_absolute > 0:
                 self.mining_registers[MINING_MODBUS_REGISTERS["LINEAR_SET_POSITION_ABSOLUTE"]] = linear_set_position_absolute
-            if servo1_target > 0:
+            if servo1_target >= 0:
                 self.mining_registers[MINING_MODBUS_REGISTERS["SERVO1_TARGET"]] = servo1_target
-            if servo2_target > 0:
+            if servo2_target >= 0:
                 self.mining_registers[MINING_MODBUS_REGISTERS["SERVO2_TARGET"]] = servo2_target
 
             if motor_set_position_positive > 0 and (not switch1_on or overtravel_on):

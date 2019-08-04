@@ -223,6 +223,7 @@ class EffectorsAndArmControlSender(QtCore.QThread):
                 self.send_gripper_home_on_back_press()
                 self.process_and_send_arm_control()
             elif self.xbox_current_control_state == self.XBOX_CONTROL_STATES.index("MINING"):
+                self.send_mining_home_on_back_press()
                 self.send_mining_commands()
 
             time_diff = time() - start_time
@@ -292,11 +293,7 @@ class EffectorsAndArmControlSender(QtCore.QThread):
             should_publish_gripper = True
 
             arm_control_message.wrist_roll = ((left_x_axis / THUMB_STICK_MAX) * BASE_SCALAR) * speed_limit
-
-            # ##### FIXME #####
-            # Remove this once the arm is fixed
             arm_control_message.wrist_pitch = (-(left_y_axis / THUMB_STICK_MAX) * WRIST_PITCH_SCALAR) * speed_limit
-            # #################
 
             gripper_control_message.target = int((-(right_y_axis / THUMB_STICK_MAX) * GRIPPER_MOVEMENT_SCALAR))
 
@@ -328,16 +325,27 @@ class EffectorsAndArmControlSender(QtCore.QThread):
         if left_y_axis or left_x_axis:
             message = MiningControlMessage()
 
-            if left_y_axis >= 0:
-                message.motor_set_position_positive = (-(left_y_axis / THUMB_STICK_MAX) * MINING_MOTOR_SCALAR)
-            elif left_y_axis < 0:
-                message.motor_set_position_negative = ((left_y_axis / THUMB_STICK_MAX) * MINING_MOTOR_SCALAR)
-            elif left_x_axis >= 0:
-                message.linear_set_position_positive = (-(left_x_axis / THUMB_STICK_MAX) * MINING_LINEAR_SCALAR)
+            if left_x_axis >= 0:
+                message.motor_set_position_positive = (-(left_x_axis / THUMB_STICK_MAX) * MINING_MOTOR_SCALAR)
             elif left_x_axis < 0:
-                message.linear_set_position_negative = ((left_x_axis / THUMB_STICK_MAX) * MINING_LINEAR_SCALAR)
+                message.motor_set_position_negative = ((left_x_axis / THUMB_STICK_MAX) * MINING_MOTOR_SCALAR)
+            elif left_y_axis >= 0:
+                message.linear_set_position_positive = (-(left_y_axis / THUMB_STICK_MAX) * MINING_LINEAR_SCALAR)
+            elif left_y_axis < 0:
+                message.linear_set_position_negative = ((left_y_axis / THUMB_STICK_MAX) * MINING_LINEAR_SCALAR)
 
             self.mining_control_publisher.publish(message)
+
+    def send_mining_home_on_back_press(self):
+        message = MiningControlMessage()
+        back_state = self.controller.controller_states["back_button"]
+
+        if self.last_back_button_state == 0 and back_state == 1:
+            message.motor_go_home = True
+            self.mining_control_publisher.publish(message)
+            self.last_back_button_state = 1
+        elif self.last_back_button_state == 1 and back_state == 0:
+            self.last_back_button_state = 0
 
     def setup_signals(self, start_signal, signals_and_slots_signal, kill_signal):
         start_signal.connect(self.start)
