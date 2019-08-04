@@ -35,6 +35,11 @@ class Mining(QtCore.QObject):
     fourbar_position_update_ready__signal = QtCore.pyqtSignal(int)
     linear_position_update_ready__signal = QtCore.pyqtSignal(int)
 
+    mining_4bar_temp_update_ready__signal = QtCore.pyqtSignal(float)
+    mining_4bar_current_update_ready__signal = QtCore.pyqtSignal(float)
+    mining_linear_temp_update_ready__signal = QtCore.pyqtSignal(float)
+    mining_linear_current_update_ready__signal = QtCore.pyqtSignal(float)
+
     temp_update_ready__signal = QtCore.pyqtSignal(float)
     moisture_update_ready__signal = QtCore.pyqtSignal(float)
     loss_tangent_update_ready__signal = QtCore.pyqtSignal(float)
@@ -95,8 +100,6 @@ class Mining(QtCore.QObject):
         # ########## Class Variables ##########
         self.mining_status_subscriber = rospy.Subscriber(MINING_STATUS_TOPIC, MiningStatusMessage,
                                                          self.mining_status_message_received__callback)
-
-        self.soil_probe_subscriber = rospy.Subscriber(SOIL_PROBE_TOPIC, SoilSensorStatusMessage, self.on_soil_probe_message_received__callback)
 
         self.mining_control_publisher = rospy.Publisher(MINING_CONTROL_TOPIC, MiningControlMessage, queue_size=1)
         self.camera_control_publisher = rospy.Publisher(CAMERA_CONTROL_TOPIC, CameraControlMessage, queue_size=1)

@@ -10,6 +10,14 @@ MAPPING_LOCATIONS = {
         "pre_cache_map_zoom_levels": [18, 19, 20]
     },
 
+    "Avery Park": {
+        "latitude": 44.553793,
+        "longitude": -123.272907,
+        "default_zoom": 18,
+        "valid_zoom_options": [16, 17, 18, 19, 20],
+        "pre_cache_map_zoom_levels": [18, 19, 20]
+    },
+
     "Crystal Lake": {
         "latitude": 44.547155,
         "longitude": -123.251438,
