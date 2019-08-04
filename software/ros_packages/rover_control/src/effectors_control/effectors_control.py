@@ -58,7 +58,8 @@ GRIPPER_MODBUS_REGISTERS = {
     "LED": 6,
     "TEMP": 7,
     "DISTANCE": 8,
-    "CURRENT": 9
+    "CURRENT": 9,
+    "IS_HOMED": 10
 }
 
 
@@ -70,32 +71,57 @@ DEFAULT_GRIPPER_REGISTERS = [
     0,  # No direction
     0,  # No laser
     0,  # Light off
+    0,  # 0 temp
+    0,  # 0 distance
+    0,  # 0 current
+    0,  # Not homed
 ]
 
 GRIPPER_UNIVERSAL_POSITION_MAX = 10000
 
 # ##### Mining Defines #####
 MINING_MODBUS_REGISTERS = {
-    "LIFT_SET_POSITIVE": 0,
-    "LIFT_SET_NEGATIVE": 1,
-    "TILT_SET_POSITIVE": 2,
-    "TILT_SET_NEGATIVE": 3,
-    "TILT_SET_ABSOLUTE": 4,
-    "LIFT_SET_ABSOLUTE": 5,
-    "MEASURE": 6,
-    "TARE": 7,
-    "CAL_FACTOR": 8,
+    "CAM_ZOOM_IN_FULL": 0,
+    "CAM_ZOOM_OUT_FULL": 1,
+    "CAM_ZOOM_IN": 2,
+    "CAM_ZOOM_OUT": 3,
+    "CAM_SHOOT": 4,
+    "CAM_CHANGE_VIEW": 5,
 
-    "CHANGE_VIEW_MODE": 9,
-    "ZOOM_IN": 10,
-    "ZOOM_OUT": 11,
-    "FULL_ZOOM_IN": 12,
-    "FULL_ZOOM_OUT": 13,
-    "SHOOT": 14,
+    "PROBE_TAKE_READING": 6,
+    "PROBE_TEMP_C": 7,
+    "PROBE_MOISTURE": 8,
+    "PROBE_LOSS_TANGENT": 9,
+    "PROBE_SOIL_ELEC_COND": 10,
+    "PROBE_REAL_DIELEC_PERM": 11,
+    "PROBE_IMAG_DIELEC_PERM": 12,
 
-    "CURRENT_POSITION_LIFT": 15,
-    "CURRENT_POSITION_TILT": 16,
-    "MEASURED_WEIGHT": 17
+    "MOTOR_SET_POSITION_POSITIVE": 13,
+    "MOTOR_SET_POSITION_NEGATIVE": 14,
+    "MOTOR_SET_POSITION_ABSOLUTE": 15,
+    "MOTOR_GO_HOME": 16,
+
+    "LINEAR_SET_POSITION_POSITIVE": 17,
+    "LINEAR_SET_POSITION_NEGATIVE": 18,
+    "LINEAR_SET_POSITION_ABSOLUTE": 19,
+
+    "LINEAR_CURRENT_POSITION": 20,
+    "MOTOR_CURRENT_POSITION": 21,
+
+    "TEMP1": 22,
+    "TEMP2": 23,
+
+    "MOTOR_CURRENT": 24,
+    "LINEAR_CURRENT": 25,
+
+    "SERVO1_TARGET": 26,
+    "SERVO2_TARGET": 27,
+
+    "SWITCH1_OUT": 28,
+    "SWITCH2_OUT": 29,
+
+    "OVERTRAVEL": 30,
+    "HOMING_NEEDED": 31
 }
 
 
@@ -106,6 +132,8 @@ MINING_POSITIONAL_THRESHOLD = 20
 # ##### Misc Defines #####
 NODE_LAST_SEEN_TIMEOUT = 2  # seconds
 
+INT16_MAX = 32767
+INT16_MIN = -32768
 UINT16_MAX = 65535
 
 
@@ -185,6 +213,8 @@ class EffectorsControl(object):
 
         self.which_effector = self.EFFECTORS.index("GRIPPER")
 
+        self.gripper_position_status = 0
+
         self.run()
 
     def __setup_minimalmodbus_for_485(self):
@@ -225,11 +255,8 @@ class EffectorsControl(object):
                     return
 
     def run_arm(self):
-        print("run arm entered...")
         self.process_gripper_control_message()
-	print("processed gripper control message")
         self.send_gripper_status_message()
-        print("sent gripper status message")
 
     def run_mining(self):
         self.process_mining_control_message()
@@ -243,36 +270,56 @@ class EffectorsControl(object):
         self.__setup_minimalmodbus_for_485()
 
     def process_mining_control_message(self):
+        if not self.mining_registers:
+            self.mining_registers = self.mining_node.read_registers(0, len(MINING_MODBUS_REGISTERS))
+            print(self.mining_registers)
+
+
         if self.new_mining_control_message and self.mining_node_present:
-            lift_set_relative = self.mining_control_message.lift_set_relative
-            tilt_set_relative = self.mining_control_message.tilt_set_relative
-            lift_set_absolute = self.mining_control_message.lift_set_absolute
-            tilt_set_absolute = self.mining_control_message.tilt_set_absolute
-            cal_factor = min(self.mining_control_message.cal_factor, UINT16_MAX)
-            measure = self.mining_control_message.measure
-            tare = self.mining_control_message.tare
+            motor_set_position_positive = self.mining_control_message.motor_set_position_positive
+            motor_set_position_negative = self.mining_control_message.motor_set_position_negative
+            motor_set_position_absolute = self.mining_control_message.motor_set_position_absolute
 
-            if lift_set_absolute < 1024:
-                self.mining_registers[MINING_MODBUS_REGISTERS["LIFT_SET_ABSOLUTE"]] = lift_set_absolute
-            else:
-                if lift_set_relative >= 0:
-                    self.mining_registers[MINING_MODBUS_REGISTERS["LIFT_SET_POSITIVE"]] = lift_set_relative
-                else:
-                    self.mining_registers[MINING_MODBUS_REGISTERS["LIFT_SET_NEGATIVE"]] = -lift_set_relative
+            linear_set_position_positive = self.mining_control_message.linear_set_position_positive
+            linear_set_position_negative = self.mining_control_message.linear_set_position_negative
+            linear_set_position_absolute = self.mining_control_message.linear_set_position_absolute
+            servo1_target = self.mining_control_message.servo1_target
+            servo2_target = self.mining_control_message.servo2_target
 
-            if tilt_set_absolute < 1024:
-                self.mining_registers[MINING_MODBUS_REGISTERS["TILT_SET_ABSOLUTE"]] = tilt_set_absolute
-            else:
-                if tilt_set_relative >= 0:
-                    self.mining_registers[MINING_MODBUS_REGISTERS["TILT_SET_POSITIVE"]] = tilt_set_relative
-                else:
-                    self.mining_registers[MINING_MODBUS_REGISTERS["TILT_SET_NEGATIVE"]] = -tilt_set_relative
+            switch1_on = self.mining_registers[MINING_MODBUS_REGISTERS["SWITCH1_OUT"]]
+            switch2_on = self.mining_registers[MINING_MODBUS_REGISTERS["SWITCH2_OUT"]]
+            overtravel_on = self.mining_registers[MINING_MODBUS_REGISTERS["OVERTRAVEL"]]
 
-            if cal_factor > -1:
-                self.mining_registers[MINING_MODBUS_REGISTERS["CAL_FACTOR"]] = cal_factor
+            if motor_set_position_absolute > 0:
+                self.mining_registers[MINING_MODBUS_REGISTERS["MOTOR_SET_POSITION_ABSOLUTE"]] = motor_set_position_absolute
+            if linear_set_position_absolute > 0:
+                self.mining_registers[MINING_MODBUS_REGISTERS["LINEAR_SET_POSITION_ABSOLUTE"]] = linear_set_position_absolute
+            if servo1_target > 0:
+                self.mining_registers[MINING_MODBUS_REGISTERS["SERVO1_TARGET"]] = servo1_target
+            if servo2_target > 0:
+                self.mining_registers[MINING_MODBUS_REGISTERS["SERVO2_TARGET"]] = servo2_target
 
-            self.mining_registers[MINING_MODBUS_REGISTERS["MEASURE"]] = int(measure)
-            self.mining_registers[MINING_MODBUS_REGISTERS["TARE"]] = int(tare)
+            if motor_set_position_positive > 0 and (not switch1_on or overtravel_on):
+                self.mining_registers[MINING_MODBUS_REGISTERS["MOTOR_SET_POSITION_POSITIVE"]] = motor_set_position_positive
+            elif motor_set_position_negative > 0 and not switch2_on: 
+                self.mining_registers[MINING_MODBUS_REGISTERS["MOTOR_SET_POSITION_NEGATIVE"]] = motor_set_position_negative
+
+            if linear_set_position_positive > 0:
+                self.mining_registers[MINING_MODBUS_REGISTERS["LINEAR_SET_POSITION_POSITIVE"]] = linear_set_position_positive
+            elif linear_set_position_negative > 0:
+                self.mining_registers[MINING_MODBUS_REGISTERS["LINEAR_SET_POSITION_NEGATIVE"]] = linear_set_position_negative
+
+            if self.mining_control_message.overtravel:
+                self.mining_registers[MINING_MODBUS_REGISTERS["OVERTRAVEL"]] = 0 if self.mining_registers[MINING_MODBUS_REGISTERS["OVERTRAVEL"]] else 1
+                self.mining_control_message.overtravel = False
+
+            if self.mining_control_message.motor_go_home:
+                self.mining_registers[MINING_MODBUS_REGISTERS["MOTOR_GO_HOME"]] = 0 if self.mining_registers[MINING_MODBUS_REGISTERS["MOTOR_GO_HOME"]] else 1
+                self.mining_control_message.motor_go_home = False
+
+            if self.mining_control_message.probe_take_reading:
+                self.mining_registers[MINING_MODBUS_REGISTERS["PROBE_TAKE_READING"]] = 1
+
 
             self.mining_node.write_registers(0, self.mining_registers)
 
@@ -282,22 +329,24 @@ class EffectorsControl(object):
     def process_camera_control_message(self):
         if self.new_camera_control_message:
             print self.camera_control_message
-            self.mining_registers[MINING_MODBUS_REGISTERS["LIFT_SET_ABSOLUTE"]] = 1024
-            self.mining_registers[MINING_MODBUS_REGISTERS["LIFT_SET_POSITIVE"]] = 0
-            self.mining_registers[MINING_MODBUS_REGISTERS["LIFT_SET_NEGATIVE"]] = 0
-            self.mining_registers[MINING_MODBUS_REGISTERS["TILT_SET_ABSOLUTE"]] = 1024
-            self.mining_registers[MINING_MODBUS_REGISTERS["TILT_SET_POSITIVE"]] = 0
-            self.mining_registers[MINING_MODBUS_REGISTERS["TILT_SET_NEGATIVE"]] = 0
+            self.mining_registers[MINING_MODBUS_REGISTERS["MOTOR_SET_POSITION_POSITIVE"]] = 0
+            self.mining_registers[MINING_MODBUS_REGISTERS["MOTOR_SET_POSITION_NEGATIVE"]] = 0
+            self.mining_registers[MINING_MODBUS_REGISTERS["MOTOR_SET_POSITION_ABSOLUTE"]] = 0
+            self.mining_registers[MINING_MODBUS_REGISTERS["MOTOR_GO_HOME"]] = 0
+            self.mining_registers[MINING_MODBUS_REGISTERS["LINEAR_SET_POSITION_POSITIVE"]] = 0
+            self.mining_registers[MINING_MODBUS_REGISTERS["LINEAR_SET_POSITION_NEGATIVE"]] = 0
+            self.mining_registers[MINING_MODBUS_REGISTERS["LINEAR_SET_POSITION_ABSOLUTE"]] = 0
+            self.mining_registers[MINING_MODBUS_REGISTERS["SERVO1_TARGET"]] = 0
+            self.mining_registers[MINING_MODBUS_REGISTERS["SERVO2_TARGET"]] = 0
+            self.mining_registers[MINING_MODBUS_REGISTERS["PROBE_TAKE_READING"]] = 0
+            self.mining_registers[MINING_MODBUS_REGISTERS["OVERTRAVEL"]] = 0
 
-            self.mining_registers[MINING_MODBUS_REGISTERS["MEASURE"]] = 0
-            self.mining_registers[MINING_MODBUS_REGISTERS["TARE"]] = 0
-
-            self.mining_registers[MINING_MODBUS_REGISTERS["CHANGE_VIEW_MODE"]] = self.camera_control_message.camera_mode
-            self.mining_registers[MINING_MODBUS_REGISTERS["ZOOM_IN"]] = self.camera_control_message.zoom_in
-            self.mining_registers[MINING_MODBUS_REGISTERS["ZOOM_OUT"]] = self.camera_control_message.zoom_out
-            self.mining_registers[MINING_MODBUS_REGISTERS["FULL_ZOOM_IN"]] = self.camera_control_message.full_zoom_in
-            self.mining_registers[MINING_MODBUS_REGISTERS["FULL_ZOOM_OUT"]] = self.camera_control_message.full_zoom_out
-            self.mining_registers[MINING_MODBUS_REGISTERS["SHOOT"]] = self.camera_control_message.shoot
+            self.mining_registers[MINING_MODBUS_REGISTERS["CAM_CHANGE_VIEW"]] = self.camera_control_message.cam_change_view
+            self.mining_registers[MINING_MODBUS_REGISTERS["CAM_ZOOM_IN"]] = self.camera_control_message.cam_zoom_in
+            self.mining_registers[MINING_MODBUS_REGISTERS["CAM_ZOOM_OUT"]] = self.camera_control_message.cam_zoom_out
+            self.mining_registers[MINING_MODBUS_REGISTERS["CAM_ZOOM_IN_FULL"]] = self.camera_control_message.cam_zoom_in_full
+            self.mining_registers[MINING_MODBUS_REGISTERS["CAM_ZOOM_OUT_FULL"]] = self.camera_control_message.cam_zoom_out_full
+            self.mining_registers[MINING_MODBUS_REGISTERS["CAM_SHOOT"]] = self.camera_control_message.cam_shoot
 
             self.mining_node.write_registers(0, self.mining_registers)
             self.modbus_nodes_seen_time = time()
@@ -309,9 +358,25 @@ class EffectorsControl(object):
             self.mining_registers = self.mining_node.read_registers(0, len(MINING_MODBUS_REGISTERS))
 
             message = MiningStatusMessage()
-            message.lift_position = self.mining_registers[MINING_MODBUS_REGISTERS["CURRENT_POSITION_LIFT"]]
-            message.tilt_position = self.mining_registers[MINING_MODBUS_REGISTERS["CURRENT_POSITION_TILT"]]
-            message.measured_weight = self.mining_registers[MINING_MODBUS_REGISTERS["MEASURED_WEIGHT"]]
+            message.probe_temp_c = self.mining_registers[MINING_MODBUS_REGISTERS["PROBE_TEMP_C"]]
+            message.probe_moisture = self.mining_registers[MINING_MODBUS_REGISTERS["PROBE_MOISTURE"]]
+            message.probe_loss_tangent = self.mining_registers[MINING_MODBUS_REGISTERS["PROBE_LOSS_TANGENT"]]
+            message.probe_soil_elec_cond = self.mining_registers[MINING_MODBUS_REGISTERS["PROBE_SOIL_ELEC_COND"]]
+            message.probe_real_dielec_perm = self.mining_registers[MINING_MODBUS_REGISTERS["PROBE_REAL_DIELEC_PERM"]]
+            message.probe_imag_dielec_perm = self.mining_registers[MINING_MODBUS_REGISTERS["PROBE_IMAG_DIELEC_PERM"]]
+
+            message.linear_current_position = self.mining_registers[MINING_MODBUS_REGISTERS["LINEAR_CURRENT_POSITION"]]
+            message.motor_current_position = self.mining_registers[MINING_MODBUS_REGISTERS["MOTOR_CURRENT_POSITION"]]
+
+            message.temp1 = self.mining_registers[MINING_MODBUS_REGISTERS["TEMP1"]]
+            message.temp2 = self.mining_registers[MINING_MODBUS_REGISTERS["TEMP2"]]
+
+            message.motor_current = self.mining_registers[MINING_MODBUS_REGISTERS["MOTOR_CURRENT"]]
+            message.linear_current = self.mining_registers[MINING_MODBUS_REGISTERS["LINEAR_CURRENT"]]
+
+            message.switch1_out = self.mining_registers[MINING_MODBUS_REGISTERS["SWITCH1_OUT"]]
+            message.switch2_out = self.mining_registers[MINING_MODBUS_REGISTERS["SWITCH2_OUT"]]
+            message.homing_needed = self.mining_registers[MINING_MODBUS_REGISTERS["HOMING_NEEDED"]]
 
             self.mining_status_publisher.publish(message)
 
@@ -320,22 +385,40 @@ class EffectorsControl(object):
     def process_gripper_control_message(self):
         if not self.gripper_registers:
             self.gripper_registers = self.gripper_node.read_registers(0, len(GRIPPER_MODBUS_REGISTERS))
+            print(self.gripper_registers)
 
         if self.new_gripper_control_message:
             if self.gripper_control_message.should_home:
+                print("GRIPPER SHOULD_HOME TRUE")
                 self.gripper_registers[GRIPPER_MODBUS_REGISTERS["HOME"]] = 1
                 self.gripper_node.write_registers(0, self.gripper_registers)
-                self.gripper_node.write_registers(0, DEFAULT_GRIPPER_REGISTERS)
 
                 homing_complete = False
 
+                gripper_homing_time = time()
                 while not homing_complete:
+                    print("entered homing while")
+                    time_elapsed = time() - gripper_homing_time
                     self.gripper_registers = self.gripper_node.read_registers(0, len(GRIPPER_MODBUS_REGISTERS))
                     self.send_gripper_status_message()
+                    #print("time elapsed: ", time_elapsed, "homing start time: ", self.gripper_homing_time)
 
-                    if self.gripper_registers[GRIPPER_MODBUS_REGISTERS["POSITION"]] == 0:
+                    #if self.gripper_registers[GRIPPER_MODBUS_REGISTERS["IS_HOMED"]] or time_elapsed >= 1000:
+                    #print(GRIPPER_MODBUS_REGISTERS["LED"])
+                    #print(GRIPPER_MODBUS_REGISTERS["LASER"])
+                    #print(GRIPPER_MODBUS_REGISTERS["IS_HOMED"])
+                    #print(self.gripper_registers[10])
+                    #print(self.gripper_registers[6])
+                    #print(self.gripper_registers[GRIPPER_MODBUS_REGISTERS["LASER"]])
+                    #print(self.gripper_registers[GRIPPER_MODBUS_REGISTERS["IS_HOMED"]])
+
+                    if self.gripper_registers[GRIPPER_MODBUS_REGISTERS["IS_HOMED"]]:
                         homing_complete = True
                         self.gripper_registers = None
+                        print("GRIPPER HOMING COMPLETE")
+                        if self.gripper_registers[GRIPPER_MODBUS_REGISTERS["IS_HOMED"]]:
+                            print("is_homed true")
+                        #gripper_homing_time = 0
 
             else:
                 if self.gripper_control_message.toggle_light:
@@ -348,39 +431,27 @@ class EffectorsControl(object):
 
                 gripper_target = self.gripper_control_message.target
 
-                if -1 < gripper_target < UINT16_MAX:
-                    new_position = self.gripper_registers[GRIPPER_MODBUS_REGISTERS["POSITION"]] + gripper_target
-                    self.gripper_registers[GRIPPER_MODBUS_REGISTERS["TARGET"]] = min(max(new_position, 0), UINT16_MAX)
+                if INT16_MIN < gripper_target < INT16_MAX:
+                    new_position = self.gripper_position_status + gripper_target
+                    self.gripper_registers[GRIPPER_MODBUS_REGISTERS["TARGET"]] = min(max(new_position, 0), INT16_MAX)
 
                 self.gripper_node.write_registers(0, self.gripper_registers)
-
-                self.gripper_node.write_registers(0, DEFAULT_GRIPPER_REGISTERS)
+                print(self.gripper_registers)
 
         self.gripper_control_message = None
         self.new_gripper_control_message = False
 
     def send_gripper_status_message(self):
-        print("entered send_gripper_status_message.....")
         registers = self.gripper_node.read_registers(0, len(GRIPPER_MODBUS_REGISTERS))
-        print("read registers...")
 
         message = GripperStatusMessage()
-        print(message)
         message.position_raw = registers[GRIPPER_MODBUS_REGISTERS["POSITION"]]
-        print("Position:", message.position_raw)
+        self.gripper_position_status = message.position_raw
         message.temp = registers[GRIPPER_MODBUS_REGISTERS["TEMP"]]
-        print("Temp:", message.temp)
         message.light_on = registers[GRIPPER_MODBUS_REGISTERS["LED"]]
-        print("Light on:", message.light_on)
         message.laser_on = registers[GRIPPER_MODBUS_REGISTERS["LASER"]]
-        print("Laser on:", message.laser_on)
         message.current = registers[GRIPPER_MODBUS_REGISTERS["CURRENT"]]
-        print("Current:", message.current)
         message.distance = registers[GRIPPER_MODBUS_REGISTERS["DISTANCE"]]
-        print("Distance:", message.distance)
-
-        print(message.position_raw, message.current, message.temp, message.distance, message.light_on, message.laser_on)
-
 
         self.gripper_status_publisher.publish(message)
 

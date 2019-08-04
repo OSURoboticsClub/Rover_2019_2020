@@ -29,7 +29,7 @@ ROLL_SCALAR = 0.003
 WRIST_PITCH_SCALAR = 0.003
 WRIST_ROLL_SCALAR = 0.006
 
-GRIPPER_MOVEMENT_SCALAR = 1500
+GRIPPER_MOVEMENT_SCALAR = 300
 
 LEFT_X_AXIS_DEADZONE = 1500
 LEFT_Y_AXIS_DEADZONE = 1500
@@ -39,8 +39,8 @@ RIGHT_Y_AXIS_DEADZONE = 1500
 
 THUMB_STICK_MAX = 32768.0
 
-MINING_LIFT_SCALAR = 5
-MINING_TILT_SCALAR = 5
+MINING_MOTOR_SCALAR = 5
+MINING_LINEAR_SCALAR = 5
 
 COLOR_GREEN = "background-color:darkgreen; border: 1px solid black;"
 COLOR_NONE = "border: 1px solid black;"
@@ -163,24 +163,12 @@ class EffectorsAndArmControlSender(QtCore.QThread):
     xbox_control_arm_stylesheet_update_ready__signal = QtCore.pyqtSignal(str)
     xbox_control_mining_stylesheet_update_ready__signal = QtCore.pyqtSignal(str)
 
-    gripper_mode_normal_stylesheet_update_ready__signal = QtCore.pyqtSignal(str)
-    gripper_mode_pinch_stylesheet_update_ready__signal = QtCore.pyqtSignal(str)
-    gripper_mode_wide_stylesheet_update_ready__signal = QtCore.pyqtSignal(str)
-    gripper_mode_scissor_stylesheet_update_ready__signal = QtCore.pyqtSignal(str)
-
     XBOX_CONTROL_STATES = [
         "ARM",
         "MINING"
     ]
 
-    GRIPPER_CONTROL_MODES = {
-        "NORMAL": 1,
-        "TWO_FINGER_PINCH": 2,
-        "WIDE": 3,
-        "SCISSOR": 4
-    }
-
-    PINCH_MODE_ABSOLUTE_SET_POSITION = 57740
+    #PINCH_MODE_ABSOLUTE_SET_POSITION = 57740
 
     def __init__(self, shared_objects):
         super(EffectorsAndArmControlSender, self).__init__()
@@ -191,11 +179,6 @@ class EffectorsAndArmControlSender(QtCore.QThread):
         self.right_screen = self.shared_objects["screens"]["right_screen"]
         self.xbox_mode_arm_label = self.right_screen.xbox_mode_arm_label  # type: QtWidgets.QLabel
         self.xbox_mode_mining_label = self.right_screen.xbox_mode_mining_label  # type: QtWidgets.QLabel
-
-        self.gripper_mode_normal_label = self.right_screen.gripper_mode_normal_label  # type: QtWidgets.QLabel
-        self.gripper_mode_pinch_label = self.right_screen.gripper_mode_pinch_label  # type: QtWidgets.QLabel
-        self.gripper_mode_wide_label = self.right_screen.gripper_mode_wide_label  # type: QtWidgets.QLabel
-        self.gripper_mode_scissor_label = self.right_screen.gripper_mode_scissor_label  # type: QtWidgets.QLabel
 
         self.arm_speed_limit_slider = self.right_screen.arm_speed_limit_slider  # type: QtWidgets.QSlider
 
@@ -228,41 +211,6 @@ class EffectorsAndArmControlSender(QtCore.QThread):
         self.last_right_bumper_state = 0
         self.last_back_button_state = 0
 
-        self.gripper_control_mode = 1
-        self.gripper_control_mode_just_changed = False
-        self.send_new_gripper_mode = False
-
-        self.GRIPPER_DISPLAY_SIGNAL_MAPPING = {
-            self.GRIPPER_CONTROL_MODES["NORMAL"]: {
-                "SET": [self.gripper_mode_normal_stylesheet_update_ready__signal],
-                "UNSET": [self.gripper_mode_pinch_stylesheet_update_ready__signal,
-                          self.gripper_mode_wide_stylesheet_update_ready__signal,
-                          self.gripper_mode_scissor_stylesheet_update_ready__signal]
-            },
-
-            self.GRIPPER_CONTROL_MODES["TWO_FINGER_PINCH"]: {
-                "SET": [self.gripper_mode_pinch_stylesheet_update_ready__signal],
-                "UNSET": [self.gripper_mode_normal_stylesheet_update_ready__signal,
-                          self.gripper_mode_wide_stylesheet_update_ready__signal,
-                          self.gripper_mode_scissor_stylesheet_update_ready__signal]
-            },
-
-            self.GRIPPER_CONTROL_MODES["WIDE"]: {
-                "SET": [self.gripper_mode_wide_stylesheet_update_ready__signal],
-                "UNSET": [self.gripper_mode_pinch_stylesheet_update_ready__signal,
-                          self.gripper_mode_normal_stylesheet_update_ready__signal,
-                          self.gripper_mode_scissor_stylesheet_update_ready__signal]
-            },
-
-            self.GRIPPER_CONTROL_MODES["SCISSOR"]: {
-                "SET": [self.gripper_mode_scissor_stylesheet_update_ready__signal],
-                "UNSET": [self.gripper_mode_pinch_stylesheet_update_ready__signal,
-                          self.gripper_mode_wide_stylesheet_update_ready__signal,
-                          self.gripper_mode_normal_stylesheet_update_ready__signal],
-                # "ABS_MOVE": self.PINCH_MODE_ABSOLUTE_SET_POSITION
-            }
-        }
-
     def run(self):
         self.logger.debug("Starting Joystick Thread")
 
@@ -287,11 +235,6 @@ class EffectorsAndArmControlSender(QtCore.QThread):
         self.xbox_control_arm_stylesheet_update_ready__signal.connect(self.xbox_mode_arm_label.setStyleSheet)
         self.xbox_control_mining_stylesheet_update_ready__signal.connect(self.xbox_mode_mining_label.setStyleSheet)
 
-        self.gripper_mode_normal_stylesheet_update_ready__signal.connect(self.gripper_mode_normal_label.setStyleSheet)
-        self.gripper_mode_pinch_stylesheet_update_ready__signal.connect(self.gripper_mode_pinch_label.setStyleSheet)
-        self.gripper_mode_wide_stylesheet_update_ready__signal.connect(self.gripper_mode_wide_label.setStyleSheet)
-        self.gripper_mode_scissor_stylesheet_update_ready__signal.connect(self.gripper_mode_scissor_label.setStyleSheet)
-
     def change_control_state_if_needed(self):
         xbox_state = self.controller.controller_states["xbox_button"]
         left_bumper_state = self.controller.controller_states["left_bumper"]
@@ -314,37 +257,6 @@ class EffectorsAndArmControlSender(QtCore.QThread):
                 self.xbox_control_mining_stylesheet_update_ready__signal.emit(COLOR_GREEN)
             self.xbox_control_state_just_changed = False
 
-        if self.xbox_current_control_state == self.XBOX_CONTROL_STATES.index("ARM"):
-            if self.last_left_bumper_state == 0 and left_bumper_state == 1:
-                # self.gripper_control_mode = ((self.gripper_control_mode - 1) % len(self.GRIPPER_CONTROL_MODES))
-                # self.gripper_control_mode_just_changed = True
-                self.last_left_bumper_state = 1
-            elif self.last_left_bumper_state == 1 and left_bumper_state == 0:
-                self.last_left_bumper_state = 0
-            if self.last_right_bumper_state == 0 and right_bumper_state == 1:
-                # self.gripper_control_mode = ((self.gripper_control_mode + 1) % len(self.GRIPPER_CONTROL_MODES))
-                # self.gripper_control_mode_just_changed = True
-                self.last_right_bumper_state = 1
-            elif self.last_right_bumper_state == 1 and right_bumper_state == 0:
-                self.last_right_bumper_state = 0
-
-        if self.gripper_control_mode_just_changed:
-            signal_map = self.GRIPPER_DISPLAY_SIGNAL_MAPPING[self.gripper_control_mode + 1]
-
-            for signal in signal_map["SET"]:
-                signal.emit(COLOR_GREEN)
-
-            for signal in signal_map["UNSET"]:
-                signal.emit(COLOR_NONE)
-
-            if "ABS_MOVE" in signal_map:
-                gripper_control_message = GripperControlMessage()
-                self.gripper_control_publisher.publish(gripper_control_message)
-            else:
-                self.send_new_gripper_mode = True
-
-            self.gripper_control_mode_just_changed = False
-
     def process_and_send_arm_control(self):
 
         arm_control_message = ArmControlMessage()
@@ -352,7 +264,7 @@ class EffectorsAndArmControlSender(QtCore.QThread):
         gripper_control_message = GripperControlMessage()
 
         should_publish_arm = False
-        should_publish_gripper = True if self.send_new_gripper_mode else False
+        should_publish_gripper = False
 
         left_trigger = self.controller.controller_states["left_trigger"]
         right_trigger = self.controller.controller_states["right_trigger"]
@@ -383,7 +295,7 @@ class EffectorsAndArmControlSender(QtCore.QThread):
 
             # ##### FIXME #####
             # Remove this once the arm is fixed
-            # arm_control_message.wrist_pitch = (-(left_y_axis / THUMB_STICK_MAX) * WRIST_PITCH_SCALAR) * speed_limit
+            arm_control_message.wrist_pitch = (-(left_y_axis / THUMB_STICK_MAX) * WRIST_PITCH_SCALAR) * speed_limit
             # #################
 
             gripper_control_message.target = int((-(right_y_axis / THUMB_STICK_MAX) * GRIPPER_MOVEMENT_SCALAR))
@@ -410,18 +322,20 @@ class EffectorsAndArmControlSender(QtCore.QThread):
 
         left_y_axis = self.controller.controller_states["left_y_axis"] if abs(
             self.controller.controller_states["left_y_axis"]) > LEFT_Y_AXIS_DEADZONE else 0
-        right_y_axis = self.controller.controller_states["right_y_axis"] if abs(self.controller.controller_states[
-                                                                                    "right_y_axis"]) > RIGHT_Y_AXIS_DEADZONE else 0
+        left_x_axis = self.controller.controller_states["left_x_axis"] if abs(
+            self.controller.controller_states["left_x_axis"]) > LEFT_X_AXIS_DEADZONE else 0
 
-        if left_y_axis or right_y_axis:
+        if left_y_axis or left_x_axis:
             message = MiningControlMessage()
 
-            message.lift_set_absolute = 1024
-            message.tilt_set_absolute = 1024
-
-            message.lift_set_relative = (-(left_y_axis / THUMB_STICK_MAX) * MINING_LIFT_SCALAR)
-            message.tilt_set_relative = ((right_y_axis / THUMB_STICK_MAX) * MINING_TILT_SCALAR)
-            message.cal_factor = -1
+            if left_y_axis >= 0:
+                message.motor_set_position_positive = (-(left_y_axis / THUMB_STICK_MAX) * MINING_MOTOR_SCALAR)
+            elif left_y_axis < 0:
+                message.motor_set_position_negative = ((left_y_axis / THUMB_STICK_MAX) * MINING_MOTOR_SCALAR)
+            elif left_x_axis >= 0:
+                message.linear_set_position_positive = (-(left_x_axis / THUMB_STICK_MAX) * MINING_LINEAR_SCALAR)
+            elif left_x_axis < 0:
+                message.linear_set_position_negative = ((left_x_axis / THUMB_STICK_MAX) * MINING_LINEAR_SCALAR)
 
             self.mining_control_publisher.publish(message)
 

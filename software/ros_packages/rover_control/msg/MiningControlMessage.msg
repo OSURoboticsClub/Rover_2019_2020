@@ -1,10 +1,15 @@
-int32 lift_set_relative
-int32 tilt_set_relative
+int32 motor_set_position_positive
+int32 motor_set_position_negative
+int32 motor_set_position_absolute
+bool motor_go_home
 
-uint16 lift_set_absolute
-uint16 tilt_set_absolute
+int32 linear_set_position_positive
+int32 linear_set_position_negative
+int32 linear_set_position_absolute
 
-bool measure
-bool tare
+uint16 servo1_target
+uint16 servo2_target
 
-int16 cal_factor
+bool probe_take_reading
+
+bool overtravel

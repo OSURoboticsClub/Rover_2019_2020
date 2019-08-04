@@ -5,6 +5,7 @@ SUBSYSTEM=="tty", ATTRS{idVendor}=="0403", ATTRS{idProduct}=="6011", ATTRS{seria
 SUBSYSTEM=="tty", ATTRS{idVendor}=="0403", ATTRS{idProduct}=="6011", ATTRS{serial}=="NM2CZLZF", ENV{ID_USB_INTERFACE_NUM}=="03", SYMLINK+="rover/ttyEffectors"
 
 SUBSYSTEM=="tty", ATTRS{idVendor}=="0403", ATTRS{idProduct}=="6011", ATTRS{serial}=="NM2HPA6V", ENV{ID_USB_INTERFACE_NUM}=="00", SYMLINK+="rover/ttyIRIS_1_0"
+#SUBSYSTEM=="tty", ATTRS{idVendor}=="0403", ATTRS{idProduct}=="6011", ATTRS{serial}=="NM2HPA6V", ENV{ID_USB_INTERFACE_NUM}=="00", SYMLINK+="rover/ttyEffectors"
 SUBSYSTEM=="tty", ATTRS{idVendor}=="0403", ATTRS{idProduct}=="6011", ATTRS{serial}=="NM2HPA6V", ENV{ID_USB_INTERFACE_NUM}=="01", SYMLINK+="rover/ttyTowerAndPanTilt"
 SUBSYSTEM=="tty", ATTRS{idVendor}=="0403", ATTRS{idProduct}=="6011", ATTRS{serial}=="NM2HPA6V", ENV{ID_USB_INTERFACE_NUM}=="02", SYMLINK+="rover/ttyOdometry"
 SUBSYSTEM=="tty", ATTRS{idVendor}=="0403", ATTRS{idProduct}=="6011", ATTRS{serial}=="NM2HPA6V", ENV{ID_USB_INTERFACE_NUM}=="03", SYMLINK+="rover/ttyChassisPanTilt"

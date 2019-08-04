@@ -67,7 +67,7 @@ smint32 roll_max_rev_counts = 0;
 
 //Wrist Pitch
 const smuint8 wrist_pitch_address = 5;
-const smint32 wrist_pitch_counts_per_rev = 3799492;
+const smint32 wrist_pitch_counts_per_rev = 4096000;
 const double wrist_pitch_min_rev = -0.25;
 const double wrist_pitch_max_rev = 0.25;
 
@@ -76,7 +76,7 @@ smint32 wrist_pitch_max_rev_counts = 0;
 
 //Wrist Roll
 const smuint8 wrist_roll_address = 6;
-const smint32 wrist_roll_counts_per_rev = 3799492;
+const smint32 wrist_roll_counts_per_rev = 1638400;
 
 
 class RoverArm {
@@ -369,9 +369,9 @@ public:
 
         wrist_pitch_set_position = msg->wrist_pitch * wrist_pitch_counts_per_rev;
 
-        smint32 roll_pitch_position_difference = wrist_pitch_set_position / 2;
-        wrist_roll_set_position -= roll_pitch_position_difference;
-        wrist_pitch_last_set_position = wrist_pitch_set_position;
+        //smint32 roll_pitch_position_difference = wrist_pitch_set_position / 2;
+        //wrist_roll_set_position -= roll_pitch_position_difference;
+        //wrist_pitch_last_set_position = wrist_pitch_set_position;
 
         ROS_INFO("BASE: %ld\tSHOULDER: %ld\tELBOW: %ld\tROLL: %ld\tWRIST_PITCH: %ld\tWRIST_ROLL: %ld\t", base_set_position, shoulder_set_position, elbow_set_position, roll_set_position, wrist_pitch_set_position, wrist_roll_set_position);
 
@@ -399,9 +399,9 @@ public:
 
         wrist_pitch_set_position += msg->wrist_pitch * wrist_pitch_counts_per_rev;
 
-        smint32 roll_pitch_position_difference = (wrist_pitch_set_position - wrist_pitch_last_set_position) / 2;
-        wrist_roll_set_position -= roll_pitch_position_difference;
-        wrist_pitch_last_set_position = wrist_pitch_set_position;
+        //smint32 roll_pitch_position_difference = (wrist_pitch_set_position - wrist_pitch_last_set_position) / 2;
+        //wrist_roll_set_position -= roll_pitch_position_difference;
+        //wrist_pitch_last_set_position = wrist_pitch_set_position;
 
         constrain_set_positions();
 
