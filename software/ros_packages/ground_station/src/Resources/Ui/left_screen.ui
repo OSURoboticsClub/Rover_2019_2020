@@ -2332,7 +2332,7 @@ N/A</string>
                    </widget>
                   </item>
                   <item>
-                   <widget class="QLCDNumber" name="mining_4bar_current_lcd_number_2"/>
+                   <widget class="QLCDNumber" name="mining_linear_current_lcd_number"/>
                   </item>
                  </layout>
                 </item>
