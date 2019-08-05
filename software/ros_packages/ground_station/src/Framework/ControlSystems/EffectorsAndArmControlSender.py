@@ -9,7 +9,7 @@ from time import time
 
 import rospy
 from rover_arm.msg import ArmControlMessage
-from rover_control.msg import MiningControlMessage, GripperControlMessage
+from rover_control.msg import MiningControlMessage, GripperControlMessage, TowerPanTiltControlMessage
 
 #####################################
 # Global Variables
@@ -20,6 +20,7 @@ DRIVE_COMMAND_HERTZ = 20
 
 GRIPPER_CONTROL_TOPIC = "/rover_control/gripper/control"
 RELATIVE_ARM_CONTROL_TOPIC = "/rover_arm/control/relative"
+DEFAULT_TOWER_PAN_TILT_COMMAND_TOPIC = "/rover_control/tower/pan_tilt/control"
 MINING_CONTROL_TOPIC = "/rover_control/mining/control"
 
 BASE_SCALAR = 0.003
@@ -199,10 +200,9 @@ class EffectorsAndArmControlSender(QtCore.QThread):
 
         self.gripper_control_publisher = rospy.Publisher(GRIPPER_CONTROL_TOPIC, GripperControlMessage, queue_size=1)
 
-        self.relative_arm_control_publisher = rospy.Publisher(RELATIVE_ARM_CONTROL_TOPIC, ArmControlMessage,
-                                                              queue_size=1)
+        self.relative_arm_control_publisher = rospy.Publisher(RELATIVE_ARM_CONTROL_TOPIC, ArmControlMessage, queue_size=1)
+        self.tower_pan_tilt_command_publisher = rospy.Publisher(DEFAULT_TOWER_PAN_TILT_COMMAND_TOPIC, TowerPanTiltControlMessage, queue_size=1)
         self.mining_control_publisher = rospy.Publisher(MINING_CONTROL_TOPIC, MiningControlMessage, queue_size=1)
-
         self.xbox_current_control_state = self.XBOX_CONTROL_STATES.index("ARM")
         self.xbox_control_state_just_changed = False
 
@@ -226,6 +226,7 @@ class EffectorsAndArmControlSender(QtCore.QThread):
                 self.send_mining_home_on_back_press()
                 self.send_mining_commands()
 
+            self.send_hitch_commands()
             time_diff = time() - start_time
 
             self.msleep(max(int(self.wait_time - time_diff), 0))
@@ -346,6 +347,9 @@ class EffectorsAndArmControlSender(QtCore.QThread):
             self.last_back_button_state = 1
         elif self.last_back_button_state == 1 and back_state == 0:
             self.last_back_button_state = 0
+
+    def send_hitch_commands(self):
+        pass
 
     def setup_signals(self, start_signal, signals_and_slots_signal, kill_signal):
         start_signal.connect(self.start)
