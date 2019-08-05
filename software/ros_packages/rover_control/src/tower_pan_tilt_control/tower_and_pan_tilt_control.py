@@ -45,7 +45,9 @@ PAN_TILT_MODBUS_REGISTERS = {
     "PAN_ADJUST_POSITIVE": 1,
     "PAN_ADJUST_NEGATIVE": 2,
     "TILT_ADJUST_POSITIVE": 3,
-    "TILT_ADJUST_NEGATIVE": 4
+    "TILT_ADJUST_NEGATIVE": 4,
+    "HITCH_SERVO_POSITIVE": 5,
+    "HITCH_SERVO_NEGATIVE": 6
 }
 
 TOWER_MODBUS_REGISTERS = {
@@ -58,7 +60,9 @@ PAN_TILT_CONTROL_DEFAULT_MESSAGE = [
     0,  # No pan positive adjustment
     0,  # No pan negative adjustment
     0,  # No tilt positive adjustment
-    0  # No tilt negative adjustement
+    0,  # No tilt negative adjustement
+    0,  # Hitch servo (+ dir) set to false
+    0   # Hitch servo (- dir) set to false
 ]
 
 TOWER_LIGHT_STATES = {
@@ -200,6 +204,10 @@ class TowerPanTiltControl(object):
             else:
                 registers[PAN_TILT_MODBUS_REGISTERS[
                     "TILT_ADJUST_NEGATIVE"]] = -pan_tilt_control_message.relative_tilt_adjustment
+            if pan_tilt_control_message.hitch_servo_positive:
+                registers[PAN_TILT_MODBUS_REGISTERS["HITCH_SERVO_POSITIVE"]] = 1
+            if pan_tilt_control_message.hitch_servo_negative:
+                registers[PAN_TILT_MODBUS_REGISTERS["HITCH_SERVO_NEGATIVE"]] = 1
 
             self.pan_tilt_node.write_registers(0, registers)
 

@@ -27,15 +27,15 @@ POSITIONAL_TOLERANCE = 0.02
 # Order is [base, shoulder, elbow, roll, wrist_pitch, wrist_roll]
 ARM_STOW_PROCEDURE = [
     [0.0, -0.035, -0.28, 0.0, 0.0, 0.0],        # Out in front of rover
-    [0.0, -0.035, -0.28, -0.25, 0.25, 0.0],
-    [0.0, -0.035, -0.5, -0.25, 0.25, 0.0],
-    [0.0, -0.25, -0.5, -0.25, 0.25, -0.25]
+    [0.0, -0.035, -0.28, 0.25, 0.0, 0.0],
+    [0.0, -0.035, -0.45, 0.25, 0.0, 0.0],
+    [0.0, -0.25, -0.5, 0.25, 0.0, 0.0]
 ]
 
 ARM_UNSTOW_PROCEDURE = [
-    [0.0, -0.25, -0.5, -0.25, 0.25, -0.25],
-    [0.0, -0.035, -0.5, -0.25, 0.25, 0.0],
-    [0.0, -0.035, -0.28, -0.25, 0.25, 0.0],
+    [0.0, -0.25, -0.5, 0.25, 0.0, 0.0],
+    [0.0, -0.035, -0.45, 0.25, 0.0, 0.0],
+    [0.0, -0.035, -0.28, 0.25, 0.0, 0.0],
     [0.0, -0.035, -0.28, 0.0, 0.0, 0.0]
 ]
 
@@ -67,23 +67,16 @@ class MiscArm(QtCore.QThread):
         self.arm_controls_stow_arm_button = self.left_screen.arm_controls_stow_arm_button  # type:QtWidgets.QPushButton
         self.arm_controls_unstow_arm_button = self.left_screen.arm_controls_unstow_arm_button  # type:QtWidgets.QPushButton
 
-        # ##### FIXME #####
-        # Remove these once the arm is fixed
-        self.arm_controls_stow_arm_button.setEnabled(False)
-        self.arm_controls_unstow_arm_button.setEnabled(False)
-        # #################
-
         self.arm_controls_calibration_button = self.left_screen.arm_controls_calibration_button  # type:QtWidgets.QPushButton
         self.arm_controls_clear_faults_button = self.left_screen.arm_controls_clear_faults_button  # type:QtWidgets.QPushButton
         self.arm_controls_reset_motor_drivers_button = self.left_screen.arm_controls_reset_motor_drivers_button  # type:QtWidgets.QPushButton
+        self.arm_controls_approach_beacon_button = self.left_screen.arm_controls_approach_beacon_button # type:QtWidgets.QPushButton
+        self.arm_controls_depart_beacon_button = self.left_screen.arm_controls_depart_beacon_button # type:QtWidgets.QPushButton
+        self.gripper_home_button = self.left_screen.gripper_home_button # type:QtWidgets.QPushButton
+        self.gripper_toggle_light_button = self.left_screen.gripper_toggle_light_button # type:QtWidgets.QPushButton
 
         self.arm_controls_approach_o2_button = self.left_screen.arm_controls_approach_o2_button  # type:QtWidgets.QPushButton
         self.arm_controls_depart_o2_button = self.left_screen.arm_controls_depart_o2_button  # type:QtWidgets.QPushButton
-        self.arm_controls_approach_beacon_button = self.left_screen.arm_controls_approach_beacon_button  # type:QtWidgets.QPushButton
-        self.arm_controls_depart_beacon_button = self.left_screen.arm_controls_depart_beacon_button  # type:QtWidgets.QPushButton
-
-        self.gripper_home_button = self.left_screen.gripper_home_button  # type:QtWidgets.QPushButton
-        self.gripper_toggle_light_button = self.left_screen.gripper_toggle_light_button  # type:QtWidgets.QPushButton
         self.gripper_toggle_laser_button = self.left_screen.gripper_toggle_laser_button  # type:QtWidgets.QPushButton
 
         # ########## Get the settings instance ##########

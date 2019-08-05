@@ -112,11 +112,6 @@ class SensorCore(QtCore.QThread):
         self.ram = self.screen_main_window.ram  # type: QtWidgets.QLabel
         self.gpu_temp = self.screen_main_window.gpu_temp  # type: QtWidgets.QLabel
 
-        ################################################
-        self.motor_temp = self.screen_main_window.motor_temp  # type: QtWidgets.QLabel
-        self.motor_current = self.screen_main_window.motor_current  # type: QtWidgets.QLabel
-        ##########################Added values for motor and current, February 9, 2018
-
         self.emmc = self.screen_main_window.emmc  # type: QtWidgets.QLabel
         self.battery = self.screen_main_window.battery_voltage_status_label  # type: QtWidgets.QLabel
         self.co2_levels_label = self.screen_main_window.co2_levels_label  # type: QtWidgets.QLabel
@@ -332,12 +327,6 @@ class SensorCore(QtCore.QThread):
         self.jetson_emmc_stylesheet_change_ready__signal.connect(self.emmc.setStyleSheet)
         self.jetson_gpu_temp_update_ready__signal.connect(self.gpu_temp.setText)
         self.jetson_gpu_temp_stylesheet_change_ready__signal.connect(self.gpu_temp.setStyleSheet)
-#######################Add motor settings for temperature and current
-        self.motor_temp_update_ready__signal.connect(self.motor_temp.setText)
-        self.motor_temp_stylesheet_change_ready__signal.connect(self.motor_temp.setStyleSheet)
-        self.motor_current_update_ready__signal.connect(self.motor_current.setText)
-        self.motor_current_stylesheet_change_ready__signal.connect(self.motor_current.setStyleSheet)
-######################February 19, 2018
         self.camera_zed_stylesheet_change_ready__signal.connect(self.zed.setStyleSheet)
         self.camera_under_stylesheet_change_ready__signal.connect(self.under_cam.setStyleSheet)
         self.camera_chassis_stylesheet_change_ready__signal.connect(self.chassis_cam.setStyleSheet)
