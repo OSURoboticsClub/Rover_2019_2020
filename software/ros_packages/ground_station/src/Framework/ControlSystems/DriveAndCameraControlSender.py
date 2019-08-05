@@ -182,10 +182,8 @@ class DriveAndCameraControlSender(QtCore.QThread):
         # ########## Class Variables ##########
         # Publishers
         self.drive_command_publisher = rospy.Publisher(DEFAULT_DRIVE_COMMAND_TOPIC, DriveCommandMessage, queue_size=1)
-        self.tower_pan_tilt_command_publisher = rospy.Publisher(DEFAULT_TOWER_PAN_TILT_COMMAND_TOPIC,
-                                                                TowerPanTiltControlMessage, queue_size=1)
-        self.chassis_pan_tilt_command_publisher = rospy.Publisher(DEFAULT_CHASSIS_PAN_TILT_COMMAND_TOPIC,
-                                                                  TowerPanTiltControlMessage, queue_size=1)
+        self.tower_pan_tilt_command_publisher = rospy.Publisher(DEFAULT_TOWER_PAN_TILT_COMMAND_TOPIC,TowerPanTiltControlMessage, queue_size=1)
+        self.chassis_pan_tilt_command_publisher = rospy.Publisher(DEFAULT_CHASSIS_PAN_TILT_COMMAND_TOPIC, TowerPanTiltControlMessage, queue_size=1)
 
         self.current_pan_tilt_selection = "no_pan_tilt"
 
