@@ -67,18 +67,16 @@ class MiscArm(QtCore.QThread):
         self.arm_controls_stow_arm_button = self.left_screen.arm_controls_stow_arm_button  # type:QtWidgets.QPushButton
         self.arm_controls_unstow_arm_button = self.left_screen.arm_controls_unstow_arm_button  # type:QtWidgets.QPushButton
 
-
         self.arm_controls_calibration_button = self.left_screen.arm_controls_calibration_button  # type:QtWidgets.QPushButton
         self.arm_controls_clear_faults_button = self.left_screen.arm_controls_clear_faults_button  # type:QtWidgets.QPushButton
         self.arm_controls_reset_motor_drivers_button = self.left_screen.arm_controls_reset_motor_drivers_button  # type:QtWidgets.QPushButton
+        self.arm_controls_approach_beacon_button = self.left_screen.arm_controls_approach_beacon_button # type:QtWidgets.QPushButton
+        self.arm_controls_depart_beacon_button = self.left_screen.arm_controls_depart_beacon_button # type:QtWidgets.QPushButton
+        self.gripper_home_button = self.left_screen.gripper_home_button # type:QtWidgets.QPushButton
+        self.gripper_toggle_light_button = self.left_screen.gripper_toggle_light_button # type:QtWidgets.QPushButton
 
         self.arm_controls_approach_o2_button = self.left_screen.arm_controls_approach_o2_button  # type:QtWidgets.QPushButton
         self.arm_controls_depart_o2_button = self.left_screen.arm_controls_depart_o2_button  # type:QtWidgets.QPushButton
-        self.arm_controls_approach_beacon_button = self.left_screen.arm_controls_approach_beacon_button  # type:QtWidgets.QPushButton
-        self.arm_controls_depart_beacon_button = self.left_screen.arm_controls_depart_beacon_button  # type:QtWidgets.QPushButton
-
-        self.gripper_home_button = self.left_screen.gripper_home_button  # type:QtWidgets.QPushButton
-        self.gripper_toggle_light_button = self.left_screen.gripper_toggle_light_button  # type:QtWidgets.QPushButton
         self.gripper_toggle_laser_button = self.left_screen.gripper_toggle_laser_button  # type:QtWidgets.QPushButton
 
         # ########## Get the settings instance ##########
