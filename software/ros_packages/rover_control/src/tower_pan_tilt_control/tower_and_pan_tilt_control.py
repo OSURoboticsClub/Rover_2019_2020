@@ -188,18 +188,14 @@ class TowerPanTiltControl(object):
             registers[PAN_TILT_MODBUS_REGISTERS["CENTER_ALL"]] = int(pan_tilt_control_message.should_center)
 
             if pan_tilt_control_message.relative_pan_adjustment >= 0:
-                registers[
-                    PAN_TILT_MODBUS_REGISTERS["PAN_ADJUST_POSITIVE"]] = pan_tilt_control_message.relative_pan_adjustment
+                registers[PAN_TILT_MODBUS_REGISTERS["PAN_ADJUST_POSITIVE"]] = pan_tilt_control_message.relative_pan_adjustment
             else:
-                registers[PAN_TILT_MODBUS_REGISTERS[
-                    "PAN_ADJUST_NEGATIVE"]] = -pan_tilt_control_message.relative_pan_adjustment
+                registers[PAN_TILT_MODBUS_REGISTERS["PAN_ADJUST_NEGATIVE"]] = -pan_tilt_control_message.relative_pan_adjustment
 
             if pan_tilt_control_message.relative_tilt_adjustment >= 0:
-                registers[PAN_TILT_MODBUS_REGISTERS[
-                    "TILT_ADJUST_POSITIVE"]] = pan_tilt_control_message.relative_tilt_adjustment
+                registers[PAN_TILT_MODBUS_REGISTERS["TILT_ADJUST_POSITIVE"]] = pan_tilt_control_message.relative_tilt_adjustment
             else:
-                registers[PAN_TILT_MODBUS_REGISTERS[
-                    "TILT_ADJUST_NEGATIVE"]] = -pan_tilt_control_message.relative_tilt_adjustment
+                registers[PAN_TILT_MODBUS_REGISTERS["TILT_ADJUST_NEGATIVE"]] = -pan_tilt_control_message.relative_tilt_adjustment
             if pan_tilt_control_message.hitch_servo_positive:
                 registers[PAN_TILT_MODBUS_REGISTERS["HITCH_SERVO_POSITIVE"]] = 1
             elif pan_tilt_control_message.hitch_servo_negative:
