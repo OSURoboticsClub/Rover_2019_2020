@@ -10,6 +10,7 @@ enum HARDWARE {
 
   SERVO_PAN = 5,
   SERVO_TILT = 4,
+  SERVO_HITCH = 21,
 
   LED_RED = 1,
   LED_GREEN = 32,
@@ -24,13 +25,15 @@ enum MODBUS_REGISTERS {
   PAN_ADJUST_NEGATIVE = 2,  // Input/Output
   TILT_ADJUST_POSITIVE = 3, // Input/Output
   TILT_ADJUST_NEGATIVE = 4, // Input/Output
+  HITCH_SERVO_POSITIVE = 5,
+  HITCH_SERVO_NEGATIVE = 6
 };
 
 ////////// Global Variables //////////
 const uint8_t node_id = 2;
 const uint8_t mobus_serial_port_number = 2;
 
-uint16_t modbus_data[] = {0, 0, 0, 0, 0};
+uint16_t modbus_data[] = {0, 0, 0, 0, 0, 0, 0};
 uint8_t num_modbus_registers = 0;
 
 int8_t poll_state = 0;
@@ -55,6 +58,7 @@ Modbus slave(node_id, mobus_serial_port_number, HARDWARE::RS485_EN);
 
 Servo pan_servo;
 Servo tilt_servo;
+Servo hitch_servo;
 
 void setup() {
  Serial.begin(9600);
@@ -72,6 +76,7 @@ void loop() {
   poll_modbus();
   set_leds();
   set_pan_tilt_adjustments();
+  set_hitch_adjustments();
 }
 
 void setup_hardware() {
@@ -80,9 +85,11 @@ void setup_hardware() {
 
   pinMode(HARDWARE::SERVO_PAN, OUTPUT);
   pinMode(HARDWARE::SERVO_TILT, OUTPUT);
+  pinMode(HARDWARE::SERVO_HITCH, OUTPUT);
 
   pan_servo.attach(HARDWARE::SERVO_PAN);
   tilt_servo.attach(HARDWARE::SERVO_TILT);
+  hitch_servo.attach(HARDWARE::SERVO_HITCH);
 
   pan_servo.writeMicroseconds(pan_center);
   tilt_servo.writeMicroseconds(tilt_center);
@@ -104,7 +111,6 @@ void setup_hardware() {
 void poll_modbus() {
   poll_state = slave.poll(modbus_data, num_modbus_registers);
   communication_good = !slave.getTimeOutState();
-  Serial.println(poll_state, communication_good);
 }
 
 void set_leds() {
@@ -141,20 +147,26 @@ void set_pan_tilt_adjustments() {
 
     pan_servo.writeMicroseconds(pan_position);
     tilt_servo.writeMicroseconds(tilt_position);
-
-    Serial.print(MODBUS_REGISTERS::CENTER_ALL);
-    Serial.print("\t");
-    Serial.print(MODBUS_REGISTERS::PAN_ADJUST_POSITIVE);
-    Serial.print("\t");
-    Serial.print(MODBUS_REGISTERS::PAN_ADJUST_NEGATIVE);
-    Serial.print("\t");
-    Serial.print(MODBUS_REGISTERS::TILT_ADJUST_POSITIVE);
-    Serial.print("\t");
-    Serial.println(MODBUS_REGISTERS::TILT_ADJUST_NEGATIVE);
+//    Serial.print(pan_position);
+//    Serial.print("\t");
+//    Serial.println(tilt_position);
 
     modbus_data[MODBUS_REGISTERS::PAN_ADJUST_POSITIVE] = 0;
     modbus_data[MODBUS_REGISTERS::PAN_ADJUST_NEGATIVE] = 0;
     modbus_data[MODBUS_REGISTERS::TILT_ADJUST_POSITIVE] = 0;
     modbus_data[MODBUS_REGISTERS::TILT_ADJUST_NEGATIVE] = 0;
+    //modbus_data[MODBUS_REGISTERS::HITCH_SERVO_POSITIVE] = 0;
+    //modbus_data[MODBUS_REGISTERS::HITCH_SERVO_NEGATIVE] = 0;
+
+  }
+}
+
+void set_hitch_adjustments() {
+  if (communication_good) {
+    if (modbus_data[MODBUS_REGISTERS::HITCH_SERVO_POSITIVE]) {
+      hitch_servo.write(60);
+    } else if (modbus_data[MODBUS_REGISTERS::HITCH_SERVO_NEGATIVE]) {
+      hitch_servo.write(120);
+    }
   }
 }
