@@ -351,15 +351,24 @@ class EffectorsAndArmControlSender(QtCore.QThread):
             self.last_back_button_state = 0
 
     def send_hitch_commands(self):
-        message = TowerPanTiltControlMessage()
         y_button_state = self.controller.controller_states["y_button"]
         a_button_state = self.controller.controller_states["a_button"]
+
+        message = TowerPanTiltControlMessage()
 
         if self.last_y_button_state == 0 and y_button_state == 1:
             message.hitch_servo_positive = 1
             self.last_y_button_state = 1
-            
+        elif self.last_y_button_state == 1 and y_button_state == 0:
+            self.last_y_button_state = 0
 
+        if self.last_a_button_state == 0 and a_button_state == 1:
+            message.hitch_servo_negative = 1
+            self.last_a_button_state = 1
+        elif self.last_a_button_state == 1 and a_button_state == 0:
+            self.last_a_button_state = 0 
+        
+        self.tower_pan_tilt_command_publisher.publish(message)
 
     def setup_signals(self, start_signal, signals_and_slots_signal, kill_signal):
         start_signal.connect(self.start)

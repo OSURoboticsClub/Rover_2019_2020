@@ -129,14 +129,10 @@ class TowerPanTiltControl(object):
 
     def __setup_minimalmodbus_for_485(self):
         self.pan_tilt_node.serial = serial.rs485.RS485(self.port, baudrate=self.baud, timeout=COMMUNICATIONS_TIMEOUT)
-        self.pan_tilt_node.serial.rs485_mode = serial.rs485.RS485Settings(rts_level_for_rx=1, rts_level_for_tx=0,
-                                                                          delay_before_rx=RX_DELAY,
-                                                                          delay_before_tx=TX_DELAY)
+        self.pan_tilt_node.serial.rs485_mode = serial.rs485.RS485Settings(rts_level_for_rx=1, rts_level_for_tx=0, delay_before_rx=RX_DELAY, delay_before_tx=TX_DELAY)
 
         self.tower_node.serial = serial.rs485.RS485(self.port, baudrate=self.baud, timeout=COMMUNICATIONS_TIMEOUT)
-        self.tower_node.serial.rs485_mode = serial.rs485.RS485Settings(rts_level_for_rx=1, rts_level_for_tx=0,
-                                                                       delay_before_rx=RX_DELAY,
-                                                                       delay_before_tx=TX_DELAY)
+        self.tower_node.serial.rs485_mode = serial.rs485.RS485Settings(rts_level_for_rx=1, rts_level_for_tx=0, delay_before_rx=RX_DELAY, delay_before_tx=TX_DELAY)
 
     def run(self):
         self.send_startup_centering_and_lights_off_command()
