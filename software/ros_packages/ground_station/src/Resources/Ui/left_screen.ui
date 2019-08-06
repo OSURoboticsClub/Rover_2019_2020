@@ -2142,6 +2142,11 @@ N/A</string>
               </item>
               <item>
                <widget class="QPushButton" name="mining_open_button">
+                <property name="font">
+                 <font>
+                  <pointsize>10</pointsize>
+                 </font>
+                </property>
                 <property name="text">
                  <string>Open</string>
                 </property>
@@ -2149,6 +2154,11 @@ N/A</string>
               </item>
               <item>
                <widget class="QPushButton" name="mining_close_button">
+                <property name="font">
+                 <font>
+                  <pointsize>10</pointsize>
+                 </font>
+                </property>
                 <property name="text">
                  <string>Close</string>
                 </property>
@@ -2156,6 +2166,11 @@ N/A</string>
               </item>
               <item>
                <widget class="QPushButton" name="mining_home_linear_button">
+                <property name="font">
+                 <font>
+                  <pointsize>10</pointsize>
+                 </font>
+                </property>
                 <property name="text">
                  <string>Home Linear</string>
                 </property>
@@ -2163,6 +2178,11 @@ N/A</string>
               </item>
               <item>
                <widget class="QPushButton" name="mining_toggle_overtravel_button">
+                <property name="font">
+                 <font>
+                  <pointsize>10</pointsize>
+                 </font>
+                </property>
                 <property name="text">
                  <string>Toggle Overtravel</string>
                 </property>
