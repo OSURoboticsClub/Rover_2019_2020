@@ -361,12 +361,14 @@ class EffectorsAndArmControlSender(QtCore.QThread):
             self.last_y_button_state = 1
         elif self.last_y_button_state == 1 and y_button_state == 0:
             self.last_y_button_state = 0
+            return
 
         if self.last_a_button_state == 0 and a_button_state == 1:
             message.hitch_servo_negative = 1
             self.last_a_button_state = 1
         elif self.last_a_button_state == 1 and a_button_state == 0:
             self.last_a_button_state = 0 
+            return
         
         self.tower_pan_tilt_command_publisher.publish(message)
 
