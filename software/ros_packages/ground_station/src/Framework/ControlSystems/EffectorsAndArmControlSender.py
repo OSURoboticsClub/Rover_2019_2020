@@ -319,7 +319,6 @@ class EffectorsAndArmControlSender(QtCore.QThread):
             self.last_back_button_state = 0
 
     def send_mining_commands(self):
-
         left_y_axis = self.controller.controller_states["left_y_axis"] if abs(
             self.controller.controller_states["left_y_axis"]) > LEFT_Y_AXIS_DEADZONE else 0
         left_x_axis = self.controller.controller_states["left_x_axis"] if abs(
@@ -329,13 +328,13 @@ class EffectorsAndArmControlSender(QtCore.QThread):
             message = MiningControlMessage()
 
             if left_x_axis >= 0:
-                message.motor_set_position_positive = (-(left_x_axis / THUMB_STICK_MAX) * MINING_MOTOR_SCALAR)
+                message.motor_set_position_positive = ((left_x_axis / THUMB_STICK_MAX) * MINING_MOTOR_SCALAR)
             elif left_x_axis < 0:
-                message.motor_set_position_negative = ((left_x_axis / THUMB_STICK_MAX) * MINING_MOTOR_SCALAR)
-            elif left_y_axis >= 0:
-                message.linear_set_position_positive = (-(left_y_axis / THUMB_STICK_MAX) * MINING_LINEAR_SCALAR)
-            elif left_y_axis < 0:
+                message.motor_set_position_negative = (-(left_x_axis / THUMB_STICK_MAX) * MINING_MOTOR_SCALAR)
+            if left_y_axis >= 0:
                 message.linear_set_position_negative = ((left_y_axis / THUMB_STICK_MAX) * MINING_LINEAR_SCALAR)
+            elif left_y_axis < 0:
+                message.linear_set_position_positive = (-(left_y_axis / THUMB_STICK_MAX) * MINING_LINEAR_SCALAR)
 
             self.mining_control_publisher.publish(message)
 

@@ -98,8 +98,7 @@ class Mining(QtCore.QObject):
         self.run_thread_flag = True
 
         # ########## Class Variables ##########
-        self.mining_status_subscriber = rospy.Subscriber(MINING_STATUS_TOPIC, MiningStatusMessage,
-                                                         self.mining_status_message_received__callback)
+        self.mining_status_subscriber = rospy.Subscriber(MINING_STATUS_TOPIC, MiningStatusMessage, self.mining_status_message_received__callback)
 
         self.mining_control_publisher = rospy.Publisher(MINING_CONTROL_TOPIC, MiningControlMessage, queue_size=1)
         self.camera_control_publisher = rospy.Publisher(CAMERA_CONTROL_TOPIC, CameraControlMessage, queue_size=1)
@@ -232,7 +231,7 @@ class Mining(QtCore.QObject):
         self.mining_linear_temp_update_ready__signal.emit(status.temp1)
 
         self.mining_4bar_current_update_ready__signal.emit(status.linear_current)
-        self.mining_linear_current_lcd_number.emit(status.motor_current)
+        self.mining_linear_current_update_ready__signal.emit(status.motor_current)
 
         self.temp_update_ready__signal.emit(status.probe_temp_c)
         self.moisture_update_ready__signal.emit(status.probe_moisture)
