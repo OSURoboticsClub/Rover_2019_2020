@@ -26,7 +26,7 @@ DEFAULT_MINING_PORT = "/dev/rover/ttyMining"
 DEFAULT_BAUD = 115200
 
 GRIPPER_NODE_ID = 1
-MINING_NODE_ID = 2
+MINING_NODE_ID = 3
 
 GRIPPER_TIMEOUT = 0.5
 MINING_TIMEOUT = 0.3
@@ -284,6 +284,7 @@ class EffectorsControl(object):
 
         if self.new_mining_control_message and self.mining_node_present:
             print(self.mining_control_message)
+            motor_go_home = self.mining_control_message.motor_go_home
             motor_set_position_positive = self.mining_control_message.motor_set_position_positive
             motor_set_position_negative = self.mining_control_message.motor_set_position_negative
             motor_set_position_absolute = self.mining_control_message.motor_set_position_absolute
@@ -299,12 +300,28 @@ class EffectorsControl(object):
             switch2_on = self.mining_registers_part_2[MINING_MODBUS_REGISTERS_PART_2["SWITCH2_OUT"]]
             overtravel_on = self.mining_registers_part_2[MINING_MODBUS_REGISTERS_PART_2["OVERTRAVEL"]]
 
+            if motor_go_home:
+                self.mining_registers_part_2[MINING_MODBUS_REGISTERS_PART_2["MOTOR_GO_HOME"]] = 1
+                print("MINING MOTOR_GO_HOME TRUE")
+                self.mining_node.write_registers(MINING_HALF_REG_LIMIT, self.mining_registers_part_2)
+                homing_complete = False
+
+                while not homing_complete:
+                    print("entered mining homing while")
+                    self.mining_registers_part_2 = self.mining_node.read_registers(MINING_HALF_REG_LIMIT, MINING_REMAINING_REGS)
+                    self.send_mining_status_message()
+
+                    if self.mining_registers_part_2[MINING_MODBUS_REGISTERS_PART_2["SWITCH1_OUT"]]:
+                        homing_complete = True
+                        self.mining_registers = None
+                        print("MINING HOMING COMPLETE")
+
             if motor_set_position_absolute > 0:
                 self.mining_registers[MINING_MODBUS_REGISTERS_PART_2["MOTOR_SET_POSITION_ABSOLUTE"]] = motor_set_position_absolute
             if linear_set_position_absolute > 0:
                 self.mining_registers_part_2[MINING_MODBUS_REGISTERS_PART_2["LINEAR_SET_POSITION_ABSOLUTE"]] = linear_set_position_absolute
             if servo1_target >= 0:
-                self.mining_registers_part_2[MINING_MODBUS_REGISTERS_PART_2["SERVO1_TARGET"]] = servo1_target
+                self.mining_registers_part_2[MINING_MODBUS_REGISTERS_PART_2["SERVO1_TARGET"]] = 130
             if servo2_target >= 0:
                 self.mining_registers_part_2[MINING_MODBUS_REGISTERS_PART_2["SERVO2_TARGET"]] = servo2_target
 
@@ -408,12 +425,12 @@ class EffectorsControl(object):
 
                 homing_complete = False
 
-                gripper_homing_time = time()
+                #gripper_homing_time = time()
                 while not homing_complete:
                     print("entered homing while")
-                    time_elapsed = time() - gripper_homing_time
+                    #time_elapsed = time() - gripper_homing_time
                     self.gripper_registers = self.gripper_node.read_registers(0, len(GRIPPER_MODBUS_REGISTERS))
-                    self.send_gripper_status_message()
+                    #self.send_gripper_status_message()
                     #print("time elapsed: ", time_elapsed, "homing start time: ", self.gripper_homing_time)
 
                     #if self.gripper_registers[GRIPPER_MODBUS_REGISTERS["IS_HOMED"]] or time_elapsed >= 1000:
@@ -425,6 +442,7 @@ class EffectorsControl(object):
                     #print(self.gripper_registers[GRIPPER_MODBUS_REGISTERS["LASER"]])
                     #print(self.gripper_registers[GRIPPER_MODBUS_REGISTERS["IS_HOMED"]])
 
+                    print self.gripper_registers[GRIPPER_MODBUS_REGISTERS["IS_HOMED"]]
                     if self.gripper_registers[GRIPPER_MODBUS_REGISTERS["IS_HOMED"]]:
                         homing_complete = True
                         self.gripper_registers = None
