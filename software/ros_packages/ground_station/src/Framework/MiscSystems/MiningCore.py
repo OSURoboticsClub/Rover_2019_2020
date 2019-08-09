@@ -194,12 +194,12 @@ class Mining(QtCore.QObject):
 
     def on_cam_lcd_button_clicked__slot(self):
         message = CameraControlMessage()
-        message.camera_mode = 1
+        message.cam_change_view = 1
         self.camera_control_publisher.publish(message)
 
     def on_cam_network_button_clicked__slot(self):
         message = CameraControlMessage()
-        message.camera_mode = 2
+        message.cam_change_view = 2
         self.camera_control_publisher.publish(message)
 
     def on_cam_zoom_in_button_clicked__slot(self):

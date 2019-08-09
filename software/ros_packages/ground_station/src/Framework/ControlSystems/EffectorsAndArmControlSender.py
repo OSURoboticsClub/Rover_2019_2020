@@ -40,8 +40,8 @@ RIGHT_Y_AXIS_DEADZONE = 1500
 
 THUMB_STICK_MAX = 32768.0
 
-MINING_MOTOR_SCALAR = 5
-MINING_LINEAR_SCALAR = 5
+MINING_MOTOR_SCALAR = 20
+MINING_LINEAR_SCALAR = 20
 
 COLOR_GREEN = "background-color:darkgreen; border: 1px solid black;"
 COLOR_NONE = "border: 1px solid black;"
