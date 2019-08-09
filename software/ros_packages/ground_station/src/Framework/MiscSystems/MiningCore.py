@@ -204,27 +204,27 @@ class Mining(QtCore.QObject):
 
     def on_cam_zoom_in_button_clicked__slot(self):
         message = CameraControlMessage()
-        message.zoom_in = 1
+        message.cam_zoom_in = 1
         self.camera_control_publisher.publish(message)
 
     def on_cam_zoom_out_button_clicked__slot(self):
         message = CameraControlMessage()
-        message.zoom_out = 1
+        message.cam_zoom_out = 1
         self.camera_control_publisher.publish(message)
 
     def on_cam_full_zoom_in_button_clicked__slot(self):
         message = CameraControlMessage()
-        message.full_zoom_in = 1
+        message.cam_zoom_in_full = 1
         self.camera_control_publisher.publish(message)
 
     def on_cam_full_zoom_out_button_clicked__slot(self):
         message = CameraControlMessage()
-        message.full_zoom_out = 1
+        message.cam_zoom_out_full= 1
         self.camera_control_publisher.publish(message)
 
     def on_cam_shoot_button_clicked__slot(self):
         message = CameraControlMessage()
-        message.shoot = 1
+        message.cam_shoot = 1
         self.camera_control_publisher.publish(message)
 
     def mining_status_message_received__callback(self, status):
