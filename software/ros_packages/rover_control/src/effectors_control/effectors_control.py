@@ -338,10 +338,10 @@ class EffectorsControl(object):
             elif motor_set_position_negative > 0 and not switch2_on: 
                 self.mining_registers[MINING_MODBUS_REGISTERS["MOTOR_SET_POSITION_NEGATIVE"]] = motor_set_position_negative
                 self.mining_registers[MINING_MODBUS_REGISTERS["MOTOR_SET_POSITION_POSITIVE"]] = 0
-            print("set motor position registers")
             elif motor_stop:
                self.mining_registers[MINING_MODBUS_REGISTERS["MOTOR_SET_POSITION_POSITIVE"]] = 0
                self.mining_registers[MINING_MODBUS_REGISTERS["MOTOR_SET_POSITION_NEGATIVE"]] = 0
+            print("set motor position registers")
 
             if linear_set_position_positive > 0:
                 self.mining_registers_part_2[MINING_MODBUS_REGISTERS_PART_2["LINEAR_SET_POSITION_POSITIVE"]] = linear_set_position_positive
