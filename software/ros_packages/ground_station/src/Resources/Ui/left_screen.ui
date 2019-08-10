@@ -2648,6 +2648,9 @@ Dielectric Permittivity</string>
             </item>
             <item>
              <widget class="QSlider" name="fourbar_position_slider">
+              <property name="maximum">
+               <number>1024</number>
+              </property>
               <property name="orientation">
                <enum>Qt::Horizontal</enum>
               </property>

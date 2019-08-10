@@ -321,34 +321,11 @@ class EffectorsAndArmControlSender(QtCore.QThread):
     def send_mining_commands(self):
         left_y_axis = self.controller.controller_states["left_y_axis"] if abs(
             self.controller.controller_states["left_y_axis"]) > LEFT_Y_AXIS_DEADZONE else 0
-        right_y_axis = self.controller.controller_states["right_y_axis"] if abs(
-            self.controller.controller_states["right_y_axis"]) > RIGHT_Y_AXIS_DEADZONE else 0
         # Weird deadzone checks to get target zeroing to work
-        left_in_deadzone = 1 if abs(self.controller.controller_states["left_y_axis"]) < LEFT_X_AXIS_DEADZONE else 0
-        right_in_deadzone = 1 if abs(self.controller.controller_states["right_y_axis"]) < RIGHT_Y_AXIS_DEADZONE else 0
 
-        if left_y_axis or right_y_axis:
+        if left_y_axis:
             message = MiningControlMessage()
-
-            if right_y_axis >= 0:
-                message.motor_set_position_positive = ((right_y_axis / THUMB_STICK_MAX) * MINING_MOTOR_SCALAR)
-            elif right_y_axis < 0:
-                message.motor_set_position_negative = (-(right_y_axis / THUMB_STICK_MAX) * MINING_MOTOR_SCALAR)
-            if right_in_deadzone: 
-                message.motor_stop = 1
-            else:
-                message.motor_stop = 0
-
-            if left_y_axis >= 0:
-                message.linear_set_position_negative = ((left_y_axis / THUMB_STICK_MAX) * MINING_LINEAR_SCALAR)
-            elif left_y_axis < 0:
-                message.linear_set_position_positive = (-(left_y_axis / THUMB_STICK_MAX) * MINING_LINEAR_SCALAR)
-            
-            if left_in_deadzone: 
-                message.linear_stop = 1
-            else:
-                message.linear_stop = 0
-
+            message.linear_set_position_absolute = ((left_y_axis / THUMB_STICK_MAX) * MINING_LINEAR_SCALAR)
             self.mining_control_publisher.publish(message)
 
     def send_mining_home_on_back_press(self):

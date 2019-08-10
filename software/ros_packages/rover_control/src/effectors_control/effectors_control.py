@@ -224,6 +224,8 @@ class EffectorsControl(object):
 
         self.gripper_position_status = 0
 
+        self.linear_curr_position = 0
+
         self.run()
 
     def __setup_minimalmodbus_for_485(self):
@@ -293,6 +295,8 @@ class EffectorsControl(object):
             linear_set_position_positive = self.mining_control_message.linear_set_position_positive
             linear_set_position_negative = self.mining_control_message.linear_set_position_negative
             linear_set_position_absolute = self.mining_control_message.linear_set_position_absolute
+            new_linear_absolute_target = self.linear_curr_position + linear_set_position_absolute
+
             linear_stop = self.mining_control_message.linear_stop
 
             print("set control message for linear")
@@ -324,7 +328,7 @@ class EffectorsControl(object):
             if motor_set_position_absolute > 0:
                 self.mining_registers[MINING_MODBUS_REGISTERS_PART_2["MOTOR_SET_POSITION_ABSOLUTE"]] = motor_set_position_absolute
             if linear_set_position_absolute > 0:
-                self.mining_registers_part_2[MINING_MODBUS_REGISTERS_PART_2["LINEAR_SET_POSITION_ABSOLUTE"]] = linear_set_position_absolute
+                self.mining_registers_part_2[MINING_MODBUS_REGISTERS_PART_2["LINEAR_SET_POSITION_ABSOLUTE"]] = new_linear_absolute_target
             if servo1_target >= 0:
                 self.mining_registers_part_2[MINING_MODBUS_REGISTERS_PART_2["SERVO1_TARGET"]] = servo1_target
             print("set servo 1 target")
@@ -409,6 +413,8 @@ class EffectorsControl(object):
             message.probe_imag_dielec_perm = self.mining_registers[MINING_MODBUS_REGISTERS["PROBE_IMAG_DIELEC_PERM"]]
 
             message.linear_current_position = self.mining_registers_part_2[MINING_MODBUS_REGISTERS_PART_2["LINEAR_CURRENT_POSITION"]]
+            self.linear_curr_position = message.linear_current_position
+
             message.motor_current_position = self.mining_registers[MINING_MODBUS_REGISTERS_PART_2["MOTOR_CURRENT_POSITION"]]
 
             message.temp1 = self.mining_registers_part_2[MINING_MODBUS_REGISTERS_PART_2["TEMP1"]]
