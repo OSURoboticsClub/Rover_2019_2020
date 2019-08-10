@@ -24,7 +24,7 @@ MINING_COLLECTION_CUP_CLOSED = 90
 PROBE_DROP_POSITION = 90
 SCOOP_DROP_POSITION = 0
 
-CONTAINER_OPEN = 90
+CONTAINER_OPEN = 130
 CONTAINER_CLOSED = 0
 
 
@@ -32,9 +32,6 @@ CONTAINER_CLOSED = 0
 # UbiquitiRadioSettings Class Definition
 #####################################
 class Mining(QtCore.QObject):
-    fourbar_position_update_ready__signal = QtCore.pyqtSignal(int)
-    linear_position_update_ready__signal = QtCore.pyqtSignal(int)
-
     mining_4bar_temp_update_ready__signal = QtCore.pyqtSignal(float)
     mining_4bar_current_update_ready__signal = QtCore.pyqtSignal(float)
     mining_linear_temp_update_ready__signal = QtCore.pyqtSignal(float)
@@ -68,8 +65,8 @@ class Mining(QtCore.QObject):
         self.science_container_close_button = self.left_screen.science_container_close_button  # type:QtWidgets.QPushButton
         self.science_probe_button = self.left_screen.science_probe_button  # type:QtWidgets.QPushButton
 
-        self.fourbar_position_progress_bar = self.left_screen.fourbar_position_progress_bar  # type:QtWidgets.QProgressBar
-        self.linear_position_progress_bar = self.left_screen.linear_position_progress_bar  # type:QtWidgets.QProgressBar
+        self.fourbar_position_slider = self.left_screen.fourbar_position_slider  # type:QtWidgets.QProgressBar
+        self.linear_position_slider = self.left_screen.linear_position_slider  # type:QtWidgets.QProgressBar
 
         self.science_temp_lcd_number = self.left_screen.science_temp_lcd_number  # type:QtWidgets.QLCDNumber
         self.science_moisture_lcd_number = self.left_screen.science_moisture_lcd_number  # type:QtWidgets.QLCDNumber
@@ -121,8 +118,8 @@ class Mining(QtCore.QObject):
         self.science_container_close_button.clicked.connect(self.on_science_container_close_clicked__slot)
         self.science_probe_button.clicked.connect(self.on_science_probe_clicked__slot)
 
-        self.fourbar_position_update_ready__signal.connect(self.fourbar_position_progress_bar.setValue)
-        self.linear_position_update_ready__signal.connect(self.linear_position_progress_bar.setValue)
+        self.fourbar_position_slider.valueChanged.connect(self.fourbar_position_slider__slot)
+        self.linear_position_slider.valueChanged.connect(self.linear_position_slider__slot)
 
         self.temp_update_ready__signal.connect(self.science_temp_lcd_number.display)
         self.moisture_update_ready__signal.connect(self.science_moisture_lcd_number.display)
@@ -139,6 +136,16 @@ class Mining(QtCore.QObject):
         self.cam_full_zoom_in_button.clicked.connect(self.on_cam_full_zoom_in_button_clicked__slot)
         self.cam_full_zoom_out_button.clicked.connect(self.on_cam_full_zoom_out_button_clicked__slot)
         self.cam_shoot_button.clicked.connect(self.on_cam_shoot_button_clicked__slot)
+
+    def fourbar_position_slider__slot(self):
+        message = MiningControlMessage()
+        message.linear_p = self.fourbar_position_slider.value()
+        self.mining_control_publisher.publish(message)
+
+    def linear_position_slider__slot(self):
+        #message = MiningControlMessage()
+        #message.
+        pass
 
     def on_mining_open_clicked__slot(self):
         message = MiningControlMessage()
@@ -197,36 +204,32 @@ class Mining(QtCore.QObject):
 
     def on_cam_zoom_in_button_clicked__slot(self):
         message = CameraControlMessage()
-        message.zoom_in = 1
+        message.cam_zoom_in = 1
         self.camera_control_publisher.publish(message)
 
     def on_cam_zoom_out_button_clicked__slot(self):
         message = CameraControlMessage()
-        message.zoom_out = 1
+        message.cam_zoom_out = 1
         self.camera_control_publisher.publish(message)
 
     def on_cam_full_zoom_in_button_clicked__slot(self):
         message = CameraControlMessage()
-        message.full_zoom_in = 1
+        message.cam_zoom_in_full = 1
         self.camera_control_publisher.publish(message)
 
     def on_cam_full_zoom_out_button_clicked__slot(self):
         message = CameraControlMessage()
-        message.full_zoom_out = 1
+        message.cam_zoom_out_full= 1
         self.camera_control_publisher.publish(message)
 
     def on_cam_shoot_button_clicked__slot(self):
         message = CameraControlMessage()
-        message.shoot = 1
+        message.cam_shoot = 1
         self.camera_control_publisher.publish(message)
 
     def mining_status_message_received__callback(self, status):
         status = status  # type:MiningStatusMessage
         
-        #firmware has weird motor names, change later
-        self.fourbar_position_update_ready__signal.emit(status.linear_current_position)
-        self.linear_position_update_ready__signal.emit(status.motor_current_position)
-
         self.mining_4bar_temp_update_ready__signal.emit(status.temp2)
         self.mining_linear_temp_update_ready__signal.emit(status.temp1)
 

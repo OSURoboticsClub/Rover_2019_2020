@@ -114,14 +114,18 @@ class SpeedAndHeadingIndication(QtCore.QThread):
             self.imu_data.orientation.w,
         )
         self.roll, self.pitch, self.yaw = transformations.euler_from_quaternion(quat)
-        self.current_heading = (self.euler_interpolator(self.yaw) + MappingSettings.DECLINATION_OFFSET) % 360
+        self.current_heading = (self.euler_interpolator(self.roll) + MappingSettings.DECLINATION_OFFSET) % 360
+        #print(self.roll, self.pitch, self.yaw, self.current_heading)
 
         self.pitch_update_ready__signal.emit(self.pitch)
         self.roll_update_ready__signal.emit(self.roll)
 
     def rotate_compass_if_needed(self):
 
-        self.current_heading_shown_rotation_angle = int(self.current_heading)
+        if self.current_heading <= 220:  
+            self.current_heading_shown_rotation_angle = int(220 + self.current_heading)  # last minute changes to fix heading direction on groundstation using roll
+        else:
+            self.current_heading_shown_rotation_angle = int(220 - self.current_heading)  
 
         if self.current_heading_shown_rotation_angle != self.last_current_heading_shown:
             new_compass_image = self.main_compass_image.rotate(self.current_heading_shown_rotation_angle, resample=PIL.Image.BICUBIC)
