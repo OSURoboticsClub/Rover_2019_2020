@@ -2,10 +2,12 @@ int32 motor_set_position_positive
 int32 motor_set_position_negative
 int32 motor_set_position_absolute
 bool motor_go_home
+bool motor_stop
 
 int32 linear_set_position_positive
 int32 linear_set_position_negative
 int32 linear_set_position_absolute
+bool linear_stop
 
 uint16 servo1_target
 uint16 servo2_target

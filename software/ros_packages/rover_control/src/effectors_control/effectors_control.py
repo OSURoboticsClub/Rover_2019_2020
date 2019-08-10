@@ -280,7 +280,6 @@ class EffectorsControl(object):
             # This seems to prevent CRC errors.
             self.mining_registers = self.mining_node.read_registers(0, MINING_HALF_REG_LIMIT)   
             self.mining_registers_part_2 = self.mining_node.read_registers(MINING_HALF_REG_LIMIT, MINING_REMAINING_REGS)
-            print(self.mining_registers, self.mining_registers_part_2)
 
         if self.new_mining_control_message and self.mining_node_present:
             print(self.mining_control_message)
@@ -288,13 +287,19 @@ class EffectorsControl(object):
             motor_set_position_positive = self.mining_control_message.motor_set_position_positive
             motor_set_position_negative = self.mining_control_message.motor_set_position_negative
             motor_set_position_absolute = self.mining_control_message.motor_set_position_absolute
+            motor_stop = self.mining_control_message.motor_stop
+            print("set control message for motor")
 
             linear_set_position_positive = self.mining_control_message.linear_set_position_positive
             linear_set_position_negative = self.mining_control_message.linear_set_position_negative
             linear_set_position_absolute = self.mining_control_message.linear_set_position_absolute
+            linear_stop = self.mining_control_message.linear_stop
+
+            print("set control message for linear")
 
             servo1_target = self.mining_control_message.servo1_target
             servo2_target = self.mining_control_message.servo2_target
+            print("set control message for servos")
 
             switch1_on = self.mining_registers_part_2[MINING_MODBUS_REGISTERS_PART_2["SWITCH1_OUT"]]
             switch2_on = self.mining_registers_part_2[MINING_MODBUS_REGISTERS_PART_2["SWITCH2_OUT"]]
@@ -321,19 +326,32 @@ class EffectorsControl(object):
             if linear_set_position_absolute > 0:
                 self.mining_registers_part_2[MINING_MODBUS_REGISTERS_PART_2["LINEAR_SET_POSITION_ABSOLUTE"]] = linear_set_position_absolute
             if servo1_target >= 0:
-                self.mining_registers_part_2[MINING_MODBUS_REGISTERS_PART_2["SERVO1_TARGET"]] = 130
+                self.mining_registers_part_2[MINING_MODBUS_REGISTERS_PART_2["SERVO1_TARGET"]] = servo1_target
+            print("set servo 1 target")
             if servo2_target >= 0:
                 self.mining_registers_part_2[MINING_MODBUS_REGISTERS_PART_2["SERVO2_TARGET"]] = servo2_target
+            print("set servo 2 target")
 
             if motor_set_position_positive > 0 and (not switch1_on or overtravel_on):
                 self.mining_registers[MINING_MODBUS_REGISTERS["MOTOR_SET_POSITION_POSITIVE"]] = motor_set_position_positive
+                self.mining_registers[MINING_MODBUS_REGISTERS["MOTOR_SET_POSITION_NEGATIVE"]] = 0
             elif motor_set_position_negative > 0 and not switch2_on: 
                 self.mining_registers[MINING_MODBUS_REGISTERS["MOTOR_SET_POSITION_NEGATIVE"]] = motor_set_position_negative
+                self.mining_registers[MINING_MODBUS_REGISTERS["MOTOR_SET_POSITION_POSITIVE"]] = 0
+            print("set motor position registers")
+            elif motor_stop:
+               self.mining_registers[MINING_MODBUS_REGISTERS["MOTOR_SET_POSITION_POSITIVE"]] = 0
+               self.mining_registers[MINING_MODBUS_REGISTERS["MOTOR_SET_POSITION_NEGATIVE"]] = 0
 
             if linear_set_position_positive > 0:
                 self.mining_registers_part_2[MINING_MODBUS_REGISTERS_PART_2["LINEAR_SET_POSITION_POSITIVE"]] = linear_set_position_positive
+                self.mining_registers_part_2[MINING_MODBUS_REGISTERS_PART_2["LINEAR_SET_POSITION_NEGATIVE"]] = 0
             elif linear_set_position_negative > 0:
                 self.mining_registers_part_2[MINING_MODBUS_REGISTERS_PART_2["LINEAR_SET_POSITION_NEGATIVE"]] = linear_set_position_negative
+                self.mining_registers_part_2[MINING_MODBUS_REGISTERS_PART_2["LINEAR_SET_POSITION_POSITIVE"]] = 0
+            elif linear_stop:
+                self.mining_registers_part_2[MINING_MODBUS_REGISTERS_PART_2["LINEAR_SET_POSITION_POSITIVE"]] = 0
+                self.mining_registers_part_2[MINING_MODBUS_REGISTERS_PART_2["LINEAR_SET_POSITION_NEGATIVE"]] = 0
 
             if self.mining_control_message.overtravel:
                 self.mining_registers_part_2[MINING_MODBUS_REGISTERS_PART_2["OVERTRAVEL"]] = 0 if self.mining_registers_part_2[MINING_MODBUS_REGISTERS_PART_2["OVERTRAVEL"]] else 1
@@ -348,6 +366,8 @@ class EffectorsControl(object):
 
             self.mining_node.write_registers(0, self.mining_registers)
             self.mining_node.write_registers(MINING_HALF_REG_LIMIT, self.mining_registers_part_2)
+            print(self.mining_registers)
+            print(self.mining_registers_part_2)
 
             self.modbus_nodes_seen_time = time()
             self.new_mining_control_message = False
@@ -356,13 +376,9 @@ class EffectorsControl(object):
         if self.new_camera_control_message:
             self.mining_registers[MINING_MODBUS_REGISTERS["MOTOR_SET_POSITION_POSITIVE"]] = 0
             self.mining_registers[MINING_MODBUS_REGISTERS["MOTOR_SET_POSITION_NEGATIVE"]] = 0
-            self.mining_registers[MINING_MODBUS_REGISTERS_PART_2["MOTOR_SET_POSITION_ABSOLUTE"]] = 0
             self.mining_registers[MINING_MODBUS_REGISTERS_PART_2["MOTOR_GO_HOME"]] = 0
             self.mining_registers_part_2[MINING_MODBUS_REGISTERS_PART_2["LINEAR_SET_POSITION_POSITIVE"]] = 0
             self.mining_registers_part_2[MINING_MODBUS_REGISTERS_PART_2["LINEAR_SET_POSITION_NEGATIVE"]] = 0
-            self.mining_registers_part_2[MINING_MODBUS_REGISTERS_PART_2["LINEAR_SET_POSITION_ABSOLUTE"]] = 0
-            self.mining_registers_part_2[MINING_MODBUS_REGISTERS_PART_2["SERVO1_TARGET"]] = 0
-            self.mining_registers_part_2[MINING_MODBUS_REGISTERS_PART_2["SERVO2_TARGET"]] = 0
             self.mining_registers[MINING_MODBUS_REGISTERS["PROBE_TAKE_READING"]] = 0
             self.mining_registers_part_2[MINING_MODBUS_REGISTERS_PART_2["OVERTRAVEL"]] = 0
 
@@ -384,8 +400,6 @@ class EffectorsControl(object):
             self.mining_registers = self.mining_node.read_registers(0, MINING_HALF_REG_LIMIT)
             self.mining_registers_part_2 = self.mining_node.read_registers(MINING_HALF_REG_LIMIT, MINING_REMAINING_REGS)
             
-            print(self.mining_registers, self.mining_registers_part_2)
-
             message = MiningStatusMessage()
             message.probe_temp_c = self.mining_registers[MINING_MODBUS_REGISTERS["PROBE_TEMP_C"]]
             message.probe_moisture = self.mining_registers[MINING_MODBUS_REGISTERS["PROBE_MOISTURE"]]
@@ -407,7 +421,7 @@ class EffectorsControl(object):
             message.switch2_out = self.mining_registers_part_2[MINING_MODBUS_REGISTERS_PART_2["SWITCH2_OUT"]]
             message.homing_needed = self.mining_registers_part_2[MINING_MODBUS_REGISTERS_PART_2["HOMING_NEEDED"]]
 
-            print(message)
+            #print(message)
             self.mining_status_publisher.publish(message)
 
             self.modbus_nodes_seen_time = time()
