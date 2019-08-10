@@ -290,7 +290,6 @@ class EffectorsControl(object):
             motor_set_position_negative = self.mining_control_message.motor_set_position_negative
             motor_set_position_absolute = self.mining_control_message.motor_set_position_absolute
             motor_stop = self.mining_control_message.motor_stop
-            print("set control message for motor")
 
             linear_set_position_positive = self.mining_control_message.linear_set_position_positive
             linear_set_position_negative = self.mining_control_message.linear_set_position_negative
@@ -298,12 +297,12 @@ class EffectorsControl(object):
             new_linear_absolute_target = self.linear_curr_position + linear_set_position_absolute
 
             linear_stop = self.mining_control_message.linear_stop
+            
+            print(new_linear_absolute_target, linear_set_position_absolute, self.linear_curr_position)
 
-            print("set control message for linear")
 
             servo1_target = self.mining_control_message.servo1_target
             servo2_target = self.mining_control_message.servo2_target
-            print("set control message for servos")
 
             switch1_on = self.mining_registers_part_2[MINING_MODBUS_REGISTERS_PART_2["SWITCH1_OUT"]]
             switch2_on = self.mining_registers_part_2[MINING_MODBUS_REGISTERS_PART_2["SWITCH2_OUT"]]
@@ -327,14 +326,12 @@ class EffectorsControl(object):
 
             if motor_set_position_absolute > 0:
                 self.mining_registers[MINING_MODBUS_REGISTERS_PART_2["MOTOR_SET_POSITION_ABSOLUTE"]] = motor_set_position_absolute
-            if linear_set_position_absolute > 0:
+            if linear_set_position_absolute != 0:
                 self.mining_registers_part_2[MINING_MODBUS_REGISTERS_PART_2["LINEAR_SET_POSITION_ABSOLUTE"]] = new_linear_absolute_target
             if servo1_target >= 0:
                 self.mining_registers_part_2[MINING_MODBUS_REGISTERS_PART_2["SERVO1_TARGET"]] = servo1_target
-            print("set servo 1 target")
             if servo2_target >= 0:
                 self.mining_registers_part_2[MINING_MODBUS_REGISTERS_PART_2["SERVO2_TARGET"]] = servo2_target
-            print("set servo 2 target")
 
             if motor_set_position_positive > 0 and (not switch1_on or overtravel_on):
                 self.mining_registers[MINING_MODBUS_REGISTERS["MOTOR_SET_POSITION_POSITIVE"]] = motor_set_position_positive
@@ -345,7 +342,6 @@ class EffectorsControl(object):
             elif motor_stop:
                self.mining_registers[MINING_MODBUS_REGISTERS["MOTOR_SET_POSITION_POSITIVE"]] = 0
                self.mining_registers[MINING_MODBUS_REGISTERS["MOTOR_SET_POSITION_NEGATIVE"]] = 0
-            print("set motor position registers")
 
             if linear_set_position_positive > 0:
                 self.mining_registers_part_2[MINING_MODBUS_REGISTERS_PART_2["LINEAR_SET_POSITION_POSITIVE"]] = linear_set_position_positive
