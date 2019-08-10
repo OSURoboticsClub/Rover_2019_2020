@@ -65,8 +65,8 @@ class Mining(QtCore.QObject):
         self.science_container_close_button = self.left_screen.science_container_close_button  # type:QtWidgets.QPushButton
         self.science_probe_button = self.left_screen.science_probe_button  # type:QtWidgets.QPushButton
 
-        self.fourbar_position_slider = self.left_screen.fourbar_position_slider  # type:QtWidgets.QProgressBar
-        self.linear_position_slider = self.left_screen.linear_position_slider  # type:QtWidgets.QProgressBar
+        # self.fourbar_position_slider = self.left_screen.fourbar_position_slider  # type:QtWidgets.QProgressBar
+        # self.linear_position_slider = self.left_screen.linear_position_slider  # type:QtWidgets.QProgressBar
 
         self.science_temp_lcd_number = self.left_screen.science_temp_lcd_number  # type:QtWidgets.QLCDNumber
         self.science_moisture_lcd_number = self.left_screen.science_moisture_lcd_number  # type:QtWidgets.QLCDNumber
@@ -118,8 +118,8 @@ class Mining(QtCore.QObject):
         self.science_container_close_button.clicked.connect(self.on_science_container_close_clicked__slot)
         self.science_probe_button.clicked.connect(self.on_science_probe_clicked__slot)
 
-        self.fourbar_position_slider.valueChanged.connect(self.fourbar_position_slider__slot)
-        self.linear_position_slider.valueChanged.connect(self.linear_position_slider__slot)
+        #self.fourbar_position_slider.valueChanged.connect(self.fourbar_position_slider__slot)
+        #self.linear_position_slider.valueChanged.connect(self.linear_position_slider__slot)
 
         self.temp_update_ready__signal.connect(self.science_temp_lcd_number.display)
         self.moisture_update_ready__signal.connect(self.science_moisture_lcd_number.display)
