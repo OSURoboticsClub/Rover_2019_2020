@@ -321,8 +321,8 @@ class EffectorsAndArmControlSender(QtCore.QThread):
     def send_mining_commands(self):
         left_y_axis = self.controller.controller_states["left_y_axis"] if abs(
             self.controller.controller_states["left_y_axis"]) > LEFT_Y_AXIS_DEADZONE else 0
-        # Weird deadzone checks to get target zeroing to work
 
+        # Weird deadzone checks to get target zeroing to work
         if left_y_axis:
             message = MiningControlMessage()
             message.linear_set_position_absolute = ((left_y_axis / THUMB_STICK_MAX) * MINING_LINEAR_SCALAR)
