@@ -10,7 +10,7 @@ SUBSYSTEM=="tty", ATTRS{idVendor}=="0403", ATTRS{idProduct}=="6011", ATTRS{seria
 SUBSYSTEM=="tty", ATTRS{idVendor}=="0403", ATTRS{idProduct}=="6011", ATTRS{serial}=="NM2HPA6V", ENV{ID_USB_INTERFACE_NUM}=="02", SYMLINK+="rover/ttyOdometry"
 SUBSYSTEM=="tty", ATTRS{idVendor}=="0403", ATTRS{idProduct}=="6011", ATTRS{serial}=="NM2HPA6V", ENV{ID_USB_INTERFACE_NUM}=="03", SYMLINK+="rover/ttyChassisPanTilt"
 
-SUBSYSTEM=="tty", ATTRS{idVendor}=="0403", ATTRS{idProduct}=="6011", ATTRS{serial}=="NM34WE0R", ENV{ID_USB_INTERFACE_NUM}=="00", SYMLINK+="rover/ttyRDF_SoilProbe"
+SUBSYSTEM=="tty", ATTRS{idVendor}=="0403", ATTRS{idProduct}=="6011", ATTRS{serial}=="NM34WE0R", ENV{ID_USB_INTERFACE_NUM}=="00", SYMLINK+="rover/ttyScience"
 SUBSYSTEM=="tty", ATTRS{idVendor}=="0403", ATTRS{idProduct}=="6011", ATTRS{serial}=="NM34WE0R", ENV{ID_USB_INTERFACE_NUM}=="01", SYMLINK+="rover/ttyIRIS_2_1"
 SUBSYSTEM=="tty", ATTRS{idVendor}=="0403", ATTRS{idProduct}=="6011", ATTRS{serial}=="NM34WE0R", ENV{ID_USB_INTERFACE_NUM}=="02", SYMLINK+="rover/ttyIRIS"
 SUBSYSTEM=="tty", ATTRS{idVendor}=="0403", ATTRS{idProduct}=="6011", ATTRS{serial}=="NM34WE0R", ENV{ID_USB_INTERFACE_NUM}=="03", SYMLINK+="rover/ttyExtraUART"

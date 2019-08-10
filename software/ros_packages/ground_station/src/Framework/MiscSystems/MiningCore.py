@@ -182,11 +182,13 @@ class Mining(QtCore.QObject):
     def on_science_container_open_clicked__slot(self):
         message = MiningControlMessage()
         message.servo2_target = CONTAINER_OPEN
+        message.servo1_target = SCOOP_DROP_POSITION
         self.mining_control_publisher.publish(message)
 
     def on_science_container_close_clicked__slot(self):
         message = MiningControlMessage()
         message.servo2_target = CONTAINER_CLOSED
+        message.servo1_target = SCOOP_DROP_POSITION
         self.mining_control_publisher.publish(message)
 
     def on_science_probe_clicked__slot(self):
