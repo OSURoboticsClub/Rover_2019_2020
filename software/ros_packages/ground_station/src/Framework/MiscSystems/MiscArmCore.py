@@ -39,16 +39,12 @@ ARM_UNSTOW_PROCEDURE = [
     [0.0, -0.035, -0.28, 0.0, 0.0, -0.25]
 ]
 
-APPROACH_O2 = [
-    [0.0, -0.035, -0.28, 0.0, 0.0, 0.0],                                                         # Out in front of rover
-    [0.0, 0.0485472094896, -0.273685193022, -0.00102834607876, -0.17200773156, 0],  # Correct positioning out to left side of rover
-    [-0.436250296246, 0.0485472094896, -0.273685193022, -0.00102834607876, -0.17200773156, 0]   # Directly positioned, ready to grip
+ARM_COBRA_POSE = [
+    [0.0, -0.035, -0.28, 0.0, 0.0, -0.25]
 ]
 
-APPROACH_BEACON = [
-    [0.0, -0.035, -0.28, 0.0, 0.0, 0.0],                                                         # Out in front of rover
-    [0.0, 0.0361371382336, -0.325145836608, -0.00731261537597, -0.129662333807, 0.0569339269566],  # Correct positioning out to right side of rover
-    [0.458505849045, 0.0361371382336, -0.325145633259, -0.00731200471916, -0.131140162948, 0.0920117742056]
+ARM_PACKAGE_DROP = [
+    [0.0, -0.035, -0.28, 0.0, 0.0, 0.0]    # Run after cobra position or unstow
 ]
 
 
@@ -66,17 +62,15 @@ class MiscArm(QtCore.QThread):
         self.arm_control_upright_zeroed_button = self.left_screen.arm_control_upright_zeroed_button  # type:QtWidgets.QPushButton
         self.arm_controls_stow_arm_button = self.left_screen.arm_controls_stow_arm_button  # type:QtWidgets.QPushButton
         self.arm_controls_unstow_arm_button = self.left_screen.arm_controls_unstow_arm_button  # type:QtWidgets.QPushButton
+        self.arm_control_cobra_button = self.left_screen.arm_control_cobra_button  # type:QtWidgets.QPushButton
 
         self.arm_controls_calibration_button = self.left_screen.arm_controls_calibration_button  # type:QtWidgets.QPushButton
         self.arm_controls_clear_faults_button = self.left_screen.arm_controls_clear_faults_button  # type:QtWidgets.QPushButton
         self.arm_controls_reset_motor_drivers_button = self.left_screen.arm_controls_reset_motor_drivers_button  # type:QtWidgets.QPushButton
-        self.arm_controls_approach_beacon_button = self.left_screen.arm_controls_approach_beacon_button # type:QtWidgets.QPushButton
-        self.arm_controls_depart_beacon_button = self.left_screen.arm_controls_depart_beacon_button # type:QtWidgets.QPushButton
         self.gripper_home_button = self.left_screen.gripper_home_button # type:QtWidgets.QPushButton
         self.gripper_toggle_light_button = self.left_screen.gripper_toggle_light_button # type:QtWidgets.QPushButton
 
-        self.arm_controls_approach_o2_button = self.left_screen.arm_controls_approach_o2_button  # type:QtWidgets.QPushButton
-        self.arm_controls_depart_o2_button = self.left_screen.arm_controls_depart_o2_button  # type:QtWidgets.QPushButton
+        self.arm_controls_package_drop_button = self.left_screen.arm_controls_package_drop_button # type:QtWidgets.QPushButton
         self.gripper_toggle_laser_button = self.left_screen.gripper_toggle_laser_button  # type:QtWidgets.QPushButton
 
         # ########## Get the settings instance ##########
@@ -110,11 +104,9 @@ class MiscArm(QtCore.QThread):
 
         self.should_stow_arm = False
         self.should_unstow_arm = False
+        self.should_cobra_arm = False
 
-        self.should_approach_o2 = False
-        self.should_depart_o2 = False
-        self.should_approach_beacon = False
-        self.should_depart_beacon = False
+        self.should_package_drop = False
 
     def run(self):
         self.logger.debug("Starting MiscArm Thread")
@@ -125,25 +117,18 @@ class MiscArm(QtCore.QThread):
             if self.should_stow_arm:
                 self.stow_rover_arm()
                 self.should_stow_arm = False
+
             elif self.should_unstow_arm:
                 self.unstow_rover_arm()
                 self.should_unstow_arm = False
 
-            elif self.should_approach_o2:
-                self.approach_o2()
-                self.should_approach_o2 = False
+            elif self.should_package_drop:
+                self.package_drop()
+                self.should_package_drop = False
 
-            elif self.should_depart_o2:
-                self.depart_o2()
-                self.should_depart_o2 = False
-
-            elif self.should_approach_beacon:
-                self.approach_beacon()
-                self.should_approach_beacon = False
-
-            elif self.should_depart_beacon:
-                self.depart_beacon()
-                self.should_depart_beacon = False
+            elif self.should_cobra_arm:
+                self.cobra_pose()
+                self.should_cobra_arm = False
 
             time_diff = time() - start_time
 
@@ -159,20 +144,12 @@ class MiscArm(QtCore.QThread):
         for movement in ARM_UNSTOW_PROCEDURE:
             self.process_absolute_move_command(movement)
 
-    def approach_o2(self):
-        for movement in APPROACH_O2:
+    def package_drop(self):
+        for movement in ARM_PACKAGE_DROP:
             self.process_absolute_move_command(movement)
 
-    def depart_o2(self):
-        for movement in reversed(APPROACH_O2):
-            self.process_absolute_move_command(movement)
-
-    def approach_beacon(self):
-        for movement in APPROACH_BEACON:
-            self.process_absolute_move_command(movement)
-
-    def depart_beacon(self):
-        for movement in reversed(APPROACH_BEACON):
+    def cobra_pose(self):
+        for movement in ARM_COBRA_POSE:
             self.process_absolute_move_command(movement)
 
     def process_absolute_move_command(self, movement):
@@ -226,13 +203,13 @@ class MiscArm(QtCore.QThread):
         self.arm_controls_stow_arm_button.clicked.connect(self.on_stow_arm_button_pressed__slot)
         self.arm_controls_unstow_arm_button.clicked.connect(self.on_unstow_arm_button_pressed__slot)
         self.arm_control_upright_zeroed_button.clicked.connect(self.on_upright_zeroed_button_pressed__slot)
+        self.arm_control_cobra_button.clicked.connect(self.on_cobra_arm_button_pressed__slot)
 
         self.arm_controls_calibration_button.clicked.connect(self.on_set_calibration_button_pressed__slot)
         self.arm_controls_clear_faults_button.clicked.connect(self.on_clear_faults_button_pressed__slot)
         self.arm_controls_reset_motor_drivers_button.clicked.connect(self.on_reset_drivers_button_pressed__slot)
 
-        self.arm_controls_approach_o2_button.clicked.connect(self.on_approach_o2_button_pressed__slot)
-        self.arm_controls_approach_beacon_button.clicked.connect(self.on_approach_beacon_button_pressed__slot)
+        self.arm_controls_package_drop_button.clicked.connect(self.on_package_drop_button_pressed__slot)
 
         self.gripper_home_button.clicked.connect(self.on_gripper_home_pressed)
         self.gripper_toggle_light_button.clicked.connect(self.on_gripper_toggle_light_pressed)
@@ -262,17 +239,11 @@ class MiscArm(QtCore.QThread):
     def on_unstow_arm_button_pressed__slot(self):
         self.should_unstow_arm = True
 
-    def on_approach_o2_button_pressed__slot(self):
-        self.should_approach_o2 = True
+    def on_cobra_arm_button_pressed__slot(self):
+        self.should_cobra_arm = True
 
-    def on_depart_o2_button_pressed__slot(self):
-        self.should_depart_o2 = True
-
-    def on_approach_beacon_button_pressed__slot(self):
-        self.should_approach_beacon = True
-
-    def on_depart_beacon_button_pressed__slot(self):
-        self.should_depart_beacon = True
+    def on_package_drop_button_pressed__slot(self):
+        self.should_package_drop = True
 
     def on_gripper_home_pressed(self):
         message = GripperControlMessage()
