@@ -225,6 +225,7 @@ class EffectorsControl(object):
         self.gripper_position_status = 0
 
         self.linear_curr_position = 0
+        self.motor_curr_position = 0
 
         self.run()
 
@@ -289,7 +290,9 @@ class EffectorsControl(object):
             motor_set_position_positive = self.mining_control_message.motor_set_position_positive
             motor_set_position_negative = self.mining_control_message.motor_set_position_negative
             motor_set_position_absolute = self.mining_control_message.motor_set_position_absolute
+            new_motor_absolute_target = self.motor_curr_position + motor_set_position_absolute
             motor_stop = self.mining_control_message.motor_stop
+            print(new_motor_absolute_target, motor_set_position_absolute, self.motor_curr_position)
 
             linear_set_position_positive = self.mining_control_message.linear_set_position_positive
             linear_set_position_negative = self.mining_control_message.linear_set_position_negative
@@ -324,8 +327,8 @@ class EffectorsControl(object):
                         self.mining_registers = None
                         print("MINING HOMING COMPLETE")
 
-            if motor_set_position_absolute > 0:
-                self.mining_registers[MINING_MODBUS_REGISTERS_PART_2["MOTOR_SET_POSITION_ABSOLUTE"]] = motor_set_position_absolute
+            if motor_set_position_absolute != 0:
+                self.mining_registers[MINING_MODBUS_REGISTERS_PART_2["MOTOR_SET_POSITION_ABSOLUTE"]] = new_motor_absolute_target
             if linear_set_position_absolute != 0:
                 self.mining_registers_part_2[MINING_MODBUS_REGISTERS_PART_2["LINEAR_SET_POSITION_ABSOLUTE"]] = new_linear_absolute_target
             if servo1_target >= 0:
@@ -364,21 +367,17 @@ class EffectorsControl(object):
             if self.mining_control_message.probe_take_reading:
                 self.mining_registers[MINING_MODBUS_REGISTERS["PROBE_TAKE_READING"]] = 1
 
-            self.mining_node.write_registers(0, self.mining_registers)
-            self.mining_node.write_registers(MINING_HALF_REG_LIMIT, self.mining_registers_part_2)
             print(self.mining_registers)
             print(self.mining_registers_part_2)
+            self.mining_node.write_registers(0, self.mining_registers)
+            self.mining_node.write_registers(MINING_HALF_REG_LIMIT, self.mining_registers_part_2)
 
             self.modbus_nodes_seen_time = time()
             self.new_mining_control_message = False
 
     def process_camera_control_message(self):
         if self.new_camera_control_message:
-            self.mining_registers[MINING_MODBUS_REGISTERS["MOTOR_SET_POSITION_POSITIVE"]] = 0
-            self.mining_registers[MINING_MODBUS_REGISTERS["MOTOR_SET_POSITION_NEGATIVE"]] = 0
             self.mining_registers[MINING_MODBUS_REGISTERS_PART_2["MOTOR_GO_HOME"]] = 0
-            self.mining_registers_part_2[MINING_MODBUS_REGISTERS_PART_2["LINEAR_SET_POSITION_POSITIVE"]] = 0
-            self.mining_registers_part_2[MINING_MODBUS_REGISTERS_PART_2["LINEAR_SET_POSITION_NEGATIVE"]] = 0
             self.mining_registers[MINING_MODBUS_REGISTERS["PROBE_TAKE_READING"]] = 0
             self.mining_registers_part_2[MINING_MODBUS_REGISTERS_PART_2["OVERTRAVEL"]] = 0
 
@@ -400,6 +399,9 @@ class EffectorsControl(object):
             self.mining_registers = self.mining_node.read_registers(0, MINING_HALF_REG_LIMIT)
             self.mining_registers_part_2 = self.mining_node.read_registers(MINING_HALF_REG_LIMIT, MINING_REMAINING_REGS)
             
+            self.linear_curr_position = message.linear_current_position
+            self.motor_curr_position = message.motor_current_position
+            
             message = MiningStatusMessage()
             message.probe_temp_c = self.mining_registers[MINING_MODBUS_REGISTERS["PROBE_TEMP_C"]]
             message.probe_moisture = self.mining_registers[MINING_MODBUS_REGISTERS["PROBE_MOISTURE"]]
@@ -409,7 +411,6 @@ class EffectorsControl(object):
             message.probe_imag_dielec_perm = self.mining_registers[MINING_MODBUS_REGISTERS["PROBE_IMAG_DIELEC_PERM"]]
 
             message.linear_current_position = self.mining_registers_part_2[MINING_MODBUS_REGISTERS_PART_2["LINEAR_CURRENT_POSITION"]]
-            self.linear_curr_position = message.linear_current_position
 
             message.motor_current_position = self.mining_registers[MINING_MODBUS_REGISTERS_PART_2["MOTOR_CURRENT_POSITION"]]
 
