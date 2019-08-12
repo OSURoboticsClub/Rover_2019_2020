@@ -7,7 +7,7 @@ from PyQt5 import QtCore, QtWidgets
 import logging
 import rospy
 
-from rover_control.msg import MiningStatusMessage, MiningControlMessage, CameraControlMessage
+from rover_control.msg import MiningStatusMessage, MiningControlMessage, CameraControlMessage, DrillControlMessage
 from std_msgs.msg import Float64
 
 #####################################
@@ -15,6 +15,7 @@ from std_msgs.msg import Float64
 #####################################
 MINING_STATUS_TOPIC = "/rover_control/mining/status"
 MINING_CONTROL_TOPIC = "/rover_control/mining/control"
+DRILL_CONTROL_TOPIC = "/rover_control/mining/drill/control"
 
 CAMERA_CONTROL_TOPIC = "/rover_control/camera/control"
 
@@ -28,6 +29,8 @@ SCOOP_DROP_POSITION = 132
 # servo 2
 CONTAINER_OPEN = 135
 CONTAINER_CLOSED = 105
+
+DRILL_SPEED = 20
 
 
 #####################################
@@ -61,6 +64,9 @@ class Mining(QtCore.QObject):
         self.mining_close_button = self.left_screen.mining_close_button  # type:QtWidgets.QPushButton
         self.mining_home_linear_button = self.left_screen.mining_home_linear_button  # type:QtWidgets.QPushButton
         self.mining_toggle_overtravel_button = self.left_screen.mining_toggle_overtravel_button  # type:QtWidgets.QPushButton
+        self.drill_turn_clockwise_button = self.left_screen.drill_turn_clockwise_button  # type:QtWidgets.QPushButton
+        self.drill_turn_counter_clockwise_button = self.left_screen.drill_turn_counter_clockwise_button  # type:QtWidgets.QPushButton
+        self.drill_stop_button = self.left_screen.drill_stop_button  # type:QtWidgets.QPushButton
         self.science_probe_down_button = self.left_screen.science_probe_down_button  # type:QtWidgets.QPushButton
         self.science_scoop_down_button = self.left_screen.science_scoop_down_button  # type:QtWidgets.QPushButton
         self.science_container_open_button = self.left_screen.science_container_open_button  # type:QtWidgets.QPushButton
@@ -100,6 +106,7 @@ class Mining(QtCore.QObject):
         self.mining_status_subscriber = rospy.Subscriber(MINING_STATUS_TOPIC, MiningStatusMessage, self.mining_status_message_received__callback)
 
         self.mining_control_publisher = rospy.Publisher(MINING_CONTROL_TOPIC, MiningControlMessage, queue_size=1)
+        self.drill_control_publisher = rospy.Publisher(DRILL_CONTROL_TOPIC, DrillControlMessage, queue_size=1)
         self.camera_control_publisher = rospy.Publisher(CAMERA_CONTROL_TOPIC, CameraControlMessage, queue_size=1)
 
         self.connect_signals_and_slots()
@@ -114,6 +121,9 @@ class Mining(QtCore.QObject):
         self.mining_close_button.clicked.connect(self.on_mining_close_clicked__slot)
         self.mining_home_linear_button.clicked.connect(self.on_mining_home_linear_clicked__slot)
         self.mining_toggle_overtravel_button.clicked.connect(self.on_mining_toggle_overtravel_clicked__slot)
+        self.drill_turn_clockwise_button.clicked.connect(self.on_drill_clockwise_clocked__slot)
+        self.drill_turn_counter_clockwise_button.clicked.connect(self.on_drill_counter_clockwise_clicked__slot)
+        self.drill_stop_button.clicked.connect(self.on_drill_stop_clicked__slot)
         self.science_probe_down_button.clicked.connect(self.on_science_probe_down_clicked__slot)
         self.science_scoop_down_button.clicked.connect(self.on_science_scoop_down_clicked__slot)
         self.science_container_open_button.clicked.connect(self.on_science_container_open_clicked__slot)
@@ -168,6 +178,23 @@ class Mining(QtCore.QObject):
         message = MiningControlMessage()
         message.overtravel = True
         self.mining_control_publisher.publish(message)
+
+    def on_drill_clockwise_clocked__slot(self):
+        message = DrillControlMessage()
+        message.direction = True
+        message.speed = DRILL_SPEED
+        self.drill_control_publisher.publish(message)
+
+    def on_drill_counter_clockwise_clicked__slot(self):
+        message = DrillControlMessage()
+        message.direction = False
+        message.speed = DRILL_SPEED
+        self.drill_control_publisher.publish(message)
+
+    def on_drill_stop_clicked__slot(self):
+        message = DrillControlMessage()
+        message.speed = 0
+        self.drill_control_publisher.publish(message)
 
     def on_science_probe_down_clicked__slot(self):
         message = MiningControlMessage()

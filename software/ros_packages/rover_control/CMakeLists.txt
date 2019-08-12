@@ -60,6 +60,7 @@ find_package(catkin REQUIRED COMPONENTS
    GripperControlMessage.msg
    GripperStatusMessage.msg
    CameraControlMessage.msg
+   DrillControlMessage.msg
  )
 
 ## Generate services in the 'srv' folder

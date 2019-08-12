@@ -12,7 +12,7 @@ import minimalmodbus
 # from std_msgs.msg import UInt8, UInt16
 
 # Custom Imports
-from rover_control.msg import MiningControlMessage, MiningStatusMessage, GripperControlMessage, GripperStatusMessage, CameraControlMessage
+from rover_control.msg import MiningControlMessage, MiningStatusMessage, GripperControlMessage, GripperStatusMessage, CameraControlMessage, DrillControlMessage
 
 #####################################
 # Global Variables
@@ -26,16 +26,19 @@ DEFAULT_MINING_PORT = "/dev/rover/ttyMining"
 DEFAULT_BAUD = 115200
 
 GRIPPER_NODE_ID = 1
+DRILL_NODE_ID = 2
 MINING_NODE_ID = 3
 
 GRIPPER_TIMEOUT = 0.5
 MINING_TIMEOUT = 0.3
+DRILL_TIMEOUT = 0.3
 
 MINING_HALF_REG_LIMIT = 15
 MINING_REMAINING_REGS = 17
 
 FAILED_GRIPPER_MODBUS_LIMIT = 20
 FAILED_MINING_MODBUS_LIMIMT = 20
+FAILED_DRILL_MODBUS_LIMIMT = 20
 
 RX_DELAY = 0.01
 TX_DELAY = 0.01
@@ -47,6 +50,8 @@ GRIPPER_STATUS_PUBLISHER_TOPIC = "gripper/status"
 
 MINING_CONTROL_SUBSCRIBER_TOPIC = "mining/control"
 MINING_STATUS_PUBLISHER_TOPIC = "mining/status"
+
+DRILL_CONTROL_SUBSCRIBER_TOPIC = "mining/drill/control"
 
 CAMERA_CONTROL_SUBSCRIBER_TOPIC = "camera/control"
 
@@ -134,6 +139,11 @@ MINING_MODBUS_REGISTERS_PART_2 = {
 
 MINING_POSITIONAL_THRESHOLD = 20
 
+DRILL_MODBUS_REGISTERS = {
+    "DIRECTION" = 0,
+    "SPEED" = 1
+}
+
 # ##### Science Defines #####
 
 # ##### Misc Defines #####
@@ -158,10 +168,12 @@ class EffectorsControl(object):
 
         self.gripper_port = rospy.get_param("~port", DEFAULT_GRIPPER_PORT)
         self.mining_port = rospy.get_param("~port", DEFAULT_MINING_PORT)
+        self.drill_port = rospy.get_param("~port", DEFAULT_MINING_PORT)
         self.baud = rospy.get_param("~baud", DEFAULT_BAUD)
 
         self.gripper_node_id = rospy.get_param("~gripper_node_id", GRIPPER_NODE_ID)
         self.mining_node_id = rospy.get_param("~mining_node_id", MINING_NODE_ID)
+        self.drill_node_id = rospy.get_param("~drill_node_id", DRILL_NODE_ID)
 
         self.gripper_control_subscriber_topic = rospy.get_param("~gripper_control_subscriber_topic",
                                                                 GRIPPER_CONTROL_SUBSCRIBER_TOPIC)
@@ -169,7 +181,10 @@ class EffectorsControl(object):
                                                               GRIPPER_STATUS_PUBLISHER_TOPIC)
 
         self.mining_control_subscriber_topic = rospy.get_param("~mining_control_subscriber_topic",
-                                                               MINING_CONTROL_SUBSCRIBER_TOPIC)
+                                                             MINING_CONTROL_SUBSCRIBER_TOPIC)
+        
+        self.drill_control_subscriber_topic = rospy.get_param("~drill_control_subscriber_topic",
+                                                               DRILL_CONTROL_SUBSCRIBER_TOPIC)
 
         self.mining_status_publisher_topic = rospy.get_param("~mining_status_publisher_topic",
                                                              MINING_STATUS_PUBLISHER_TOPIC)
@@ -181,9 +196,11 @@ class EffectorsControl(object):
 
         self.gripper_node = None  # type:minimalmodbus.Instrument
         self.mining_node = None  # type:minimalmodbus.Instrument
+        self.drill_node = None  # type:minimalmodbus.Instrument
 
         self.gripper_node_present = False
         self.mining_node_present = True
+        self.drill_node_present = True
 
         self.connect_to_nodes()
         # self.check_which_nodes_present()
@@ -192,7 +209,9 @@ class EffectorsControl(object):
         self.gripper_control_subscriber = rospy.Subscriber(self.gripper_control_subscriber_topic, GripperControlMessage, self.gripper_control_message_received__callback)
 
         self.mining_control_subscriber = rospy.Subscriber(self.mining_control_subscriber_topic, MiningControlMessage, self.mining_control_message_received__callback)
-
+        
+        self.drill_control_subscriber = rospy.Subscriber(self.drill_control_subscriber_topic, DrillControlMessage, self.drill_control_message_received__callback)
+        
         self.camera_control_subscriber = rospy.Subscriber(self.camera_control_subscriber_topic, CameraControlMessage, self.camera_control_message_received__callback)
 
         # ##### Publishers #####
@@ -207,18 +226,24 @@ class EffectorsControl(object):
         self.mining_registers = [0] * MINING_HALF_REG_LIMIT  # Weird stuff to read twice to resolve CRC errors
         self.mining_registers_part_2 = [0] * MINING_REMAINING_REGS  # For reading the last 17 registers
         self.gripper_registers = None
+        
+        self.drill_registers = None
 
         self.mining_control_message = None  # type:MiningControlMessage
         self.new_mining_control_message = False
 
         self.gripper_control_message = None
         self.new_gripper_control_message = False
+        
+        self.drill_control_message = None  # type:DrillControlMessage
+        self.new_drill_control_message = False
 
         self.camera_control_message = None  # type: CameraControlMessage
         self.new_camera_control_message = False
 
         self.failed_gripper_modbus_count = 0
         self.failed_mining_modbus_count = 0
+        self.failed_dril_modbus_count = 0
 
         self.which_effector = self.EFFECTORS.index("GRIPPER")
 
@@ -235,6 +260,10 @@ class EffectorsControl(object):
 
         self.mining_node.serial = serial.rs485.RS485(self.mining_port, baudrate=self.baud, timeout=MINING_TIMEOUT)
         self.mining_node.serial.rs485_mode = serial.rs485.RS485Settings(rts_level_for_rx=1, rts_level_for_tx=0, delay_before_rx=RX_DELAY, delay_before_tx=TX_DELAY)
+
+        self.drill_node.serial = serial.rs485.RS485(self.drill_port, baudrate=self.baud, timeout=DRILL_TIMEOUT)
+        self.drill_node.serial.rs485_mode = serial.rs485.RS485Settings(rts_level_for_rx=1, rts_level_for_tx=0, delay_before_rx=RX_DELAY, delay_before_tx=TX_DELAY)
+
 
     def run(self):
         while not rospy.is_shutdown():
@@ -269,40 +298,52 @@ class EffectorsControl(object):
     def run_mining(self):
         self.process_mining_control_message()
         self.send_mining_status_message()
+        self.process_drill_control_messages()
         self.process_camera_control_message()
 
     def connect_to_nodes(self):
         self.gripper_node = minimalmodbus.Instrument(self.gripper_port, int(self.gripper_node_id))
         self.mining_node = minimalmodbus.Instrument(self.mining_port, int(self.mining_node_id))
+        self.drill_node = minimalmodbus.Instrument(self.drill_port, int(self.drill_node_id))
 
         self.__setup_minimalmodbus_for_485()
 
     def process_mining_control_message(self):
+        print("process mining control entered")
         if not self.mining_registers or not self.mining_registers_part_2:
             # Read around half of registers first to avoid reading 32 registers at a time. 
             # This seems to prevent CRC errors.
             self.mining_registers = self.mining_node.read_registers(0, MINING_HALF_REG_LIMIT)   
             self.mining_registers_part_2 = self.mining_node.read_registers(MINING_HALF_REG_LIMIT, MINING_REMAINING_REGS)
 
+        print("mining registers read")
         if self.new_mining_control_message and self.mining_node_present:
             print(self.mining_control_message)
             motor_go_home = self.mining_control_message.motor_go_home
             motor_set_position_positive = self.mining_control_message.motor_set_position_positive
             motor_set_position_negative = self.mining_control_message.motor_set_position_negative
             motor_set_position_absolute = self.mining_control_message.motor_set_position_absolute
-            new_motor_absolute_target = self.motor_curr_position + motor_set_position_absolute
+
+            # Prevent input value from being too small when writing register
+            if self.motor_curr_position + motor_set_position_absolute >= 0:
+                new_motor_absolute_target = self.motor_curr_position + motor_set_position_absolute
+            else:
+                new_motor_absolute_target = 0
+
             motor_stop = self.mining_control_message.motor_stop
             print(new_motor_absolute_target, motor_set_position_absolute, self.motor_curr_position)
 
             linear_set_position_positive = self.mining_control_message.linear_set_position_positive
             linear_set_position_negative = self.mining_control_message.linear_set_position_negative
             linear_set_position_absolute = self.mining_control_message.linear_set_position_absolute
-            new_linear_absolute_target = self.linear_curr_position + linear_set_position_absolute
+            if self.linear_curr_position + linear_set_position_absolute >= 0:
+                new_linear_absolute_target = self.linear_curr_position + linear_set_position_absolute
+            else:
+                new_linear_absolute_target = 0
 
             linear_stop = self.mining_control_message.linear_stop
             
             print(new_linear_absolute_target, linear_set_position_absolute, self.linear_curr_position)
-
 
             servo1_target = self.mining_control_message.servo1_target
             servo2_target = self.mining_control_message.servo2_target
@@ -315,20 +356,11 @@ class EffectorsControl(object):
                 self.mining_registers_part_2[MINING_MODBUS_REGISTERS_PART_2["MOTOR_GO_HOME"]] = 1
                 print("MINING MOTOR_GO_HOME TRUE")
                 self.mining_node.write_registers(MINING_HALF_REG_LIMIT, self.mining_registers_part_2)
-                homing_complete = False
-
-                while not homing_complete:
-                    print("entered mining homing while")
-                    self.mining_registers_part_2 = self.mining_node.read_registers(MINING_HALF_REG_LIMIT, MINING_REMAINING_REGS)
-                    self.send_mining_status_message()
-
-                    if self.mining_registers_part_2[MINING_MODBUS_REGISTERS_PART_2["SWITCH1_OUT"]]:
-                        homing_complete = True
-                        self.mining_registers = None
-                        print("MINING HOMING COMPLETE")
-
+                
             if motor_set_position_absolute != 0:
-                self.mining_registers[MINING_MODBUS_REGISTERS_PART_2["MOTOR_SET_POSITION_ABSOLUTE"]] = new_motor_absolute_target
+                self.mining_registers_part_2[MINING_MODBUS_REGISTERS_PART_2["MOTOR_SET_POSITION_ABSOLUTE"]] = new_motor_absolute_target
+                print(self.mining_registers_part_2[MINING_MODBUS_REGISTERS_PART_2["MOTOR_SET_POSITION_ABSOLUTE"]])
+                print(MINING_MODBUS_REGISTERS_PART_2["MOTOR_SET_POSITION_ABSOLUTE"])
             if linear_set_position_absolute != 0:
                 self.mining_registers_part_2[MINING_MODBUS_REGISTERS_PART_2["LINEAR_SET_POSITION_ABSOLUTE"]] = new_linear_absolute_target
             if servo1_target >= 0:
@@ -371,6 +403,7 @@ class EffectorsControl(object):
             print(self.mining_registers_part_2)
             self.mining_node.write_registers(0, self.mining_registers)
             self.mining_node.write_registers(MINING_HALF_REG_LIMIT, self.mining_registers_part_2)
+            print("wrote registers...")
 
             self.modbus_nodes_seen_time = time()
             self.new_mining_control_message = False
@@ -395,14 +428,19 @@ class EffectorsControl(object):
             self.new_camera_control_message = False
 
     def send_mining_status_message(self):
+        print("send mining statuses entered")
         if self.mining_node_present:
             self.mining_registers = self.mining_node.read_registers(0, MINING_HALF_REG_LIMIT)
             self.mining_registers_part_2 = self.mining_node.read_registers(MINING_HALF_REG_LIMIT, MINING_REMAINING_REGS)
+            print("read mining registers")
             
+            print("making status message")
+            message = MiningStatusMessage()
+            print("made status message")
+
             self.linear_curr_position = message.linear_current_position
             self.motor_curr_position = message.motor_current_position
             
-            message = MiningStatusMessage()
             message.probe_temp_c = self.mining_registers[MINING_MODBUS_REGISTERS["PROBE_TEMP_C"]]
             message.probe_moisture = self.mining_registers[MINING_MODBUS_REGISTERS["PROBE_MOISTURE"]]
             message.probe_loss_tangent = self.mining_registers[MINING_MODBUS_REGISTERS["PROBE_LOSS_TANGENT"]]
@@ -424,7 +462,8 @@ class EffectorsControl(object):
             message.switch2_out = self.mining_registers_part_2[MINING_MODBUS_REGISTERS_PART_2["SWITCH2_OUT"]]
             message.homing_needed = self.mining_registers_part_2[MINING_MODBUS_REGISTERS_PART_2["HOMING_NEEDED"]]
 
-            #print(message)
+            print(message)
+            print("publishing message...")
             self.mining_status_publisher.publish(message)
 
             self.modbus_nodes_seen_time = time()
@@ -503,6 +542,16 @@ class EffectorsControl(object):
 
         self.gripper_status_publisher.publish(message)
 
+    def process_drill_control_messages(self):
+        if self.new_drill_control_message and self.drill_node_present:
+            self.drill_registers[DRILL_MODBUS_REGISTERS["DIRECTION"]] = self.drill_control_message.direction
+            self.drill_registers[DRILL_MODBUS_REGISTERS["SPEED"]] = self.drill_control_message.speed
+ 
+            self.drill_node.write_registers(0, self.drill_registers)
+            self.gripper_control_message = None
+            self.modbus_nodes_seen_time = time()
+            self.new_drill_control_message = False
+
     def gripper_control_message_received__callback(self, control_message):
         self.gripper_control_message = control_message
         self.new_gripper_control_message = True
@@ -510,6 +559,10 @@ class EffectorsControl(object):
     def mining_control_message_received__callback(self, control_message):
         self.mining_control_message = control_message
         self.new_mining_control_message = True
+
+    def drill_control_message_received__callback(self, control_message):
+        self.drill_control_message = control_message
+        self.new_drill_control_message = True
 
     def camera_control_message_received__callback(self, control_message):
         self.camera_control_message = control_message
