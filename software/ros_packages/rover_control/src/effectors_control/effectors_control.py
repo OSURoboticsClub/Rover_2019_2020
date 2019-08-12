@@ -140,8 +140,8 @@ MINING_MODBUS_REGISTERS_PART_2 = {
 MINING_POSITIONAL_THRESHOLD = 20
 
 DRILL_MODBUS_REGISTERS = {
-    "DIRECTION" = 0,
-    "SPEED" = 1
+    "DIRECTION": 0,
+    "SPEED": 1
 }
 
 # ##### Science Defines #####
