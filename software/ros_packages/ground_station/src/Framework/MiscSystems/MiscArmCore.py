@@ -44,7 +44,9 @@ ARM_COBRA_POSE = [
 ]
 
 ARM_PACKAGE_DROP = [
-    [0.0, -0.035, -0.28, 0.0, 0.0, 0.0]    # Run after cobra position or unstow
+    #[0.0, -0.035, -0.28, 0.0, 0.0, -0.25]
+    #[0.37, -0.02, -0.26, 0.01, 0.0, -0.25]
+    [0.37, -0.02, -0.26, 0.01, -0.25, -0.12]    # Run after cobra position or unstow
 ]
 
 
@@ -63,6 +65,7 @@ class MiscArm(QtCore.QThread):
         self.arm_controls_stow_arm_button = self.left_screen.arm_controls_stow_arm_button  # type:QtWidgets.QPushButton
         self.arm_controls_unstow_arm_button = self.left_screen.arm_controls_unstow_arm_button  # type:QtWidgets.QPushButton
         self.arm_control_cobra_button = self.left_screen.arm_control_cobra_button  # type:QtWidgets.QPushButton
+        self.arm_controls_package_drop_button = self.left_screen.arm_controls_package_drop_button # type:QtWidgets.QPushButton
 
         self.arm_controls_calibration_button = self.left_screen.arm_controls_calibration_button  # type:QtWidgets.QPushButton
         self.arm_controls_clear_faults_button = self.left_screen.arm_controls_clear_faults_button  # type:QtWidgets.QPushButton
@@ -70,7 +73,6 @@ class MiscArm(QtCore.QThread):
         self.gripper_home_button = self.left_screen.gripper_home_button # type:QtWidgets.QPushButton
         self.gripper_toggle_light_button = self.left_screen.gripper_toggle_light_button # type:QtWidgets.QPushButton
 
-        self.arm_controls_package_drop_button = self.left_screen.arm_controls_package_drop_button # type:QtWidgets.QPushButton
         self.gripper_toggle_laser_button = self.left_screen.gripper_toggle_laser_button  # type:QtWidgets.QPushButton
 
         # ########## Get the settings instance ##########
@@ -122,13 +124,13 @@ class MiscArm(QtCore.QThread):
                 self.unstow_rover_arm()
                 self.should_unstow_arm = False
 
-            elif self.should_package_drop:
-                self.package_drop()
-                self.should_package_drop = False
-
             elif self.should_cobra_arm:
                 self.cobra_pose()
                 self.should_cobra_arm = False
+
+            elif self.should_package_drop:
+                self.package_drop()
+                self.should_package_drop = False
 
             time_diff = time() - start_time
 
@@ -146,6 +148,7 @@ class MiscArm(QtCore.QThread):
 
     def package_drop(self):
         for movement in ARM_PACKAGE_DROP:
+            self.process_absolute_move_command(movement)
             self.process_absolute_move_command(movement)
 
     def cobra_pose(self):
@@ -173,7 +176,7 @@ class MiscArm(QtCore.QThread):
         elbow_set = movement[2]
         roll_set = movement[3]
         wrist_pitch_set = movement[4]
-        wrist_roll_set = movement[5] - (wrist_pitch_set / 2.0)
+        wrist_roll_set = movement[5]
 
         while abs(self.base_position - base_set) > POSITIONAL_TOLERANCE:
             # self.logger.debug("Waiting for base| %f\t%f" % (self.base_position, base_set))
