@@ -30,7 +30,7 @@ SCOOP_DROP_POSITION = 132
 CONTAINER_OPEN = 135
 CONTAINER_CLOSED = 105
 
-DRILL_SPEED = 20
+DRILL_SPEED = 150
 
 
 #####################################
