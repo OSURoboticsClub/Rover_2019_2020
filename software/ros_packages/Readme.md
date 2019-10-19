@@ -138,7 +138,7 @@ If you haven't already, create a folder and clone this repository:
 ```
 mkdir ~/Github
 cd ~/Github
-git clone https://github.com/OSURoboticsClub/Rover_2018_2019.git
+git clone https://github.com/OSURoboticsClub/Rover_2019_2020.git
 ```
 #### 2.5 Create links to the ROS Packages
 To keep the code in the repository, and allow catkin the ability to access it, we will need to create some symbolic links:
