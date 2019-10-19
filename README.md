@@ -1,7 +1,8 @@
 # Mars Rover Team 2019-2020
 
-This is the Rover GitHub. All groundstation code is under the software folder.
+## Software
 
-https://github.com/OSURoboticsClub/Rover_2019_2020/tree/master/software
+### Find the Ground Station Quickstart 
+ROS Kinetic Setup: https://github.com/OSURoboticsClub/Rover_2019_2020/tree/master/software
 
-https://github.com/OSURoboticsClub/Rover_2019_2020/tree/master/software/ros_packages
+MoveIt Installation: https://github.com/OSURoboticsClub/Rover_2019_2020/tree/master/software/ros_packages
