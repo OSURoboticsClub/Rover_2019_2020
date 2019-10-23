@@ -26,7 +26,7 @@ catkin_workspace_path="$HOME/$catkin_workspace_dir"
 catkin_src_path="$catkin_workspace_path/src"
 
 # Get the rover software directory
-github_rover_repo_dir="Github/Rover_2018_2019"
+github_rover_repo_dir="Github/Rover_2019_2020"
 github_rover_packages_path="$HOME/$github_rover_repo_dir/software/ros_packages"
 
 # Remove existing symbolic links if necessary
