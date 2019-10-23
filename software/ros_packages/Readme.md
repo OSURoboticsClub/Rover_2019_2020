@@ -144,8 +144,8 @@ git clone https://github.com/OSURoboticsClub/Rover_2019_2020.git
 To keep the code in the repository, and allow catkin the ability to access it, we will need to create some symbolic links:
 ```
 cd ~/catkin_workspace/src
-ln -s ~/Github/Rover_2018_2019/software/ros_packages/rover_arm_moveit_config rover_arm_moveit_config
-ln -s ~/Github/Rover_2018_2019/software/ros_packages/mr1718-arm-urdf_export mr1718-arm-urdf_export
+ln -s ~/Github/Rover_2019_2020/software/ros_packages/rover_arm_moveit_config rover_arm_moveit_config
+ln -s ~/Github/Rover_2019_2020/software/ros_packages/mr1718-arm-urdf_export mr1718-arm-urdf_export
 ```
 
 #### 2.6 Build your catkin workspace
@@ -186,7 +186,7 @@ roslaunch rover_arm_moveit_config demo.launch
 
 Feel free to try ```roslaunch``` on the other launch files, which can be found here:
 ```
-ls ~/Github/Rover_2018_2019/software/ros_packages/rover_arm_moveit_config/launch
+ls ~/Github/Rover_2019_2020/software/ros_packages/rover_arm_moveit_config/launch
 ```
 
 <hr>
