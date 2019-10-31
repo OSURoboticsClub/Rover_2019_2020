@@ -16,7 +16,7 @@ This handles everything from processing vision data to actually sending drive co
 ## How to Launch | Rover Arm using RViz and MoveIt!
 **ALSO IMPORTANT:**  The following instructions assume you don't have ROS Kinetic or MoveIt! installed yet. If you have pre-existing catkin workspaces (e.g., "\~/catkin_ws", "\~/ws_moveit", etc.) back them up by moving them to another location. For example:
 ```
-mv ~/catkin_ws ~/_catkin_ws
+mv ~/catkin_workspace ~/_catkin_workspace
 ```
 If you've installed ROS/MoveIt! before, you will get a lot of messages indicating that no changes were made. That's fine - just run them all anyway.
 
