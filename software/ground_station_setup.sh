@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 # As a point of reference, the environment layout should be as follows
-# /home/$user/Github/Rover_2018_2019 for the OSURC github repo
+# /home/$user/Github/Rover_2019_2020 for the OSURC github repo
 # /home/$user/catkin_workspace for the user's catkin catkin_workspace
 # By keeping this consistent across all development machines, it will make it
 # easier to keep track of things
