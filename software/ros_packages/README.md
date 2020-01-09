@@ -37,9 +37,9 @@ sudo sh -c 'echo "deb http://packages.ros.org/ros/ubuntu $(lsb_release -sc) main
 
 #### 1.3 Setup your keys
 ```
-sudo apt-key adv --keyserver hkp://ha.pool.sks-keyservers.net:80 --recv-key 421C365BD9FF1F717815A3895523BAEEB01FA116
+sudo apt-key adv --keyserver 'hkp://keyserver.ubuntu.com:80' --recv-key C1CF6E31E6BADE8868B172B4F42ED6FBAB17C654
 ```
-If you experience issues connecting to the keyserver, you can try substituting hkp://pgp.mit.edu:80 or hkp://keyserver.ubuntu.com:80 in the previous command.
+If you experience issues connecting to the keyserver, you can try substituting `hkp://pgp.mit.edu:80` in the previous command.
 
 #### 1.4 Installation
 First, make sure your Debian package index is up-to-date:
@@ -101,7 +101,7 @@ It is easy to miss steps when going through the ROS installation tutorial. If yo
 ```
 rosdep update
 sudo apt-get update
-sudo apt-get dist-upgrade
+sudo apt-get upgrade
 ```
 
 Install catkin (the ROS build system):
@@ -197,5 +197,3 @@ ls ~/Github/Rover_2019_2020/software/ros_packages/rover_arm_moveit_config/launch
 
 ## Authors
 **Adam Stewart** - *Combined documentation from [install ROS Kinetic](http://wiki.ros.org/kinetic/Installation/Ubuntu) and [install MoveIt!](http://docs.ros.org/kinetic/api/moveit_tutorials/html/index.html)* - [GitHub](https://github.com/AdamTogether)
-
-
