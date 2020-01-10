@@ -1,11 +1,11 @@
 <?xml version="1.0"?>
 <package>
-  <name>ar_tag_toolbox</name>
+  <name>track_ar</name>
   <version>0.0.0</version>
-  <description>The test_blah package</description>
+  <description>Package for testing AR detection</description>
 
 
-  <maintainer email="andrew.dahdouh@gmail.com">Andrew Dahdouh</maintainer>
+  <maintainer email="jane_done@email.com">Jane Doe</maintainer>
 
 
   <license>BSD</license>

@@ -2,7 +2,7 @@
 
   <arg name="camID" default="1" />
 
-  <param name="robot_description" command="$(find xacro)/xacro.py $(find ar_tag_toolbox)/urdf/usb_cam.urdf"/>
+  <param name="robot_description" command="$(find xacro)/xacro.py $(find track_ar)/urdf/usb_cam.urdf"/>
 
   <node pkg="robot_state_publisher" type="state_publisher" name="state_publisher"/>
 
