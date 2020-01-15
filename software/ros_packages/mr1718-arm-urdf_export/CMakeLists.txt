@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 2.8.3)
 
-project(mr1718-arm-urdf_export)
+project(mr1819-arm_urdf)
 
 find_package(catkin REQUIRED)
 
