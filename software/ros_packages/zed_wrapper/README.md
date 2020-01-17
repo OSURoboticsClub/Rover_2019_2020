@@ -47,5 +47,9 @@ To launch the wrapper along with an Rviz preview, open a terminal and launch:
 To launch the wrapper without Rviz, use:
 
     roslaunch zed_wrapper zed.launch
+    
+### Helpful Links
 
-[More](https://www.stereolabs.com/documentation/guides/using-zed-with-ros/introduction.html)
+[ZED Interfaces and Integrations](https://www.stereolabs.com/docs/integrations/)
+[ZED Python API](https://github.com/stereolabs/zed-python-api)
+[Tutorials](https://www.stereolabs.com/documentation/guides/using-zed-with-ros/introduction.html)
