@@ -52,6 +52,12 @@ To launch the wrapper without Rviz, use:
 
 [ZED Interfaces and Integrations](https://www.stereolabs.com/docs/integrations/)
 
-[ZED Python API](https://github.com/stereolabs/zed-python-api)
+[ZED Tensorflow Integration](https://github.com/stereolabs/zed-tensorflow)
+
+[ZED OpenCV Integration Source](https://github.com/stereolabs/zed-opencv)
+
+[ZED Python API Source](https://github.com/stereolabs/zed-python-api)
+
+[ZED Python API Guide](https://www.stereolabs.com/docs/video/using-video/)
 
 [Tutorials](https://www.stereolabs.com/documentation/guides/using-zed-with-ros/introduction.html)
