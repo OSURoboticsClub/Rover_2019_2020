@@ -51,5 +51,7 @@ To launch the wrapper without Rviz, use:
 ### Helpful Links
 
 [ZED Interfaces and Integrations](https://www.stereolabs.com/docs/integrations/)
+
 [ZED Python API](https://github.com/stereolabs/zed-python-api)
+
 [Tutorials](https://www.stereolabs.com/documentation/guides/using-zed-with-ros/introduction.html)
