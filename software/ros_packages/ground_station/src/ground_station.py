@@ -31,7 +31,7 @@ import Framework.MiscSystems.RDFCore as RDFCore
 #####################################
 # Global Variables
 #####################################
-UI_FILE_LEFT = "Resources/Ui/left_screen.ui"
+UI_FILE_LEFT = "Resources/Ui/onescreen.ui"
 UI_FILE_RIGHT = "Resources/Ui/right_screen.ui"
 
 #####################################
