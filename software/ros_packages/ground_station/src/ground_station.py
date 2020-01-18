@@ -33,7 +33,7 @@ import Framework.MiscSystems.RDFCore as RDFCore
 #####################################
 UI_FILE_LEFT = "Resources/Ui/onescreen.ui"
 UI_FILE_RIGHT = "Resources/Ui/right_screen.ui"
-
+yeah = 1;
 #####################################
 # Class Organization
 #####################################
@@ -96,11 +96,11 @@ class GroundStation(QtCore.QObject):
         self.shared_objects["screens"]["left_screen"] = \
             self.create_application_window(UI_FILE_LEFT, "Rover Ground Station Left Screen",
                                            self.LEFT_SCREEN_ID)  # type: ApplicationWindow
-
-        self.shared_objects["screens"]["right_screen"] = \
-            self.create_application_window(UI_FILE_RIGHT, "Rover Ground Station Right Screen",
+         if(yeah != 1):
+            self.shared_objects["screens"]["right_screen"] = \
+                self.create_application_window(UI_FILE_RIGHT, "Rover Ground Station Right Screen",
                                            self.RIGHT_SCREEN_ID)  # type: ApplicationWindow
-
+         
         # ###### Initialize the Ground Station Node ######
         rospy.init_node("ground_station")
 
@@ -145,7 +145,8 @@ class GroundStation(QtCore.QObject):
 
     def __connect_signals_to_slots(self):
         self.shared_objects["screens"]["left_screen"].exit_requested_signal.connect(self.on_exit_requested__slot)
-        self.shared_objects["screens"]["right_screen"].exit_requested_signal.connect(self.on_exit_requested__slot)
+        if(yeah != 1)
+            self.shared_objects["screens"]["right_screen"].exit_requested_signal.connect(self.on_exit_requested__slot)
 
     def on_exit_requested__slot(self):
         self.kill_threads_signal.emit()
