@@ -1,0 +1,11 @@
+moveit_setup_assistant_config:
+  URDF:
+    package: mr1819-arm_urdf
+    relative_path: urdf/mr1819-arm_urdf.urdf
+    xacro_args: "--inorder "
+  SRDF:
+    relative_path: config/mr1819-arm_urdf.srdf
+  CONFIG:
+    author_name: Kira Kopcho
+    author_email: kopchok@oregonstate.edu
+    generated_timestamp: 1579391306

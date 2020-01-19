@@ -1,0 +1,50 @@
+<?xml version="1.0" ?>
+<!--This does not replace URDF, and is not an extension of URDF.
+    This is a format for representing semantic information about the robot structure.
+    A URDF file must exist for this robot as well, where the joints and the links that are referenced are defined
+-->
+<robot name="mr1819-arm_urdf">
+    <!--GROUPS: Representation of a set of joints and links. This can be useful for specifying DOF to plan for, defining arms, end effectors, etc-->
+    <!--LINKS: When a link is specified, the parent joint of that link (if it exists) is automatically included-->
+    <!--JOINTS: When a joint is specified, the child link of that joint (which will always exist) is automatically included-->
+    <!--CHAINS: When a chain is specified, all the links along the chain (including endpoints) are included in the group. Additionally, all the joints that are parents to included links are also included. This means that joints along the chain and the parent joint of the base link are included in the group-->
+    <!--SUBGROUPS: Groups can also be formed by referencing to already defined group names-->
+    <group name="rover_arm">
+        <link name="shoulder" />
+        <link name="upper_arm" />
+        <link name="elbow_roll" />
+        <link name="wrist_pitch" />
+        <link name="wrist_roll" />
+        <joint name="J1" />
+        <joint name="J2" />
+        <joint name="J3" />
+        <joint name="J4" />
+        <joint name="J5" />
+    </group>
+    <group name="rover_gripper">
+        <link name="gripper" />
+    </group>
+    <!--GROUP STATES: Purpose: Define a named state for a particular group, in terms of joint values. This is useful to define states like 'folded arms'-->
+    <group_state name="arm_upright" group="rover_arm">
+        <joint name="J1" value="0.2071" />
+        <joint name="J2" value="0" />
+        <joint name="J3" value="1.4844" />
+        <joint name="J4" value="0.2071" />
+    </group_state>
+    <!--END EFFECTOR: Purpose: Represent information about an end effector.-->
+    <end_effector name="rover_gripper" parent_link="wrist_roll" group="rover_gripper" />
+    <!--VIRTUAL JOINT: Purpose: this element defines a virtual joint between a robot link and an external frame of reference (considered fixed with respect to the robot)-->
+    <virtual_joint name="base_arm_joint" type="fixed" parent_frame="world" child_link="base_link" />
+    <!--DISABLE COLLISIONS: By default it is assumed that any link of the robot could potentially come into collision with any other link in the robot. This tag disables collision checking between a specified pair of links. -->
+    <disable_collisions link1="base_link" link2="elbow_roll" reason="Never" />
+    <disable_collisions link1="base_link" link2="shoulder" reason="Adjacent" />
+    <disable_collisions link1="elbow_roll" link2="gripper" reason="Never" />
+    <disable_collisions link1="elbow_roll" link2="shoulder" reason="Never" />
+    <disable_collisions link1="elbow_roll" link2="upper_arm" reason="Adjacent" />
+    <disable_collisions link1="elbow_roll" link2="wrist_pitch" reason="Adjacent" />
+    <disable_collisions link1="elbow_roll" link2="wrist_roll" reason="Never" />
+    <disable_collisions link1="gripper" link2="wrist_pitch" reason="Never" />
+    <disable_collisions link1="gripper" link2="wrist_roll" reason="Adjacent" />
+    <disable_collisions link1="shoulder" link2="upper_arm" reason="Adjacent" />
+    <disable_collisions link1="wrist_pitch" link2="wrist_roll" reason="Adjacent" />
+</robot>

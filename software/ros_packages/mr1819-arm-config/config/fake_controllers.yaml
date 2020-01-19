@@ -1,0 +1,10 @@
+controller_list:
+  - name: fake_rover_arm_controller
+    joints:
+      - J1
+      - J2
+      - J3
+      - J4
+  - name: fake_rover_gripper_controller
+    joints:
+      - J6
