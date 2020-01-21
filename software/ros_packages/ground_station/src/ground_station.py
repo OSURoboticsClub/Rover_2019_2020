@@ -23,7 +23,7 @@ import Framework.ArmSystems.ArmIndication as ArmIndication
 import Framework.StatusSystems.StatusCore as StatusCore
 import Framework.StatusSystems.UbiquitiStatusCore as UbiquitiStatusCore
 import Framework.SettingsSystems.UbiquitiRadioSettings as UbiquitiRadioSettings
-import Framework.MiscSystems.MiningCore as MiningCore
+#import Framework.MiscSystems.MiningCore as MiningCore
 import Framework.MiscSystems.BashConsoleCore as BashConsoleCore
 import Framework.MiscSystems.MiscArmCore as MiscArmCore
 import Framework.MiscSystems.RDFCore as RDFCore
@@ -99,7 +99,7 @@ class GroundStation(QtCore.QObject):
         rospy.init_node("ground_station")
 
         # ##### Instantiate Regular Classes ######
-        self.__add_non_thread("Mining System", MiningCore.Mining(self.shared_objects))
+        #self.__add_non_thread("Mining System", MiningCore.Mining(self.shared_objects))
         self.__add_non_thread("Arm Indication", ArmIndication.ArmIndication(self.shared_objects))
 
         # ##### Instantiate Threaded Classes ######
