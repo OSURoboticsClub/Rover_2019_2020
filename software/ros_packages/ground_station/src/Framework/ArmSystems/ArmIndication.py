@@ -107,7 +107,7 @@ class ArmIndication(QtCore.QObject):
 
         # ########## Reference to class init variables ##########
         self.shared_objects = shared_objects
-        self.right_screen = self.shared_objects["screens"]["right_screen"]
+        self.right_screen = self.shared_objects["screens"]["left_screen"]
 
         self.base_position_lcd_number = self.right_screen.base_position_lcd_number  # type: QtWidgets.QLCDNumber
         self.shoulder_position_lcd_number = self.right_screen.shoulder_position_lcd_number  # type: QtWidgets.QLCDNumber
