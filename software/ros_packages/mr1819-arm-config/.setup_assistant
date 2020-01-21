@@ -8,4 +8,4 @@ moveit_setup_assistant_config:
   CONFIG:
     author_name: Kira Kopcho
     author_email: kopchok@oregonstate.edu
-    generated_timestamp: 1579391306
+    generated_timestamp: 1579649066

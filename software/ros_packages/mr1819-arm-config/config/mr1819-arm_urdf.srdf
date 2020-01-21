@@ -26,10 +26,10 @@
     </group>
     <!--GROUP STATES: Purpose: Define a named state for a particular group, in terms of joint values. This is useful to define states like 'folded arms'-->
     <group_state name="arm_upright" group="rover_arm">
-        <joint name="J1" value="0.2071" />
+        <joint name="J1" value="-2.7963" />
         <joint name="J2" value="0" />
-        <joint name="J3" value="1.4844" />
-        <joint name="J4" value="0.2071" />
+        <joint name="J3" value="-1.4499" />
+        <joint name="J4" value="-0.1726" />
     </group_state>
     <!--END EFFECTOR: Purpose: Represent information about an end effector.-->
     <end_effector name="rover_gripper" parent_link="wrist_roll" group="rover_gripper" />
