@@ -1,9 +1,11 @@
 controller_list:
-  - name: fake_manipulator_controller
+  - name: fake_arm_controller
     joints:
-      - shoulder
-      - elbow
-      - roll
-      - wrist_base
+      - base_roll
+      - shoulder_pitch
+      - elbow_pitch
+      - elbow_roll
       - wrist_pitch
+  - name: fake_hand_controller
+    joints:
       - wrist_roll
