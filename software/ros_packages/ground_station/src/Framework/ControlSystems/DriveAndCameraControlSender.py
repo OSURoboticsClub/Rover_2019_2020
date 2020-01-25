@@ -163,7 +163,7 @@ class DriveAndCameraControlSender(QtCore.QThread):
         # ########## Reference to class init variables ##########
         self.shared_objects = shared_objects
         self.video_coordinator = self.shared_objects["threaded_classes"]["Video Coordinator"]
-        self.right_screen = self.shared_objects["screens"]["right_screen"]
+        self.right_screen = self.shared_objects["screens"]["onescreen"]
         self.rover_speed_limit_slider = self.right_screen.rover_speed_limit_slider  # type: QtWidgets.QSlider
         self.left_drive_progress_bar = self.right_screen.left_drive_progress_bar  # type: QtWidgets.QProgressBar
         self.right_drive_progress_bar = self.right_screen.right_drive_progress_bar  # type: QtWidgets.QProgressBar

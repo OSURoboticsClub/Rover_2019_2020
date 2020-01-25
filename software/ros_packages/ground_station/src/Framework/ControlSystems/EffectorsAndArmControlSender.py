@@ -176,8 +176,8 @@ class EffectorsAndArmControlSender(QtCore.QThread):
 
         # ########## Reference to class init variables ##########
         self.shared_objects = shared_objects
-        self.left_screen = self.shared_objects["screens"]["left_screen"]
-        self.right_screen = self.shared_objects["screens"]["left_screen"]
+        self.left_screen = self.shared_objects["screens"]["onescreen"]
+        self.right_screen = self.shared_objects["screens"]["onescreen"]
         self.xbox_mode_arm_label = self.right_screen.xbox_mode_arm_label  # type: QtWidgets.QLabel
         self.xbox_mode_mining_label = self.right_screen.xbox_mode_mining_label  # type: QtWidgets.QLabel
 

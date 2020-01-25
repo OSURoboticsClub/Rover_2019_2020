@@ -13,9 +13,9 @@ import qdarkstyle
 # Custom Imports
 import Framework.StartupSystems.ROSMasterChecker as ROSMasterChecker
 import Framework.LoggingSystems.Logger as Logger
-import Framework.VideoSystems.RoverVideoCoordinator as RoverVideoCoordinator
+#import Framework.VideoSystems.RoverVideoCoordinator as RoverVideoCoordinator
 #import Framework.MapSystems.RoverMapCoordinator as RoverMapCoordinator
-import Framework.ControlSystems.DriveAndCameraControlSender as JoystickControlSender
+#import Framework.ControlSystems.DriveAndCameraControlSender as JoystickControlSender
 import Framework.ControlSystems.EffectorsAndArmControlSender as ControllerControlSender
 import Framework.NavigationSystems.SpeedAndHeadingIndication as SpeedAndHeading
 import Framework.NavigationSystems.WaypointsCoordinator as WaypointsCoordinator
@@ -23,7 +23,7 @@ import Framework.ArmSystems.ArmIndication as ArmIndication
 import Framework.StatusSystems.StatusCore as StatusCore
 import Framework.StatusSystems.UbiquitiStatusCore as UbiquitiStatusCore
 import Framework.SettingsSystems.UbiquitiRadioSettings as UbiquitiRadioSettings
-#import Framework.MiscSystems.MiningCore as MiningCore
+import Framework.MiscSystems.MiningCore as MiningCore
 import Framework.MiscSystems.BashConsoleCore as BashConsoleCore
 import Framework.MiscSystems.MiscArmCore as MiscArmCore
 import Framework.MiscSystems.RDFCore as RDFCore
@@ -67,7 +67,7 @@ class ApplicationWindow(QtWidgets.QMainWindow):
 #####################################
 class GroundStation(QtCore.QObject):
     LEFT_SCREEN_ID = 1
-    #RIGHT_SCREEN_ID = 0
+    RIGHT_SCREEN_ID = 0
 
     exit_requested_signal = QtCore.pyqtSignal()
 
@@ -92,7 +92,7 @@ class GroundStation(QtCore.QObject):
         }
 
         # ###### Instantiate Left And Right Screens ######
-        self.shared_objects["screens"]["left_screen"] = self.create_application_window(UI_FILE_LEFT, "Rover Ground Station Left Screen", self.LEFT_SCREEN_ID)  # type: ApplicationWindow
+        self.shared_objects["screens"]["onescreen"] = self.create_application_window(UI_FILE_LEFT, "Rover Ground Station Left Screen", self.LEFT_SCREEN_ID)  # type: ApplicationWindow
         #self.shared_objects["screens"]["right_screen"] = self.create_application_window(UI_FILE_RIGHT, "Rover Ground Station Right Screen", self.RIGHT_SCREEN_ID)  # type: ApplicationWindow
          
         # ###### Initialize the Ground Station Node ######
@@ -138,9 +138,8 @@ class GroundStation(QtCore.QObject):
         self.shared_objects["regular_classes"][name] = instance
 
     def __connect_signals_to_slots(self):
-        self.shared_objects["screens"]["left_screen"].exit_requested_signal.connect(self.on_exit_requested__slot)
-        if(yeah != 1):
-            self.shared_objects["screens"]["right_screen"].exit_requested_signal.connect(self.on_exit_requested__slot)
+        self.shared_objects["screens"]["onescreen"].exit_requested_signal.connect(self.on_exit_requested__slot)
+        # self.shared_objects["screens"]["right_screen"].exit_requested_signal.connect(self.on_exit_requested__slot)
 
     def on_exit_requested__slot(self):
         self.kill_threads_signal.emit()

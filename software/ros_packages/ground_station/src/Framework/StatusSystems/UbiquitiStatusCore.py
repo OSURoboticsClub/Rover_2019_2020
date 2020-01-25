@@ -36,7 +36,7 @@ class UbiquitiStatus(QtCore.QThread):
 
         # ########## Reference to class init variables ##########
         self.shared_objects = shared_objects
-        self.left_screen = self.shared_objects["screens"]["left_screen"]
+        self.left_screen = self.shared_objects["screens"]["onescreen"]
 
         self.connection_quality_label = self.left_screen.connection_quality_label
         self.successful_transmit_label = self.left_screen.successful_transmit_label
