@@ -1,18 +1,20 @@
 <launch>
 
-  <arg name="camID" default="1" />
+  <arg name="camID" default="0" />
 
-  <param name="robot_description" command="$(find xacro)/xacro.py $(find track_ar)/urdf/usb_cam.urdf"/>
+<!--   <param name="robot_description" command="$(find xacro)/xacro.py $(find track_ar)/urdf/usb_cam.urdf"/> -->
+  <param name="robot_description" command="xacro --inorder $(find track_ar)/urdf/usb_cam.urdf"/>
 
   <node pkg="robot_state_publisher" type="state_publisher" name="state_publisher"/>
 
   <node name="usb_cam" pkg="usb_cam" type="usb_cam_node" output="screen" >
-    <param name="video_device" value="/dev/video$(arg camID)" />
-    <param name="image_width" value="640" />
-    <param name="image_height" value="480" />
+    <param name="video_device" value="/dev/video0" />
+    <param name="image_width" value="1280" />
+    <param name="image_height" value="960" />
     <param name="pixel_format" value="yuyv" />
-    <param name="camera_frame_id" value="usb_cam" />
+<!--     <param name="framerate" value="30" /> -->
     <param name="io_method" value="mmap"/>
+    <param name="autoexposure" value="false"/>
   </node>
   <node name="image_view" pkg="image_view" type="image_view" respawn="false" output="screen">
     <remap from="image" to="/usb_cam/image_raw"/>

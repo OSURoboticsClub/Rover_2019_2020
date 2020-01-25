@@ -1,3 +1,0 @@
-bool controller_present
-bool ignore_drive_control
-geometry_msgs/Twist drive_twist
