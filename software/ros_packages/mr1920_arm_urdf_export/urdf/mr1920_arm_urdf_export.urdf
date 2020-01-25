@@ -4,6 +4,12 @@
      For more information, please see http://wiki.ros.org/sw_urdf_exporter -->
 <robot
   name="mr1920_arm_urdf_export">
+  <link name="world"/>
+  <joint name="base_fixed" type="fixed">
+    <origin rpy="0 0 0" xyz="0 0 0"/>
+    <parent link="world"/>
+    <child link="base_link"/>
+  </joint>
   <link
     name="base_link">
     <inertial>
@@ -36,7 +42,7 @@
     </visual>
     <collision>
       <origin
-        xyz="0 0 0"
+        xyz="0 0 1.0"
         rpy="0 0 0" />
       <geometry>
         <mesh
