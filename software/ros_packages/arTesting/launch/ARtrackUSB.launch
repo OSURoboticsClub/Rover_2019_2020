@@ -1,11 +1,18 @@
 <launch>
-	<arg name="marker_size" default="9.0" />
-	<arg name="max_new_marker_error" default="0.08" />
-	<arg name="max_track_error" default="0.2" />
+
+    <!-- from ar_track_alvar pr2_indiv.launch  -->
+<!-- 	<arg name="marker_size" default="9.0" /> -->
+<!-- 	<arg name="max_new_marker_error" default="0.08" /> -->
+<!-- 	<arg name="max_track_error" default="0.2" /> -->
+
+    <arg name="marker_size" default="4.4" />
+    <arg name="max_new_marker_error" default="0.08" />
+    <arg name="max_track_error" default="0.2" />
 	
 	<arg name="cam_image_topic" default="/usb_cam/image_raw" />
 	<arg name="cam_info_topic" default="/usb_cam/camera_info" />
-	<arg name="output_frame" default="usb_cam" />
+<!-- 	<arg name="output_frame" default="usb_cam" /> -->
+	<arg name="output_frame" default="head_camera" />
 
 	<node name="ar_track_alvar" pkg="ar_track_alvar" type="individualMarkersNoKinect" respawn="false" output="screen">
 		<param name="marker_size"           type="double" value="$(arg marker_size)" />
@@ -16,4 +23,5 @@
 		<remap from="camera_image"  to="$(arg cam_image_topic)" />
 		<remap from="camera_info"   to="$(arg cam_info_topic)" />
 	</node>
+
 </launch>
