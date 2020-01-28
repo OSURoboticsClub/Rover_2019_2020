@@ -59,7 +59,7 @@
       <item>
        <widget class="QTabWidget" name="tabWidget_2">
         <property name="currentIndex">
-         <number>1</number>
+         <number>0</number>
         </property>
         <widget class="QWidget" name="tab_6">
          <attribute name="title">
@@ -2344,6 +2344,9 @@ Position</string>
            <string/>
           </property>
          </widget>
+         <zorder>layoutWidget_2</zorder>
+         <zorder>primary_video_label</zorder>
+         <zorder>arm_visualization_widget_2</zorder>
         </widget>
         <widget class="QWidget" name="tab_7">
          <attribute name="title">
