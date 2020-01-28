@@ -7722,13 +7722,6 @@ Dielectric Permittivity</string>
            </layout>
           </widget>
          </widget>
-         <zorder>layoutWidget</zorder>
-         <zorder>mapping_label</zorder>
-         <zorder>mapping_label_3</zorder>
-         <zorder>layoutWidget_7</zorder>
-         <zorder>horizontalSpacer_65</zorder>
-         <zorder>layoutWidget_8</zorder>
-         <zorder>layoutWidget_9</zorder>
         </widget>
        </widget>
       </item>
