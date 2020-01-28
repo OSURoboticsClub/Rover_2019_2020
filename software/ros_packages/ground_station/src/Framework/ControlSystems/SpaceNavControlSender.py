@@ -39,7 +39,7 @@ class SpaceNavControlSender(QtCore.QThread):
 
         # ########## Reference to class init variables ##########
         self.shared_objects = shared_objects
-        self.right_screen = self.shared_objects["screens"]["left_screen"]
+        self.right_screen = self.shared_objects["screens"]["onescreen"]
 
         # ########## Get the settings instance ##########
         self.settings = QtCore.QSettings()

@@ -88,7 +88,7 @@ class SensorCore(QtCore.QThread):
 
         # ########## Reference to class init variables ##########
         self.shared_objects = shared_objects
-        self.screen_main_window = self.shared_objects["screens"]["left_screen"]
+        self.screen_main_window = self.shared_objects["screens"]["onescreen"]
 
         # self.cpu_read = self.screen_main_window.lineEdit  # type: QtWidgets.QLabel
         # self.ram_read = self.screen_main_window.lineEdit_2  # type: QtWidgets.QLabel

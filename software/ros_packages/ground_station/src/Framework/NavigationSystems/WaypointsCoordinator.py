@@ -18,7 +18,7 @@ class WaypointsCoordinator(QtCore.QThread):
         self.landmark_table_cur_click = None
 
         self.shared_objects = shared_objects
-        self.left_screen = self.shared_objects["screens"]["left_screen"]
+        self.left_screen = self.shared_objects["screens"]["onescreen"]
 
         self.navigation_label = (self.left_screen.
                                  navigation_waypoints_table_widget)

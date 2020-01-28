@@ -31,7 +31,7 @@ class BashConsole(QtCore.QThread):
 
         # ########## Reference to class init variables ##########
         self.shared_objects = shared_objects
-        self.left_screen = self.shared_objects["screens"]["left_screen"]
+        self.left_screen = self.shared_objects["screens"]["onescreen"]
 
         self.console_text_edit = self.left_screen.console_line_edit  # type: QtWidgets.QTextEdit
         self.ssh_console_command_line_edit = self.left_screen.ssh_console_command_line_edit  # type:QtWidgets.QLineEdit

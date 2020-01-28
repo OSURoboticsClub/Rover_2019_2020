@@ -59,7 +59,7 @@ class MiscArm(QtCore.QThread):
 
         # ########## Reference to class init variables ##########
         self.shared_objects = shared_objects
-        self.left_screen = self.shared_objects["screens"]["left_screen"]
+        self.left_screen = self.shared_objects["screens"]["onescreen"]
 
         self.arm_control_upright_zeroed_button = self.left_screen.arm_control_upright_zeroed_button  # type:QtWidgets.QPushButton
         self.arm_controls_stow_arm_button = self.left_screen.arm_controls_stow_arm_button  # type:QtWidgets.QPushButton
