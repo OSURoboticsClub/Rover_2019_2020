@@ -17,9 +17,9 @@ import Framework.LoggingSystems.Logger as Logger
 #import Framework.MapSystems.RoverMapCoordinator as RoverMapCoordinator
 #import Framework.ControlSystems.DriveAndCameraControlSender as JoystickControlSender
 import Framework.ControlSystems.EffectorsAndArmControlSender as ControllerControlSender
-import Framework.NavigationSystems.SpeedAndHeadingIndication as SpeedAndHeading
-import Framework.NavigationSystems.WaypointsCoordinator as WaypointsCoordinator
-import Framework.ArmSystems.ArmIndication as ArmIndication
+#import Framework.NavigationSystems.SpeedAndHeadingIndication as SpeedAndHeading
+#import Framework.NavigationSystems.WaypointsCoordinator as WaypointsCoordinator
+#import Framework.ArmSystems.ArmIndication as ArmIndication
 import Framework.StatusSystems.StatusCore as StatusCore
 import Framework.StatusSystems.UbiquitiStatusCore as UbiquitiStatusCore
 import Framework.SettingsSystems.UbiquitiRadioSettings as UbiquitiRadioSettings
@@ -100,21 +100,21 @@ class GroundStation(QtCore.QObject):
 
         # ##### Instantiate Regular Classes ######
         #self.__add_non_thread("Mining System", MiningCore.Mining(self.shared_objects))
-        self.__add_non_thread("Arm Indication", ArmIndication.ArmIndication(self.shared_objects))
+        #self.__add_non_thread("Arm Indication", ArmIndication.ArmIndication(self.shared_objects))
 
         # ##### Instantiate Threaded Classes ######
         #self.__add_thread("Video Coordinator", RoverVideoCoordinator.RoverVideoCoordinator(self.shared_objects))
         #self.__add_thread("Map Coordinator", RoverMapCoordinator.RoverMapCoordinator(self.shared_objects))
         #self.__add_thread("Joystick Sender", JoystickControlSender.DriveAndCameraControlSender(self.shared_objects))
         #self.__add_thread("Controller Sender", ControllerControlSender.EffectorsAndArmControlSender(self.shared_objects))
-        self.__add_thread("Speed and Heading", SpeedAndHeading.SpeedAndHeadingIndication(self.shared_objects))
+        #self.__add_thread("Speed and Heading", SpeedAndHeading.SpeedAndHeadingIndication(self.shared_objects))
         self.__add_thread("Rover Status", StatusCore.SensorCore(self.shared_objects))
-        self.__add_thread("Ubiquiti Status", UbiquitiStatusCore.UbiquitiStatus(self.shared_objects))
-        self.__add_thread("Ubiquiti Radio Settings", UbiquitiRadioSettings.UbiquitiRadioSettings(self.shared_objects))
-        self.__add_thread("Waypoints Coordinator", WaypointsCoordinator.WaypointsCoordinator(self.shared_objects))
-        self.__add_thread("Bash Console", BashConsoleCore.BashConsole(self.shared_objects))
-        self.__add_thread("Misc Arm", MiscArmCore.MiscArm(self.shared_objects))
-        self.__add_thread("RDF", RDFCore.RDF(self.shared_objects))
+        #self.__add_thread("Ubiquiti Status", UbiquitiStatusCore.UbiquitiStatus(self.shared_objects))
+        #self.__add_thread("Ubiquiti Radio Settings", UbiquitiRadioSettings.UbiquitiRadioSettings(self.shared_objects))
+        #self.__add_thread("Waypoints Coordinator", WaypointsCoordinator.WaypointsCoordinator(self.shared_objects))
+        #self.__add_thread("Bash Console", BashConsoleCore.BashConsole(self.shared_objects))
+        #self.__add_thread("Misc Arm", MiscArmCore.MiscArm(self.shared_objects))
+        #self.__add_thread("RDF", RDFCore.RDF(self.shared_objects))
 
         self.connect_signals_and_slots_signal.emit()
         self.__connect_signals_to_slots()
