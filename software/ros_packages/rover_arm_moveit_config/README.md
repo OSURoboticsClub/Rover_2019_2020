@@ -1,7 +1,8 @@
 # Rover Arm MoveIt! Config
 These instructions were designed to allow you to work on the Rover Arm using RViz and MoveIt!
 
-
+# Getting Started with URDFs
+https://industrial-training-master.readthedocs.io/en/melodic/_downloads/224d8c7056c60a2b7069c1b9996c0e29/ROS-I%20Basic%20Developers%20Training%20-%20Session%203.pdf
 
 ## Requirements
 **IMPORTANT:**  Read the "How to Launch" section below before trying to configure ROS Kinetic and MoveIt! by yourself. Ignoring this advice will likely result in the creation of multiple catkin workspaces.

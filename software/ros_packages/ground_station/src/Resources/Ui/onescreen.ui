@@ -69,9 +69,9 @@
           <property name="geometry">
            <rect>
             <x>0</x>
-            <y>0</y>
+            <y>10</y>
             <width>646</width>
-            <height>1086</height>
+            <height>1041</height>
            </rect>
           </property>
           <layout class="QVBoxLayout" name="verticalLayout_36">
@@ -802,19 +802,6 @@
                      </layout>
                     </item>
                    </layout>
-                  </item>
-                  <item>
-                   <spacer name="verticalSpacer_11">
-                    <property name="orientation">
-                     <enum>Qt::Vertical</enum>
-                    </property>
-                    <property name="sizeHint" stdset="0">
-                     <size>
-                      <width>20</width>
-                      <height>40</height>
-                     </size>
-                    </property>
-                   </spacer>
                   </item>
                   <item>
                    <widget class="QLabel" name="label_99">
@@ -2322,16 +2309,50 @@ Position</string>
            </item>
           </layout>
          </widget>
+         <widget class="QLabel" name="tertiary_video_label">
+          <property name="geometry">
+           <rect>
+            <x>650</x>
+            <y>720</y>
+            <width>640</width>
+            <height>331</height>
+           </rect>
+          </property>
+          <property name="minimumSize">
+           <size>
+            <width>640</width>
+            <height>200</height>
+           </size>
+          </property>
+          <property name="maximumSize">
+           <size>
+            <width>640</width>
+            <height>360</height>
+           </size>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">background-color:black;</string>
+          </property>
+          <property name="text">
+           <string/>
+          </property>
+         </widget>
          <widget class="QLabel" name="primary_video_label">
           <property name="geometry">
            <rect>
             <x>650</x>
             <y>0</y>
             <width>1280</width>
-            <height>1071</height>
+            <height>720</height>
            </rect>
           </property>
           <property name="minimumSize">
+           <size>
+            <width>1280</width>
+            <height>720</height>
+           </size>
+          </property>
+          <property name="maximumSize">
            <size>
             <width>1280</width>
             <height>720</height>
@@ -2344,9 +2365,34 @@ Position</string>
            <string/>
           </property>
          </widget>
-         <zorder>layoutWidget_2</zorder>
-         <zorder>primary_video_label</zorder>
-         <zorder>arm_visualization_widget_2</zorder>
+         <widget class="QLabel" name="secondary_video_label">
+          <property name="geometry">
+           <rect>
+            <x>1290</x>
+            <y>720</y>
+            <width>631</width>
+            <height>331</height>
+           </rect>
+          </property>
+          <property name="minimumSize">
+           <size>
+            <width>500</width>
+            <height>200</height>
+           </size>
+          </property>
+          <property name="maximumSize">
+           <size>
+            <width>640</width>
+            <height>360</height>
+           </size>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">background-color:black;</string>
+          </property>
+          <property name="text">
+           <string/>
+          </property>
+         </widget>
         </widget>
         <widget class="QWidget" name="tab_7">
          <attribute name="title">
