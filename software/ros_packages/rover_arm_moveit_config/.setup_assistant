@@ -1,10 +1,10 @@
 moveit_setup_assistant_config:
   URDF:
-    package: mr1920_arm_urdf_export
-    relative_path: urdf/mr1920_arm_urdf_export.urdf
+    package: rover_arm_description
+    relative_path: urdf/rover_arm_description.urdf
     xacro_args: "--inorder "
   SRDF:
-    relative_path: config/mr1920_arm_urdf_export.srdf
+    relative_path: config/rover_arm_description.srdf
   CONFIG:
     author_name: Andy Zhang
     author_email: amornsrb@oregonstate.edu
