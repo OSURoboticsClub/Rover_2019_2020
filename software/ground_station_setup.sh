@@ -21,7 +21,7 @@ folders_to_link=(
 echo "Setting up ROS packages for ground_station."
 
 # Get the catkin_workspace directory
-catkin_workspace_dir="catkin_workspace"
+catkin_workspace_dir="catkin_ws"
 catkin_workspace_path="$HOME/$catkin_workspace_dir"
 catkin_src_path="$catkin_workspace_path/src"
 

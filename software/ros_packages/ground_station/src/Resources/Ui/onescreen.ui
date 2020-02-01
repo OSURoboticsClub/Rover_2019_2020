@@ -59,7 +59,7 @@
       <item>
        <widget class="QTabWidget" name="tabWidget_2">
         <property name="currentIndex">
-         <number>0</number>
+         <number>1</number>
         </property>
         <widget class="QWidget" name="tab_6">
          <attribute name="title">
@@ -71,7 +71,7 @@
             <x>0</x>
             <y>10</y>
             <width>646</width>
-            <height>1041</height>
+            <height>1086</height>
            </rect>
           </property>
           <layout class="QVBoxLayout" name="verticalLayout_36">
@@ -3745,7 +3745,7 @@ N/A</string>
               </size>
              </property>
              <property name="currentIndex">
-              <number>2</number>
+              <number>0</number>
              </property>
              <widget class="QWidget" name="tab_25">
               <attribute name="title">
@@ -3784,7 +3784,7 @@ N/A</string>
                     </widget>
                    </item>
                    <item>
-                    <widget class="QLCDNumber" name="rssi_lcdnumber_5">
+                    <widget class="QLCDNumber" name="rssi_lcdnumber">
                      <property name="minimumSize">
                       <size>
                        <width>400</width>
@@ -3832,7 +3832,7 @@ N/A</string>
                     </widget>
                    </item>
                    <item>
-                    <widget class="QLCDNumber" name="beacon_frequency_lcd_number_5">
+                    <widget class="QLCDNumber" name="beacon_frequency_lcd_number">
                      <property name="minimumSize">
                       <size>
                        <width>400</width>
@@ -3867,7 +3867,7 @@ N/A</string>
                     </widget>
                    </item>
                    <item>
-                    <widget class="QLabel" name="beacon_frequency_valid_label_5">
+                    <widget class="QLabel" name="beacon_frequency_valid_label">
                      <property name="minimumSize">
                       <size>
                        <width>0</width>
@@ -3950,7 +3950,7 @@ N/A</string>
                      <item>
                       <layout class="QGridLayout" name="gridLayout_72">
                        <item row="3" column="0">
-                        <widget class="QPushButton" name="arm_control_upright_zeroed_button_5">
+                        <widget class="QPushButton" name="arm_control_upright_zeroed_button">
                          <property name="styleSheet">
                           <string notr="true">background-color: darkred;</string>
                          </property>
@@ -3960,7 +3960,7 @@ N/A</string>
                         </widget>
                        </item>
                        <item row="0" column="0">
-                        <widget class="QPushButton" name="arm_controls_stow_arm_button_5">
+                        <widget class="QPushButton" name="arm_controls_stow_arm_button">
                          <property name="styleSheet">
                           <string notr="true">background-color: darkred;</string>
                          </property>
@@ -3970,7 +3970,7 @@ N/A</string>
                         </widget>
                        </item>
                        <item row="1" column="0">
-                        <widget class="QPushButton" name="arm_controls_unstow_arm_button_5">
+                        <widget class="QPushButton" name="arm_controls_unstow_arm_button">
                          <property name="styleSheet">
                           <string notr="true">background-color: darkred;</string>
                          </property>
@@ -4009,7 +4009,7 @@ N/A</string>
                         </spacer>
                        </item>
                        <item row="4" column="0">
-                        <widget class="QPushButton" name="arm_control_cobra_button_5">
+                        <widget class="QPushButton" name="arm_control_cobra_button">
                          <property name="palette">
                           <palette>
                            <active>
@@ -4455,21 +4455,21 @@ N/A</string>
                      <item>
                       <layout class="QGridLayout" name="gridLayout_73">
                        <item row="0" column="0">
-                        <widget class="QPushButton" name="arm_controls_calibration_button_5">
+                        <widget class="QPushButton" name="arm_controls_calibration_button">
                          <property name="text">
                           <string>Set Calibration</string>
                          </property>
                         </widget>
                        </item>
                        <item row="1" column="0">
-                        <widget class="QPushButton" name="arm_controls_clear_faults_button_5">
+                        <widget class="QPushButton" name="arm_controls_clear_faults_button">
                          <property name="text">
                           <string>Clear Faults</string>
                          </property>
                         </widget>
                        </item>
                        <item row="2" column="0">
-                        <widget class="QPushButton" name="arm_controls_reset_motor_drivers_button_5">
+                        <widget class="QPushButton" name="arm_controls_reset_motor_drivers_button">
                          <property name="text">
                           <string>Reset Motor Drivers</string>
                          </property>
@@ -4513,7 +4513,7 @@ N/A</string>
                      <item>
                       <layout class="QGridLayout" name="gridLayout_74">
                        <item row="0" column="0">
-                        <widget class="QPushButton" name="arm_controls_package_drop_button_5">
+                        <widget class="QPushButton" name="arm_controls_package_drop_button">
                          <property name="styleSheet">
                           <string notr="true"/>
                          </property>
@@ -4595,21 +4595,21 @@ N/A</string>
                      <item row="0" column="0">
                       <layout class="QVBoxLayout" name="verticalLayout_251">
                        <item>
-                        <widget class="QPushButton" name="gripper_home_button_5">
+                        <widget class="QPushButton" name="gripper_home_button">
                          <property name="text">
                           <string>Home</string>
                          </property>
                         </widget>
                        </item>
                        <item>
-                        <widget class="QPushButton" name="gripper_toggle_light_button_5">
+                        <widget class="QPushButton" name="gripper_toggle_light_button">
                          <property name="text">
                           <string>Toggle Light</string>
                          </property>
                         </widget>
                        </item>
                        <item>
-                        <widget class="QPushButton" name="gripper_toggle_laser_button_5">
+                        <widget class="QPushButton" name="gripper_toggle_laser_button">
                          <property name="text">
                           <string>Toggle Laser</string>
                          </property>
@@ -5779,7 +5779,7 @@ Dielectric Permittivity</string>
               <number>6</number>
              </property>
              <item row="0" column="1">
-              <widget class="QLineEdit" name="manual_waypoint_landmark_name_line_edit_3"/>
+              <widget class="QLineEdit" name="manual_waypoint_landmark_name_line_edit"/>
              </item>
              <item row="0" column="0">
               <widget class="QLabel" name="label_339">
@@ -5834,7 +5834,7 @@ Dielectric Permittivity</string>
               <number>6</number>
              </property>
              <item row="0" column="1">
-              <widget class="QDoubleSpinBox" name="manual_waypoint_decimal_lattitude_spin_box_3">
+              <widget class="QDoubleSpinBox" name="manual_waypoint_decimal_lattitude_spin_box">
                <property name="buttonSymbols">
                 <enum>QAbstractSpinBox::NoButtons</enum>
                </property>
@@ -5853,7 +5853,7 @@ Dielectric Permittivity</string>
               </widget>
              </item>
              <item row="1" column="1">
-              <widget class="QDoubleSpinBox" name="manual_waypoint_decimal_longitude_spin_box_3">
+              <widget class="QDoubleSpinBox" name="manual_waypoint_decimal_longitude_spin_box">
                <property name="buttonSymbols">
                 <enum>QAbstractSpinBox::NoButtons</enum>
                </property>
@@ -5951,7 +5951,7 @@ Dielectric Permittivity</string>
               </spacer>
              </item>
              <item row="0" column="3">
-              <widget class="QDoubleSpinBox" name="manual_waypoint_seconds_lattitude_spin_box_3">
+              <widget class="QDoubleSpinBox" name="manual_waypoint_seconds_lattitude_spin_box">
                <property name="suffix">
                 <string>&quot;</string>
                </property>
@@ -5968,7 +5968,7 @@ Dielectric Permittivity</string>
               </widget>
              </item>
              <item row="1" column="3">
-              <widget class="QDoubleSpinBox" name="manual_waypoint_seconds_longitude_spin_box_3">
+              <widget class="QDoubleSpinBox" name="manual_waypoint_seconds_longitude_spin_box">
                <property name="suffix">
                 <string>&quot;</string>
                </property>
@@ -5978,7 +5978,7 @@ Dielectric Permittivity</string>
               </widget>
              </item>
              <item row="0" column="1">
-              <widget class="QSpinBox" name="manual_waypoint_degrees_lattitude_spin_box_3">
+              <widget class="QSpinBox" name="manual_waypoint_degrees_lattitude_spin_box">
                <property name="suffix">
                 <string>° </string>
                </property>
@@ -5991,7 +5991,7 @@ Dielectric Permittivity</string>
               </widget>
              </item>
              <item row="0" column="2">
-              <widget class="QSpinBox" name="manual_waypoint_minutes_lattitude_spin_box_3">
+              <widget class="QSpinBox" name="manual_waypoint_minutes_lattitude_spin_box">
                <property name="suffix">
                 <string>'</string>
                </property>
@@ -6001,7 +6001,7 @@ Dielectric Permittivity</string>
               </widget>
              </item>
              <item row="0" column="4">
-              <widget class="QComboBox" name="manual_waypoint_cardinal_lattitude_combo_box_3">
+              <widget class="QComboBox" name="manual_waypoint_cardinal_lattitude_combo_box">
                <item>
                 <property name="text">
                  <string/>
@@ -6020,7 +6020,7 @@ Dielectric Permittivity</string>
               </widget>
              </item>
              <item row="1" column="1">
-              <widget class="QSpinBox" name="manual_waypoint_degrees_longitude_spin_box_3">
+              <widget class="QSpinBox" name="manual_waypoint_degrees_longitude_spin_box">
                <property name="suffix">
                 <string>° </string>
                </property>
@@ -6033,7 +6033,7 @@ Dielectric Permittivity</string>
               </widget>
              </item>
              <item row="1" column="4">
-              <widget class="QComboBox" name="manual_waypoint_cardinal_longitude_combo_box_3">
+              <widget class="QComboBox" name="manual_waypoint_cardinal_longitude_combo_box">
                <item>
                 <property name="text">
                  <string/>
@@ -6052,7 +6052,7 @@ Dielectric Permittivity</string>
               </widget>
              </item>
              <item row="1" column="2">
-              <widget class="QSpinBox" name="manual_waypoint_minutes_longitude_spin_box_3">
+              <widget class="QSpinBox" name="manual_waypoint_minutes_longitude_spin_box">
                <property name="suffix">
                 <string>'</string>
                </property>
@@ -6118,7 +6118,7 @@ Dielectric Permittivity</string>
               </widget>
              </item>
              <item>
-              <widget class="QPushButton" name="manual_waypoint_navigation_color_set_button_3">
+              <widget class="QPushButton" name="manual_waypoint_navigation_color_set_button">
                <property name="text">
                 <string>Set</string>
                </property>
@@ -6139,7 +6139,7 @@ Dielectric Permittivity</string>
               </widget>
              </item>
              <item>
-              <widget class="QLabel" name="manual_waypoint_landmark_color_label_3">
+              <widget class="QLabel" name="manual_waypoint_landmark_color_label">
                <property name="minimumSize">
                 <size>
                  <width>25</width>
@@ -6161,7 +6161,7 @@ Dielectric Permittivity</string>
               </widget>
              </item>
              <item>
-              <widget class="QPushButton" name="manual_waypoint_landmark_color_set_button_3">
+              <widget class="QPushButton" name="manual_waypoint_landmark_color_set_button">
                <property name="text">
                 <string>Set</string>
                </property>
@@ -6258,7 +6258,7 @@ Dielectric Permittivity</string>
               </widget>
              </item>
              <item row="1" column="1">
-              <widget class="QPushButton" name="autonom_control_button_3">
+              <widget class="QPushButton" name="autonom_control_button">
                <property name="font">
                 <font>
                  <pointsize>12</pointsize>
@@ -6272,7 +6272,7 @@ Dielectric Permittivity</string>
               </widget>
              </item>
              <item row="0" column="1">
-              <widget class="QLabel" name="autonomy_status_label_3">
+              <widget class="QLabel" name="autonomy_status_label">
                <property name="font">
                 <font>
                  <pointsize>12</pointsize>
@@ -6321,7 +6321,7 @@ Dielectric Permittivity</string>
             </widget>
            </item>
            <item>
-            <widget class="QTableWidget" name="navigation_waypoints_table_widget_3">
+            <widget class="QTableWidget" name="navigation_waypoints_table_widget">
              <property name="sizePolicy">
               <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
                <horstretch>0</horstretch>
@@ -6410,7 +6410,7 @@ Dielectric Permittivity</string>
               <number>4</number>
              </property>
              <item>
-              <widget class="QPushButton" name="navigation_waypoints_set_button_3">
+              <widget class="QPushButton" name="navigation_waypoints_set_button">
                <property name="sizePolicy">
                 <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
                  <horstretch>0</horstretch>
@@ -6437,7 +6437,7 @@ Dielectric Permittivity</string>
               </widget>
              </item>
              <item>
-              <widget class="QPushButton" name="navigation_waypoints_add_manual_button_3">
+              <widget class="QPushButton" name="navigation_waypoints_add_manual_button">
                <property name="sizePolicy">
                 <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
                  <horstretch>0</horstretch>
@@ -6465,7 +6465,7 @@ Manual</string>
               </widget>
              </item>
              <item>
-              <widget class="QPushButton" name="navigation_waypoints_add_gps_button_3">
+              <widget class="QPushButton" name="navigation_waypoints_add_gps_button">
                <property name="sizePolicy">
                 <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
                  <horstretch>0</horstretch>
@@ -6493,7 +6493,7 @@ GPS</string>
               </widget>
              </item>
              <item>
-              <widget class="QPushButton" name="navigation_waypoints_delete_button_3">
+              <widget class="QPushButton" name="navigation_waypoints_delete_button">
                <property name="sizePolicy">
                 <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
                  <horstretch>0</horstretch>
@@ -6551,7 +6551,7 @@ GPS</string>
             </widget>
            </item>
            <item>
-            <widget class="QTableWidget" name="landmark_waypoints_table_widget_3">
+            <widget class="QTableWidget" name="landmark_waypoints_table_widget">
              <property name="sizePolicy">
               <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
                <horstretch>0</horstretch>
@@ -6643,7 +6643,7 @@ GPS</string>
               <number>4</number>
              </property>
              <item>
-              <widget class="QPushButton" name="landmark_waypoints_set_button_3">
+              <widget class="QPushButton" name="landmark_waypoints_set_button">
                <property name="sizePolicy">
                 <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
                  <horstretch>0</horstretch>
@@ -6670,7 +6670,7 @@ GPS</string>
               </widget>
              </item>
              <item>
-              <widget class="QPushButton" name="landmark_waypoints_add_manual_button_3">
+              <widget class="QPushButton" name="landmark_waypoints_add_manual_button">
                <property name="sizePolicy">
                 <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
                  <horstretch>0</horstretch>
@@ -6698,7 +6698,7 @@ Manual</string>
               </widget>
              </item>
              <item>
-              <widget class="QPushButton" name="landmark_waypoints_add_gps_button_3">
+              <widget class="QPushButton" name="landmark_waypoints_add_gps_button">
                <property name="sizePolicy">
                 <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
                  <horstretch>0</horstretch>
@@ -6726,7 +6726,7 @@ GPS</string>
               </widget>
              </item>
              <item>
-              <widget class="QPushButton" name="landmark_waypoints_delete_button_3">
+              <widget class="QPushButton" name="landmark_waypoints_delete_button">
                <property name="sizePolicy">
                 <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
                  <horstretch>0</horstretch>
