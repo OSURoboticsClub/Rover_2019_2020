@@ -59,7 +59,7 @@
       <item>
        <widget class="QTabWidget" name="tabWidget_2">
         <property name="currentIndex">
-         <number>1</number>
+         <number>0</number>
         </property>
         <widget class="QWidget" name="tab_6">
          <attribute name="title">
@@ -1767,7 +1767,7 @@ Position</string>
                 </widget>
                </item>
                <item>
-                <widget class="QWidget" name="speed_limit_widget_2" native="true">
+                <widget class="QWidget" name="speed_limit_widget" native="true">
                  <property name="sizePolicy">
                   <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
                    <horstretch>0</horstretch>
@@ -2088,7 +2088,7 @@ Position</string>
                        </widget>
                       </item>
                       <item>
-                       <layout class="QFormLayout" name="formLayout_2">
+                       <layout class="QFormLayout" name="formLayout">
                         <property name="fieldGrowthPolicy">
                          <enum>QFormLayout::ExpandingFieldsGrow</enum>
                         </property>
