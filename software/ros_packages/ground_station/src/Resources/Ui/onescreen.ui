@@ -59,7 +59,7 @@
       <item>
        <widget class="QTabWidget" name="tabWidget_2">
         <property name="currentIndex">
-         <number>1</number>
+         <number>0</number>
         </property>
         <widget class="QWidget" name="tab_6">
          <attribute name="title">
@@ -69,9 +69,9 @@
           <property name="geometry">
            <rect>
             <x>0</x>
-            <y>10</y>
+            <y>0</y>
             <width>646</width>
-            <height>1086</height>
+            <height>1041</height>
            </rect>
           </property>
           <layout class="QVBoxLayout" name="verticalLayout_36">
@@ -1561,7 +1561,7 @@ Position</string>
                        <number>0</number>
                       </property>
                       <item row="1" column="0">
-                       <widget class="QLabel" name="current_heading_label_2">
+                       <widget class="QLabel" name="current_heading_label">
                         <property name="font">
                          <font>
                           <pointsize>14</pointsize>
@@ -1635,7 +1635,7 @@ Position</string>
                        </widget>
                       </item>
                       <item row="1" column="2">
-                       <widget class="QLabel" name="next_goal_label_2">
+                       <widget class="QLabel" name="next_goal_label">
                         <property name="font">
                          <font>
                           <pointsize>14</pointsize>
@@ -1709,7 +1709,7 @@ Position</string>
                        </spacer>
                       </item>
                       <item>
-                       <widget class="QLabel" name="heading_compass_label_2">
+                       <widget class="QLabel" name="heading_compass_label">
                         <property name="minimumSize">
                          <size>
                           <width>275</width>
@@ -1840,7 +1840,7 @@ Position</string>
                        </spacer>
                       </item>
                       <item>
-                       <widget class="QPushButton" name="low_res_mode_button_2">
+                       <widget class="QPushButton" name="low_res_mode_button">
                         <property name="styleSheet">
                          <string notr="true">background-color:darkgreen</string>
                         </property>
@@ -1918,7 +1918,7 @@ Position</string>
                              <number>0</number>
                             </property>
                             <item>
-                             <widget class="QLabel" name="current_speed_label_2">
+                             <widget class="QLabel" name="current_speed_label">
                               <property name="font">
                                <font>
                                 <pointsize>14</pointsize>
@@ -1983,7 +1983,7 @@ Position</string>
                          </widget>
                         </item>
                         <item>
-                         <widget class="QSlider" name="rover_speed_limit_slider_2">
+                         <widget class="QSlider" name="rover_speed_limit_slider">
                           <property name="maximum">
                            <number>100</number>
                           </property>
@@ -2043,7 +2043,7 @@ Position</string>
                          </widget>
                         </item>
                         <item>
-                         <widget class="QSlider" name="arm_speed_limit_slider_2">
+                         <widget class="QSlider" name="arm_speed_limit_slider">
                           <property name="maximum">
                            <number>100</number>
                           </property>
@@ -2109,7 +2109,7 @@ Position</string>
                          </widget>
                         </item>
                         <item row="0" column="1">
-                         <widget class="QProgressBar" name="left_drive_progress_bar_2">
+                         <widget class="QProgressBar" name="left_drive_progress_bar">
                           <property name="styleSheet">
                            <string notr="true">background-color:darkred;</string>
                           </property>
@@ -2141,7 +2141,7 @@ Position</string>
                          </widget>
                         </item>
                         <item row="1" column="1">
-                         <widget class="QProgressBar" name="right_drive_progress_bar_2">
+                         <widget class="QProgressBar" name="right_drive_progress_bar">
                           <property name="styleSheet">
                            <string notr="true">background-color:darkred;</string>
                           </property>
@@ -2225,7 +2225,7 @@ Position</string>
                            </widget>
                           </item>
                           <item>
-                           <widget class="QLCDNumber" name="imu_pitch_lcd_number_3">
+                           <widget class="QLCDNumber" name="imu_pitch_lcd_number">
                             <property name="minimumSize">
                              <size>
                               <width>0</width>
@@ -2248,7 +2248,7 @@ Position</string>
                            <number>0</number>
                           </property>
                           <item>
-                           <widget class="QLabel" name="imu_pitch_lcd_number_4">
+                           <widget class="QLabel" name="imu_pitch_lcd_number_2">
                             <property name="font">
                              <font>
                               <weight>75</weight>
@@ -2264,7 +2264,7 @@ Position</string>
                            </widget>
                           </item>
                           <item>
-                           <widget class="QLCDNumber" name="imu_roll_lcd_number_2">
+                           <widget class="QLCDNumber" name="imu_roll_lcd_number">
                             <property name="minimumSize">
                              <size>
                               <width>0</width>
@@ -3745,7 +3745,7 @@ N/A</string>
               </size>
              </property>
              <property name="currentIndex">
-              <number>0</number>
+              <number>4</number>
              </property>
              <widget class="QWidget" name="tab_25">
               <attribute name="title">
@@ -4688,7 +4688,7 @@ N/A</string>
                        <item>
                         <layout class="QVBoxLayout" name="verticalLayout_255">
                          <item>
-                          <widget class="QPushButton" name="cam_network_output_button_5">
+                          <widget class="QPushButton" name="cam_network_output_button">
                            <property name="minimumSize">
                             <size>
                              <width>95</width>
@@ -4701,7 +4701,7 @@ N/A</string>
                           </widget>
                          </item>
                          <item>
-                          <widget class="QPushButton" name="cam_lcd_output_button_5">
+                          <widget class="QPushButton" name="cam_lcd_output_button">
                            <property name="minimumSize">
                             <size>
                              <width>95</width>
@@ -4759,7 +4759,7 @@ N/A</string>
                        <item>
                         <layout class="QVBoxLayout" name="verticalLayout_258">
                          <item>
-                          <widget class="QPushButton" name="cam_zoom_in_button_5">
+                          <widget class="QPushButton" name="cam_zoom_in_button">
                            <property name="minimumSize">
                             <size>
                              <width>95</width>
@@ -4772,7 +4772,7 @@ N/A</string>
                           </widget>
                          </item>
                          <item>
-                          <widget class="QPushButton" name="cam_full_zoom_in_button_5">
+                          <widget class="QPushButton" name="cam_full_zoom_in_button">
                            <property name="minimumSize">
                             <size>
                              <width>95</width>
@@ -4789,7 +4789,7 @@ N/A</string>
                        <item>
                         <layout class="QVBoxLayout" name="verticalLayout_259">
                          <item>
-                          <widget class="QPushButton" name="cam_zoom_out_button_5">
+                          <widget class="QPushButton" name="cam_zoom_out_button">
                            <property name="minimumSize">
                             <size>
                              <width>95</width>
@@ -4802,7 +4802,7 @@ N/A</string>
                           </widget>
                          </item>
                          <item>
-                          <widget class="QPushButton" name="cam_full_zoom_out_button_5">
+                          <widget class="QPushButton" name="cam_full_zoom_out_button">
                            <property name="minimumSize">
                             <size>
                              <width>95</width>
@@ -4817,7 +4817,7 @@ N/A</string>
                         </layout>
                        </item>
                        <item>
-                        <widget class="QPushButton" name="cam_shoot_button_5">
+                        <widget class="QPushButton" name="cam_shoot_button">
                          <property name="minimumSize">
                           <size>
                            <width>95</width>
@@ -4891,7 +4891,7 @@ N/A</string>
                     </widget>
                    </item>
                    <item>
-                    <widget class="QPushButton" name="mining_open_button_5">
+                    <widget class="QPushButton" name="mining_open_button">
                      <property name="font">
                       <font>
                        <pointsize>10</pointsize>
@@ -4903,7 +4903,7 @@ N/A</string>
                     </widget>
                    </item>
                    <item>
-                    <widget class="QPushButton" name="mining_close_button_5">
+                    <widget class="QPushButton" name="mining_close_button">
                      <property name="font">
                       <font>
                        <pointsize>10</pointsize>
@@ -4915,7 +4915,7 @@ N/A</string>
                     </widget>
                    </item>
                    <item>
-                    <widget class="QPushButton" name="mining_home_linear_button_5">
+                    <widget class="QPushButton" name="mining_home_linear_button">
                      <property name="font">
                       <font>
                        <pointsize>10</pointsize>
@@ -4927,7 +4927,7 @@ N/A</string>
                     </widget>
                    </item>
                    <item>
-                    <widget class="QPushButton" name="mining_toggle_overtravel_button_5">
+                    <widget class="QPushButton" name="mining_toggle_overtravel_button">
                      <property name="font">
                       <font>
                        <pointsize>10</pointsize>
@@ -4961,14 +4961,14 @@ N/A</string>
                    <item>
                     <layout class="QHBoxLayout" name="horizontalLayout_98">
                      <item>
-                      <widget class="QPushButton" name="science_probe_down_button_5">
+                      <widget class="QPushButton" name="science_probe_down_button">
                        <property name="text">
                         <string>Drop Probe</string>
                        </property>
                       </widget>
                      </item>
                      <item>
-                      <widget class="QPushButton" name="science_scoop_down_button_5">
+                      <widget class="QPushButton" name="science_scoop_down_button">
                        <property name="text">
                         <string>Drop Scoop</string>
                        </property>
@@ -4979,14 +4979,14 @@ N/A</string>
                    <item>
                     <layout class="QHBoxLayout" name="horizontalLayout_99">
                      <item>
-                      <widget class="QPushButton" name="science_container_open_button_5">
+                      <widget class="QPushButton" name="science_container_open_button">
                        <property name="text">
                         <string>Container Open</string>
                        </property>
                       </widget>
                      </item>
                      <item>
-                      <widget class="QPushButton" name="science_container_close_button_5">
+                      <widget class="QPushButton" name="science_container_close_button">
                        <property name="text">
                         <string>Container Close</string>
                        </property>
@@ -4995,7 +4995,7 @@ N/A</string>
                     </layout>
                    </item>
                    <item>
-                    <widget class="QPushButton" name="science_probe_button_5">
+                    <widget class="QPushButton" name="science_probe_button">
                      <property name="text">
                       <string>Probe</string>
                      </property>
@@ -5047,7 +5047,7 @@ N/A</string>
                         </widget>
                        </item>
                        <item>
-                        <widget class="QLCDNumber" name="mining_4bar_temp_lcd_number_5"/>
+                        <widget class="QLCDNumber" name="mining_4bar_temp_lcd_number"/>
                        </item>
                        <item>
                         <widget class="QLabel" name="label_310">
@@ -5064,7 +5064,7 @@ N/A</string>
                         </widget>
                        </item>
                        <item>
-                        <widget class="QLCDNumber" name="mining_linear_temp_lcd_number_5"/>
+                        <widget class="QLCDNumber" name="mining_linear_temp_lcd_number"/>
                        </item>
                       </layout>
                      </item>
@@ -5085,7 +5085,7 @@ N/A</string>
                         </widget>
                        </item>
                        <item>
-                        <widget class="QLCDNumber" name="mining_4bar_current_lcd_number_5"/>
+                        <widget class="QLCDNumber" name="mining_4bar_current_lcd_number"/>
                        </item>
                        <item>
                         <widget class="QLabel" name="label_312">
@@ -5102,7 +5102,7 @@ N/A</string>
                         </widget>
                        </item>
                        <item>
-                        <widget class="QLCDNumber" name="mining_linear_current_lcd_number_5"/>
+                        <widget class="QLCDNumber" name="mining_linear_current_lcd_number"/>
                        </item>
                       </layout>
                      </item>
@@ -5159,7 +5159,7 @@ N/A</string>
                         </widget>
                        </item>
                        <item>
-                        <widget class="QLCDNumber" name="science_temp_lcd_number_5">
+                        <widget class="QLCDNumber" name="science_temp_lcd_number">
                          <property name="minimumSize">
                           <size>
                            <width>0</width>
@@ -5179,7 +5179,7 @@ N/A</string>
                      <item row="0" column="1">
                       <layout class="QVBoxLayout" name="verticalLayout_269">
                        <item>
-                        <widget class="QLabel" name="moisture_label_5">
+                        <widget class="QLabel" name="moisture_label">
                          <property name="font">
                           <font>
                            <pointsize>9</pointsize>
@@ -5193,7 +5193,7 @@ N/A</string>
                         </widget>
                        </item>
                        <item>
-                        <widget class="QLCDNumber" name="science_moisture_lcd_number_5">
+                        <widget class="QLCDNumber" name="science_moisture_lcd_number">
                          <property name="minimumSize">
                           <size>
                            <width>0</width>
@@ -5213,7 +5213,7 @@ N/A</string>
                      <item row="0" column="2">
                       <layout class="QVBoxLayout" name="verticalLayout_270">
                        <item>
-                        <widget class="QLabel" name="tangent_label_5">
+                        <widget class="QLabel" name="tangent_label">
                          <property name="font">
                           <font>
                            <pointsize>9</pointsize>
@@ -5227,7 +5227,7 @@ N/A</string>
                         </widget>
                        </item>
                        <item>
-                        <widget class="QLCDNumber" name="science_loss_tangent_lcd_number_5">
+                        <widget class="QLCDNumber" name="science_loss_tangent_lcd_number">
                          <property name="minimumSize">
                           <size>
                            <width>0</width>
@@ -5247,7 +5247,7 @@ N/A</string>
                      <item row="1" column="0">
                       <layout class="QVBoxLayout" name="verticalLayout_271">
                        <item>
-                        <widget class="QLabel" name="conductivity_label_5">
+                        <widget class="QLabel" name="conductivity_label">
                          <property name="font">
                           <font>
                            <pointsize>9</pointsize>
@@ -5262,7 +5262,7 @@ Electrical Conductivity</string>
                         </widget>
                        </item>
                        <item>
-                        <widget class="QLCDNumber" name="science_electrical_conductivity_lcd_number_5">
+                        <widget class="QLCDNumber" name="science_electrical_conductivity_lcd_number">
                          <property name="minimumSize">
                           <size>
                            <width>0</width>
@@ -5282,7 +5282,7 @@ Electrical Conductivity</string>
                      <item row="1" column="1">
                       <layout class="QVBoxLayout" name="verticalLayout_272">
                        <item>
-                        <widget class="QLabel" name="real_dielectric_label_5">
+                        <widget class="QLabel" name="real_dielectric_label">
                          <property name="font">
                           <font>
                            <pointsize>9</pointsize>
@@ -5297,7 +5297,7 @@ Dielectric Permittivity</string>
                         </widget>
                        </item>
                        <item>
-                        <widget class="QLCDNumber" name="science_real_dielectric_lcd_number_5">
+                        <widget class="QLCDNumber" name="science_real_dielectric_lcd_number">
                          <property name="minimumSize">
                           <size>
                            <width>0</width>
@@ -5317,7 +5317,7 @@ Dielectric Permittivity</string>
                      <item row="1" column="2">
                       <layout class="QVBoxLayout" name="verticalLayout_273">
                        <item>
-                        <widget class="QLabel" name="imaginary_label_5">
+                        <widget class="QLabel" name="imaginary_label">
                          <property name="font">
                           <font>
                            <pointsize>9</pointsize>
@@ -5332,7 +5332,7 @@ Dielectric Permittivity</string>
                         </widget>
                        </item>
                        <item>
-                        <widget class="QLCDNumber" name="science_imaginary_dielectric_lcd_number_5">
+                        <widget class="QLCDNumber" name="science_imaginary_dielectric_lcd_number">
                          <property name="minimumSize">
                           <size>
                            <width>0</width>
@@ -5387,21 +5387,21 @@ Dielectric Permittivity</string>
                   </widget>
                  </item>
                  <item>
-                  <widget class="QPushButton" name="drill_turn_clockwise_button_5">
+                  <widget class="QPushButton" name="drill_turn_clockwise_button">
                    <property name="text">
                     <string>Turn clockwise</string>
                    </property>
                   </widget>
                  </item>
                  <item>
-                  <widget class="QPushButton" name="drill_turn_counter_clockwise_button_5">
+                  <widget class="QPushButton" name="drill_turn_counter_clockwise_button">
                    <property name="text">
                     <string>Turn counter clockwise</string>
                    </property>
                   </widget>
                  </item>
                  <item>
-                  <widget class="QPushButton" name="drill_stop_button_5">
+                  <widget class="QPushButton" name="drill_stop_button">
                    <property name="text">
                     <string>Stop</string>
                    </property>
@@ -5457,7 +5457,7 @@ Dielectric Permittivity</string>
                     </spacer>
                    </item>
                    <item>
-                    <widget class="QPushButton" name="ssh_scan_for_hosts_button_5">
+                    <widget class="QPushButton" name="ssh_scan_for_hosts_button">
                      <property name="text">
                       <string>Scan For Hosts</string>
                      </property>
@@ -5484,7 +5484,7 @@ Dielectric Permittivity</string>
                     </widget>
                    </item>
                    <item>
-                    <widget class="QLineEdit" name="ssh_host_line_edit_5">
+                    <widget class="QLineEdit" name="ssh_host_line_edit">
                      <property name="minimumSize">
                       <size>
                        <width>125</width>
@@ -5507,42 +5507,42 @@ Dielectric Permittivity</string>
                  <item>
                   <layout class="QGridLayout" name="gridLayout_79">
                    <item row="0" column="0">
-                    <widget class="QPushButton" name="ssh_list_wifi_button_5">
+                    <widget class="QPushButton" name="ssh_list_wifi_button">
                      <property name="text">
                       <string>List Wifi</string>
                      </property>
                     </widget>
                    </item>
                    <item row="0" column="2">
-                    <widget class="QPushButton" name="ssh_equipment_logout_button_5">
+                    <widget class="QPushButton" name="ssh_equipment_logout_button">
                      <property name="text">
                       <string>Equipment Logout</string>
                      </property>
                     </widget>
                    </item>
                    <item row="0" column="1">
-                    <widget class="QPushButton" name="ssh_equipment_login_button_5">
+                    <widget class="QPushButton" name="ssh_equipment_login_button">
                      <property name="text">
                       <string>Equipment Login and Help</string>
                      </property>
                     </widget>
                    </item>
                    <item row="1" column="0">
-                    <widget class="QPushButton" name="ssh_equipment_status_button_5">
+                    <widget class="QPushButton" name="ssh_equipment_status_button">
                      <property name="text">
                       <string>Equipment Status</string>
                      </property>
                     </widget>
                    </item>
                    <item row="1" column="1">
-                    <widget class="QPushButton" name="ssh_equipment_start_button_5">
+                    <widget class="QPushButton" name="ssh_equipment_start_button">
                      <property name="text">
                       <string>Equipment Start</string>
                      </property>
                     </widget>
                    </item>
                    <item row="1" column="2">
-                    <widget class="QPushButton" name="ssh_equipment_stop_button_5">
+                    <widget class="QPushButton" name="ssh_equipment_stop_button">
                      <property name="text">
                       <string>Equipment Stop</string>
                      </property>
@@ -5568,7 +5568,7 @@ Dielectric Permittivity</string>
                   </widget>
                  </item>
                  <item>
-                  <widget class="QLineEdit" name="ssh_console_command_line_edit_5"/>
+                  <widget class="QLineEdit" name="ssh_console_command_line_edit"/>
                  </item>
                 </layout>
                </item>
@@ -5616,7 +5616,7 @@ Dielectric Permittivity</string>
                <item row="0" column="0">
                 <layout class="QFormLayout" name="formLayout_35">
                  <item row="1" column="1">
-                  <widget class="QComboBox" name="map_selection_combo_box_5"/>
+                  <widget class="QComboBox" name="map_selection_combo_box"/>
                  </item>
                  <item row="1" column="0">
                   <widget class="QLabel" name="label_12">
@@ -5635,7 +5635,7 @@ Dielectric Permittivity</string>
                  <item row="3" column="1">
                   <layout class="QHBoxLayout" name="horizontalLayout_106">
                    <item>
-                    <widget class="QSpinBox" name="ubiquiti_channel_spin_box_5">
+                    <widget class="QSpinBox" name="ubiquiti_channel_spin_box">
                      <property name="readOnly">
                       <bool>false</bool>
                      </property>
@@ -5651,7 +5651,7 @@ Dielectric Permittivity</string>
                     </widget>
                    </item>
                    <item>
-                    <widget class="QPushButton" name="ubiquiti_channel_apply_button_5">
+                    <widget class="QPushButton" name="ubiquiti_channel_apply_button">
                      <property name="text">
                       <string>Apply</string>
                      </property>
@@ -5667,7 +5667,7 @@ Dielectric Permittivity</string>
                   </widget>
                  </item>
                  <item row="2" column="1">
-                  <widget class="QComboBox" name="map_zoom_level_combo_box_5"/>
+                  <widget class="QComboBox" name="map_zoom_level_combo_box"/>
                  </item>
                 </layout>
                </item>
