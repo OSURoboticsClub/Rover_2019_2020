@@ -59,7 +59,7 @@
       <item>
        <widget class="QTabWidget" name="tabWidget_2">
         <property name="currentIndex">
-         <number>0</number>
+         <number>1</number>
         </property>
         <widget class="QWidget" name="tab_6">
          <attribute name="title">
@@ -71,7 +71,7 @@
             <x>0</x>
             <y>0</y>
             <width>646</width>
-            <height>1041</height>
+            <height>1086</height>
            </rect>
           </property>
           <layout class="QVBoxLayout" name="verticalLayout_36">
@@ -2402,7 +2402,7 @@ Position</string>
           <property name="geometry">
            <rect>
             <x>0</x>
-            <y>0</y>
+            <y>1</y>
             <width>642</width>
             <height>1082</height>
            </rect>
@@ -2410,6 +2410,9 @@ Position</string>
           <layout class="QVBoxLayout" name="verticalLayout">
            <property name="spacing">
             <number>0</number>
+           </property>
+           <property name="sizeConstraint">
+            <enum>QLayout::SetNoConstraint</enum>
            </property>
            <item>
             <widget class="QWidget" name="widget_4" native="true">
@@ -2448,21 +2451,21 @@ Position</string>
                <number>0</number>
               </property>
               <item>
-               <layout class="QHBoxLayout" name="horizontalLayout_91">
+               <layout class="QHBoxLayout" name="horizontalLayout_91" stretch="0,0,0,0,0,0">
                 <property name="spacing">
                  <number>10</number>
                 </property>
                 <property name="sizeConstraint">
-                 <enum>QLayout::SetDefaultConstraint</enum>
+                 <enum>QLayout::SetMaximumSize</enum>
                 </property>
                 <property name="topMargin">
-                 <number>3</number>
+                 <number>0</number>
                 </property>
                 <property name="rightMargin">
                  <number>0</number>
                 </property>
                 <property name="bottomMargin">
-                 <number>3</number>
+                 <number>0</number>
                 </property>
                 <item>
                  <widget class="QLabel" name="osurc_logo_label">
@@ -2603,9 +2606,54 @@ Position</string>
               </item>
               <item>
                <layout class="QGridLayout" name="gridLayout_69">
+                <property name="sizeConstraint">
+                 <enum>QLayout::SetFixedSize</enum>
+                </property>
                 <property name="spacing">
                  <number>0</number>
                 </property>
+                <item row="11" column="3">
+                 <widget class="QLabel" name="middle_right_wheel_label">
+                  <property name="sizePolicy">
+                   <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+                    <horstretch>0</horstretch>
+                    <verstretch>0</verstretch>
+                   </sizepolicy>
+                  </property>
+                  <property name="minimumSize">
+                   <size>
+                    <width>0</width>
+                    <height>0</height>
+                   </size>
+                  </property>
+                  <property name="maximumSize">
+                   <size>
+                    <width>9999999</width>
+                    <height>9999999</height>
+                   </size>
+                  </property>
+                  <property name="font">
+                   <font>
+                    <pointsize>10</pointsize>
+                    <weight>75</weight>
+                    <bold>true</bold>
+                   </font>
+                  </property>
+                  <property name="styleSheet">
+                   <string notr="true">background-color:green; border: 0.5px solid black;</string>
+                  </property>
+                  <property name="frameShape">
+                   <enum>QFrame::NoFrame</enum>
+                  </property>
+                  <property name="text">
+                   <string>Middle Right Wheel
+Connected</string>
+                  </property>
+                  <property name="alignment">
+                   <set>Qt::AlignCenter</set>
+                  </property>
+                 </widget>
+                </item>
                 <item row="6" column="3">
                  <widget class="QLabel" name="emmc">
                   <property name="font">
@@ -2633,7 +2681,7 @@ Position</string>
                 <item row="0" column="2">
                  <widget class="QLabel" name="frsky">
                   <property name="sizePolicy">
-                   <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+                   <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
                     <horstretch>0</horstretch>
                     <verstretch>0</verstretch>
                    </sizepolicy>
@@ -2741,52 +2789,10 @@ RX Latency: ----- ms</string>
                   </property>
                  </widget>
                 </item>
-                <item row="11" column="3">
-                 <widget class="QLabel" name="middle_right_wheel_label">
-                  <property name="sizePolicy">
-                   <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
-                    <horstretch>0</horstretch>
-                    <verstretch>0</verstretch>
-                   </sizepolicy>
-                  </property>
-                  <property name="minimumSize">
-                   <size>
-                    <width>0</width>
-                    <height>0</height>
-                   </size>
-                  </property>
-                  <property name="maximumSize">
-                   <size>
-                    <width>9999999</width>
-                    <height>9999999</height>
-                   </size>
-                  </property>
-                  <property name="font">
-                   <font>
-                    <pointsize>10</pointsize>
-                    <weight>75</weight>
-                    <bold>true</bold>
-                   </font>
-                  </property>
-                  <property name="styleSheet">
-                   <string notr="true">background-color:green; border: 0.5px solid black;</string>
-                  </property>
-                  <property name="frameShape">
-                   <enum>QFrame::NoFrame</enum>
-                  </property>
-                  <property name="text">
-                   <string>Middle Right Wheel
-Connected</string>
-                  </property>
-                  <property name="alignment">
-                   <set>Qt::AlignCenter</set>
-                  </property>
-                 </widget>
-                </item>
                 <item row="0" column="4">
                  <widget class="QLabel" name="joystick">
                   <property name="sizePolicy">
-                   <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+                   <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
                     <horstretch>0</horstretch>
                     <verstretch>0</verstretch>
                    </sizepolicy>
@@ -2828,7 +2834,7 @@ Connected</string>
                 <item row="0" column="3">
                  <widget class="QLabel" name="nav_mouse">
                   <property name="sizePolicy">
-                   <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+                   <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
                     <horstretch>0</horstretch>
                     <verstretch>0</verstretch>
                    </sizepolicy>
@@ -3380,93 +3386,6 @@ Connected</string>
                   </property>
                  </widget>
                 </item>
-                <item row="14" column="4">
-                 <widget class="QLabel" name="chassis_cam">
-                  <property name="sizePolicy">
-                   <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
-                    <horstretch>0</horstretch>
-                    <verstretch>0</verstretch>
-                   </sizepolicy>
-                  </property>
-                  <property name="minimumSize">
-                   <size>
-                    <width>0</width>
-                    <height>0</height>
-                   </size>
-                  </property>
-                  <property name="maximumSize">
-                   <size>
-                    <width>9999999</width>
-                    <height>9999999</height>
-                   </size>
-                  </property>
-                  <property name="sizeIncrement">
-                   <size>
-                    <width>0</width>
-                    <height>0</height>
-                   </size>
-                  </property>
-                  <property name="font">
-                   <font>
-                    <pointsize>10</pointsize>
-                    <weight>75</weight>
-                    <bold>true</bold>
-                   </font>
-                  </property>
-                  <property name="styleSheet">
-                   <string notr="true">background-color:green; border: 0.5px solid black;</string>
-                  </property>
-                  <property name="text">
-                   <string>Chassis Camera
-Connected</string>
-                  </property>
-                  <property name="alignment">
-                   <set>Qt::AlignCenter</set>
-                  </property>
-                 </widget>
-                </item>
-                <item row="0" column="1">
-                 <widget class="QLabel" name="rover">
-                  <property name="sizePolicy">
-                   <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
-                    <horstretch>0</horstretch>
-                    <verstretch>0</verstretch>
-                   </sizepolicy>
-                  </property>
-                  <property name="minimumSize">
-                   <size>
-                    <width>0</width>
-                    <height>0</height>
-                   </size>
-                  </property>
-                  <property name="maximumSize">
-                   <size>
-                    <width>9999999</width>
-                    <height>9999999</height>
-                   </size>
-                  </property>
-                  <property name="font">
-                   <font>
-                    <pointsize>10</pointsize>
-                    <weight>75</weight>
-                    <bold>true</bold>
-                   </font>
-                  </property>
-                  <property name="styleSheet">
-                   <string notr="true">background-color:green; border: 0.5px solid black;</string>
-                  </property>
-                  <property name="frameShape">
-                   <enum>QFrame::NoFrame</enum>
-                  </property>
-                  <property name="text">
-                   <string>Rover
-Connected</string>
-                  </property>
-                  <property name="alignment">
-                   <set>Qt::AlignCenter</set>
-                  </property>
-                 </widget>
-                </item>
                 <item row="2" column="2">
                  <widget class="QLabel" name="successful_transmit_label">
                   <property name="sizePolicy">
@@ -3680,7 +3599,7 @@ False</string>
                 <item row="9" column="1">
                  <widget class="QLabel" name="battery_voltage_status_label">
                   <property name="sizePolicy">
-                   <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+                   <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
                     <horstretch>0</horstretch>
                     <verstretch>0</verstretch>
                    </sizepolicy>
@@ -3719,6 +3638,93 @@ N/A</string>
                   </property>
                  </widget>
                 </item>
+                <item row="0" column="1">
+                 <widget class="QLabel" name="rover">
+                  <property name="sizePolicy">
+                   <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+                    <horstretch>0</horstretch>
+                    <verstretch>0</verstretch>
+                   </sizepolicy>
+                  </property>
+                  <property name="minimumSize">
+                   <size>
+                    <width>0</width>
+                    <height>0</height>
+                   </size>
+                  </property>
+                  <property name="maximumSize">
+                   <size>
+                    <width>9999999</width>
+                    <height>9999999</height>
+                   </size>
+                  </property>
+                  <property name="font">
+                   <font>
+                    <pointsize>10</pointsize>
+                    <weight>75</weight>
+                    <bold>true</bold>
+                   </font>
+                  </property>
+                  <property name="styleSheet">
+                   <string notr="true">background-color:green; border: 0.5px solid black;</string>
+                  </property>
+                  <property name="frameShape">
+                   <enum>QFrame::NoFrame</enum>
+                  </property>
+                  <property name="text">
+                   <string>Rover
+Connected</string>
+                  </property>
+                  <property name="alignment">
+                   <set>Qt::AlignCenter</set>
+                  </property>
+                 </widget>
+                </item>
+                <item row="14" column="4">
+                 <widget class="QLabel" name="chassis_cam">
+                  <property name="sizePolicy">
+                   <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+                    <horstretch>0</horstretch>
+                    <verstretch>0</verstretch>
+                   </sizepolicy>
+                  </property>
+                  <property name="minimumSize">
+                   <size>
+                    <width>0</width>
+                    <height>0</height>
+                   </size>
+                  </property>
+                  <property name="maximumSize">
+                   <size>
+                    <width>9999999</width>
+                    <height>9999999</height>
+                   </size>
+                  </property>
+                  <property name="sizeIncrement">
+                   <size>
+                    <width>0</width>
+                    <height>0</height>
+                   </size>
+                  </property>
+                  <property name="font">
+                   <font>
+                    <pointsize>10</pointsize>
+                    <weight>75</weight>
+                    <bold>true</bold>
+                   </font>
+                  </property>
+                  <property name="styleSheet">
+                   <string notr="true">background-color:green; border: 0.5px solid black;</string>
+                  </property>
+                  <property name="text">
+                   <string>Chassis Camera
+Connected</string>
+                  </property>
+                  <property name="alignment">
+                   <set>Qt::AlignCenter</set>
+                  </property>
+                 </widget>
+                </item>
                </layout>
               </item>
              </layout>
@@ -3745,7 +3751,7 @@ N/A</string>
               </size>
              </property>
              <property name="currentIndex">
-              <number>4</number>
+              <number>3</number>
              </property>
              <widget class="QWidget" name="tab_25">
               <attribute name="title">
@@ -5416,11 +5422,11 @@ Dielectric Permittivity</string>
                <string>SSH Console</string>
               </attribute>
               <layout class="QGridLayout" name="gridLayout_78">
-               <item row="0" column="0">
-                <widget class="QTextEdit" name="console_line_edit_5"/>
-               </item>
                <item row="2" column="0">
                 <layout class="QVBoxLayout" name="verticalLayout_274">
+                 <property name="sizeConstraint">
+                  <enum>QLayout::SetNoConstraint</enum>
+                 </property>
                  <item>
                   <widget class="Line" name="line_58">
                    <property name="orientation">
@@ -5575,23 +5581,33 @@ Dielectric Permittivity</string>
                <item row="3" column="0">
                 <layout class="QHBoxLayout" name="horizontalLayout_105">
                  <item>
-                  <widget class="QLineEdit" name="ssh_ssid_line_edit_5"/>
+                  <widget class="QLineEdit" name="ssh_ssid_line_edit"/>
                  </item>
                  <item>
-                  <widget class="QPushButton" name="ssh_ssid_push_button_5">
+                  <widget class="QPushButton" name="ssh_ssid_push_button">
                    <property name="text">
                     <string>Connect SSID</string>
                    </property>
                   </widget>
                  </item>
                  <item>
-                  <widget class="QPushButton" name="ssh_disconnect_wifi_button_5">
+                  <widget class="QPushButton" name="ssh_disconnect_wifi_button">
                    <property name="text">
                     <string>Disconnect SSID</string>
                    </property>
                   </widget>
                  </item>
                 </layout>
+               </item>
+               <item row="0" column="0">
+                <widget class="QTextEdit" name="console_line_edit">
+                 <property name="sizePolicy">
+                  <sizepolicy hsizetype="Minimum" vsizetype="Minimum">
+                   <horstretch>0</horstretch>
+                   <verstretch>0</verstretch>
+                  </sizepolicy>
+                 </property>
+                </widget>
                </item>
               </layout>
              </widget>
@@ -5700,7 +5716,7 @@ Dielectric Permittivity</string>
            </rect>
           </property>
           <property name="sizePolicy">
-           <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+           <sizepolicy hsizetype="Fixed" vsizetype="Expanding">
             <horstretch>0</horstretch>
             <verstretch>0</verstretch>
            </sizepolicy>
@@ -5727,12 +5743,15 @@ Dielectric Permittivity</string>
             <x>640</x>
             <y>720</y>
             <width>506</width>
-            <height>328</height>
+            <height>411</height>
            </rect>
           </property>
           <layout class="QVBoxLayout" name="verticalLayout_277">
            <property name="spacing">
             <number>0</number>
+           </property>
+           <property name="sizeConstraint">
+            <enum>QLayout::SetNoConstraint</enum>
            </property>
            <item>
             <widget class="QLabel" name="label_337">
@@ -5990,16 +6009,6 @@ Dielectric Permittivity</string>
                </property>
               </widget>
              </item>
-             <item row="0" column="2">
-              <widget class="QSpinBox" name="manual_waypoint_minutes_lattitude_spin_box">
-               <property name="suffix">
-                <string>'</string>
-               </property>
-               <property name="maximum">
-                <number>60</number>
-               </property>
-              </widget>
-             </item>
              <item row="0" column="4">
               <widget class="QComboBox" name="manual_waypoint_cardinal_lattitude_combo_box">
                <item>
@@ -6019,16 +6028,13 @@ Dielectric Permittivity</string>
                </item>
               </widget>
              </item>
-             <item row="1" column="1">
-              <widget class="QSpinBox" name="manual_waypoint_degrees_longitude_spin_box">
+             <item row="0" column="2">
+              <widget class="QSpinBox" name="manual_waypoint_minutes_lattitude_spin_box">
                <property name="suffix">
-                <string>° </string>
-               </property>
-               <property name="minimum">
-                <number>-180</number>
+                <string>'</string>
                </property>
                <property name="maximum">
-                <number>180</number>
+                <number>60</number>
                </property>
               </widget>
              </item>
@@ -6049,6 +6055,19 @@ Dielectric Permittivity</string>
                  <string>E</string>
                 </property>
                </item>
+              </widget>
+             </item>
+             <item row="1" column="1">
+              <widget class="QSpinBox" name="manual_waypoint_degrees_longitude_spin_box">
+               <property name="suffix">
+                <string>° </string>
+               </property>
+               <property name="minimum">
+                <number>-180</number>
+               </property>
+               <property name="maximum">
+                <number>180</number>
+               </property>
               </widget>
              </item>
              <item row="1" column="2">
@@ -6756,6 +6775,11 @@ GPS</string>
            </item>
           </layout>
          </widget>
+         <zorder>layoutWidget_7</zorder>
+         <zorder>layoutWidget_8</zorder>
+         <zorder>layoutWidget_9</zorder>
+         <zorder>layoutWidget</zorder>
+         <zorder>mapping_label</zorder>
         </widget>
        </widget>
       </item>
