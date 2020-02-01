@@ -1502,7 +1502,7 @@ Position</string>
                 <enum>QLayout::SetNoConstraint</enum>
                </property>
                <item>
-                <widget class="QWidget" name="heading_widget_2" native="true">
+                <widget class="QWidget" name="heading_widget" native="true">
                  <property name="sizePolicy">
                   <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
                    <horstretch>0</horstretch>
