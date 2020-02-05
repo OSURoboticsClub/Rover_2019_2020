@@ -6,6 +6,7 @@ arm_controller:
      - elbow_pitch
      - elbow_roll
      - wrist_pitch
+     - wrist_roll
   constraints:
       goal_time: 0.6
       stopped_velocity_tolerance: 0.05
@@ -25,3 +26,4 @@ joint_group_position_controller:
      - elbow_pitch
      - elbow_roll
      - wrist_pitch
+     - wrist_roll
