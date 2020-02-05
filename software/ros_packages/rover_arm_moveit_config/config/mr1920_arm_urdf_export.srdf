@@ -16,6 +16,7 @@
         <joint name="elbow_pitch" />
         <joint name="elbow_roll" />
         <joint name="wrist_pitch" />
+        <joint name="wrist_roll" />
     </group>
     <group name="hand">
         <joint name="wrist_roll" />
