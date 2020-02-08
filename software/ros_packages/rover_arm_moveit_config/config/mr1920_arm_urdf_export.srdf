@@ -37,14 +37,9 @@
     <disable_collisions link1="elbow" link2="shoulder" reason="Never" />
     <disable_collisions link1="elbow" link2="upper_arm" reason="Adjacent" />
     <disable_collisions link1="elbow" link2="wrist" reason="Never" />
-    <disable_collisions link1="gripper" link2="lower_arm" reason="Never" />
-    <disable_collisions link1="gripper" link2="shoulder" reason="Never" />
-    <disable_collisions link1="gripper" link2="upper_arm" reason="Never" />
     <disable_collisions link1="gripper" link2="wrist" reason="Adjacent" />
     <disable_collisions link1="lower_arm" link2="shoulder" reason="Never" />
     <disable_collisions link1="lower_arm" link2="upper_arm" reason="Never" />
     <disable_collisions link1="lower_arm" link2="wrist" reason="Adjacent" />
     <disable_collisions link1="shoulder" link2="upper_arm" reason="Adjacent" />
-    <disable_collisions link1="shoulder" link2="wrist" reason="Never" />
-    <disable_collisions link1="upper_arm" link2="wrist" reason="Never" />
 </robot>
