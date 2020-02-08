@@ -54,7 +54,7 @@ class Mining(QtCore.QObject):
 
         # ########## Reference to class init variables ##########
         self.shared_objects = shared_objects
-        self.left_screen = self.shared_objects["screens"]["onecreen"]
+        self.left_screen = self.shared_objects["screens"]["onescreen"]
 
         self.mining_4bar_temp_lcd_number = self.left_screen.mining_4bar_temp_lcd_number  # type:QtWidgets.QLCDNumber
         self.mining_4bar_current_lcd_number = self.left_screen.mining_4bar_current_lcd_number  # type:QtWidgets.QLCDNumber

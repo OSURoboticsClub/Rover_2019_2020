@@ -44,13 +44,13 @@ class SpeedAndHeadingIndication(QtCore.QThread):
         self.shared_objects = shared_objects
         self.right_screen = self.shared_objects["screens"]["onescreen"]
 
-        self.heading_compass_label = self.right_screen.heading_compass_label_2  # type: QtWidgets.QLabel
-        self.heading_text_label = self.right_screen.current_heading_label_2  # type: QtWidgets.QLabel
-        self.next_goal_label = self.right_screen.next_goal_label_2  # type: QtWidgets.QLabel
-        self.current_speed_label = self.right_screen.current_speed_label_2  # type: QtWidgets.QLabel
+        self.heading_compass_label = self.right_screen.heading_compass_label  # type: QtWidgets.QLabel
+        self.heading_text_label = self.right_screen.current_heading_label  # type: QtWidgets.QLabel
+        self.next_goal_label = self.right_screen.next_goal_label  # type: QtWidgets.QLabel
+        self.current_speed_label = self.right_screen.current_speed_label  # type: QtWidgets.QLabel
 
-        self.imu_pitch_lcd_number = self.right_screen.imu_pitch_lcd_number_4  # type: QtWidgets.QLCDNumber
-        self.imu_roll_lcd_number = self.right_screen.imu_roll_lcd_number_2  # type: QtWidgets.QLCDNumber
+        self.imu_pitch_lcd_number = self.right_screen.imu_pitch_lcd_number  # type: QtWidgets.QLCDNumber
+        self.imu_roll_lcd_number = self.right_screen.imu_roll_lcd_number  # type: QtWidgets.QLCDNumber
 
         # ########## Get the settings instance ##########
         self.settings = QtCore.QSettings()
