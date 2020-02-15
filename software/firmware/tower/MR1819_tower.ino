@@ -1,5 +1,5 @@
 ////////// Includes //////////
-#include <ModbusRtu.h>
+#include <pothos.h>
 //#include <Adafruit_BNO055_t3.h>
 #include <ArduinoJson.h>
 //#include <utility/imumaths.h>
@@ -33,6 +33,14 @@ enum HARDWARE {
   LASER_SIGNAL = 14
 };
 
+enum DATA {
+  LED_LIGHTS_STATE = 0,
+  LED_DRIVE_STATE = 1,
+  LED_WAYPOINT_STATE = 2,
+  LED_COMMS_STATE = 3,
+  LASERS = 4
+};
+
 enum MODBUS_REGISTERS {
   LED_CONTROL = 0,  // Input
 };
@@ -40,7 +48,7 @@ enum MODBUS_REGISTERS {
 #define GPS_SERIAL_PORT Serial2
 #define GPS_IMU_STREAMING_PORT Serial1
 #define Num_Pixels 60
-#define Num_rainbow_pixles 57
+#define Num_rainbow_pixels 57
 
 ////////// Global Variables //////////
 ///// Modbus
@@ -72,12 +80,15 @@ CRGB white = CRGB(255,255,255);
 CRGB turquoise = CRGB(0,130,60);
 CRGB leds[Num_Pixels];
 uint8_t gHue = 0;
+uint8_t laser_last_state = 0;
+
 unsigned long pixel_clock = 0 ;
 int pixel_timer = 15;
 
 
 ////////// Class Instantiations //////////
-Modbus slave(node_id, mobus_serial_port_number, HARDWARE::COMMS_RS485_EN);
+//Modbus slave(node_id, mobus_serial_port_number, HARDWARE::COMMS_RS485_EN);
+pothos comms(node_id, HARDWARE::COMMS_RS485_EN);
 
 
 //Adafruit_NeoPixel strip(Num_Pixels, HARDWARE::NEO_PIXEL, NEO_GRB + NEO_KHZ800);
@@ -85,27 +96,14 @@ Modbus slave(node_id, mobus_serial_port_number, HARDWARE::COMMS_RS485_EN);
 const char baud115200[] = "PUBX,41,1,3,3,115200,0";
 
 void setup() {
-  // Debugging
-  Serial.begin(9600);
- // while (!Serial);
+  
+  comms.setPort(&serial1);
 
-  // Raw pin setup
   setup_hardware();
 
-  // Setup modbus serial communication
-  num_modbus_registers = sizeof(modbus_data) / sizeof(modbus_data[0]);
-  slave.begin(115200); // baud-rate at 115200
-  slave.setTimeOut(1750);
+  Serial.begin(9600);
 
-  // GPS & IMU serial streaming setup
-  GPS_IMU_STREAMING_PORT.begin(115200);
-  GPS_IMU_STREAMING_PORT.transmitterEnable(HARDWARE::GPS_IMU_RS485_EN);
-
-
-  // GPS Setup
-  GPS_SERIAL_PORT.begin(9600);
-
-  
+  set_data_types();
 
 }
 
@@ -115,7 +113,7 @@ void loop() {
   JsonObject& root = jsonBuffer.createObject();
 
   // Do normal polling
-  poll_modbus();
+  comms.update();
   
   set_leds();
   process_gps_and_send_if_ready(root);
@@ -135,6 +133,14 @@ void setup_hardware() {
   // Initialize Fast LED Object
   FastLED.addLeds<WS2811,HARDWARE::NEO_PIXEL,GRB>(leds, Num_Pixels).setCorrection(TypicalLEDStrip);
   FastLED.setBrightness(120);
+}
+
+void set_data_types(){
+  gps_comms.data.set_type(DATA::LED_WAYPOINT_STATE, "int"); 
+  gps_comms.data.set_type(DATA::LED_DRIVE_STATE, "int"); 
+  gps_comms.data.set_type(DATA::LED_COMMS_STATE, "int"); 
+  gps_comms.data.set_type(DATA::LED_LIGHTS_STATE, "int"); 
+  gps_comms.data.set_type(DATA::LASERS, "char");
 }
 
 void process_gps_and_send_if_ready(JsonObject &root) {
@@ -162,68 +168,102 @@ void process_gps_and_send_if_ready(JsonObject &root) {
 
 }
 
-void poll_modbus() {
-  poll_state = slave.poll(modbus_data, num_modbus_registers);
-  communication_good = !slave.getTimeOutState();
+/**
+ * @description: Sets the LASERS based on pothos register DATA
+ * 
+ **/
+void laser_zone() {
+
+  laser_state = DATA::LASERS;
+
+  if(laser_last_state != laser_state) {
+    
+    laser_last_state = laser_state;
+
+    if(laser_state) {
+      digitalWrite(HARDWARE::LASER_SIGNAL, HIGH);
+    } else {
+      digitalWrite(HARDWARE::LASER_SIGNAL, LOW);
+    }
+  }
 }
 
-void rainbow() 
-{
+void rainbow() {
   // FastLED's built-in rainbow generator
-  fill_rainbow( leds, Num_rainbow_pixles , gHue, 7);
+  fill_rainbow( leds, Num_rainbow_pixels , gHue, 7);
 }
 
-void rainbowWithGlitter() 
-{
+void rainbowWithGlitter() {
   // built-in FastLED rainbow, plus some random sparkly glitter
   rainbow();
   addGlitter(80);
 }
 
-void addGlitter( fract8 chanceOfGlitter) 
-{
+void addGlitter( fract8 chanceOfGlitter) {
   if( random8() < chanceOfGlitter) {
-    leds[ random16(Num_rainbow_pixles) ] += CRGB::White;
+    leds[ random16(Num_rainbow_pixels) ] += CRGB::White;
   }
 }
 
-void confetti() 
-{
+void confetti() {
   // random colored speckles that blink in and fade smoothly
-  fadeToBlackBy( leds,Num_rainbow_pixles, 10);
-  int pos = random16(Num_rainbow_pixles);
-  leds[pos] += CHSV( gHue + random8(Num_rainbow_pixles), 200, 255);
+  fadeToBlackBy( leds,Num_rainbow_pixels, 10);
+  int pos = random16(Num_rainbow_pixels);
+  leds[pos] += CHSV( gHue + random8(Num_rainbow_pixels), 200, 255);
 }
 
-void sinelon()
-{
+void sinelon() {
   // a colored dot sweeping back and forth, with fadingtrails
-  fadeToBlackBy( leds, Num_rainbow_pixles, 20);
-  int pos = beatsin16( 13, 0, Num_rainbow_pixles-1 );
+  fadeToBlackBy( leds, Num_rainbow_pixels, 20);
+  int pos = beatsin16( 13, 0, Num_rainbow_pixels-1 );
   leds[pos] += CHSV( gHue, 255, 192);
 }
 
-void bpm()
-{
+void bpm() {
   // colored stripes pulsing at a defined Beats-Per-Minute (BPM)
   uint8_t BeatsPerMinute = 120;
   CRGBPalette16 palette = PartyColors_p;
   uint8_t beat = beatsin8( BeatsPerMinute, 64, 255);
-  for( int i = 0; i < Num_rainbow_pixles; i++) { //9948
+  for( int i = 0; i < Num_rainbow_pixels; i++) { //9948
     leds[i] = ColorFromPalette(palette, gHue+(i*2), beat-gHue+(i*10));
   }
 }
 
 void juggle() {
   // eight colored dots, weaving in and out of sync with each other
-  fadeToBlackBy( leds, Num_rainbow_pixles, 20);
+  fadeToBlackBy( leds, Num_rainbow_pixels, 20);
   byte dothue = 0;
   for( int i = 0; i < 8; i++) {
-    leds[beatsin16( i+7, 0, Num_rainbow_pixles-1 )] |= CHSV(dothue, 200, 255);
+    leds[beatsin16( i+7, 0, Num_rainbow_pixels-1 )] |= CHSV(dothue, 200, 255);
     dothue += 32;
   }
 }
 
+void autonomous() {
+  for(int i = 0; i < Num_rainbow_pixels; i++) {
+    leds[i] = red;
+  }
+}
+
+void teleoperation() {
+  for(int i = 0; i < Num_rainbow_pixels; i++) {
+    leds[i] = blue;
+  }
+}
+
+void success() {
+  uint8_t flash_duration = 1;
+  
+  if(millis() - pixel_clock > flash_duration*1000) {
+    for(int i = 0; i < Num_rainbow_pixels; i++) {
+      if(leds[i] != green) {
+        leds[i] = green;
+      } else {
+        leds[i] = CHSV(0, 0, 0);
+      }
+    }
+  }
+}
 
 void run_leds() {
   if (millis() - pixel_clock > pixel_timer) {
@@ -231,10 +271,10 @@ void run_leds() {
     static uint8_t led = 0;
     static uint8_t dir = 1;
     leds[led] = CHSV(gHue, 240, 170);
-    for (int i = 0; i < Num_rainbow_pixles; i++) {
+    for (int i = 0; i < Num_rainbow_pixels; i++) {
       leds[i].nscale8(237 );
     }
-    if (led == Num_rainbow_pixles - 1) {
+    if (led == Num_rainbow_pixels - 1) {
       dir = -1;
     } else if (led == 0) {
       dir = 1;
@@ -245,7 +285,7 @@ void run_leds() {
   }
 }
 
-CRGB status_scale(int scale, int val){
+CRGB status_scale(int scale, int val) {
   if(val < scale/2)
     return CRGB(254,70*val*2/scale,0);
   else if(val > scale/2)
@@ -254,12 +294,15 @@ CRGB status_scale(int scale, int val){
     return yellow;  
 }
 
-void set_leds(){
+
+/**
+ * @Description: Updates the LEDs for NEOPIXEL Display via Register Data from Pothos
+ **/
+void set_leds() {
 
   EVERY_N_MILLISECONDS( 20 ) { gHue++; }
-	
-  // registers to store data
-  bool IMU_cals[] = {0,0,0};
+
+  
   bool comms_status = communication_good;
   uint8_t drive_state = 0;
   uint8_t waypoint_state = 0;
@@ -268,20 +311,14 @@ void set_leds(){
   
   //int * color = blue;
   
-  //collect data from modbus registers
-  for(int i=0;i<16;i++){
-	if(i < 3)
-		IMU_cals[i] = bitRead(modbus_data[MODBUS_REGISTERS::LED_CONTROL], i);
-	else if(i>2 && i<5)
-		bitWrite(drive_state, i-3, bitRead(modbus_data[MODBUS_REGISTERS::LED_CONTROL], i));
-	else if(i>4 && i<7)
-		bitWrite(waypoint_state, i-5, bitRead(modbus_data[MODBUS_REGISTERS::LED_CONTROL], i));
-	else if(i>6 && i<11)
-		bitWrite(lights, i-7, bitRead(modbus_data[MODBUS_REGISTERS::LED_CONTROL], i));
-	else if(i>10 && i<16)
-		bitWrite(comms, i-11, bitRead(modbus_data[MODBUS_REGISTERS::LED_CONTROL], i));
-  }
+  //collect data from pothos registers
+  drive_state = DATA::LED_DRIVE_STATE;
+  waypoint_state = DATA::LED_WAYPOINT_STATE;
+  comms = DATA::LED_COMMS_STATE;
+  lights = DATA::LED_LIGHTS_STATE;
 
+
+  //Calling LED Control functions
   switch(lights){
     case 1:
       rainbow();
@@ -304,6 +341,12 @@ void set_leds(){
     case 0:
       run_leds();
       break;
+    case 7:
+      autonomous();
+    case 8:
+      teleoperation();
+    case 9:
+      success();
   }
 
   if(!comms_status)
