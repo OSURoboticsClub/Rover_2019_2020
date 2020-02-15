@@ -87,11 +87,7 @@ int pixel_timer = 15;
 
 
 ////////// Class Instantiations //////////
-//Modbus slave(node_id, mobus_serial_port_number, HARDWARE::COMMS_RS485_EN);
 pothos comms(node_id, HARDWARE::COMMS_RS485_EN);
-
-
-//Adafruit_NeoPixel strip(Num_Pixels, HARDWARE::NEO_PIXEL, NEO_GRB + NEO_KHZ800);
 
 const char baud115200[] = "PUBX,41,1,3,3,115200,0";
 
@@ -135,6 +131,9 @@ void setup_hardware() {
   FastLED.setBrightness(120);
 }
 
+/**
+ * @description: Sets the Datatypes for Pothos registers
+ **/
 void set_data_types(){
   gps_comms.data.set_type(DATA::LED_WAYPOINT_STATE, "int"); 
   gps_comms.data.set_type(DATA::LED_DRIVE_STATE, "int"); 
@@ -177,7 +176,7 @@ void laser_zone() {
   laser_state = DATA::LASERS;
 
   if(laser_last_state != laser_state) {
-    
+
     laser_last_state = laser_state;
 
     if(laser_state) {
@@ -262,6 +261,8 @@ void success() {
         leds[i] = CHSV(0, 0, 0);
       }
     }
+    
+    pixel_clock = millis();
   }
 }
 
