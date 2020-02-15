@@ -1,4 +1,4 @@
-# Stereolabs ZED Camera - RTAB-map example
+# slam.launch
 
 This package shows how to use the ZED Wrapper with [RTAB-map](http://introlab.github.io/rtabmap/)
 
@@ -6,7 +6,7 @@ This package shows how to use the ZED Wrapper with [RTAB-map](http://introlab.gi
 
 To launch the example, open a terminal and launch:
 
-    $ roslaunch zed_rtabmap_example zed_rtabmap.launch
+    $ roslaunch zed_rtabmap slam.launch
 
 Example of indoor 3D mapping using RTAB-map and ZED
 
