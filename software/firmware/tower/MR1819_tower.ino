@@ -12,7 +12,7 @@ FASTLED_USING_NAMESPACE
 
 ////////// Hardware / Data Enumerations //////////
 enum HARDWARE {
-  GPS_IMU_RS485_EN = 22,
+  GPS_IMU_RS485_EN = 15,
   GPS_IMU_RS485_RX = 0,
   GPS_IMU_RS485_TX = 1,
 
@@ -26,9 +26,11 @@ enum HARDWARE {
   IMU_SDA = 18,
   IMU_SCL = 19,
 
-  NEO_PIXEL = 6,
+  NEO_PIXEL = 23,
 
-  LED_BLUE_EXTRA = 13
+  LED_BLUE_EXTRA = 13,
+
+  LASER_SIGNAL = 14
 };
 
 enum MODBUS_REGISTERS {
