@@ -1,7 +1,0 @@
-#request
-bool global
-bool optimized
-bool graphOnly
----
-#response
-MapData data
