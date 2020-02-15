@@ -1,0 +1,77 @@
+<?xml version="1.0"?>
+
+<launch>
+    <arg name="zed_namespace"		    	default="zed" />
+    <arg name="svo_file" default=""/>
+
+    <arg name="zed_node_name"         default="zed_node" />
+    <arg name="camera_model"          default="zed" /> <!--change from zed to zedm as needed -->
+    <arg name="publish_urdf"          default="true" />
+    <arg name="nodelet_manager_name"  default="zed_nodelet_manager" />
+    
+    <!-- ZED Wrapper Node -->
+    <!-- <group ns="$(arg zed_namespace)">
+        <include file="$(find zed_wrapper)/launch/zed_camera.launch">
+            <arg name="svo_file"            value="$(arg svo_file)" />
+            <arg name="node_name"           value="$(arg zed_node_name)" />
+            <arg name="camera_model"        value="$(arg camera_model)" />
+            <arg name="publish_urdf"        value="$(arg publish_urdf)" />
+        </include>
+    </group> -->
+
+    <group ns="$(arg zed_namespace)">
+	    <!-- Nodelet Manager -->
+        <node pkg="nodelet" type="nodelet" name="$(arg nodelet_manager_name)"  args="manager" output="screen" />
+
+        <!-- ZED wrapper as nodelet -->
+        <include file="$(find zed_wrapper)/launch/zed_camera_nodelet.launch">
+            <arg name="svo_file"             value="$(arg svo_file)"/>
+            <arg name="nodelet_manager_name" value="$(arg nodelet_manager_name)" />
+            <arg name="camera_model"         value="$(arg camera_model)" />
+            <arg name="node_name"            value="$(arg zed_node_name)" />
+            <arg name="publish_urdf"        value="$(arg publish_urdf)" />
+        </include>
+
+        <!-- Virtual laser scan as nodelet -->
+        <!-- "$ sudo apt install ros-kinetic-depthimage-to-laserscan" -->
+        <node pkg="nodelet" type="nodelet" name="depthimage_to_laserscan" args="load depthimage_to_laserscan/DepthImageToLaserScanNodelet zed_nodelet_manager">
+             <param name="scan_height" value="10"/>
+             <param name="output_frame_id" value="zed_left_camera_frame"/>
+             <param name="range_min" value="0.45"/>
+             <remap from="image" to="$(arg zed_node_name)/depth/depth_registered"/>
+        </node>
+
+
+        <!-- ar_track_alvar Node -->
+        <arg name="marker_size" default="5.0" />
+        <arg name="max_new_marker_error" default="0.08" />
+        <arg name="max_track_error" default="0.2" />
+
+        <node name="ar_track_alvar" pkg="ar_track_alvar" type="individualMarkersNoKinect" respawn="false" output="screen">
+                <param name="marker_size"           type="double" value="$(arg marker_size)" />
+                <param name="max_new_marker_error"  type="double" value="$(arg max_new_marker_error)" />
+                <param name="max_track_error"       type="double" value="$(arg max_track_error)" />
+                <param name="output_frame"          type="string" value="zed_left_camera_frame" />
+
+                <remap from="camera_image"  to="$(arg zed_node_name)/rgb/image_rect_color" />
+                <remap from="camera_info"   to="$(arg zed_node_name)/rgb/camera_info" />
+        </node>
+
+        <!-- RTAB-map Node-->
+        <include file="$(find rtabmap_ros)/launch/rtabmap.launch">
+	         <arg name="rtabmap_args"                  value="--delete_db_on_start" />
+	         <arg name="rgb_topic"               	value="/$(arg zed_namespace)/$(arg zed_node_name)/rgb/image_rect_color" />
+	   	 <arg name="depth_topic"             	value="/$(arg zed_namespace)/$(arg zed_node_name)/depth/depth_registered" />
+	         <arg name="camera_info_topic"       	value="/$(arg zed_namespace)/$(arg zed_node_name)/rgb/camera_info" />
+        	 <arg name="depth_camera_info_topic" 	value="/$(arg zed_namespace)/$(arg zed_node_name)/depth/camera_info" />
+	         <arg name="frame_id"                      value="base_link" />
+                 <arg name="approx_sync"                   value="false" />
+	         <arg name="visual_odometry"               value="false" />
+ 	         <arg name="odom_topic"                    value="/$(arg zed_namespace)/$(arg zed_node_name)/odom" />
+      <arg name="rviz"                          value="true" />
+      <arg name="rtabmapviz"		        value="false" />
+      <arg name="subscribe_scan" 		value="true" />
+      <arg name="scan_topic"			value="/$(arg zed_namespace)/scan" />
+    </include>
+    </group>
+</launch>
