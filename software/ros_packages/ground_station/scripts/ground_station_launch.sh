@@ -1,5 +1,4 @@
 #!/usr/bin/env bash
-
 current_folder_name="scripts"
 current_folder_name_length=`expr length $current_folder_name`
 
@@ -16,4 +15,4 @@ cp ~/key .
 sleep 1
 
 export DISPLAY=:0
-python ground_station.py
+python ground_station_new.py

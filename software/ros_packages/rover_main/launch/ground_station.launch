@@ -5,5 +5,5 @@
 
     <!-- ########## Start Ground Station Interface ########## -->
     <node name="ground_station" pkg="ground_station" type="ground_station_launch.sh" required="true" output="screen"/>	
- <param name = "one_screen"	type = "bool"	value="False"/>
+    <param name = "one_screen"	type = "bool"	value="False"/>
 </launch>
