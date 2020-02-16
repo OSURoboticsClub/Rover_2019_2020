@@ -49,6 +49,15 @@ ARM_PACKAGE_DROP = [
     [0.37, -0.02, -0.26, 0.01, -0.25, -0.12]    # Run after cobra position or unstow
 ]
 
+# ui controller
+screenSelector = rospy.get_param("one_screen")
+if screenSelector == True:
+    left = "onescreen"
+    right = "onescreen"
+else:
+    left = "left_screen"
+    right = "right_screen"
+
 
 #####################################
 # UbiquitiRadioSettings Class Definition
@@ -59,7 +68,7 @@ class MiscArm(QtCore.QThread):
 
         # ########## Reference to class init variables ##########
         self.shared_objects = shared_objects
-        self.left_screen = self.shared_objects["screens"]["onescreen"]
+        self.left_screen = self.shared_objects["screens"][left]
 
         self.arm_control_upright_zeroed_button = self.left_screen.arm_control_upright_zeroed_button  # type:QtWidgets.QPushButton
         self.arm_controls_stow_arm_button = self.left_screen.arm_controls_stow_arm_button  # type:QtWidgets.QPushButton

@@ -24,6 +24,15 @@ Z_LINEAR_DEADBAND = 0.15
 MINING_LIFT_SCALAR = 5
 MINING_TILT_SCALAR = 5
 
+# ui controller
+screenSelector = rospy.get_param("one_screen")
+if screenSelector == True:
+    left = "onescreen"
+    right = "onescreen"
+else:
+    left = "left_screen"
+    right = "right_screen"
+
 
 #####################################
 # Controller Class Definition
@@ -39,7 +48,7 @@ class SpaceNavControlSender(QtCore.QThread):
 
         # ########## Reference to class init variables ##########
         self.shared_objects = shared_objects
-        self.right_screen = self.shared_objects["screens"]["onescreen"]
+        self.right_screen = self.shared_objects["screens"][right]
 
         # ########## Get the settings instance ##########
         self.settings = QtCore.QSettings()

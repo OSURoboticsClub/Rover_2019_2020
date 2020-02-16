@@ -7,6 +7,7 @@ from PyQt5 import QtCore, QtWidgets
 import logging
 from time import time
 import paramiko
+import rospy
 
 #####################################
 # Global Variables
@@ -19,6 +20,15 @@ ACCESS_POINT_PASSWORD = "rover4lyfe^"  # We don't care about this password, don'
 
 GET_CURRENT_CHANNEL_COMMAND = "iwlist ath0 channel"
 SET_CHANNEL_COMMAND = "iwconfig ath0 channel"
+
+# ui controller
+screenSelector = rospy.get_param("one_screen")
+if screenSelector == True:
+    left = "onescreen"
+    right = "onescreen"
+else:
+    left = "left_screen"
+    right = "right_screen"
 
 
 #####################################
@@ -34,7 +44,7 @@ class UbiquitiRadioSettings(QtCore.QThread):
 
         # ########## Reference to class init variables ##########
         self.shared_objects = shared_objects
-        self.left_screen = self.shared_objects["screens"]["onescreen"]
+        self.left_screen = self.shared_objects["screens"][left]
 
         self.ubiquiti_channel_spin_box = self.left_screen.ubiquiti_channel_spin_box  # type: QtWidgets.QSpinBox
         self.ubiquiti_channel_apply_button = self.left_screen.ubiquiti_channel_apply_button  # type: QtWidgets.QPushButton

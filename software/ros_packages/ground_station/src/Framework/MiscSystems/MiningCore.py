@@ -32,6 +32,14 @@ CONTAINER_CLOSED = 105
 
 DRILL_SPEED = 150
 
+# ui controller
+screenSelector = rospy.get_param("one_screen")
+if screenSelector == True:
+    left = "onescreen"
+    right = "onescreen"
+else:
+    left = "left_screen"
+    right = "right_screen"
 
 #####################################
 # UbiquitiRadioSettings Class Definition
@@ -54,7 +62,7 @@ class Mining(QtCore.QObject):
 
         # ########## Reference to class init variables ##########
         self.shared_objects = shared_objects
-        self.left_screen = self.shared_objects["screens"]["onescreen"]
+        self.left_screen = self.shared_objects["screens"][left]
 
         self.mining_4bar_temp_lcd_number = self.left_screen.mining_4bar_temp_lcd_number  # type:QtWidgets.QLCDNumber
         self.mining_4bar_current_lcd_number = self.left_screen.mining_4bar_current_lcd_number  # type:QtWidgets.QLCDNumber

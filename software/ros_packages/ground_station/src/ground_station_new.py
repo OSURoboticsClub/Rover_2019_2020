@@ -31,14 +31,18 @@ import Framework.MiscSystems.RDFCore as RDFCore
 # Global Variables
 #####################################
 
-param = rospy.get_param(one_screen)
+param = rospy.get_param("one_screen")
 
 if param == True:
     UI_FILE_LEFT = "Resources/Ui/onescreen.ui"
+    left = "onescreen"
+    right = "onescreen"
 
 else:
     UI_FILE_LEFT = "Resources/Ui/left_screen.ui"
     UI_FILE_RIGHT = "Resources/Ui/right_screen.ui"
+    left = "left_screen"
+    right = "right_screen"
 
 #####################################
 # Class Organization
@@ -118,7 +122,7 @@ class GroundStation(QtCore.QObject):
 
         # ##### Instantiate Threaded Classes ######
         self.__add_thread("Video Coordinator", RoverVideoCoordinator.RoverVideoCoordinator(self.shared_objects))
-        self.__add_thread("Map Coordinator", RoverMapCoordinator.RoverMapCoordinator(self.shared_objects))
+#         self.__add_thread("Map Coordinator", RoverMapCoordinator.RoverMapCoordinator(self.shared_objects))
         self.__add_thread("Joystick Sender", JoystickControlSender.DriveAndCameraControlSender(self.shared_objects))
         self.__add_thread("Controller Sender", ControllerControlSender.EffectorsAndArmControlSender(self.shared_objects))
         self.__add_thread("Speed and Heading", SpeedAndHeading.SpeedAndHeadingIndication(self.shared_objects))

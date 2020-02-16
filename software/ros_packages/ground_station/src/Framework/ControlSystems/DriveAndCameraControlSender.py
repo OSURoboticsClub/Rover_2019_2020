@@ -40,6 +40,14 @@ TOWER_PAN_TILT_Y_AXIS_SCALAR = 15
 CHASSIS_PAN_TILT_X_AXIS_SCALAR = 15
 CHASSIS_PAN_TILT_Y_AXIS_SCALAR = 15
 
+# ui controller
+screenSelector = rospy.get_param("one_screen")
+if screenSelector == True:
+    left = "onescreen"
+    right = "onescreen"
+else:
+    left = "left_screen"
+    right = "right_screen"
 
 #####################################
 # Controller Class Definition
@@ -163,7 +171,7 @@ class DriveAndCameraControlSender(QtCore.QThread):
         # ########## Reference to class init variables ##########
         self.shared_objects = shared_objects
         self.video_coordinator = self.shared_objects["threaded_classes"]["Video Coordinator"]
-        self.right_screen = self.shared_objects["screens"]["onescreen"]
+        self.right_screen = self.shared_objects["screens"][right]
         self.rover_speed_limit_slider = self.right_screen.rover_speed_limit_slider  # type: QtWidgets.QSlider
         self.left_drive_progress_bar = self.right_screen.left_drive_progress_bar  # type: QtWidgets.QProgressBar
         self.right_drive_progress_bar = self.right_screen.right_drive_progress_bar  # type: QtWidgets.QProgressBar

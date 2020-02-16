@@ -9,6 +9,7 @@ from time import time
 import paramiko
 from pprint import pprint
 import json
+import rospy
 
 #####################################
 # Global Variables
@@ -20,6 +21,15 @@ ACCESS_POINT_USER = "ubnt"
 ACCESS_POINT_PASSWORD = "rover4lyfe^"  # We don't care about this password, don't freak out. Wifi is open anyways...
 
 GENERAL_WIRELESS_INFO_COMMAND = "wstalist"
+
+# ui controller
+screenSelector = rospy.get_param("one_screen")
+if screenSelector == True:
+    left = "onescreen"
+    right = "onescreen"
+else:
+    left = "left_screen"
+    right = "right_screen"
 
 
 #####################################
@@ -36,7 +46,7 @@ class UbiquitiStatus(QtCore.QThread):
 
         # ########## Reference to class init variables ##########
         self.shared_objects = shared_objects
-        self.left_screen = self.shared_objects["screens"]["onescreen"]
+        self.left_screen = self.shared_objects["screens"][left]
 
         self.connection_quality_label = self.left_screen.connection_quality_label
         self.successful_transmit_label = self.left_screen.successful_transmit_label

@@ -26,6 +26,14 @@ COLOR_RED = "background-color:darkred;"
 
 ALLOWED_RDF_VARIANCE = 0.15
 
+# ui controller
+screenSelector = rospy.get_param("one_screen")
+if screenSelector == True:
+    left = "onescreen"
+    right = "onescreen"
+else:
+    left = "left_screen"
+    right = "right_screen"
 
 #####################################
 # UbiquitiRadioSettings Class Definition
@@ -43,7 +51,7 @@ class RDF(QtCore.QThread):
 
         # ########## Reference to class init variables ##########
         self.shared_objects = shared_objects
-        self.left_screen = self.shared_objects["screens"]["onescreen"]
+        self.left_screen = self.shared_objects["screens"][left]
 
         self.rssi_lcdnumber = self.left_screen.rssi_lcdnumber  # type:QtWidgets.QLCDNumber
         self.beacon_frequency_lcd_number = self.left_screen.beacon_frequency_lcd_number  # type:QtWidgets.QLCDNumber

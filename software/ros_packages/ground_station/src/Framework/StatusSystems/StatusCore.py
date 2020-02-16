@@ -37,6 +37,15 @@ GPS_BEST_CASE_ACCURACY = 3
 LOW_BATTERY_DIALOG_TIMEOUT = 120
 CRITICAL_BATTERY_DIALOG_TIMEOUT = 30
 
+# ui controller
+screenSelector = rospy.get_param("one_screen")
+if screenSelector == True:
+    left = "onescreen"
+    right = "onescreen"
+else:
+    left = "left_screen"
+    right = "right_screen"
+
 
 class SensorCore(QtCore.QThread):
     # ########## create signals for slots ##########
@@ -88,7 +97,7 @@ class SensorCore(QtCore.QThread):
 
         # ########## Reference to class init variables ##########
         self.shared_objects = shared_objects
-        self.screen_main_window = self.shared_objects["screens"]["onescreen"]
+        self.screen_main_window = self.shared_objects["screens"][left]
 
         # self.cpu_read = self.screen_main_window.lineEdit  # type: QtWidgets.QLabel
         # self.ram_read = self.screen_main_window.lineEdit_2  # type: QtWidgets.QLabel

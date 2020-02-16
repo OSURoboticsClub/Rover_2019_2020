@@ -6,6 +6,15 @@ from sensor_msgs.msg import NavSatFix
 
 GPS_POSITION_TOPIC = "/rover_odometry/fix"
 
+# ui controller
+screenSelector = rospy.get_param("one_screen")
+if screenSelector == True:
+    left = "onescreen"
+    right = "onescreen"
+else:
+    left = "left_screen"
+    right = "right_screen"
+
 
 class WaypointsCoordinator(QtCore.QThread):
     new_manual_waypoint_entry = QtCore.pyqtSignal(str, float, float, int)
@@ -18,7 +27,7 @@ class WaypointsCoordinator(QtCore.QThread):
         self.landmark_table_cur_click = None
 
         self.shared_objects = shared_objects
-        self.left_screen = self.shared_objects["screens"]["onescreen"]
+        self.left_screen = self.shared_objects["screens"][left]
 
         self.navigation_label = (self.left_screen.
                                  navigation_waypoints_table_widget)

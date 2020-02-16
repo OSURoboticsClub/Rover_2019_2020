@@ -7,6 +7,7 @@ from PyQt5 import QtCore, QtWidgets, QtGui
 import logging
 from time import time
 import paramiko
+import rospy
 
 
 #####################################
@@ -17,6 +18,15 @@ THREAD_HERTZ = 5
 IP = "192.168.1.10"
 USER = "nvidia"
 PASS = "nvidia"
+
+# ui controller
+screenSelector = rospy.get_param("one_screen")
+if screenSelector == True:
+    left = "onescreen"
+    right = "onescreen"
+else:
+    left = "left_screen"
+    right = "right_screen"
 
 
 #####################################
@@ -31,7 +41,7 @@ class BashConsole(QtCore.QThread):
 
         # ########## Reference to class init variables ##########
         self.shared_objects = shared_objects
-        self.left_screen = self.shared_objects["screens"]["onescreen"]
+        self.left_screen = self.shared_objects["screens"][left]
 
         self.console_text_edit = self.left_screen.console_line_edit  # type: QtWidgets.QTextEdit
         self.ssh_console_command_line_edit = self.left_screen.ssh_console_command_line_edit  # type:QtWidgets.QLineEdit

@@ -35,6 +35,15 @@ MAP_WIDGET_WIDTH = float(1280)
 MAP_WIDGET_HEIGHT = float(720)
 MAP_WIDGET_RATIO = MAP_WIDGET_WIDTH / MAP_WIDGET_HEIGHT
 
+# ui controller
+screenSelector = rospy.get_param("one_screen")
+if screenSelector == True:
+    left = "onescreen"
+    right = "onescreen"
+else:
+    left = "left_screen"
+    right = "right_screen"
+
 
 class RoverMapCoordinator(QtCore.QThread):
     pixmap_ready_signal = QtCore.pyqtSignal()
@@ -46,7 +55,7 @@ class RoverMapCoordinator(QtCore.QThread):
         super(RoverMapCoordinator, self).__init__()
 
         self.shared_objects = shared_objects
-        self.left_screen = self.shared_objects["screens"]["onescreen"]
+        self.left_screen = self.shared_objects["screens"][left]
         self.mapping_label = self.left_screen.mapping_label  # type:QtWidgets.QLabel
         self.navigation_label = self.left_screen.navigation_waypoints_table_widget
         self.landmark_label = self.left_screen.landmark_waypoints_table_widget

@@ -32,6 +32,15 @@ STYLESHEET_UNSELECTED = "background-color:black;"
 COLOR_GREEN = "background-color: darkgreen;"
 COLOR_RED = "background-color: darkred;"
 
+# ui controller
+screenSelector = rospy.get_param("one_screen")
+if screenSelector == True:
+    left = "onescreen"
+    right = "onescreen"
+else:
+    left = "left_screen"
+    right = "right_screen"
+
 
 #####################################
 # RoverVideoCoordinator Class Definition
@@ -51,7 +60,7 @@ class RoverVideoCoordinator(QtCore.QThread):
 
         # ########## Reference to class init variables ##########
         self.shared_objects = shared_objects
-        self.right_screen = self.shared_objects["screens"]["onescreen"]
+        self.right_screen = self.shared_objects["screens"][right]
         self.primary_video_display_label = self.right_screen.primary_video_label  # type:QtWidgets.QLabel
         self.secondary_video_display_label = self.right_screen.secondary_video_label  # type:QtWidgets.QLabel
         self.tertiary_video_display_label = self.right_screen.tertiary_video_label  # type:QtWidgets.QLabel

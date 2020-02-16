@@ -63,6 +63,14 @@ FAULT_TO_STRING = {
     15: "HOST COMM ERROR"
 }
 
+# ui controller
+screenSelector = rospy.get_param("one_screen")
+if screenSelector == True:
+    left = "onescreen"
+    right = "onescreen"
+else:
+    left = "left_screen"
+    right = "right_screen"
 
 #####################################
 # Controller Class Definition
@@ -107,7 +115,7 @@ class ArmIndication(QtCore.QObject):
 
         # ########## Reference to class init variables ##########
         self.shared_objects = shared_objects
-        self.right_screen = self.shared_objects["screens"]["onescreen"]
+        self.right_screen = self.shared_objects["screens"][right]
 
         self.base_position_lcd_number = self.right_screen.base_position_lcd_number  # type: QtWidgets.QLCDNumber
         self.shoulder_position_lcd_number = self.right_screen.shoulder_position_lcd_number  # type: QtWidgets.QLCDNumber

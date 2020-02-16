@@ -25,6 +25,15 @@ ROTATION_SPEED_MODIFIER = 2.5
 
 IMU_DATA_TOPIC = "/rover_odometry/imu/data"
 
+# ui controller
+screenSelector = rospy.get_param("one_screen")
+if screenSelector == True:
+    left = "onescreen"
+    right = "onescreen"
+else:
+    left = "left_screen"
+    right = "right_screen"
+
 
 #####################################
 # Controller Class Definition
@@ -42,7 +51,7 @@ class SpeedAndHeadingIndication(QtCore.QThread):
 
         # ########## Reference to class init variables ##########
         self.shared_objects = shared_objects
-        self.right_screen = self.shared_objects["screens"]["onescreen"]
+        self.right_screen = self.shared_objects["screens"][right]
 
         self.heading_compass_label = self.right_screen.heading_compass_label  # type: QtWidgets.QLabel
         self.heading_text_label = self.right_screen.current_heading_label  # type: QtWidgets.QLabel
