@@ -27,11 +27,8 @@
     <virtual_joint name="fixed_base" type="fixed" parent_frame="world" child_link="base_link" />
     <!--DISABLE COLLISIONS: By default it is assumed that any link of the robot could potentially come into collision with any other link in the robot. This tag disables collision checking between a specified pair of links. -->
     <disable_collisions link1="base_link" link2="elbow" reason="Never" />
-    <disable_collisions link1="base_link" link2="gripper" reason="Never" />
-    <disable_collisions link1="base_link" link2="lower_arm" reason="Never" />
     <disable_collisions link1="base_link" link2="shoulder" reason="Adjacent" />
     <disable_collisions link1="base_link" link2="upper_arm" reason="Never" />
-    <disable_collisions link1="base_link" link2="wrist" reason="Never" />
     <disable_collisions link1="elbow" link2="gripper" reason="Never" />
     <disable_collisions link1="elbow" link2="lower_arm" reason="Adjacent" />
     <disable_collisions link1="elbow" link2="shoulder" reason="Never" />
