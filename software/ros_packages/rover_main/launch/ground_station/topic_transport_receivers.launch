@@ -47,6 +47,19 @@
         <node name="end_effector_256x144" pkg="nimbro_topic_transport" type="udp_receiver" output="screen">
             <param name="port" value="17012" />
         </node>
+
+        <!-- New Cameras Start -->
+        <node name="test_1280x720" pkg="nimbro_topic_transport" type="udp_receiver" output="screen">
+            <param name="port" value="17013" />
+        </node>
+        <node name="test_640x360" pkg="nimbro_topic_transport" type="udp_receiver" output="screen">
+            <param name="port" value="17014" />
+        </node>
+        <node name="test_256x144" pkg="nimbro_topic_transport" type="udp_receiver" output="screen">
+            <param name="port" value="17015" />
+        </node>
+        <!-- New Cameras End -->
+
     </group>
 
     <group>

@@ -98,6 +98,8 @@ class RoverVideoCoordinator(QtCore.QThread):
         rospy.Publisher("/cameras/undercarriage/camera_control", CameraControlMessage, queue_size=1).publish(reset_camera_message)
         rospy.Publisher("/cameras/main_navigation/camera_control", CameraControlMessage, queue_size=1).publish(reset_camera_message)
         rospy.Publisher("/cameras/end_effector/camera_control", CameraControlMessage, queue_size=1).publish(reset_camera_message)
+        rospy.Publisher("/cameras/test/camera_control", CameraControlMessage, queue_size=1).publish(reset_camera_message)
+
 
         self.msleep(3000)
 
@@ -243,6 +245,9 @@ class RoverVideoCoordinator(QtCore.QThread):
 
         if "end_effector" in names:
             self.valid_cameras.append("end_effector")
+
+        if "test" in names:
+            self.valid_cameras.append("test")
 
     def __setup_video_threads(self):
         for camera in self.valid_cameras:

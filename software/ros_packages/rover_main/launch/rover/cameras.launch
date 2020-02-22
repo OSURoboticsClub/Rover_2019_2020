@@ -21,5 +21,10 @@
             <param name="is_rtsp_camera" value="true" />
             <param name="device_path" value="rtsp://192.168.1.11" />
         </node>
+
+        <!--&lt;!&ndash; Start TEST Camera &ndash;&gt;-->
+        <node name="test" pkg="rover_camera" type="rover_camera" launch-prefix="taskset -c 4" respawn="true" output="screen" >
+            <param name="device_path" value="/dev/rover/camera_test" />
+        </node>
     </group>
 </launch>
