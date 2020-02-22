@@ -28,7 +28,6 @@ catkin_package(
 ###########
 include_directories(
   include
-  examples
   ${catkin_INCLUDE_DIRS}
   ${EIGEN3_INCLUDE_DIRS}
 )
@@ -41,10 +40,6 @@ add_library(${PROJECT_NAME}
 
 target_link_libraries(${PROJECT_NAME} ${catkin_LIBRARIES})
 
-add_executable(${PROJECT_NAME}_example examples/stomp_example.cpp)
-target_link_libraries(${PROJECT_NAME}_example ${PROJECT_NAME} ${catkin_LIBRARIES})
-
-
 #############
 ## Install ##
 #############
@@ -56,15 +51,3 @@ install(DIRECTORY include/${PROJECT_NAME}/
   FILES_MATCHING PATTERN "*.h"
   PATTERN ".svn" EXCLUDE
 )
-
-
-#############
-## Testing ##
-#############
-if(CATKIN_ENABLE_TESTING)
-  set(UTEST_SRC_FILES test/utest.cpp
-      test/stomp_3dof.cpp)
-  catkin_add_gtest(${PROJECT_NAME}_utest ${UTEST_SRC_FILES})
-  target_link_libraries(${PROJECT_NAME}_utest ${PROJECT_NAME})
-
-endif()
