@@ -98,29 +98,53 @@
             </rosparam>
         </node>
 
-        <!-- TEST Camera Start -->
-        <node name="test_1280x720" pkg="nimbro_topic_transport" type="udp_sender">
+        <!-- CAM1 Camera Start -->
+        <node name="cam1_1280x720" pkg="nimbro_topic_transport" type="udp_sender">
             <param name="destination_addr" value="$(arg target)" />
             <param name="destination_port" value="17013" />
             <rosparam param="topics">
-                [{name: "/cameras/test/image_1280x720/compressed", compress: false, rate: 0.0}]
+                [{name: "/cameras/cam1/image_1280x720/compressed", compress: false, rate: 0.0}]
             </rosparam>
         </node>
-        <node name="test_640x360" pkg="nimbro_topic_transport" type="udp_sender">
+        <node name="cam1_640x360" pkg="nimbro_topic_transport" type="udp_sender">
             <param name="destination_addr" value="$(arg target)" />
             <param name="destination_port" value="17014" />
             <rosparam param="topics">
-                [{name: "/cameras/test/image_640x360/compressed", compress: false, rate: 0.0}]
+                [{name: "/cameras/cam1/image_640x360/compressed", compress: false, rate: 0.0}]
             </rosparam>
         </node>
-        <node name="test_256x144" pkg="nimbro_topic_transport" type="udp_sender">
+        <node name="cam1_256x144" pkg="nimbro_topic_transport" type="udp_sender">
             <param name="destination_addr" value="$(arg target)" />
             <param name="destination_port" value="17015" />
             <rosparam param="topics">
-                [{name: "/cameras/test/image_256x144/compressed", compress: false, rate: 0.0}]
+                [{name: "/cameras/cam1/image_256x144/compressed", compress: false, rate: 0.0}]
             </rosparam>
         </node>
-        <!-- TEST Camera End -->
+        <!-- CAM1 Camera End -->
+
+        <!-- CAM2 Camera Start -->
+        <node name="cam2_1280x720" pkg="nimbro_topic_transport" type="udp_sender">
+            <param name="destination_addr" value="$(arg target)" />
+            <param name="destination_port" value="17016" />
+            <rosparam param="topics">
+                [{name: "/cameras/cam2/image_1280x720/compressed", compress: false, rate: 0.0}]
+            </rosparam>
+        </node>
+        <node name="cam2_640x360" pkg="nimbro_topic_transport" type="udp_sender">
+            <param name="destination_addr" value="$(arg target)" />
+            <param name="destination_port" value="17017" />
+            <rosparam param="topics">
+                [{name: "/cameras/cam2/image_640x360/compressed", compress: false, rate: 0.0}]
+            </rosparam>
+        </node>
+        <node name="cam2_256x144" pkg="nimbro_topic_transport" type="udp_sender">
+            <param name="destination_addr" value="$(arg target)" />
+            <param name="destination_port" value="17018" />
+            <rosparam param="topics">
+                [{name: "/cameras/cam2/image_256x144/compressed", compress: false, rate: 0.0}]
+            </rosparam>
+        </node>
+        <!-- CAM2 Camera End -->
 
         <node name="bogie_status_tcp" pkg="nimbro_topic_transport" type="tcp_sender">
             <param name="destination_addr" value="$(arg target)" />

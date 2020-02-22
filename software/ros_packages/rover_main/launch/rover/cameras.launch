@@ -22,9 +22,14 @@
             <param name="device_path" value="rtsp://192.168.1.11" />
         </node>
 
-        <!--&lt;!&ndash; Start TEST Camera &ndash;&gt;-->
-        <node name="test" pkg="rover_camera" type="rover_camera" launch-prefix="taskset -c 4" respawn="true" output="screen" >
-            <param name="device_path" value="/dev/rover/camera_test" />
+        <!--&lt;!&ndash; Start cam1 Camera &ndash;&gt;-->
+        <node name="cam1" pkg="rover_camera" type="rover_camera" launch-prefix="taskset -c 4" respawn="true" output="screen" >
+            <param name="device_path" value="/dev/rover/camera_cam1" />
+        </node>
+
+        <!--&lt;!&ndash; Start cam2 Camera &ndash;&gt;-->
+        <node name="cam2" pkg="rover_camera" type="rover_camera" launch-prefix="taskset -c 4" respawn="true" output="screen" >
+            <param name="device_path" value="/dev/rover/camera_cam2" />
         </node>
     </group>
 </launch>

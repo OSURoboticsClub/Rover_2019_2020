@@ -48,17 +48,29 @@
             <param name="port" value="17012" />
         </node>
 
-        <!-- New Cameras Start -->
-        <node name="test_1280x720" pkg="nimbro_topic_transport" type="udp_receiver" output="screen">
+        <!-- cam1 Start -->
+        <node name="cam1_1280x720" pkg="nimbro_topic_transport" type="udp_receiver" output="screen">
             <param name="port" value="17013" />
         </node>
-        <node name="test_640x360" pkg="nimbro_topic_transport" type="udp_receiver" output="screen">
+        <node name="cam1_640x360" pkg="nimbro_topic_transport" type="udp_receiver" output="screen">
             <param name="port" value="17014" />
         </node>
-        <node name="test_256x144" pkg="nimbro_topic_transport" type="udp_receiver" output="screen">
+        <node name="cam1_1280x720_256x144" pkg="nimbro_topic_transport" type="udp_receiver" output="screen">
             <param name="port" value="17015" />
         </node>
-        <!-- New Cameras End -->
+        <!-- cam1 End -->
+
+        <!-- cam2 Start -->
+        <node name="cam2_1280x720" pkg="nimbro_topic_transport" type="udp_receiver" output="screen">
+            <param name="port" value="17016" />
+        </node>
+        <node name="cam2_640x360" pkg="nimbro_topic_transport" type="udp_receiver" output="screen">
+            <param name="port" value="17017" />
+        </node>
+        <node name="cam2_256x144" pkg="nimbro_topic_transport" type="udp_receiver" output="screen">
+            <param name="port" value="17018" />
+        </node>
+        <!-- cam2 End -->
 
     </group>
 

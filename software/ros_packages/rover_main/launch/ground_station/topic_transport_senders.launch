@@ -24,7 +24,9 @@
                 {name: "/cameras/undercarriage/camera_control", compress: false, rate: 5.0},
                 {name: "/cameras/main_navigation/camera_control", compress: false, rate: 5.0},
                 {name: "/cameras/end_effector/camera_control", compress: false, rate: 5.0},
-                {name: "/cameras/test/camera_control", compress: false, rate: 5.0},
+                {name: "/cameras/test/cam1", compress: false, rate: 5.0},
+                {name: "/cameras/test/cam2", compress: false, rate: 5.0},
+
                 {name: "/rover_status/update_requested", compress: false, rate: 5.0},
                 {name: "/rover_arm/control/absolute", compress: true, rate: 5.0},
                 {name: "/rover_control/camera/control", compress: true, rate: 5.0}]
