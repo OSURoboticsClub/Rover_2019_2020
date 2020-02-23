@@ -16,6 +16,8 @@
 
   <!-- If needed, broadcast static tf for robot root -->
   
+  <!-- Launch the robot arm -->
+  <node name="rover_arm" pkg="rover_arm" type="rover_arm" respawn="true" output="screen"/>
 
   <!-- We do not have a robot connected, so publish fake joint states -->
   <node name="joint_state_publisher" pkg="joint_state_publisher" type="joint_state_publisher">
@@ -42,8 +44,5 @@
 
   <!-- If database loading was enabled, start mongodb as well -->
   <include file="$(find rover_arm_moveit_config)/launch/default_warehouse_db.launch" if="$(arg db)"/>
-
-	<node name="rover_arm" pkg="rover_arm" type="rover_arm" respawn="true" output="screen"/>
-
 
 </launch>

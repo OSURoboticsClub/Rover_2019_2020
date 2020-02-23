@@ -24,7 +24,7 @@
 
   <!-- Planning Functionality -->
   <include ns="move_group" file="$(find rover_arm_moveit_config)/launch/planning_pipeline.launch.xml">
-    <arg name="pipeline" value="stomp" />
+    <arg name="pipeline" value="ompl" />
   </include>
 
   <!-- Trajectory Execution Functionality -->
