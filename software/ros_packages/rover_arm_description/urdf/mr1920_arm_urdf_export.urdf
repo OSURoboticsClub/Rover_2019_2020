@@ -108,7 +108,7 @@
       link="shoulder" />
     <axis
       xyz="0 1 0" />
-    <limit lower="-6.28" upper="6.28" effort="150.0" velocity="3.15"/>
+    <limit lower="-3.14" upper="3.14" effort="150.0" velocity="3.15"/>
   </joint>
   <link
     name="upper_arm">
@@ -216,7 +216,7 @@
       link="elbow" />
     <axis
       xyz="1 0 0" />
-    <limit lower="-6.28" upper="6.28" effort="150.0" velocity="3.15"/>
+    <limit lower="-3.14" upper="3.14" effort="150.0" velocity="3.15"/>
   </joint>
   <link
     name="lower_arm">
@@ -270,7 +270,7 @@
       link="lower_arm" />
     <axis
       xyz="0 0 1" />
-    <limit lower="-6.28" upper="6.28" effort="150.0" velocity="3.15"/>
+    <limit lower="-3.14" upper="3.14" effort="150.0" velocity="3.15"/>
   </joint>
   <link
     name="wrist">
@@ -324,7 +324,7 @@
       link="wrist" />
     <axis
       xyz="1 0 0" />
-    <limit lower="-6.28" upper="6.28" effort="150.0" velocity="3.15"/>
+    <limit lower="-3.14" upper="3.14" effort="150.0" velocity="3.15"/>
   </joint>
   <link
     name="gripper">
