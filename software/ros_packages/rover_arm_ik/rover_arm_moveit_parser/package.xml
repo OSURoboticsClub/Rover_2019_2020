@@ -22,7 +22,6 @@
   <exec_depend>ros_msgs</exec_depend>
   <exec_depend>message_generation</exec_depend>
   <exec_depend>message_runtime</exec_depend>
-
   <export>
   </export>
 </package>

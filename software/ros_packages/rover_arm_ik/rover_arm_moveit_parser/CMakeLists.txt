@@ -6,6 +6,7 @@ add_compile_options(-std=c++11)
 find_package(catkin REQUIRED COMPONENTS
    roscpp
    std_msgs
+   message_generation
 )
 
 add_message_files(
@@ -21,6 +22,7 @@ generate_messages(
 catkin_package(CATKIN_DEPENDS 
    roscpp 
    std_msgs 
+   message_generation
 )
 
 include_directories(${catkin_INCLUDE_DIRS})
