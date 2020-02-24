@@ -1,4 +1,4 @@
-#include <moveit/move_group_interface/move_group_interface.h>
+/*#include <moveit/move_group_interface/move_group_interface.h>
 #include <moveit/planning_scene_interface/planning_scene_interface.h>
 
 #include <moveit_msgs/DisplayRobotState.h>
@@ -140,4 +140,4 @@ int main(int argc, char **argv)
 
   ros::shutdown();  
   return 0;
-}
+}*/

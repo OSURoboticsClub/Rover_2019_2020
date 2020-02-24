@@ -10,7 +10,6 @@ add_compile_options(-std=c++11)
 find_package(catkin REQUIRED COMPONENTS
   roscpp
   std_msgs
-  std_msgs
   message_generation
 )
 
@@ -138,7 +137,6 @@ add_subdirectory(src/simplemotion)
 ## With catkin_make all packages are built within a single CMake context
 ## The recommended prefix ensures that target names across packages don't collide
 add_executable(${PROJECT_NAME} src/rover_arm.cpp )
-add_executable(pjs src/parse_joint_states.cpp )
 
 ## Rename C++ executable without prefix
 ## The above recommended prefix causes long target names, the following renames the
