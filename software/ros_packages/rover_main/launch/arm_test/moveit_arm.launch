@@ -36,6 +36,11 @@
     <arg name="debug" value="$(arg debug)"/>
   </include>
 
+  <!-- remake joint_states to robot/joint_statee -->
+  <!-- <node pkg="moveit_ros_move_group" type="move_group" name="any_name" output="screen">
+    <remap from="joint_states" to="robot/joint_states"/>
+  </node> -->
+
   <!-- Run Rviz and load the default config to see the state of the move_group node -->
   <include file="$(find rover_arm_moveit_config)/launch/moveit_rviz.launch">
     <arg name="config" value="true"/>
