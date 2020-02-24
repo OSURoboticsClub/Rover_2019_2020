@@ -2,7 +2,6 @@
 # -*- coding: utf-8 -*-
 """
 Created on Tue Aug 14 14:44:13 2018
-
 @author: st-ros
 """
 
@@ -34,7 +33,7 @@ def callback(data):
 def joint_state_remapper():
     '''Continuously publishes the last heard position from JointTrajectoryActionFeedback to the joint_states topic'''
     state.name = ['elbow_joint','hand_joint','shoulder_joint','waist_joint','wrist_joint']
-    arm.connect()   #Initialises connection to r12 arm
+    #arm.connect()   #Initialises connection to r12 arm
     state.position = [0,0,0,0,0]
     state.position = joint_to_angle(arm.read_pos(state.position))    #Checks current position of arm and sets starting position to it
     pub = rospy.Publisher('/joint_states', JointState, queue_size=10)    #Initialises publishing

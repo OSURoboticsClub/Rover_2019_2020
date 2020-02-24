@@ -25,9 +25,8 @@ catkin_package(CATKIN_DEPENDS
 
 include_directories(${catkin_INCLUDE_DIRS})
 
-add_executable(joint_position src/parse_joint_states.cpp)
+add_executable(joint_remapper src/joint_remapper.cpp)
 
-#target_link_libraries(
-#   rover_arm_moveit_parser
-#   ${catkin_LIBRARIES}
-#)
+target_link_libraries(joint_remapper
+   ${catkin_LIBRARIES}
+)

@@ -1,10 +1,10 @@
-#include <ros/ros.h>
-#include <sensor_msgs/JointState.h>
-//#include "rover_arm_moveit_parser/ArmJointStates.h"
-#include <math.h>
+#include<ros/ros.h>
+#include<sensor_msgs/JointStates.h>
+#include<rover_arm_moveit_parser/ArmJointStates.h>
+#include<math.h>
 
-//rover_arm::ArmJointState arm_steps;
-//rover_arm::ArmJointState total;
+rover_arm::ArmJointState arm_steps;
+rover_arm::ArmJointState total;
 
 int stepsPerRevolution[6] = {32800,18000,72000,3280,14400,0};  // microsteps/revolution (using 16ths) from observation, for each motor
 int joint_status = 0; 
@@ -71,24 +71,22 @@ void parse_joints(const sensor_msgs::JointState& arm)
 }
 
 int main(int argc, char **argv){
-   //ros::init(argc, argv,"parser");
-  //ros::NodeHandle nh;
-  //ROS_INFO_STREAM("In main function");
-  //ros::Subscriber sub = nh.subscribe("/move_group/fake_controller_joint_states",1000,parse_joints);
-  //ros::Publisher pub = nh.advertise<moveo_moveit::ArmJointState>("joint_steps",50);
+   ros::init(argc, argv,"joint_parser");
+   ros::NodeHandle nh;
+   //ROS_INFO_STREAM("In main function");
+   ros::Subscriber sub = nh.subscribe("/move_group/fake_controller_joint_states",1000,parse_joints);
+   ros::Publisher pub = nh.advertise<moveo_moveit::ArmJointState>("joint_steps",50);
   
-  //ros::Rate loop_rate(20);
-
-  //while (ros::ok())
-  //{
-   //if(joint_status==1)
-    //{
-      //joint_status = 0;
-      //pub.publish(total);
-      //ROS_INFO_STREAM("Published to /joint_steps");
-    //}
-    //ros::spinOnce();
-    //loop_rate.sleep();  
-  //}
+   ros::Rate loop_rate(20);
+   
+   while (ros::ok()){
+      if(joint_status==1){
+      joint_status = 0;
+      pub.publish(total);
+      ROS_INFO_STREAM("Published to /joint_steps");
+      }
+      ros::spinOnce();
+      loop_rate.sleep();  
+   }
   return 0;
 }
