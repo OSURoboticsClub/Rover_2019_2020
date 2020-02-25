@@ -68,14 +68,15 @@ int main(int argc, char **argv){
    ros::init(argc, argv,"joint_parser");
    ros::NodeHandle nh;
    ros::Subscriber sub = nh.subscribe("/joint_states", 1000, parse_joints);
-   ros::Publisher pub = nh.advertise<rover_arm_moveit_parser::ArmJointStates>("joint_states_parsed",50);
+   ros::Publisher pub = nh.advertise<rover_arm_moveit_parser::ArmJointStates>("joint_states_remap",50);
   
    ros::Rate loop_rate(20);
    
    while (ros::ok()){
       if(joint_status==1){
    	 joint_status = 0;
-   	 pub.publish(total);      ROS_INFO_STREAM("Published to /joint_states_parsed");
+   	 pub.publish(total);      
+	 ROS_INFO_STREAM("Published to /joint_states_remap");
       }
       ros::spinOnce();
       loop_rate.sleep();  
