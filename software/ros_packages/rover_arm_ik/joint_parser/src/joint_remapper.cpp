@@ -10,11 +10,11 @@ int stepsPerRevolution[6] = {1000,1000,1000,1000,1000,1000}; //microsteps/revolu
 
 
 int joint_status = 0; 
-double cur_angle[6]; //
+float cur_angle[6]; //
 int joint_step[6]; //
-double prev_angle[6] = {0,0,0,0,0,0}; //
-double init_angle[6] = {0,0,0,0,0,0}; //
-double total_steps[6] = {0,0,0,0,0,0}; //track number of steps
+float prev_angle[6] = {0,0,0,0,0,0}; //
+float init_angle[6] = {0,0,0,0,0,0}; //
+float total_steps[6] = {0,0,0,0,0,0}; //track number of steps
 int count = 0;
 
 void parse_joints(const sensor_msgs::JointState& arm){

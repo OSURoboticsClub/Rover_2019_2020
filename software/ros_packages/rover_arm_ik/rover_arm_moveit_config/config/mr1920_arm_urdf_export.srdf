@@ -37,7 +37,7 @@
         <joint name="elbow_pitch" value="3.1416" />
         <joint name="elbow_roll" value="-1.5708" />
         <joint name="wrist_pitch" value="0" />
-        <joint name="wrist_roll" value="0" />
+        <joint name="wrist_roll" value="3.1416" />
     </group_state>
 
     <!--END EFFECTOR: Purpose: Represent information about an end effector.-->
