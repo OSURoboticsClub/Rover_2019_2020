@@ -1,4 +1,6 @@
 ////////// Includes //////////
+#define RS485 Serial3         //Select RS-485 Serial Port. Reference https://www.pjrc.com/teensy/card7a_rev1.png to find serial port for your pinout.
+//#define POTHOS_DEBUG // Enables Debug Message Functionality
 #include <pothos.h>
 //#include <Adafruit_BNO055_t3.h>
 #include <ArduinoJson.h>
@@ -12,24 +14,32 @@ FASTLED_USING_NAMESPACE
 
 ////////// Hardware / Data Enumerations //////////
 enum HARDWARE {
+  //IMU/GPS Comms
   GPS_IMU_RS485_EN = 15,
   GPS_IMU_RS485_RX = 0,
   GPS_IMU_RS485_TX = 1,
-
+  
+  //Comms
   COMMS_RS485_EN = 2,
   COMMS_RS485_RX = 7,
   COMMS_RS485_TX = 8,
-
+  
+  //IMU/GPS Pinouts
   GPS_UART_RX = 9,
   GPS_UART_TX = 10,
-
   IMU_SDA = 18,
   IMU_SCL = 19,
-
+  
+  //LED Strip Pinout
   NEO_PIXEL = 23,
-
+  
+  //RGB LED pinouts
+  RGB_R = 5,
+  RGB_G = 32,
+  RGB_B = 6,
   LED_BLUE_EXTRA = 13,
-
+  
+  //Laser MOSFET Pinout
   LASER_SIGNAL = 14
 };
 
@@ -41,26 +51,17 @@ enum DATA {
   LASERS = 4
 };
 
-enum MODBUS_REGISTERS {
-  LED_CONTROL = 0,  // Input
-};
-
 #define GPS_SERIAL_PORT Serial2
 #define GPS_IMU_STREAMING_PORT Serial1
 #define Num_Pixels 60
 #define Num_rainbow_pixels 57
 
 ////////// Global Variables //////////
-///// Modbus
-const uint8_t node_id = 1;
-const uint8_t mobus_serial_port_number = 3;
+///// POTHOS
+const uint8_t slave_id = 7;
+int pothos_timeout = 50;
 
-uint16_t modbus_data[] = {0};
-uint8_t num_modbus_registers = 0;
-
-int8_t poll_state = 0;
 bool communication_good = false;
-uint8_t message_count = 0;
 
 ///// GPS
 char current_byte = '$';
@@ -80,27 +81,30 @@ CRGB white = CRGB(255,255,255);
 CRGB turquoise = CRGB(0,130,60);
 CRGB leds[Num_Pixels];
 uint8_t gHue = 0;
-uint8_t laser_last_state = 0;
-
 unsigned long pixel_clock = 0 ;
 int pixel_timer = 15;
+uint8_t flash_duration = 1000;
+
+///// LASERS
+uint8_t laser_last_state = 0;
+uint8_t laser_state = 0;
 
 
 ////////// Class Instantiations //////////
-pothos comms(node_id, HARDWARE::COMMS_RS485_EN);
+pothos comms(slave_id, HARDWARE::COMMS_RS485_EN, pothos_timeout, HARDWARE::RGB_R, HARDWARE::RGB_G, HARDWARE::RGB_B);
 
 const char baud115200[] = "PUBX,41,1,3,3,115200,0";
 
 void setup() {
   
-  comms.setPort(&serial1);
+  comms.setup(115200);
+
+  #ifndef POTHOS_DEBUG
+  Serial.begin(115200);
+  #endif
 
   setup_hardware();
-
-  Serial.begin(9600);
-
   set_data_types();
-
 }
 
 void loop() {
@@ -112,6 +116,7 @@ void loop() {
   comms.update();
   
   set_leds();
+  laser_zone();
   process_gps_and_send_if_ready(root);
 
   // Print JSON and newline
@@ -135,11 +140,11 @@ void setup_hardware() {
  * @description: Sets the Datatypes for Pothos registers
  **/
 void set_data_types(){
-  gps_comms.data.set_type(DATA::LED_WAYPOINT_STATE, "int"); 
-  gps_comms.data.set_type(DATA::LED_DRIVE_STATE, "int"); 
-  gps_comms.data.set_type(DATA::LED_COMMS_STATE, "int"); 
-  gps_comms.data.set_type(DATA::LED_LIGHTS_STATE, "int"); 
-  gps_comms.data.set_type(DATA::LASERS, "char");
+  comms.data.set_type(DATA::LED_WAYPOINT_STATE, "int"); 
+  comms.data.set_type(DATA::LED_DRIVE_STATE, "int"); 
+  comms.data.set_type(DATA::LED_COMMS_STATE, "int"); 
+  comms.data.set_type(DATA::LED_LIGHTS_STATE, "int"); 
+  comms.data.set_type(DATA::LASERS, "char");
 }
 
 void process_gps_and_send_if_ready(JsonObject &root) {
@@ -250,10 +255,8 @@ void teleoperation() {
   }
 }
 
-void success() {
-  uint8_t flash_duration = 1;
-  
-  if(millis() - pixel_clock > flash_duration*1000) {
+void complete() {
+  if(millis() - pixel_clock > flash_duration) {
     for(int i = 0; i < Num_rainbow_pixels; i++) {
       if(leds[i] != green) {
         leds[i] = green;
@@ -347,7 +350,7 @@ void set_leds() {
     case 8:
       teleoperation();
     case 9:
-      success();
+      complete();
   }
 
   if(!comms_status)
