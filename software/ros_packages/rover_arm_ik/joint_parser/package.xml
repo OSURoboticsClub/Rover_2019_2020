@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 <package format="2">
-  <name>rover_arm_moveit_parser</name>
+  <name>joint_parser</name>
   <version>0.0.0</version>
   <description>For parsing joint data from moveit to arm</description>
 
