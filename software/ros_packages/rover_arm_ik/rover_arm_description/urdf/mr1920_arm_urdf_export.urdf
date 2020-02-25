@@ -101,7 +101,7 @@
     type="revolute">
     <origin
       xyz="0.14566 -0.14314 0.11421"
-      rpy="1.5708 0 -0.11656" />
+      rpy="1.5708 0 0" />
     <parent
       link="base_link" />
     <child
@@ -155,7 +155,7 @@
     type="revolute">
     <origin
       xyz="0.017768 0.082744 0"
-      rpy="-1.7023 0 0" />
+      rpy="-1.5708 0 0" />
     <parent
       link="shoulder" />
     <child
@@ -209,7 +209,7 @@
     type="revolute">
     <origin
       xyz="0 0 0.52362"
-      rpy="1.4974 0 0" />
+      rpy="0 0 0" />
     <parent
       link="upper_arm" />
     <child
@@ -263,7 +263,7 @@
     type="revolute">
     <origin
       xyz="-0.01623 0 0.035461"
-      rpy="0 0 0.0027091" />
+      rpy="0 0 3.1416" />
     <parent
       link="elbow" />
     <child
@@ -317,7 +317,7 @@
     type="revolute">
     <origin
       xyz="0.052628 0 0.35621"
-      rpy="-0.11133 0 3.1416" />
+      rpy="0 0 3.1416" />
     <parent
       link="lower_arm" />
     <child
@@ -371,7 +371,7 @@
     type="revolute">
     <origin
       xyz="-0.069133 0 0.053575"
-      rpy="1.5708 0 -2.9823" />
+      rpy="1.5708 0 -1.5708" />
     <parent
       link="wrist" />
     <child
