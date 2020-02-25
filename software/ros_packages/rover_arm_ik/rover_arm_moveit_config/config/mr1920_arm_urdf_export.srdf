@@ -21,6 +21,25 @@
     <group name="hand">
         <joint name="wrist_roll" />
     </group>
+
+    <group_state name="cobra" group="arm">
+        <joint name="base_roll" value="0" />
+        <joint name="shoulder_pitch" value="0.15" />
+        <joint name="elbow_pitch" value="1.4208" />
+        <joint name="elbow_roll" value="0" />
+        <joint name="wrist_pitch" value="0" />
+        <joint name="wrist_roll" value="1.5708" />
+    </group_state>
+
+    <group_state name="stow" group="arm">
+        <joint name="base_roll" value="0" />
+        <joint name="shoulder_pitch" value="-1.5708" />
+        <joint name="elbow_pitch" value="3.1416" />
+        <joint name="elbow_roll" value="-1.5708" />
+        <joint name="wrist_pitch" value="3.1416" />
+        <joint name="wrist_roll" value="0" />
+    </group_state>
+
     <!--END EFFECTOR: Purpose: Represent information about an end effector.-->
     <end_effector name="gripper" parent_link="gripper" group="hand" parent_group="arm" />
     <!--VIRTUAL JOINT: Purpose: this element defines a virtual joint between a robot link and an external frame of reference (considered fixed with respect to the robot)-->
