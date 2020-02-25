@@ -7,7 +7,7 @@ rover_arm_moveit_parser::ArmJointStates arm_steps;
 rover_arm_moveit_parser::ArmJointStates total;
 
 int stepsPerRevolution[6] = {1000,1000,1000,1000,1000,1000}; //microsteps/revolution (using 16ths) from observation, for each motor
-//TODO: Constants for our own arm?
+
 
 int joint_status = 0; 
 double cur_angle[6]; //
@@ -18,6 +18,13 @@ double total_steps[6] = {0,0,0,0,0,0}; //track number of steps
 int count = 0;
 
 void parse_joints(const sensor_msgs::JointState& arm){
+  total.base_roll = arm.position[0];
+  total.shoulder_pitch = arm.position[1];
+  total.elbow_pitch = arm.position[2];
+  total.elbow_roll = arm.position[3];
+  total.wrist_pitch = arm.position[4];
+  total.wrist_roll  = arm.position[5];
+   /*
   if (count==0){
     prev_angle[0] = arm.position[0];
     prev_angle[1] = arm.position[1];
@@ -61,7 +68,7 @@ void parse_joints(const sensor_msgs::JointState& arm){
   total.wrist_roll += arm_steps.wrist_roll; 
 
   joint_status = 1;
-  count=1;
+  count=1;*/
 }
 
 int main(int argc, char **argv){
