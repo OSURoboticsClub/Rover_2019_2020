@@ -1,5 +1,10 @@
 <launch>
+  <!-- ############## Start Rover Arm Node ################### -->
   <node name="rover_arm" pkg="rover_arm" type="rover_arm" respawn="true" output="screen"/>
-  <node name="rover_arm_moveit_config" pkg="rover_arm_moveit_config" type="rover_arm_moveit_config" respawn="true" output="screen"/>
-  <node name="rover_arm_moveit_parser" pkg="rover_arm_moveit_parser" type="demo" respawn="true" output="screen"/>
+
+  <!-- ############## Launch rover_arm MoveIt ################### -->
+  <include file="$(find rover_arm_moveit_config)/launch/demo.launch"/>
+
+  <!-- ############## Start Joint Parser ################### --> 
+  <node name="joint_parser" pkg="joint_parser" type="joint_remapper" respawn="true" output="screen"/>
 </launch>
