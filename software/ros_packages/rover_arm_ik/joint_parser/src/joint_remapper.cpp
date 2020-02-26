@@ -1,29 +1,28 @@
 #include<ros/ros.h>
 #include<sensor_msgs/JointState.h>
-#include<rover_arm_moveit_parser/ArmJointStates.h>
+#include<joint_parser/ArmJointStates.h>
 #include<math.h>
 
 joint_parser::ArmJointStates arm_trajectory;
-joint_parser::ArmJointStates total;
+joint_parser::ArmJointStates end_trajectory;
 
-int stepsPerRevolution[6] = {1000,1000,1000,1000,1000,1000}; //microsteps/revolution (using 16ths) from observation, for each motor
-
+int stepsPerRevolution[6] = {1000,1000,1000,1000,1000,1000};
 
 int joint_status = 0; 
 double cur_angle[6]; //
 int joint_step[6]; //
 double prev_angle[6] = {0,0,0,0,0,0}; //
 double init_angle[6] = {0,0,0,0,0,0}; //
-double total_steps[6] = {0,0,0,0,0,0}; //track number of steps
+double end_trajectory_steps[6] = {0,0,0,0,0,0}; //track number of steps
 int count = 0;
 
 void parse_joints(const sensor_msgs::JointState& arm){
-  total.base_roll = arm.position[0];
-  total.shoulder_pitch = arm.position[1];
-  total.elbow_pitch = arm.position[2];
-  total.elbow_roll = arm.position[3];
-  total.wrist_pitch = arm.position[4];
-  total.wrist_roll  = arm.position[5];
+  end_trajectory.base_roll = arm.position[0];
+  end_trajectory.shoulder_pitch = arm.position[1];
+  end_trajectory.elbow_pitch = arm.position[2];
+  end_trajectory.elbow_roll = arm.position[3];
+  end_trajectory.wrist_pitch = arm.position[4];
+  end_trajectory.wrist_roll  = arm.position[5];
    /*
   if (count==0){
     prev_angle[0] = arm.position[0];
@@ -60,12 +59,12 @@ void parse_joints(const sensor_msgs::JointState& arm){
     prev_angle[5] = arm.position[5];
   }
 
-  total.base_roll += arm_trajectory.base_roll;
-  total.shoulder_pitch += arm_trajectory.shoulder_pitch;
-  total.elbow_pitch += arm_trajectory.elbow_pitch;
-  total.elbow_roll += arm_trajectory.elbow_roll;
-  total.wrist_pitch += arm_trajectory.wrist_pitch;
-  total.wrist_roll += arm_trajectory.wrist_roll; 
+  end_trajectory.base_roll += arm_trajectory.base_roll;
+  end_trajectory.shoulder_pitch += arm_trajectory.shoulder_pitch;
+  end_trajectory.elbow_pitch += arm_trajectory.elbow_pitch;
+  end_trajectory.elbow_roll += arm_trajectory.elbow_roll;
+  end_trajectory.wrist_pitch += arm_trajectory.wrist_pitch;
+  end_trajectory.wrist_roll += arm_trajectory.wrist_roll; 
 
   joint_status = 1;
   count=1;*/
@@ -75,14 +74,14 @@ int main(int argc, char **argv){
    ros::init(argc, argv,"joint_parser");
    ros::NodeHandle nh;
    ros::Subscriber sub = nh.subscribe("/joint_states", 1000, parse_joints);
-   ros::Publisher pub = nh.advertise<rover_arm_moveit_parser::ArmJointStates>("joint_states_remap",50);
+   ros::Publisher pub = nh.advertise<joint_parser::ArmJointStates>("joint_states_remap",50);
   
    ros::Rate loop_rate(20);
    
    while (ros::ok()){
       if(joint_status==1){
    	 joint_status = 0;
-   	 pub.publish(total);      
+   	 pub.publish(end_trajectory); //publish values 
 	 ROS_INFO_STREAM("Published to /joint_states_remap");
       }
       ros::spinOnce();
