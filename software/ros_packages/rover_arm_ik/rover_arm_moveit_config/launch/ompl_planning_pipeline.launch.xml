@@ -9,8 +9,7 @@
 				       default_planner_request_adapters/FixWorkspaceBounds
 				       default_planner_request_adapters/FixStartStateBounds
 				       default_planner_request_adapters/FixStartStateCollision
-				       default_planner_request_adapters/FixStartStatePathConstraints
-				       default_planner_request_adapters/STOMPSmoothingAdapter" />
+				       default_planner_request_adapters/FixStartStatePathConstraints" />
 
   <arg name="start_state_max_bounds_error" value="0.1" />
 
@@ -19,6 +18,5 @@
   <param name="start_state_max_bounds_error" value="$(arg start_state_max_bounds_error)" />
 
   <rosparam command="load" file="$(find rover_arm_moveit_config)/config/ompl_planning.yaml"/>
-  <rosparam command="load" file="$(find rover_arm_moveit_config)/config/stomp_planning.yaml"/>
 
 </launch>

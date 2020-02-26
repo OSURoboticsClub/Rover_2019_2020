@@ -108,7 +108,7 @@
       link="shoulder" />
     <axis
       xyz="0 1 0" />
-    <limit lower="-3.14" upper="3.14" effort="150.0" velocity="3.15"/>
+    <limit lower="-0.7854" upper="0.7854" effort="150.0" velocity="3.15"/>
   </joint>
   <link
     name="upper_arm">
@@ -162,7 +162,7 @@
       link="upper_arm" />
     <axis
       xyz="1 0 0" />
-    <limit lower="-1.57" upper="1.57" effort="150.0" velocity="3.15"/>
+    <limit lower="-1.5708" upper="1.5708" effort="150.0" velocity="3.15"/>
   </joint>
   <link
     name="elbow">
@@ -216,7 +216,7 @@
       link="elbow" />
     <axis
       xyz="1 0 0" />
-    <limit lower="-3.14" upper="3.14" effort="150.0" velocity="3.15"/>
+    <limit lower="-1.5708" upper="1.5708" effort="150.0" velocity="3.15"/>
   </joint>
   <link
     name="lower_arm">
@@ -270,7 +270,7 @@
       link="lower_arm" />
     <axis
       xyz="0 0 1" />
-    <limit lower="-3.14" upper="3.14" effort="150.0" velocity="3.15"/>
+    <limit lower="-1.5708" upper="1.5708" effort="150.0" velocity="3.15"/>
   </joint>
   <link
     name="wrist">
@@ -324,7 +324,7 @@
       link="wrist" />
     <axis
       xyz="1 0 0" />
-    <limit lower="-3.14" upper="3.14" effort="150.0" velocity="3.15"/>
+    <limit lower="-1.5708" upper="1.5708" effort="150.0" velocity="3.15"/>
   </joint>
   <link
     name="gripper">
@@ -368,7 +368,7 @@
   </link>
   <joint
     name="wrist_roll"
-    type="revolute">
+    type="continuous">
     <origin
       xyz="-0.069133 0 0.053575"
       rpy="1.5708 0 -1.5708" />
@@ -378,7 +378,6 @@
       link="gripper" />
     <axis
       xyz="0 1 0" />
-    <limit lower="-6.28" upper="6.28" effort="150.0" velocity="3.15"/>
   </joint>
 
   <transmission name="shoulder_pitch_trans">
@@ -440,6 +439,5 @@
       <mechanicalReduction>1</mechanicalReduction>
     </actuator>
   </transmission>
-
 
 </robot>
