@@ -31,6 +31,15 @@
         <joint name="wrist_roll" value="1.5708" />
     </group_state>
 
+    <group_state name="pose1" group="arm">
+        <joint name="base_roll" value="0" />
+        <joint name="shoulder_pitch" value="-0.25" />
+        <joint name="elbow_pitch" value="1.4708" />
+        <joint name="elbow_roll" value="0" />
+        <joint name="wrist_pitch" value="0.75" />
+        <joint name="wrist_roll" value="1.5708" />
+    </group_state>
+
     <group_state name="stow" group="arm">
         <joint name="base_roll" value="0" />
         <joint name="shoulder_pitch" value="-1.5708" />
