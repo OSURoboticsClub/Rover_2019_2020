@@ -40,10 +40,19 @@ fi
 
 # Make the new symbolic link connections
 echo "Making new symlinks."
-for folder in ${folders_to_link[@]}; do
-    ln -s "$github_rover_packages_path/$folder" "$catkin_src_path/."
-    echo "Adding symlink for $folder."
-done
+if [ $1 = "all" ];
+then
+    for folder in $(ls -d /$github_rover_packages_path/*); do
+        ln -s "$folder" "$catkin_src_path/.";
+    done && ls -al $catkin_src_path
+else
+    for folder in ${folders_to_link[@]}; do
+        ln -s "$github_rover_packages_path/$folder" "$catkin_src_path/."
+        echo "Adding symlink for $folder."
+    done
+fi
+
+
 
 # catkin_make so the new pacakges are available and re-source bash
 cd "$catkin_workspace_path"
