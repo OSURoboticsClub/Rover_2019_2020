@@ -14,7 +14,7 @@ import qdarkstyle
 import Framework.StartupSystems.ROSMasterChecker as ROSMasterChecker
 import Framework.LoggingSystems.Logger as Logger
 import Framework.VideoSystems.RoverVideoCoordinator as RoverVideoCoordinator
-import Framework.MapSystems.RoverMapCoordinator as RoverMapCoordinator
+#import Framework.MapSystems.RoverMapCoordinator as RoverMapCoordinator
 import Framework.ControlSystems.DriveAndCameraControlSender as JoystickControlSender
 import Framework.ControlSystems.EffectorsAndArmControlSender as ControllerControlSender
 import Framework.NavigationSystems.SpeedAndHeadingIndication as SpeedAndHeading
@@ -33,7 +33,8 @@ import Framework.MiscSystems.RDFCore as RDFCore
 #####################################
 UI_FILE_LEFT = "Resources/Ui/left_screen.ui"
 UI_FILE_RIGHT = "Resources/Ui/right_screen.ui"
-
+UI_FILE_SINGLE = "Resources/Ui/onescreen.ui"
+ 
 #####################################
 # Class Organization
 #####################################
@@ -110,7 +111,7 @@ class GroundStation(QtCore.QObject):
 
         # ##### Instantiate Threaded Classes ######
         self.__add_thread("Video Coordinator", RoverVideoCoordinator.RoverVideoCoordinator(self.shared_objects))
-        self.__add_thread("Map Coordinator", RoverMapCoordinator.RoverMapCoordinator(self.shared_objects))
+        #self.__add_thread("Map Coordinator", RoverMapCoordinator.RoverMapCoordinator(self.shared_objects))
         self.__add_thread("Joystick Sender", JoystickControlSender.DriveAndCameraControlSender(self.shared_objects))
         self.__add_thread("Controller Sender", ControllerControlSender.EffectorsAndArmControlSender(self.shared_objects))
         self.__add_thread("Speed and Heading", SpeedAndHeading.SpeedAndHeadingIndication(self.shared_objects))

@@ -1,0 +1,6 @@
+float64 base_roll
+float64 shoulder_pitch
+float64 elbow_pitch
+float64 elbow_roll
+float64 wrist_pitch
+float64 wrist_roll

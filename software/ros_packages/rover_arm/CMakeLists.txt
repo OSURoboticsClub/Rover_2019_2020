@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 2.8.3)
+Cmake_minimum_required(VERSION 2.8.3)
 project(rover_arm)
 
 ## Compile as C++11, supported in ROS Kinetic and newer
@@ -9,7 +9,6 @@ add_compile_options(-std=c++11)
 ## is used, also find other catkin packages
 find_package(catkin REQUIRED COMPONENTS
   roscpp
-  std_msgs
   std_msgs
   message_generation
 )

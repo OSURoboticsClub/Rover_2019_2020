@@ -1,0 +1,9 @@
+<launch>
+   <!-- load controller_list --> 
+  <rosparam file="$(find rover_arm_moveit_config)/config/controllers.yaml"/>
+  <param name="use_controller_manager" value="false"/>
+  <!-- Allow trajectory_execution_manager to find controller plugin -->
+  <param name="trajectory_execution/execution_duration_monitoring" value="false"/>
+  <!-- Setup movit controller -->
+  <param name="moveit_controller_manager" value="moveit_simple_controller_manager/MoveItSimpleControllerManager"/>
+</launch>

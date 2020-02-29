@@ -1,0 +1,443 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- This URDF was automatically created by SolidWorks to URDF Exporter! Originally created by Stephen Brawner (brawner@gmail.com) 
+     Commit Version: 1.5.1-0-g916b5db  Build Version: 1.5.7152.31018
+     For more information, please see http://wiki.ros.org/sw_urdf_exporter -->
+<robot
+  name="mr1920_arm_urdf_export">
+
+
+  <gazebo>
+    <plugin name="ros_control" filename="libgazebo_ros_control.so" />
+  </gazebo>
+
+  <link name="world"/>
+  <joint name="fixed_base" type="fixed">
+    <origin rpy="0 0 0" xyz="0 0 0"/>
+    <parent link="world"/>
+    <child link="base_link"/>
+  </joint>
+  <link
+    name="base_link">
+    <inertial>
+      <origin
+        xyz="0.170127732931856 0.436279982851689 0.211462081788579"
+        rpy="0 0 0" />
+      <mass
+        value="11.8959101300667" />
+      <inertia
+        ixx="1.46406252104376"
+        ixy="-0.0570296205921714"
+        ixz="-0.0108587418617453"
+        iyy="0.31916144416613"
+        iyz="-0.282001618806043"
+        izz="1.21004138606907" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://rover_arm_description/meshes/base_link.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 1.0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://rover_arm_description/meshes/base_link.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <link
+    name="shoulder">
+    <inertial>
+      <origin
+        xyz="0.0322481709423136 0.322068900251137 0.0650112540872974"
+        rpy="0 0 0" />
+      <mass
+        value="11.8959101300667" />
+      <inertia
+        ixx="1.45811837295066"
+        ixy="-0.0894384984470032"
+        ixz="-0.0399063732169981"
+        iyy="0.31916144416613"
+        iyz="-0.273455747113973"
+        izz="1.21598553416217" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://rover_arm_description/meshes/shoulder.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://rover_arm_description/meshes/shoulder.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="base_roll"
+    type="revolute">
+    <origin
+      xyz="0.14566 -0.14314 0.11421"
+      rpy="1.5708 0 0" />
+    <parent
+      link="base_link" />
+    <child
+      link="shoulder" />
+    <axis
+      xyz="0 1 0" />
+    <limit lower="-0.7854" upper="0.7854" effort="150.0" velocity="3.15"/>
+  </joint>
+  <link
+    name="upper_arm">
+    <inertial>
+      <origin
+        xyz="0.0144800240228239 -0.0958264031550247 0.228736362470933"
+        rpy="0 0 0" />
+      <mass
+        value="11.8959101300667" />
+      <inertia
+        ixx="1.45811837295066"
+        ixy="0.0512875953774074"
+        ixz="-0.0834346821663045"
+        iyy="1.12948798516151"
+        iyz="0.380617006078215"
+        izz="0.40565899316679" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://rover_arm_description/meshes/upper_arm.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://rover_arm_description/meshes/upper_arm.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="shoulder_pitch"
+    type="revolute">
+    <origin
+      xyz="0.017768 0.082744 0"
+      rpy="-1.5708 0 0" />
+    <parent
+      link="shoulder" />
+    <child
+      link="upper_arm" />
+    <axis
+      xyz="1 0 0" />
+    <limit lower="-1.5708" upper="1.5708" effort="150.0" velocity="3.15"/>
+  </joint>
+  <link
+    name="elbow">
+    <inertial>
+      <origin
+        xyz="0.014480024022824 -0.301114395650102 0.073957891563733"
+        rpy="0 0 0" />
+      <mass
+        value="11.8959101300667" />
+      <inertia
+        ixx="1.45811837295066"
+        ixy="-0.0794516767842558"
+        ixz="-0.0572642531074918"
+        iyy="0.465184100930568"
+        iyz="-0.429432259632049"
+        izz="1.06996287739773" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://rover_arm_description/meshes/elbow.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://rover_arm_description/meshes/elbow.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="elbow_pitch"
+    type="revolute">
+    <origin
+      xyz="0 0 0.52362"
+      rpy="0 0 0" />
+    <parent
+      link="upper_arm" />
+    <child
+      link="elbow" />
+    <axis
+      xyz="1 0 0" />
+    <limit lower="-1.5708" upper="1.5708" effort="150.0" velocity="3.15"/>
+  </joint>
+  <link
+    name="lower_arm">
+    <inertial>
+      <origin
+        xyz="0.0298945481187236 -0.301196489380201 0.0384968731621654"
+        rpy="0 0 0" />
+      <mass
+        value="11.8959101300667" />
+      <inertia
+        ixx="1.45768059602485"
+        ixy="-0.0821404955446858"
+        ixz="-0.0584274337510379"
+        iyy="0.465621877856375"
+        iyz="-0.429275547034669"
+        izz="1.06996287739773" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://rover_arm_description/meshes/lower_arm.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://rover_arm_description/meshes/lower_arm.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="elbow_roll"
+    type="revolute">
+    <origin
+      xyz="-0.01623 0 0.035461"
+      rpy="0 0 3.1416" />
+    <parent
+      link="elbow" />
+    <child
+      link="lower_arm" />
+    <axis
+      xyz="0 0 1" />
+    <limit lower="-1.5708" upper="1.5708" effort="150.0" velocity="3.15"/>
+  </joint>
+  <link
+    name="wrist">
+    <inertial>
+      <origin
+        xyz="0.0227338507110884 0.334629591149215 -0.282280135583135"
+        rpy="0 0 0" />
+      <mass
+        value="11.8959101300667" />
+      <inertia
+        ixx="1.45768059602485"
+        ixy="-0.0881232960552545"
+        ixz="0.0489398683632909"
+        iyy="0.378286501030348"
+        iyz="0.351951244223128"
+        izz="1.15729825422376" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://rover_arm_description/meshes/wrist.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://rover_arm_description/meshes/wrist.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="wrist_pitch"
+    type="revolute">
+    <origin
+      xyz="0.052628 0 0.35621"
+      rpy="0 0 3.1416" />
+    <parent
+      link="lower_arm" />
+    <child
+      link="wrist" />
+    <axis
+      xyz="1 0 0" />
+    <limit lower="-1.5708" upper="1.5708" effort="150.0" velocity="3.15"/>
+  </joint>
+  <link
+    name="gripper">
+    <inertial>
+      <origin
+        xyz="-0.143779874198148 -0.335855430230703 0.315822421564397"
+        rpy="0 0 0" />
+      <mass
+        value="11.8959101300667" />
+      <inertia
+        ixx="1.40292475538702"
+        ixy="-0.104143862131174"
+        ixz="0.252726421797617"
+        iyy="1.15729825422376"
+        iyz="0.339733491145671"
+        izz="0.433042341668182" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://rover_arm_description/meshes/gripper.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://rover_arm_description/meshes/gripper.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="wrist_roll"
+    type="continuous">
+    <origin
+      xyz="-0.069133 0 0.053575"
+      rpy="1.5708 0 -1.5708" />
+    <parent
+      link="wrist" />
+    <child
+      link="gripper" />
+    <axis
+      xyz="0 1 0" />
+  </joint>
+
+  <transmission name="shoulder_pitch_trans">
+    <type>transmission_interface/SimpleTransmission</type>
+    <joint name="shoulder_pitch">
+      <hardwareInterface>hardware_interface/PositionJointInterface</hardwareInterface>
+    </joint>
+    <actuator name="shoulder_pitch_motor">
+      <mechanicalReduction>1</mechanicalReduction>
+    </actuator>
+  </transmission>
+
+  <transmission name="elbow_pitch_trans">
+    <type>transmission_interface/SimpleTransmission</type>
+    <joint name="elbow_pitch">
+      <hardwareInterface>hardware_interface/PositionJointInterface</hardwareInterface>
+    </joint>
+    <actuator name="elbow_pitch_motor">
+      <mechanicalReduction>1</mechanicalReduction>
+    </actuator>
+  </transmission>
+
+  <transmission name="elbow_roll_trans">
+    <type>transmission_interface/SimpleTransmission</type>
+    <joint name="elbow_roll">
+      <hardwareInterface>hardware_interface/PositionJointInterface</hardwareInterface>
+    </joint>
+    <actuator name="elbow_roll_motor">
+      <mechanicalReduction>1</mechanicalReduction>
+    </actuator>
+  </transmission>
+
+  <transmission name="wrist_pitch_trans">
+    <type>transmission_interface/SimpleTransmission</type>
+    <joint name="wrist_pitch">
+      <hardwareInterface>hardware_interface/PositionJointInterface</hardwareInterface>
+    </joint>
+    <actuator name="wrist_pitch_motor">
+      <mechanicalReduction>1</mechanicalReduction>
+    </actuator>
+  </transmission>
+
+  <transmission name="wrist_roll_trans">
+    <type>transmission_interface/SimpleTransmission</type>
+    <joint name="wrist_roll">
+      <hardwareInterface>hardware_interface/PositionJointInterface</hardwareInterface>
+    </joint>
+    <actuator name="wrist_roll_motor">
+      <mechanicalReduction>1</mechanicalReduction>
+    </actuator>
+  </transmission>
+
+  <transmission name="base_roll_trans">
+    <type>transmission_interface/SimpleTransmission</type>
+    <joint name="base_roll">
+      <hardwareInterface>hardware_interface/PositionJointInterface</hardwareInterface>
+    </joint>
+    <actuator name="base_roll_motor">
+      <mechanicalReduction>1</mechanicalReduction>
+    </actuator>
+  </transmission>
+
+</robot>
