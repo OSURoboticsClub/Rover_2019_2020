@@ -5,6 +5,9 @@
   <!-- ############## Launch rover_arm MoveIt ################### -->
   <include file="$(find rover_arm_moveit_config)/launch/demo.launch"/>
 
+  <!-- ############## Launch rover_arm MoveIt ################### -->
+  <node name="ros_contro" pkg="ros_contro" type= respawn= output="screen"/>
+
   <!-- ############## Start Joint Parser ################### --> 
   <node name="joint_parser" pkg="joint_parser" type="joint_remapper" respawn="true" output="screen"/>
 </launch>
